@@ -1,5 +1,6 @@
+//회원
 create table member(
-	m_id varchar2(100) not null primary key,
+	m_id number primary key,
 	m_name varchar2(20) not null,
 	m_email varchar2(50) not null unique,
 	m_pwd varchar2(100) not null,
@@ -8,6 +9,24 @@ create table member(
 	m_answer varchar2(100) not null,
 	m_friend varchar2(1000)
 )
-
-
+//쪽지
+create table note(
+	n_id number primary key,
+	n_title varchar2(100) not null,
+	n_content varchar2(500) not null,
+	n_sender number,
+	n_receive number,
+	n_date date,
+CONSTRAINT fk_note_recevie FOREIGN KEY (n_receive) REFERENCES member(m_id),
+CONSTRAINT fk_note_sender FOREIGN KEY (n_sender) REFERENCES member(m_id)
+);
+//쪽지함
+create table inbox(
+	i_id number primary key,
+	i_forder varchar2(50) not null,
+	i_member number,
+	i_note number,
+	CONSTRAINT fk_inbox_member FOREIGN KEY (i_member) REFERENCES member(m_id),
+	CONSTRAINT fk_inbox_note FOREIGN KEY (i_note) REFERENCES note(n_id)
+)
 
