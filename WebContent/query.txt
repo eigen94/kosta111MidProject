@@ -1,0 +1,10 @@
+create table member(
+	m_id varchar2(100) not null primary key,
+	m_name varchar2(20) not null,
+	m_email varchar2(50) not null unique,
+	m_pwd varchar2(100) not null,
+	m_phone varchar2(20) not null,
+	m_question number not null,
+	m_answer varchar2(100) not null,
+	m_friend varchar2(1000)
+)
