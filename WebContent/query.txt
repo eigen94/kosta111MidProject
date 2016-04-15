@@ -8,3 +8,6 @@ create table member(
 	m_answer varchar2(100) not null,
 	m_friend varchar2(1000)
 )
+
+
+
