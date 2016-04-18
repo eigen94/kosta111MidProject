@@ -8,8 +8,9 @@ public class MemberService {
 		return service;	
 	}	
 	
-	public int insertMember(Member member){
-		return dao.insertMember(member);
+	public int loginMemberService(int m_id, String m_pwd){
+		return dao.loginMember(m_id,m_pwd);
 	}
+	
 
 }
