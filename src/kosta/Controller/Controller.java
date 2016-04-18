@@ -30,8 +30,7 @@ public class Controller extends HttpServlet {
     	String contextPath = request.getContextPath();
     	String tmp = requestURI.substring(contextPath.length()+1);
     	String command = tmp.substring(tmp.indexOf("/")+1);
-    	
-    	System.out.println(command);
+    	    	
     	Action action = null;
     	ActionForward forward = null;
     	
