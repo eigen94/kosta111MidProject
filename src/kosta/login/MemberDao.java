@@ -3,7 +3,7 @@ package kosta.login;
 import java.io.InputStream;
 
 import kosta.loginMapper.loginMapper;
-import kosta.mapper.BoardMapper;
+
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
