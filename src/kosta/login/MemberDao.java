@@ -55,4 +55,9 @@ public class MemberDao {
 		}
 		return re;
 	}
+
+	public int insertMember(Member member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
