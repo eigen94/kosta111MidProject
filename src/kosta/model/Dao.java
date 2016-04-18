@@ -37,16 +37,16 @@ public class Dao {
 		return list;
 	}
 
-	public void projectListAction(ProjectBoard projectBoard) {
+	public void projectInsert(ProjectBoard projectBoard) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;
 		
 		try {
-			re = sqlSession.getMapper(ProjectBoardMapper.class).projectListAction(projectBoard);
+			re = sqlSession.getMapper(ProjectBoardMapper.class).projectInsert(projectBoard);
 			
 			if(re > 0)
 			{
-				System.out.println("Dd");
+				
 				sqlSession.commit();
 			}
 			
@@ -64,4 +64,6 @@ public class Dao {
 		}		
 		
 	}
+
+	
 }

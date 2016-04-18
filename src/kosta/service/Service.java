@@ -15,13 +15,13 @@ public class Service {
 		return service;
 	}
 	
-	public List<ProjectBoard> projectList()
+	public List<ProjectBoard> projectListService()
 	{
 		return dao.projectList();
 	}
 	
-	public void projectListAction(ProjectBoard projectBoard)
+	public void projectInsertService(ProjectBoard projectBoard)
 	{
-		dao.projectListAction(projectBoard);
+		dao.projectInsert(projectBoard);
 	}
 }

@@ -5,6 +5,5 @@ import kosta.model.ProjectBoard;
 public interface ProjectBoardMapper {
 
 	public List<ProjectBoard> projectList();
-
-	public int projectListAction(ProjectBoard projectBoard);
+	public int projectInsert(ProjectBoard projectBoard);
 }
