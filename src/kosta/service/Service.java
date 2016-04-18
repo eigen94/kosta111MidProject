@@ -25,13 +25,18 @@ public class Service {
 		dao.projectInsert(projectBoard);
 	}
 
-	public void projectSelectActionService(String p_id) {
-		dao.projectSelect(p_id);
+	public ProjectBoard projectSelectService(int p_id) {
+		return dao.projectSelect(p_id);
 	}
 	
 	public void projectUpdateService(ProjectBoard projectBoard)
 	{
 		dao.projectUpdate(projectBoard);
+	}
+
+	public void projectDeleteService(int p_id)
+	{
+		dao.projectDelete(p_id);
 	}
 }
 

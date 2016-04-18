@@ -93,5 +93,49 @@ public class Dao {
 		
 	}
 
+	public ProjectBoard projectSelect(int p_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		ProjectBoard projectBoard = null;
+		
+		try {
+			projectBoard = sqlSession.getMapper(ProjectBoardMapper.class).projectSelect(p_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		
+		return projectBoard;
+	}
+
+	public void projectDelete(int p_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = -1;
+		try {
+			re = sqlSession.getMapper(ProjectBoardMapper.class).projectDelete(p_id);
+			if(re > 0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
