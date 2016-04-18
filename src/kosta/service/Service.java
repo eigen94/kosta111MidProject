@@ -24,4 +24,22 @@ public class Service {
 	{
 		dao.projectInsert(projectBoard);
 	}
+
+	public void projectSelectAction(String p_id) {
+		dao.projectSelect
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

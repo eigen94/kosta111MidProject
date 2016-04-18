@@ -49,7 +49,7 @@ public class Controller extends HttpServlet {
 
     	else if(command.equals("projectSelect.do"))
     	{    		
-    		action = new ProjectListAction();
+    		action = new ProjectSelectAction();
     		forward = action.execute(request, response);
     	}
     	

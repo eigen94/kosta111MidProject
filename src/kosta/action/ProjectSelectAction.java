@@ -16,7 +16,7 @@ public class ProjectSelectAction implements Action{
 		System.out.println(p_id);
 		Service service = Service.getInstance();
 		
-//		service.projectListAction(p_id);
+		service.projectSelectAction(p_id);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
