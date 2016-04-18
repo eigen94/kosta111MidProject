@@ -1,4 +1,4 @@
-//회원
+//member
 create table member(
 	m_id number primary key,
 	m_name varchar2(20) not null,
@@ -7,9 +7,9 @@ create table member(
 	m_phone varchar2(20) not null,
 	m_question number not null,
 	m_answer varchar2(100) not null,
-	m_friend varchar2(1000)
+	m_recentMember varchar2(1000)
 )
-//쪽지
+//note
 create table note(
 	n_id number primary key,
 	n_title varchar2(100) not null,
@@ -20,7 +20,7 @@ create table note(
 CONSTRAINT fk_note_recevie FOREIGN KEY (n_receive) REFERENCES member(m_id),
 CONSTRAINT fk_note_sender FOREIGN KEY (n_sender) REFERENCES member(m_id)
 );
-//쪽지함
+//note inbox
 create table inbox(
 	i_id number primary key,
 	i_forder varchar2(50) not null,
@@ -30,3 +30,25 @@ create table inbox(
 	CONSTRAINT fk_inbox_note FOREIGN KEY (i_note) REFERENCES note(n_id)
 )
 
+//project
+create table project(
+p_id number primary key,
+p_name varchar2(200),
+p_start date,
+p_end date,
+p_pmid number,
+p_crew varchar2(200),
+p_memo varchar2(1000),
+	CONSTRAINT fk_inbox_member FOREIGN KEY (p_pmid) REFERENCES member(m_id)
+)
+
+//messenger
+create table msg(
+	msg_id number primary key,
+	msg_content varchar2(3000) not null,
+	msg_sender number,
+	msg_projectid number,
+	msg_date date,
+	CONSTRAINT fk_inbox_member FOREIGN KEY (msg_sender) REFERENCES member(m_id),
+	CONSTRAINT fk_inbox_note FOREIGN KEY (msg_projectid) REFERENCES project(p_id)
+)
