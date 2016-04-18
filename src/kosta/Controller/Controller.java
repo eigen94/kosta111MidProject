@@ -13,6 +13,7 @@ import kosta.action.Action;
 import kosta.action.ActionForward;
 import kosta.action.ProjectListAction;
 import kosta.action.ProjectCreateAction;
+import kosta.action.ProjectSelectAction;
 
 
 @WebServlet("*.do")
@@ -47,7 +48,7 @@ public class Controller extends HttpServlet {
 
     	else if(command.equals("projectSelect.do"))
     	{    		
-    		action = new ProjectListAction();
+    		action = new ProjectSelectAction();
     		forward = action.execute(request, response);
     	}
     	
