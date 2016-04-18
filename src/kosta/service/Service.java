@@ -19,4 +19,9 @@ public class Service {
 	{
 		return dao.projectList();
 	}
+	
+	public void insertProjectBoard(ProjectBoard projectBoard)
+	{
+		dao.insetProjectBoard(projectBoard);
+	}
 }

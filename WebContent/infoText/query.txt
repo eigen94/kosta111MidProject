@@ -16,7 +16,7 @@ create table note(
 	n_content varchar2(500) not null,
 	n_sender number,
 	n_receive number,
-	n_date date,
+	n_date date,```
 CONSTRAINT fk_note_recevie FOREIGN KEY (n_receive) REFERENCES member(m_id),
 CONSTRAINT fk_note_sender FOREIGN KEY (n_sender) REFERENCES member(m_id)
 );

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kosta.action.Action;
 import kosta.action.ActionForward;
 import kosta.action.ProjectListAction;
+import kosta.action.insertAction;
 
 
 @WebServlet("*.do")
@@ -20,7 +21,6 @@ public class Controller extends HttpServlet {
            
     public Controller() {
         super();
-        
     }
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,11 +29,17 @@ public class Controller extends HttpServlet {
     	String tmp = requestURI.substring(contextPath.length()+1);
     	String command = tmp.substring(tmp.indexOf("/")+1);
     	
-    	    	
+    	System.out.println(command);
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(command.equals("projectList.do"))
+    	if(command.equals("insert.do"))
+    	{   		
+    		action = new insertAction();
+    		forward = action.execute(request, response);
+    	}
+    	
+    	else if(command.equals("projectList.do"))
     	{    		
     		action = new ProjectListAction();
     		forward = action.execute(request, response);

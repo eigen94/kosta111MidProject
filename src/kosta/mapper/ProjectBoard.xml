@@ -5,8 +5,18 @@
 <mapper namespace="kosta.mapper.ProjectBoardMapper">
 <cache/>
 
+
 <select id="projectList" resultType="ProjectBoard">
 	select * from project
 </select>
-	
+
+	<insert id="insetProjectBoard" parameterType="ProjectBoard">
+		INSERT INTO project(
+			P_ID, P_NAME, P_START, P_END, P_MEMO
+		)VALUES(
+			PROJECT_SEQ.NEXTVAL, #{p_name }, sysdate, sysdate, #{p_memo } 
+		)
+	</insert>
+
+
 </mapper>

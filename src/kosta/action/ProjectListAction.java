@@ -16,7 +16,7 @@ public class ProjectListAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		
-		forward.setPath("/projectBoard/list.jsp");
+		forward.setPath("list.jsp");
 		forward.setRedirect(false);
 		
 		Service service = Service.getInstance();
