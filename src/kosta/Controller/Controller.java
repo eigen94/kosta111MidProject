@@ -32,7 +32,7 @@ public class Controller extends HttpServlet {
     	
     	if(command.equals(""))
     	{    		
-    		action = new xxxAction();
+    		action = new Action();
     		forward = action.execute(request, response);
     	}
     	
