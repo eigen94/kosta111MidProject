@@ -13,6 +13,10 @@ public class MemberService {
 		return service;	
 	}	
 	
+	public int loginMemberService(int m_id, String m_pwd){
+		return dao.loginMember(m_id,m_pwd);
+	}
+		
 	//for password->hashed password
 	public String testSHA256(String str){
 		String SHA = ""; 
@@ -48,5 +52,6 @@ public class MemberService {
 		
 		return re;
 	}
+	
 
 }

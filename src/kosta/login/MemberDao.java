@@ -5,7 +5,10 @@ import java.io.InputStream;
 import kosta.loginMapper.loginMapper;
 
 
+
+
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -29,12 +32,17 @@ public class MemberDao {
 		return new SqlSessionFactoryBuilder().build(input);
 	}
 
-	public int insertMember(Member member) {
+	public int loginMember(int m_id, String m_pwd) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re =-1;
+		Member member = new Member();
+		
+		member.setM_id(m_id);
+		member.setM_pwd(m_pwd);
+	
+		int re = -1;
 		
 		try {
-			re= sqlSession.getMapper(loginMapper.class).insertMember(member);
+			re = sqlSession.getMapper(loginMapper.class).loginMember(member);
 			if(re>0){
 				sqlSession.commit();
 			}else{
@@ -45,7 +53,11 @@ public class MemberDao {
 		}finally{
 			sqlSession.close();
 		}
-		
 		return re;
+	}
+
+	public int insertMember(Member member) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 }

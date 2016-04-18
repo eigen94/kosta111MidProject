@@ -3,18 +3,23 @@
     pageEncoding="EUC-KR"%>
     <%
     request.setCharacterEncoding("utf-8");
-    %>
-    <jsp:useBean id="member" class="kosta.login.Member"></jsp:useBean>
-    <jsp:setProperty property="*" name="member"/>
+    String id = request.getParameter("m_id");
+    String m_pwd = request.getParameter("m_pwd");
     
-    <%
+   	int m_id = 0;
+    
+    if(id != null){
+    	m_id = Integer.parseInt(id);
+    }
+ 
     	int re = 0;
     	MemberService service = MemberService.getInsetance();
-    	re = service.insertMember(member);
+    	re = service.loginMemberService(m_id, m_pwd);
     	
     	if(re>0){
-    		response.sendRedirect("main.jsp");
+    		response.sendRedirect("loginFrom.jsp");
     	}else{
+    		out.print("<script type='text/javascript'>alert('로그인 실패'); history.back();</script>");
     		
     	}
     %>
