@@ -14,6 +14,8 @@
 
 
 </form>
-
+<a href="registerForm.jsp">
+<button>회원가입</button>
+</a>
 </body>
 </html>
