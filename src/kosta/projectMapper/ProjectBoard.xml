@@ -10,7 +10,7 @@
 	select * from project
 </select>
 
-	<insert id="insetProjectBoard" parameterType="ProjectBoard">
+	<insert id="projectInsert" parameterType="ProjectBoard">
 		INSERT INTO project(
 			P_ID, P_NAME, P_START, P_END, P_MEMO
 		)VALUES(

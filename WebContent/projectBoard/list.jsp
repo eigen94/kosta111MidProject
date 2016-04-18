@@ -18,6 +18,7 @@
 		${board.p_pmid }<br>
 		${board.p_crew }<br>
 		${board.p_memo }<br>
+		<a href="projectUpdateForm.jsp?p_id=${board.p_id }"><button>수정하기</button></a>
 		<hr>
 	</c:forEach>
 </body>

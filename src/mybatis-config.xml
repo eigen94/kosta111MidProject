@@ -21,6 +21,8 @@
 	
 	<mappers>
 		<mapper resource="kosta/projectMapper/ProjectBoard.xml"/>
+		
+		
 	</mappers>
 	
 </configuration>
