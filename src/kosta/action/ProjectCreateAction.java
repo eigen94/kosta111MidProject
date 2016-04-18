@@ -20,7 +20,7 @@ public class ProjectCreateAction implements Action {
 		
 		Service service = Service.getInstance();
 		
-		service.projectListAction(project);
+		service.projectInsertService(project);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
