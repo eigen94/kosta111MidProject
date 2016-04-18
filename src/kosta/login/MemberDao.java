@@ -32,17 +32,18 @@ public class MemberDao {
 		return new SqlSessionFactoryBuilder().build(input);
 	}
 
-	public int loginMember(int m_id, String m_pwd) {
+	public int loginMember(String m_email, String m_pwd) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		Member member = new Member();
 		
-		member.setM_id(m_id);
+		member.setM_email(m_email);
 		member.setM_pwd(m_pwd);
 	
 		int re = -1;
 		
 		try {
 			re = sqlSession.getMapper(loginMapper.class).loginMember(member);
+			System.out.println(re);
 			if(re>0){
 				sqlSession.commit();
 			}else{

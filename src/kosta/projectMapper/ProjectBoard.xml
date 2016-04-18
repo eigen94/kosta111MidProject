@@ -23,5 +23,13 @@
 		where p_id = #{p_id}
 	</update>
 
+	<select id="projectSelect" parameterType="int" resultType="ProjectBoard">
+		SELECT * FROM project WHERE P_ID = #{p_id }
+	</select>
+
+	<delete id="projectDelete" parameterType="int">
+		DELETE FROM project WHERE P_ID = #{p_id }
+	</delete>
+
 
 </mapper>
