@@ -9,7 +9,7 @@
 <body>
 
 
-<button> Project 持失 </button>
+<a href="insertForm.jsp"><button> Project 持失 </button></a>
 
 
 </body>

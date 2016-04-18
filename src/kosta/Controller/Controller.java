@@ -11,28 +11,29 @@ import javax.servlet.http.HttpServletResponse;
 
 import kosta.action.Action;
 import kosta.action.ActionForward;
+import kosta.action.insertAction;
 
 
-@WebServlet("/Controller")
+@WebServlet("*.do")
 public class Controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
            
     public Controller() {
         super();
-        
     }
 
     protected void doProcess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	String requestURI = request.getRequestURI();
     	String contextPath = request.getContextPath();
     	String command = requestURI.substring(contextPath.length()+1);
-    	    	
+    	System.out.println(command);
     	Action action = null;
     	ActionForward forward = null;
     	
-    	if(command.equals(""))
+    	if(command.equals("board/insert.do"))
     	{    		
-    		//action = new xxxAction();
+    		System.out.println("인서트 두 ");
+    		action = new insertAction();
     		forward = action.execute(request, response);
     	}
     	
@@ -54,12 +55,12 @@ public class Controller extends HttpServlet {
     
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doProcess(request, response);
 	}
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		doProcess(request, response);
 	}
 
 }

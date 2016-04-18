@@ -5,7 +5,7 @@
 
 <configuration>
 	<typeAliases>
-		<typeAlias type="kosta.model.Board" alias="Board"/>
+		<typeAlias type="kosta.model.ProjectBoard" alias="ProjectBoard"/>
 		
 		
 	</typeAliases>
@@ -20,7 +20,7 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource="kosta/mapper/Board.xml"/>
+		<mapper resource="kosta/mapper/ProjectBoard.xml"/>
 		
 	</mappers>
 	
