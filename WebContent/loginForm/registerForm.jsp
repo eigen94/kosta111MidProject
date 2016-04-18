@@ -8,7 +8,7 @@
 </head>
 <body>
 회원가입
-<form action="" method="post">
+<form action="registerOk.jsp" method="post">
 이메일 <input type="text" name="m_email"><br>
 이름 <input type="text" name="m_name"><br>
 비밀번호 <input type="password" name="m_pwd"><br>

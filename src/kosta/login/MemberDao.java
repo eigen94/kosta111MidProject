@@ -32,17 +32,18 @@ public class MemberDao {
 		return new SqlSessionFactoryBuilder().build(input);
 	}
 
-	public int loginMember(int m_id, String m_pwd) {
+	public int loginMember(String m_email, String m_pwd) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		Member member = new Member();
 		
-		member.setM_id(m_id);
+		member.setM_email(m_email);
 		member.setM_pwd(m_pwd);
 	
 		int re = -1;
 		
 		try {
 			re = sqlSession.getMapper(loginMapper.class).loginMember(member);
+			System.out.println(re);
 			if(re>0){
 				sqlSession.commit();
 			}else{
@@ -57,7 +58,21 @@ public class MemberDao {
 	}
 
 	public int insertMember(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = -1;
+		
+		try {
+			re = sqlSession.getMapper(loginMapper.class).insertMember(member);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return re;
 	}
 }
