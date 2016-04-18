@@ -12,7 +12,7 @@
 	<c:forEach var="board" items="${list }">
 		<hr>
 		${board.p_id }<br>
-		${board.p_name }<br>
+		<a href="projectSelect.do?p_id=${board.p_id }">${board.p_name }</a><br>
 		${board.p_start }<br>
 		${board.p_end }<br>
 		${board.p_pmid }<br>

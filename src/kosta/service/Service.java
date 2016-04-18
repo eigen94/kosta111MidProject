@@ -20,8 +20,8 @@ public class Service {
 		return dao.projectList();
 	}
 	
-	public void insertProjectBoard(ProjectBoard projectBoard)
+	public void projectListAction(ProjectBoard projectBoard)
 	{
-		dao.insetProjectBoard(projectBoard);
+		dao.projectListAction(projectBoard);
 	}
 }

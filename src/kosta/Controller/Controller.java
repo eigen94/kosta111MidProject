@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kosta.action.Action;
 import kosta.action.ActionForward;
 import kosta.action.ProjectListAction;
-import kosta.action.insertAction;
+import kosta.action.ProjectCreateAction;
 
 
 @WebServlet("*.do")
@@ -35,11 +35,17 @@ public class Controller extends HttpServlet {
     	
     	if(command.equals("insert.do"))
     	{   		
-    		action = new insertAction();
+    		action = new ProjectCreateAction();
     		forward = action.execute(request, response);
     	}
     	
     	else if(command.equals("projectList.do"))
+    	{    		
+    		action = new ProjectListAction();
+    		forward = action.execute(request, response);
+    	}
+
+    	else if(command.equals("projectSelect.do"))
     	{    		
     		action = new ProjectListAction();
     		forward = action.execute(request, response);

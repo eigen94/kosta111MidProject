@@ -37,12 +37,12 @@ public class Dao {
 		return list;
 	}
 
-	public void insetProjectBoard(ProjectBoard projectBoard) {
+	public void projectListAction(ProjectBoard projectBoard) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;
 		
 		try {
-			re = sqlSession.getMapper(ProjectBoardMapper.class).insetProjectBoard(projectBoard);
+			re = sqlSession.getMapper(ProjectBoardMapper.class).projectListAction(projectBoard);
 			
 			if(re > 0)
 			{
