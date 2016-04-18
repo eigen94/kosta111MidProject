@@ -24,4 +24,9 @@ public class Service {
 	{
 		dao.projectInsert(projectBoard);
 	}
+	
+	public void projectUpdateService(ProjectBoard projectBoard)
+	{
+		dao.projectUpdate(projectBoard);
+	}
 }
