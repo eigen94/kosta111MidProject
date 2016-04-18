@@ -5,8 +5,8 @@
 
 <configuration>
 	<typeAliases>
+		<typeAlias type="kosta.model.ProjectBoard" alias="ProjectBoard"/>
 		<typeAlias type="kosta.login.Member" alias="Member"/>
-		
 		
 	</typeAliases>
 	
@@ -20,7 +20,7 @@
 	</environments>
 	
 	<mappers>
-		<mapper resource="kosta/loginMapper/login.xml"/>
+		<mapper resource="kosta/mapper/ProjectBoard.xml"/>
 		
 	</mappers>
 	

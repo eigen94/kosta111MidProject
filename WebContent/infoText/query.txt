@@ -1,4 +1,4 @@
-//member
+--member
 create table member(
 	m_id number primary key,
 	m_name varchar2(20) not null,
@@ -8,8 +8,8 @@ create table member(
 	m_question number not null,
 	m_answer varchar2(100) not null,
 	m_recentMember varchar2(1000)
-)
-//note
+);
+--note
 create table note(
 	n_id number primary key,
 	n_title varchar2(100) not null,
@@ -20,7 +20,7 @@ create table note(
 CONSTRAINT fk_note_recevie FOREIGN KEY (n_receive) REFERENCES member(m_id),
 CONSTRAINT fk_note_sender FOREIGN KEY (n_sender) REFERENCES member(m_id)
 );
-//note inbox
+--note inbox
 create table inbox(
 	i_id number primary key,
 	i_forder varchar2(50) not null,
@@ -28,9 +28,8 @@ create table inbox(
 	i_note number,
 	CONSTRAINT fk_inbox_member FOREIGN KEY (i_member) REFERENCES member(m_id),
 	CONSTRAINT fk_inbox_note FOREIGN KEY (i_note) REFERENCES note(n_id)
-)
-
-//project
+);
+--project
 create table project(
 p_id number primary key,
 p_name varchar2(200),
@@ -41,8 +40,7 @@ p_crew varchar2(200),
 p_memo varchar2(1000),
 	CONSTRAINT fk_inbox_member FOREIGN KEY (p_pmid) REFERENCES member(m_id)
 )
-
-//messenger
+--messenger
 create table msg(
 	msg_id number primary key,
 	msg_content varchar2(3000) not null,

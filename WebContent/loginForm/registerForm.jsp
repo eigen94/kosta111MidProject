@@ -13,8 +13,8 @@
 이름 <input type="text" name="m_name"><br>
 비밀번호 <input type="password" name="m_pwd"><br>
 비밀번호 확인 <input type="password" name="m_pwdcheck"><br>
-연락처 <input type="text" name="m_name"><br>
-비밀번호 찾기 질문 <select>
+연락처 <input type="text" name="m_phone"><br>
+비밀번호 찾기 질문 <select name="m_question">
 <option value="0">어머니 이름</option>
 <option value="1">아버지 이름</option>
 <option value="2">가장 기억에 남는 장소</option>

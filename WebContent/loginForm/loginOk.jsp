@@ -16,6 +16,7 @@
     		response.sendRedirect("loginFrom.jsp");
     	}else{
     		out.print("<script type='text/javascript'>alert('로그인 실패'); history.back();</script>");
+    		
     	}
     %>
     
