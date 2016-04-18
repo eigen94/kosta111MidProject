@@ -7,6 +7,13 @@
 	<select id="kosta.login.Member" parameterType="Member" >
 	select * from member where m_id = #{m_id} and m_pwd =#{m_pwd}
 	</select>
+	<insert id="insertMember" parameterType="Member">
+		insert into member
+			(m_id, m_name, m_email m_pwd,m_phone, m_question, m_answer)
+			values(
+			MVL((select max(m_id) from member)+1,0), #{m_name},#{m_email},#{m_pwd},#{m_phone},#{m_question},#{m_answer}
+			)
+	</insert>
 	
 	
 </mapper>

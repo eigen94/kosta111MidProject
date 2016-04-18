@@ -1,5 +1,3 @@
-<%@page import="kosta.login.Member"%>
-
 <%@page import="kosta.login.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -24,6 +22,11 @@
     	out.print("<script type='text/javascript'>alert('로그인 실패'); history.back();</script>");
     }
     
+    	if(re>0){
+    		response.sendRedirect("main.jsp");
+    	}else{
+    		
+    	}
     %>
   
     
