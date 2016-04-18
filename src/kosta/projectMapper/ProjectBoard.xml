@@ -3,20 +3,25 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kosta.projectMapper.ProjectBoardMapper">
-<cache/>
+	<cache />
 
-
-<select id="projectList" resultType="ProjectBoard">
-	select * from project
-</select>
+	<select id="projectList" resultType="ProjectBoard">
+		select * from project
+	</select>
 
 	<insert id="projectInsert" parameterType="ProjectBoard">
 		INSERT INTO project(
-			P_ID, P_NAME, P_START, P_END, P_MEMO
+		P_ID, P_NAME, P_START, P_END, P_MEMO
 		)VALUES(
-			PROJECT_SEQ.NEXTVAL, #{p_name }, sysdate, sysdate, #{p_memo } 
+		PROJECT_SEQ.NEXTVAL, #{p_name }, sysdate, sysdate, #{p_memo }
 		)
 	</insert>
+	
+	<update id="projectUpdate" parameterType="ProjectBoard">
+		update project set
+		p_name = #{p_name}, p_memo = #{p_memo}
+		where p_id = #{p_id}
+	</update>
 
 
 </mapper>

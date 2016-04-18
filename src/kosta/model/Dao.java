@@ -55,13 +55,41 @@ public class Dao {
 				sqlSession.rollback();
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		}
 		
 		finally
 		{
 			sqlSession.close();
 		}		
+		
+	}
+
+	public void projectUpdate(ProjectBoard projectBoard) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = -1;
+		
+		try {
+			re = sqlSession.getMapper(ProjectBoardMapper.class).projectUpdate(projectBoard);
+			
+			if(re > 0)
+			{
+				
+				sqlSession.commit();
+			}
+			
+			else
+			{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		finally
+		{
+			sqlSession.close();
+		}
 		
 	}
 

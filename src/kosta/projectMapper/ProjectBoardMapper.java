@@ -6,4 +6,5 @@ public interface ProjectBoardMapper {
 
 	public List<ProjectBoard> projectList();
 	public int projectInsert(ProjectBoard projectBoard);
+	public int projectUpdate(ProjectBoard projectBoard);
 }
