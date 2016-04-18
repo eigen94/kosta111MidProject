@@ -1,4 +1,4 @@
-package kosta.mapper;
+package kosta.projectMapper;
 import java.util.List;
 
 import kosta.model.ProjectBoard;

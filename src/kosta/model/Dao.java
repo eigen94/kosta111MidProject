@@ -4,7 +4,7 @@ import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 
-import kosta.mapper.ProjectBoardMapper;
+import kosta.projectMapper.ProjectBoardMapper;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
