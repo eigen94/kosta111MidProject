@@ -9,4 +9,5 @@ public interface ProjectBoardMapper {
 	public int projectUpdate(ProjectBoard projectBoard);
 	public ProjectBoard projectSelect(int p_id);
 	public int projectDelete(int p_id);
+	public Integer selectMaxP_id();
 }
