@@ -15,10 +15,8 @@
 	메모 <br>
 	<textarea rows="6" cols="70" name="p_memo"></textarea>
 	<br>
-	<input type="submit" value="등록">
-	<a href="projectList.do"><button>목록보기</button></a>
-	
-	
+	<input type="submit" value="등록">	
 </form>
+<a href="projectList.do"><button>목록보기</button></a>
 </body>
 </html>
