@@ -2,10 +2,8 @@ package kosta.loginMapper;
 
 import kosta.login.Member;
 
-public class loginMapper {
+public interface loginMapper {
 
-	public int insertMember(Member member) {
-		return ;
-	}
+	int insertMember(Member member);
 
 }

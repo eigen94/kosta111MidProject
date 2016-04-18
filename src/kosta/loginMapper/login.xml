@@ -4,11 +4,12 @@
 
 <mapper namespace="kosta.loginMapper.loginMapper">
 <cache/>
-	<insert id="insertBoard" parameterType="Board">
-		insert into board3
-			(b_id, b_name, b_title, b_content, b_pwd, b_date, b_hit, b_ref, b_step, b_level)
-			values
-			(#{b_id}, #{b_name}, #{b_title}, #{b_content}, #{b_pwd}, SYSDATE, 0, 0, 0, 0)
+	<insert id="insertMember" parameterType="Member">
+		insert into member
+			(m_id, m_name, m_email m_pwd,m_phone, m_question, m_answer, b_freind)
+			values(
+			MVL((select max(m_id) from member)+1,0), #{m_name},#{m_email},#{m_pwd},#{m_phone},#{m_question},#{m_answer},#{m_freind}
+			)
 	</insert>
 	
 	
