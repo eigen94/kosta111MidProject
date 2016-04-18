@@ -13,9 +13,9 @@
     	re = service.insertMember(member);
     	
     	if(re>0){
-    		response.sendRedirect("main.jsp");
+    		response.sendRedirect("loginFrom.jsp");
     	}else{
-    		re
+    		out.print("<script type='text/javascript'>alert('로그인 실패'); history.back();</script>");
     	}
     %>
     
