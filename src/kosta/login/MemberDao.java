@@ -57,7 +57,21 @@ public class MemberDao {
 	}
 
 	public int insertMember(Member member) {
-		// TODO Auto-generated method stub
-		return 0;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = -1;
+		
+		try {
+			re = sqlSession.getMapper(loginMapper.class).insertMember(member);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return re;
 	}
 }
