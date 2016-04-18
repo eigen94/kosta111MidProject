@@ -3,21 +3,15 @@
     pageEncoding="EUC-KR"%>
     <%
     request.setCharacterEncoding("utf-8");
-    String id = request.getParameter("m_id");
+    String m_email = request.getParameter("m_email");
     String m_pwd = request.getParameter("m_pwd");
     
-   	int m_id = 0;
-    
-    if(id != null){
-    	m_id = Integer.parseInt(id);
-    }
- 
     	int re = 0;
     	MemberService service = MemberService.getInsetance();
-    	re = service.loginMemberService(m_id, m_pwd);
+    	re = service.loginMemberService(m_email, m_pwd);
     	
     	if(re>0){
-    		response.sendRedirect("loginFrom.jsp");
+    		out.print("<script type='text/javascript'>alert('로그인 성공'); history.back();</script>");
     	}else{
     		out.print("<script type='text/javascript'>alert('로그인 실패'); history.back();</script>");
     		

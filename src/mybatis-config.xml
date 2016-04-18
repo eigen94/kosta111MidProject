@@ -21,7 +21,7 @@
 	
 	<mappers>
 		<mapper resource="kosta/projectMapper/ProjectBoard.xml"/>
-		
+		<mapper resource="kosta/loginMapper/login.xml"/>
 		
 	</mappers>
 	
