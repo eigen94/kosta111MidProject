@@ -164,7 +164,6 @@ public class Dao {
 		System.out.println(detail);
 		try {
 			sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
-			System.out.println("¿Ó´Ï");
 			
 			sqlSession.commit();
 			
@@ -177,10 +176,54 @@ public class Dao {
 	}
 
 	public List<ProjectDetail> detailListService(int id) {
-SqlSession sqlSession = getSqlSessionFactory().openSession();
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		List<ProjectDetail> list = sqlSession.getMapper(ProjectBoardMapper.class).detailList(id);
+		sqlSession.close();
 		return list;
+		
+	}
+
+	public ProjectDetail selectDetail(int check_id) {
+	SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		ProjectDetail detail = sqlSession.getMapper(ProjectBoardMapper.class).selectDetail(check_id);
+		sqlSession.close();
+		return detail;
+	}
+
+	public void CheckDelete(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).checkDelet(id);
+		
+			
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	public void CheckUpdate(ProjectDetail detail) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).checkUpdate(detail);
+		
+				sqlSession.commit();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally
+		{
+			sqlSession.close();
+		}
 		
 	}
 

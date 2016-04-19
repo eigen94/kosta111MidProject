@@ -37,7 +37,7 @@
 		<div>
 			<c:forEach var="d" items="${list }">
 		<hr>
-			<a href="check.jsp?chekc_id=${d.check_id }">${d.check_name }</a>
+			<a href="check.do?check_id=${d.check_id }">${d.check_name }</a>
 		<hr>
 	</c:forEach>
 			<button onclick="create();">생성</button>

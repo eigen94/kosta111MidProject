@@ -50,4 +50,15 @@
 	<select id="detailList" resultType="Detail" parameterType="int">
 		select * from checklist where check_projectid = #{id}
 	</select>
+	<select id="selectDetail" resultType="Detail" parameterType="int">
+		select * from checklist where check_id = #{check_id}
+	</select>
+	<delete id="checkDelet" parameterType="int">
+		DELETE FROM checklist WHERE check_id = #{check_id}
+	</delete>
+	<update id="checkUpdate" parameterType="Detail">
+		update checklist set
+		check_name = #{check_name}, check_content = #{check_content},check_end = #{check_end}
+		where check_id = #{check_id}
+	</update>
 </mapper>

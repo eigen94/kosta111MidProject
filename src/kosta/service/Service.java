@@ -55,6 +55,21 @@ public class Service {
 		
 		return dao.detailListService(id);
 	}
+
+	public ProjectDetail selectDetail(int check_id) {
+		
+		return dao.selectDetail(check_id);
+	}
+
+	public void CheckDelete(int id) {
+		dao.CheckDelete(id);
+		
+	}
+
+	public void checkUpdate(ProjectDetail detail) {
+		dao.CheckUpdate(detail);
+		
+	}
 }
 
 
