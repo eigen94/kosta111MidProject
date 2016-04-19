@@ -1,4 +1,3 @@
-package kosta.msg;
 import java.io.IOException;
 import java.util.Collections;
 import java.util.HashSet;
