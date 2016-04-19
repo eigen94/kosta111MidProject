@@ -16,7 +16,7 @@ create table note(
 	n_content varchar2(500) not null,
 	n_sender number,
 	n_receive number,
-	n_date date,```
+	n_date date,
 CONSTRAINT fk_note_recevie FOREIGN KEY (n_receive) REFERENCES member(m_id),
 CONSTRAINT fk_note_sender FOREIGN KEY (n_sender) REFERENCES member(m_id)
 );
@@ -38,7 +38,7 @@ p_end date,
 p_pmid number,
 p_crew varchar2(200),
 p_memo varchar2(1000),
-	CONSTRAINT fk_inbox_member FOREIGN KEY (p_pmid) REFERENCES member(m_id)
+	CONSTRAINT fk_project_member FOREIGN KEY (p_pmid) REFERENCES member(m_id)
 )
 --messenger
 create table msg(
@@ -47,6 +47,20 @@ create table msg(
 	msg_sender number,
 	msg_projectid number,
 	msg_date date,
-	CONSTRAINT fk_inbox_member FOREIGN KEY (msg_sender) REFERENCES member(m_id),
-	CONSTRAINT fk_inbox_note FOREIGN KEY (msg_projectid) REFERENCES project(p_id)
+	CONSTRAINT fk_msg_member FOREIGN KEY (msg_sender) REFERENCES member(m_id),
+	CONSTRAINT fk_msg_note FOREIGN KEY (msg_projectid) REFERENCES project(p_id)
+)
+--work schedule
+CREATE TABLE checkList(
+	check_id number primary key,
+	check_name varchar2(400),
+	check_projectId number,
+	check_start date,
+	check_end date,
+	check_manager number,
+	check_sign number,
+	check_type number,
+	check_content varchar2(4000),
+	CONSTRAINT fk_schedule_member FOREIGN KEY (check_manager) REFERENCES member(m_id),
+	CONSTRAINT fk_schedule_project FOREIGN KEY (check_projectid) REFERENCES project(p_id)
 )
