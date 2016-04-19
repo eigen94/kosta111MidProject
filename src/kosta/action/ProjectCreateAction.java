@@ -1,5 +1,7 @@
 package kosta.action;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -11,7 +13,12 @@ public class ProjectCreateAction implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		
+		try {
+			request.setCharacterEncoding("utf-8");
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		String p_name = request.getParameter("p_name");
 		String p_start = request.getParameter("p_start");
 		String p_end = request.getParameter("p_end");
