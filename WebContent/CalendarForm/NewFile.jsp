@@ -1,49 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<script src="https://code.jquery.com/jquery-2.2.3.js"></script>
-<link href='CalendarForm/fullcalendar.css' rel='stylesheet'>
-<style type="text/css">
-.wrap{
-	width:500px;
-	margin= 0 auto;
-}
+<header>
+<meta charset="utf-8">
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.3.js"></script>
+<link href="fullCalendar.css" rel="stylesheet">
+</header>
 
-.btn-holder{
-	text-align: center;
-	margin: 10px 0 10px 0;
-}
 
-#calendar talbe{
-	border-collapse: collapse;
-	text-align: center;
-}
+<body>
+<div class='wrap'>
+     <div class='btn-holder'>
+          <button id='btnPrev'>&lt;</button>
+          <span id='currentDate'></span>
+          <button id='btnNext'>&gt;</button>
+     </div>
+     <div id="calendar"></div>
+</div>
 
-#calendar table thead td{
-	height: 30px;
-	font-weight: bold;
-}
-#calendar talbe td{
-	border: solid 1px #000;
-}
 
-#calendar table td.date-cell{
-	height:50px;
-}
-#calendar table td.sun{
-	color:red;
-}
-#calendar table td.sat{
-	color:blue;
-}
-#calendar table td.not-this-month{
-	background: #ddd;
-	color:#999;
-}
-</style>
 <script type="text/javascript">
 
 
@@ -142,17 +118,5 @@ function controller(target) {
      }
 }
 </script>
-<title>Insert title here</title>
-</head>
-<body>
-<div class ='wrap'>
-		<div class ='btn-holder'>
-			<button id='btnPrev'></button>
-			<button id='currentDate'></button>
-			<button id='btnNext'></button>
-		</div>
-		<div id='calendar'></div>
-	</div>
-
 </body>
 </html>
