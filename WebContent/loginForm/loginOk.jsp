@@ -13,8 +13,7 @@
     	if(re>0){
     		out.print("<script type='text/javascript'>alert('로그인 성공'); history.back();</script>");
     	}else{
-    		out.print("<script type='text/javascript'>alert('로그인 실패'); history.back();</script>");
-    		
+    		out.print("<script type='text/javascript'>alert('로그인 실패'); history.back();</script>");		
     	}
     %>
     

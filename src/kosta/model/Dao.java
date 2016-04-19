@@ -128,15 +128,103 @@ public class Dao {
 	public int selectMaxP_id()
 	{
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		
+		int id = 0;
 		if(sqlSession.getMapper(ProjectBoardMapper.class).selectMaxP_id() == null)
 		{
-			return 0;
+			sqlSession.close();
+			return id;
 		}
 		else
 		{
-			return sqlSession.getMapper(ProjectBoardMapper.class).selectMaxP_id();
+			id=sqlSession.getMapper(ProjectBoardMapper.class).selectMaxP_id();
+			sqlSession.close();
+			return id;
 		}
+	}
+
+	public int getDetailId() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int id = 0;
+		if(sqlSession.getMapper(ProjectBoardMapper.class).getDetailId() == null)
+		{
+			sqlSession.close();
+			return id;
+		}
+		else
+		{	
+			id=sqlSession.getMapper(ProjectBoardMapper.class).getDetailId();
+			sqlSession.close();
+			return id;
+		}
+		
+	}
+
+	public void checkCreate(ProjectDetail detail) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		System.out.println(detail);
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
+			
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
+	public List<ProjectDetail> detailListService(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<ProjectDetail> list = sqlSession.getMapper(ProjectBoardMapper.class).detailList(id);
+		sqlSession.close();
+		return list;
+		
+	}
+
+	public ProjectDetail selectDetail(int check_id) {
+	SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		ProjectDetail detail = sqlSession.getMapper(ProjectBoardMapper.class).selectDetail(check_id);
+		sqlSession.close();
+		return detail;
+	}
+
+	public void CheckDelete(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).checkDelet(id);
+		
+			
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	public void CheckUpdate(ProjectDetail detail) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).checkUpdate(detail);
+		
+				sqlSession.commit();
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		finally
+		{
+			sqlSession.close();
+		}
+		
 	}
 
 	

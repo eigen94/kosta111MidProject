@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import kosta.action.Action;
 import kosta.action.ActionForward;
+import kosta.action.CheckCreate;
+import kosta.action.CheckDetail;
+import kosta.action.CheckDelete;
+import kosta.action.CheckUpdate;
 import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
 import kosta.action.ProjectCreateAction;
@@ -62,6 +66,20 @@ public class Controller extends HttpServlet {
     	else if(command.equals("delete.do"))
     	{
     		action = new ProjectDeleteAction();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("projectDetail.do")){
+    		action = new CheckCreate();
+       		forward = action.execute(request, response);
+    	}else if(command.equals("check.do")){
+    		action = new CheckDetail();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("checkDelete.do"))
+    	{
+    		action = new CheckDelete();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("checkListUpdate.do"))
+    	{
+    		action = new CheckUpdate();
     		forward = action.execute(request, response);
     	}
     	

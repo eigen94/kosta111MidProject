@@ -4,6 +4,7 @@ import java.util.List;
 
 import kosta.model.Dao;
 import kosta.model.ProjectBoard;
+import kosta.model.ProjectDetail;
 
 public class Service {
 	public static Dao dao;
@@ -38,6 +39,36 @@ public class Service {
 	public void projectDeleteService(int p_id)
 	{
 		dao.projectDelete(p_id);
+	}
+
+	public int getDetailId() {
+		return dao.getDetailId();
+		
+	}
+
+	public void checkCreate(ProjectDetail detail) {
+		dao.checkCreate(detail);
+		
+	}
+
+	public List<ProjectDetail> detailListService(int id) {
+		
+		return dao.detailListService(id);
+	}
+
+	public ProjectDetail selectDetail(int check_id) {
+		
+		return dao.selectDetail(check_id);
+	}
+
+	public void CheckDelete(int id) {
+		dao.CheckDelete(id);
+		
+	}
+
+	public void checkUpdate(ProjectDetail detail) {
+		dao.CheckUpdate(detail);
+		
 	}
 }
 
