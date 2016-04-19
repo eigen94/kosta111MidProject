@@ -50,6 +50,7 @@ function controller(target) {
           for(var i=0, len=arrWeek.length; i<len; i++) {
                var sClass = '';
                sClass += i % 7 == 0 ? 'sun' : '';
+
                sClass += i % 7 == 6 ? 'sat' : '';
                
                arrTable.push('<td class="'+sClass+'">' + arrWeek[i] + '</td>');
@@ -113,7 +114,7 @@ function controller(target) {
 
     /* 날짜 객체를 년 월 문자 형식으로 변환 */
      this.getYearMonth = function(oDate) {
-          return oDate.getFullYear() + '년 ' + (oDate.getMonth() + 1) + '월';
+          return oDate.getFullYear() + ' / ' + (oDate.getMonth() + 1);
      }
 }
 </script>

@@ -6,6 +6,11 @@
      text-align: center;
      margin: 10px 0 10px 0;
 }
+#currentDate{
+	font-weight: bold;
+	font-size: 40px;
+}
+
 #calendar table {
      border-collapse: collapse;
      text-align: center;
