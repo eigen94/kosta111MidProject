@@ -124,6 +124,20 @@ public class Dao {
 			sqlSession.close();
 		}
 	}
+	
+	public int selectMaxP_id()
+	{
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		if(sqlSession.getMapper(ProjectBoardMapper.class).selectMaxP_id() == null)
+		{
+			return 0;
+		}
+		else
+		{
+			return sqlSession.getMapper(ProjectBoardMapper.class).selectMaxP_id();
+		}
+	}
 
 	
 }
