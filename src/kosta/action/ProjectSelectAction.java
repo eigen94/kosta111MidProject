@@ -1,9 +1,12 @@
 package kosta.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kosta.model.ProjectBoard;
+import kosta.model.ProjectDetail;
 import kosta.service.Service;
 
 public class ProjectSelectAction implements Action{
@@ -21,6 +24,9 @@ public class ProjectSelectAction implements Action{
 		forward.setRedirect(false);
 		forward.setPath("detail.jsp");
 		request.setAttribute("select", select);
+		
+		List<ProjectDetail> list = service.detailListService(p_id);
+		request.setAttribute("list", list);
 		
 		return forward;
 	}

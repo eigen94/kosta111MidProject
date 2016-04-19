@@ -128,15 +128,60 @@ public class Dao {
 	public int selectMaxP_id()
 	{
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		
+		int id = 0;
 		if(sqlSession.getMapper(ProjectBoardMapper.class).selectMaxP_id() == null)
 		{
-			return 0;
+			sqlSession.close();
+			return id;
 		}
 		else
 		{
-			return sqlSession.getMapper(ProjectBoardMapper.class).selectMaxP_id();
+			id=sqlSession.getMapper(ProjectBoardMapper.class).selectMaxP_id();
+			sqlSession.close();
+			return id;
 		}
+	}
+
+	public int getDetailId() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int id = 0;
+		if(sqlSession.getMapper(ProjectBoardMapper.class).getDetailId() == null)
+		{
+			sqlSession.close();
+			return id;
+		}
+		else
+		{	
+			id=sqlSession.getMapper(ProjectBoardMapper.class).getDetailId();
+			sqlSession.close();
+			return id;
+		}
+		
+	}
+
+	public void checkCreate(ProjectDetail detail) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		System.out.println(detail);
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
+			System.out.println("¿Ó´Ï");
+			
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
+	public List<ProjectDetail> detailListService(int id) {
+SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<ProjectDetail> list = sqlSession.getMapper(ProjectBoardMapper.class).detailList(id);
+		return list;
+		
 	}
 
 	

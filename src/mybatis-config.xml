@@ -7,6 +7,7 @@
 	<typeAliases>
 		<typeAlias type="kosta.model.ProjectBoard" alias="ProjectBoard"/>
 		<typeAlias type="kosta.login.Member" alias="Member"/>
+		<typeAlias type="kosta.model.ProjectDetail" alias="Detail"/>
 		
 	</typeAliases>
 	

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -33,27 +35,33 @@
 		<div>
 		<b>프로젝트 이름</b>
 		<div>
+			<c:forEach var="d" items="${list }">
+		<hr>
+			<a href="check.jsp?chekc_id=${d.check_id }">${d.check_name }</a>
+		<hr>
+	</c:forEach>
 			<button onclick="create();">생성</button>
 		</div>
 		<div id="projectForm">
-			<form action="projectDetailAction.jsp" method="post">
+			<form action="projectDetail.do" method="post">
+				<input type="hidden" name="check_projeckId" value="${select.p_id }">
 				<b>체크리스트 생성</b><br>
-				일정 이름<input type="text" name="c_name"><br>
+				일정 이름<input type="text" name="check_name"><br>
 				<b>일정양식</b>
-				<select name="c_select">
-				<option>데이터명세</option>
-				<option>기능명세</option>
-				<option>화면명세</option>
-				<option>자우양식</option>
+				<select name="check_type">
+				<option value="1">데이터명세</option>
+				<option value="2">기능명세</option>
+				<option value="3">화면명세</option>
+				<option value="4">자우양식</option>
 				</select><br>
-				<input type="date" name="c_date"><br>
-				<input type="text" name="c_writer"><br>
-				<textarea rows="10" cols="25" name="c_memo"></textarea><br>
+				종료일<input type="date" name="check_end"><br>
+				담당자<input type="text" name="check_manager"><br>
+				체크리스트내용<textarea rows="10" cols="25" name="check_content"></textarea><br>
 				<input type="submit" value="일정 생성">
 			</form>
 		</div>
 	</div>
 	<a href="projectList.do"><button>목록으로</button></a>
-		<a href="delete.do?p_id=${select.p_id }"><button>삭제</button></a>
+	<a href="delete.do?p_id=${select.p_id }"><button>삭제</button></a>
 </body>
 </html>
