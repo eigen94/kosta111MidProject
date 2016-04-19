@@ -1,1 +1,13 @@
-@CHARSET "UTF-8";
+
+	h3{
+		font-size: 25px;	
+	}
+
+	.mid_position #plus_btn{
+		float: left;
+	}
+	
+	.bot_position .save{
+		margin-top: 200px;
+		margin-left: 400px;
+	}
