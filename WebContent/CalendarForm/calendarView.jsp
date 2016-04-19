@@ -18,8 +18,6 @@
      </div>
      <div id="calendar"></div>
 </div>
-
-
 <script type="text/javascript">
 
 
@@ -53,6 +51,7 @@ function controller(target) {
                var sClass = '';
                sClass += i % 7 == 0 ? 'sun' : '';
                sClass += i % 7 == 6 ? 'sat' : '';
+               
                arrTable.push('<td class="'+sClass+'">' + arrWeek[i] + '</td>');
           }
           arrTable.push('</tr></thead>');
