@@ -58,9 +58,9 @@ CREATE TABLE checkList(
 	check_start date,
 	check_end date,
 	check_manager number,
-	check_sign boolean,
+	check_sign number,
 	check_type number,
-	check_content varchar2(5000)
+	check_content varchar2(4000),
 	CONSTRAINT fk_schedule_member FOREIGN KEY (check_manager) REFERENCES member(m_id),
 	CONSTRAINT fk_schedule_project FOREIGN KEY (check_projectid) REFERENCES project(p_id)
 )
