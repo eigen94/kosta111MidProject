@@ -200,14 +200,6 @@
 	
 	    <!-- Modal content-->
 	    <div class="modal-content">
-	    <!-- 
-	      <div class="modal-header">
-	        <button type="button" class="close" data-dismiss="modal">&times;</button>
-	        
-	        <h4 class="modal-title">로그인/회원가입</h4>
-	      
-	      </div>
-	       -->
 	      <div class="modal-body">
 	      
 	        <div class="tabbable"> <!-- Only required for left/right tabs -->
@@ -215,6 +207,8 @@
 		        <li class="active"><a href="#tab1" data-toggle="tab">로그인</a></li>
 		        <li><a href="#tab2" data-toggle="tab">회원가입</a></li>
 		        </ul>
+		        
+	        <!-- Modal tab -->
 	        <div class="tab-content">
 	        <div class="tab-pane active" id="tab1">
 	        <br><br>
@@ -234,77 +228,53 @@
 				  	<div class="form-group">
 				    	<div class="col-sm-offset-2 col-sm-10">
 				      		<button type="submit" class="btn btn-default">로그인</button>
-							<!-- <input type="submit" class="btn btn-default" value="로그인"> -->
 				    	</div>
 				  	</div>
-
 				</form>
 	        </div>
+	        
 	        <div class="tab-pane" id="tab2">
 	        <br>
 	        <br>
 		        <form action="registerOk.jsp" method="post" class="form-horizontal">
 		        <div class="form-group">
-		       			<label for="inputName" class="col-sm-3 control-label">이름</label>
-		   				<div class="col-sm-7">
-							<input class="form-control" id="inputName" type="text" name="m_name" size="20" placeholder="이름을 입력하세요"><br>
-						</div>
-		       			<label for="inputEmail" class="col-sm-3 control-label">이메일</label>
-		   				<div class="col-sm-7">
-							<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
-						</div>
-		       			<label for="inputPassword" class="col-sm-3 control-label">비밀번호</label>
-		   				<div class="col-sm-7">
-							<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
-						</div>
-		       			<label for="inputPwdCheck" class="col-sm-3 control-label">비밀번호 확인</label>
-		   				<div class="col-sm-7">
-							<input class="form-control" id="inputPwdCheck" type="password" name="m_pwd" size="20" placeholder="비밀번호를 다시 입력하세요"><br>
-						</div>
-		       			<label for="inputPhone" class="col-sm-3 control-label">연락처</label>
-		   				<div class="col-sm-7">
-							<input class="form-control" id="inputPhone" type="text" name="m_phone" size="20" placeholder="연락처를 입력하세요"><br>
-						</div>
-		       			<label for="inputAnswer" class="col-sm-3 control-label">비밀번호 찾기 답</label>
-		   				<div class="col-sm-7">
-							<input class="form-control" id="inputAnswer" type="text" name="m_answer" size="20" placeholder="비밀번호 찾기 답을 입력하세요"><br>
-						</div>
+	       			<label for="inputName" class="col-sm-3 control-label">이름</label>
+	   				<div class="col-sm-7">
+						<input class="form-control" id="inputName" type="text" name="m_name" size="20" placeholder="이름을 입력하세요"><br>
+					</div>
+	       			<label for="inputEmail" class="col-sm-3 control-label">이메일</label>
+	   				<div class="col-sm-7">
+						<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
+					</div>
+	       			<label for="inputPassword" class="col-sm-3 control-label">비밀번호</label>
+	   				<div class="col-sm-7">
+						<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
+					</div>
+	       			<label for="inputPwdCheck" class="col-sm-3 control-label">비밀번호 확인</label>
+	   				<div class="col-sm-7">
+						<input class="form-control" id="inputPwdCheck" type="password" name="m_pwd" size="20" placeholder="비밀번호를 다시 입력하세요"><br>
+					</div>
+	       			<label for="inputPhone" class="col-sm-3 control-label">연락처</label>
+	   				<div class="col-sm-7">
+						<input class="form-control" id="inputPhone" type="text" name="m_phone" size="20" placeholder="연락처를 입력하세요"><br>
+					</div>
+	       			<label for="inputAnswer" class="col-sm-3 control-label">비밀번호 찾기 답</label>
+	   				<div class="col-sm-7">
+						<input class="form-control" id="inputAnswer" type="text" name="m_answer" size="20" placeholder="비밀번호 찾기 답을 입력하세요"><br>
+					</div>
 		        
 		        </div>
    				  	<div class="form-group">
 				    	<div class="col-sm-offset-3 col-sm-9">
 				      		<button type="submit" class="btn btn-default">회원가입</button>
-							<!-- <input type="submit" class="btn btn-default" value="로그인"> -->
 				    	</div>
 				  	</div>
-					<!-- 이메일 <input type="text" name="m_email"><br>
-					이름 <input type="text" name="m_name"><br>
-					비밀번호 <input type="password" name="m_pwd"><br>
-					비밀번호 확인 <input type="password" name="m_pwdcheck"><br>
-					연락처 <input type="text" name="m_phone"><br>
-					비밀번호 찾기 질문 <select name="m_question">
-					<option value="0">어머니 이름</option>
-					<option value="1">아버지 이름</option>
-					<option value="2">가장 기억에 남는 장소</option>
-					<option value="3">가장 기억에 남는 여행지</option>
-					<option value="4">좋아하는 동물</option>
-					<option value="5">좋아하는 음식</option>
-					<option value="6">좋아하는 색깔</option>
-					<option value="7">좋아하는 신발</option>
-					</select><br>
-					비밀번호 찾기 질문의 답 <input type="text" name="m_answer"><br>
-					<input type="submit" value="회원가입"><br> -->
 				</form>
 	        
 	        </div>
 	        </div>
 	        </div>
 	      </div>
-	      <!-- 
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      </div>
-	       -->
 	    </div>
 	
 	  </div>
