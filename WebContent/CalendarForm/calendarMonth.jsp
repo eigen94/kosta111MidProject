@@ -18,12 +18,12 @@
 
 		<div class ='btn-holder'>
 			
-             <a id='currentDate'></a><br>
+             <a id='currentMonth'></a><br>
              <a id='currentYear'></a>
 			<button id='btnPrev'><</button>
 			<button id='btnNext'>></button>
-			<button id='month' src="calendarForm">month</button>
-			<button id='week' src="calendarWeek">week</button>
+			<button id='month' onclick="fn_month()">month</button>
+			<button id='week' onclick="fn_week()">week</button>
 		</div>
 		<div id='calendar'></div>
 	</div>

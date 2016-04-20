@@ -1,3 +1,4 @@
+
 (function($){
 	var calendar = new controller();
 	calendar.init();
@@ -6,6 +7,7 @@
 
 	     var that = this;  
 	     var m_oMonth = new Date();
+	     var m_oYear = new Date();
 	     m_oMonth.setDate(1);
 
 	     this.init = function() {
@@ -63,12 +65,16 @@
 	          $('#calendar').html(arrTable.join(""));
 
 	          that.changeMonth();
+	          that.changeYear();
 	     }
 
 	    /* Next, Prev 버튼 이벤트 */
 	     this.initEvent = function() {
 	          $('#btnPrev').click(that.onPrevCalendar);
 	          $('#btnNext').click(that.onNextCalendar);
+	          $('#month').click(that.fn_month);
+	          $('#week').click(that.fn_week);
+	          
 	     }
 
 	    /* 이전 달력 */
@@ -83,14 +89,32 @@
 	          that.renderCalendar();
 	     }
 
-	    /* 달력 이동되면 상단에 현재 년 월 다시 표시 */
+	    /* 달력 이동되면 상단에 현재 월 다시 표시 */
 	     this.changeMonth = function() {
-	          $('#currentDate').text(that.getYearMonth(m_oMonth).substr(0,9));
+	          $('#currentMonth').text(that.getMonth(m_oMonth));
+	     }
+	     
+	    /* 날짜 객체를 년 월 문자 형식으로 변환 */
+	     this.getMonth = function(oDate) {
+	    	 return oDate.getMonth() + 1;
+	     }
+	     
+	     this.changeYear = function(){
+	     	$('#currentYear').text(that.getYear(m_oMonth));
 	     }
 
-	    /* 날짜 객체를 년 월 문자 형식으로 변환 */
-	     this.getYearMonth = function(oDate) {
-	          return oDate.getFullYear() + '년 ' + (oDate.getMonth() + 1) + '월';
-	     }
+	     /* 날짜 객체를 년 월 문자 형식으로 변환 */
+	      this.getYear = function(oDate) {
+	           return oDate.getFullYear();
+	      }
+	      
+	      this.fn_month =function(){
+	    		location.href="calendarMonth.jsp";
+	    	}
+	      this.fn_week = function(){
+	    	  location.href="calendarWeek.jsp";
+	      }
+	      
+	
 	}
 })(jQuery);

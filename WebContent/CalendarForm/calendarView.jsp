@@ -12,6 +12,7 @@
 <body>
 <div class='wrap'>
      <div class='btn-holder'>
+          <a id="#currentYear"></a>
           <button id='btnPrev'>&lt;</button>
           <span id='currentDate'></span>
           <button id='btnNext'>&gt;</button>
@@ -19,8 +20,6 @@
      <div id="calendar"></div>
 </div>
 <script type="text/javascript">
-
-
 var calendar = new controller();
 calendar.init();
 
@@ -109,13 +108,20 @@ function controller(target) {
 
     /* 달력 이동되면 상단에 현재 년 월 다시 표시 */
      this.changeMonth = function() {
-          $('#currentDate').text(that.getYearMonth(m_oMonth).substr(0,9));
+          $('#currentDate').text(that.getMonth(m_oMonth));
      }
-
-    /* 날짜 객체를 년 월 문자 형식으로 변환 */
-     this.getYearMonth = function(oDate) {
-          return oDate.getFullYear() + ' / ' + (oDate.getMonth() + 1);
+    
+    this.changeYear = function(){
+    	$('#currentYear').text(that.getYear(m_oMonth));
+    }
+    this.getMonth = function(oDate) {
+        return oDate.getMonth()+1;
+   }
+     this.getYear = function(oDate) {
+          return oDate.getFullYear();
      }
+    
+    
 }
 </script>
 </body>

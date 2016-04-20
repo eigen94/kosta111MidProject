@@ -1,15 +1,16 @@
+@charset "UTF-8";
+
 .wrap {
-     width: 500px;
-     margin: 0 auto;
+     width:400px;
 }
 .btn-holder {
-     text-align: center;
      margin: 10px 0 10px 0;
 }
-#currentDate{
+#currentMonth{
 	font-weight: bold;
 	font-size: 40px;
 }
+
 
 #calendar table {
      border-collapse: collapse;
@@ -17,10 +18,12 @@
 }
 #calendar table thead td {
      height: 20px;
+     font-size: 10px;
      font-weight: bold;
 }    
-#calendar table td {
-     border: solid 1px #000;
+#calendar table td{
+     border: solid 1px gray;
+   	 
 }
 #calendar table td.date-cell {
      height: 50px;
@@ -36,6 +39,5 @@
 }
 #calendar table td.date-cell{
 	text-align: right;
-	padding-bottom: 20px;
-	padding-top:1px;
+	vertical-align:text-top;
 }
