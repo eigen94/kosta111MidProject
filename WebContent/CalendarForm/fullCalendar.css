@@ -44,13 +44,14 @@
 	vertical-align:text-top;
 }
 
-#weekTable{
+#weekTable table{
      border: solid 1px gray;
      font-size: 10px;
-     font-weight: normal;
-   	 
+   
 }
-#weekHead{
-	background:#EEEEEE;
+
+#weekTable table tr#weekHead{
+	border: solid 1px gray;
+	background: #EEEEEE
 }
 

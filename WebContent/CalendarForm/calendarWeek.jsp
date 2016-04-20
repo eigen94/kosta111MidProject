@@ -11,8 +11,9 @@
 <body>
 	<button id='month' onclick="fn_month()">month</button>
 	<button id='week' onclick="fn_week()">week</button>
-	<table id="weekTable">
-	<tr id=weekHead>
+	<div id="weekTable">
+	<table>
+	<tr id="weekHead">
 	<td>업무구분</td>
 	<td>작업명</td>
 	<td>시작일</td>
@@ -45,6 +46,7 @@
 	<td>0</td>
 	</tr>
 	</table>
+	</div>
 	<script src="calendar.js"></script>
 </body>
 </html>
