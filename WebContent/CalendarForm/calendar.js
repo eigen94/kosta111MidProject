@@ -81,12 +81,8 @@
 	    		
 	    		if(thisMonth != oStartDt.getMonth()){
 	    			thisMonth = oStartDt.getMonth();
-	    			weekTable.push('<td>'+(thisMonth+1)+'월</td>');
-	    			
-		    		
+	    			weekTable.push('<td>'+(thisMonth+1)+'월</td>');	
 	    		}
-	    		
-	    	
 	    	}
 	    		
 	    	

@@ -51,7 +51,7 @@
 	
 	
 	
-	<div id="weekCal" style="overflow:scroll" width="200px"></div>
+	<div id="weekCal"  style="white-space:nowrap; overflow:auto; width: 300px "></div>
 	<script src="calendar.js"></script>
 </body>
 </html>
