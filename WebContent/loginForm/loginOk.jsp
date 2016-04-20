@@ -11,7 +11,7 @@
     	re = service.loginMemberService(m_email, m_pwd);
     	
     	if(re>0){
-    		out.print("<script type='text/javascript'>alert('로그인 성공'); history.back();</script>");
+    		out.print("<script type='text/javascript'>alert('로그인 성공'); location.href='../main.jsp';</script>");
     	}else{
     		out.print("<script type='text/javascript'>alert('로그인 실패'); history.back();</script>");		
     	}
@@ -24,7 +24,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <title>Insert title here</title>
-
 </head>
 <body>
 
