@@ -11,9 +11,10 @@
 <body>
 	<button id='month' onclick="fn_month()">month</button>
 	<button id='week' onclick="fn_week()">week</button>
+	<br>
 	<div id="weekTable">
 	<table>
-	<tr id="weekHead">
+	<tr class="weekHead">
 	<td>업무구분</td>
 	<td>작업명</td>
 	<td>시작일</td>

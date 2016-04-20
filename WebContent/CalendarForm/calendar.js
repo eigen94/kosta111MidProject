@@ -1,4 +1,3 @@
-
 (function($){
 	var calendar = new controller();
 	calendar.init();
@@ -102,6 +101,7 @@
 	     this.changeYear = function(){
 	     	$('#currentYear').text(that.getYear(m_oMonth));
 	     }
+	     
 
 	     /* 날짜 객체를 년 월 문자 형식으로 변환 */
 	      this.getYear = function(oDate) {

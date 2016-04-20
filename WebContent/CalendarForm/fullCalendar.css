@@ -45,13 +45,21 @@
 }
 
 #weekTable table{
-     border: solid 1px gray;
-     font-size: 10px;
-   
+	width: 300px;
+	  border-collapse: collapse;
+	  border: 1px solid gray;
 }
 
-#weekTable table tr#weekHead{
-	border: solid 1px gray;
-	background: #EEEEEE
+#weekTable table tr.weekHead{
+	background: #EEEEEE;
+	font-size: 10px;
+	border: 1px solid gray;
+}
+#weekTable table tr.weekHead td{
+	border: 1px solid gray;
+}
+
+#weekTable table tr{
+		border: 1px solid gray;
 }
 
