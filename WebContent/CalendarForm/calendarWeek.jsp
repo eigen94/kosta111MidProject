@@ -48,6 +48,10 @@
 	</tr>
 	</table>
 	</div>
+	
+	
+	
+	<div id="weekCal" style="overflow:scroll" width="200px"></div>
 	<script src="calendar.js"></script>
 </body>
 </html>

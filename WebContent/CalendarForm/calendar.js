@@ -6,12 +6,12 @@
 
 	     var that = this;  
 	     var m_oMonth = new Date();
-	     var m_oYear = new Date();
 	     m_oMonth.setDate(1);
 
 	     this.init = function() {
 	          that.renderCalendar();
 	          that.initEvent();
+	          that.weekCalendar();
 	     }
 
 	    /* 달력 UI 생성 */
@@ -66,6 +66,40 @@
 	          that.changeMonth();
 	          that.changeYear();
 	     }
+	     this.weekCalendar = function(){
+	    	var weekTable = [];
+	    	 var oStartDt = new Date();
+	    	oStartDt.setDate(oStartDt.getDate());
+	    	var thisMonth = oStartDt.getMonth();
+	    	
+	    	weekTable.push('<table><tr>');
+	    	weekTable.push('<td>'+(thisMonth+1)+'월</td>');
+	    	for(var i=0; i<60; i++){
+	    		
+	    		weekTable.push('<td>'+oStartDt.getDate()+'</td>');
+	    		oStartDt.setDate(oStartDt.getDate()+1);
+	    		
+	    		if(thisMonth != oStartDt.getMonth()){
+	    			thisMonth = oStartDt.getMonth();
+	    			weekTable.push('<td>'+(thisMonth+1)+'월</td>');
+	    			
+		    		
+	    		}
+	    		
+	    	
+	    	}
+	    		
+	    	
+	    	
+	    	weekTable.push('</tr>');
+	    	var WeekNext = 'WeekNext'; 
+	    	weekTable.push('<button class='+WeekNext+'>'+">"+'</button>');
+	    	weekTable.push('</table>');  
+	    	
+	    	 $('#weekCal').html(weekTable.join(""));    	
+	     }
+	     
+	     
 
 	    /* Next, Prev 버튼 이벤트 */
 	     this.initEvent = function() {
@@ -73,7 +107,11 @@
 	          $('#btnNext').click(that.onNextCalendar);
 	          $('#month').click(that.fn_month);
 	          $('#week').click(that.fn_week);
-	          
+	          $('.WeekNext').click(that.fn_weekNext);
+	     }
+	     
+	     this.fn_weekNext = function(){
+	    	 
 	     }
 
 	    /* 이전 달력 */
