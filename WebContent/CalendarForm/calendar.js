@@ -1,4 +1,14 @@
 (function($){
+	var id=0;
+	var name=0;
+	var start="16/04/19";
+	var end="16/04/30";
+	
+	var checklist = "[checklist:{id:0, name:0, start : '16/04/19', end : '16/05/02'}, ]";
+	
+	
+	
+	
 	var calendar = new controller();
 	calendar.init();
 
@@ -67,6 +77,27 @@
 	          that.changeYear();
 	     }
 	     this.weekCalendar = function(){
+	    	var renderWeek =[];
+	    	var weekHead ='weekHead';
+	    	renderWeek.push('<table><tr class ='+weekHead+'>');
+	    	renderWeek.push('<td>'+'업무구분'+'</td>');
+	    	renderWeek.push('<td>'+'작업명'+'</td>');
+	    	renderWeek.push('<td>'+'시작일'+'</td>');
+	    	renderWeek.push('<td>'+'종료일'+'</td>');
+	    	renderWeek.push('<td>'+'기간'+'</td>');
+	    	renderWeek.push('<td>'+'진행률'+'</td></tr>');
+	    	renderWeek.push('</table>');
+	    	
+	    	renderWeek.push('<tr><td>'+id+'</td>');
+	    	renderWeek.push('<tr><td>'+name+'</td>');
+	    	renderWeek.push('<tr><td>'+start+'</td>');
+	    	renderWeek.push('<tr><td>'+end+'</td></tr>');
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
 	    	var weekTable = [];
 	    	 var oStartDt = new Date();
 	    	oStartDt.setDate(oStartDt.getDate());
@@ -83,6 +114,7 @@
 	    			thisMonth = oStartDt.getMonth();
 	    			weekTable.push('<td>'+(thisMonth+1)+'월</td>');	
 	    		}
+	    	weekTable.push('</tr></table>');
 	    	}
 	    		
 	    	
@@ -92,6 +124,8 @@
 	    	weekTable.push('<button class='+WeekNext+'>'+">"+'</button>');
 	    	weekTable.push('</table>');  
 	    	
+	    	
+	    	 $('#weekTable').html(renderWeek.join("")); 
 	    	 $('#weekCal').html(weekTable.join(""));    	
 	     }
 	     

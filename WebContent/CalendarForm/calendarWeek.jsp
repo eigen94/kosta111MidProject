@@ -12,42 +12,7 @@
 	<button id='month' onclick="fn_month()">month</button>
 	<button id='week' onclick="fn_week()">week</button>
 	<br>
-	<div id="weekTable">
-	<table>
-	<tr class="weekHead">
-	<td>업무구분</td>
-	<td>작업명</td>
-	<td>시작일</td>
-	<td>종료일</td>
-	<td>기간</td>
-	<td>진행률</td>
-	</tr>
-	<tr>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	</tr>
-	<tr>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	</tr>
-	<tr>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	<td>0</td>
-	</tr>
-	</table>
-	</div>
+	<div id="weekTable"></div>
 	
 	
 	
