@@ -1,4 +1,14 @@
 (function($){
+	var id=0;
+	var name=0;
+	var start="16/04/19";
+	var end="16/04/30";
+	
+	var checklist = "[checklist:{id:0, name:0, start : '16/04/19', end : '16/05/02'}, ]";
+	
+	
+	
+	
 	var calendar = new controller();
 	calendar.init();
 
@@ -6,12 +16,12 @@
 
 	     var that = this;  
 	     var m_oMonth = new Date();
-	     var m_oYear = new Date();
 	     m_oMonth.setDate(1);
 
 	     this.init = function() {
 	          that.renderCalendar();
 	          that.initEvent();
+	          that.weekCalendar();
 	     }
 
 	    /* 달력 UI 생성 */
@@ -66,6 +76,60 @@
 	          that.changeMonth();
 	          that.changeYear();
 	     }
+	     this.weekCalendar = function(){
+	    	var renderWeek =[];
+	    	var weekHead ='weekHead';
+	    	renderWeek.push('<table><tr class ='+weekHead+'>');
+	    	renderWeek.push('<td>'+'업무구분'+'</td>');
+	    	renderWeek.push('<td>'+'작업명'+'</td>');
+	    	renderWeek.push('<td>'+'시작일'+'</td>');
+	    	renderWeek.push('<td>'+'종료일'+'</td>');
+	    	renderWeek.push('<td>'+'기간'+'</td>');
+	    	renderWeek.push('<td>'+'진행률'+'</td></tr>');
+	    	renderWeek.push('</table>');
+	    	
+	    	renderWeek.push('<tr><td>'+id+'</td>');
+	    	renderWeek.push('<tr><td>'+name+'</td>');
+	    	renderWeek.push('<tr><td>'+start+'</td>');
+	    	renderWeek.push('<tr><td>'+end+'</td></tr>');
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	
+	    	var weekTable = [];
+	    	 var oStartDt = new Date();
+	    	oStartDt.setDate(oStartDt.getDate());
+	    	var thisMonth = oStartDt.getMonth();
+	    	
+	    	weekTable.push('<table><tr>');
+	    	weekTable.push('<td>'+(thisMonth+1)+'월</td>');
+	    	for(var i=0; i<60; i++){
+	    		
+	    		weekTable.push('<td>'+oStartDt.getDate()+'</td>');
+	    		oStartDt.setDate(oStartDt.getDate()+1);
+	    		
+	    		if(thisMonth != oStartDt.getMonth()){
+	    			thisMonth = oStartDt.getMonth();
+	    			weekTable.push('<td>'+(thisMonth+1)+'월</td>');	
+	    		}
+	    	weekTable.push('</tr></table>');
+	    	}
+	    		
+	    	
+	    	
+	    	weekTable.push('</tr>');
+	    	var WeekNext = 'WeekNext'; 
+	    	weekTable.push('<button class='+WeekNext+'>'+">"+'</button>');
+	    	weekTable.push('</table>');  
+	    	
+	    	
+	    	 $('#weekTable').html(renderWeek.join("")); 
+	    	 $('#weekCal').html(weekTable.join(""));    	
+	     }
+	     
+	     
 
 	    /* Next, Prev 버튼 이벤트 */
 	     this.initEvent = function() {
@@ -73,7 +137,11 @@
 	          $('#btnNext').click(that.onNextCalendar);
 	          $('#month').click(that.fn_month);
 	          $('#week').click(that.fn_week);
-	          
+	          $('.WeekNext').click(that.fn_weekNext);
+	     }
+	     
+	     this.fn_weekNext = function(){
+	    	 
 	     }
 
 	    /* 이전 달력 */
