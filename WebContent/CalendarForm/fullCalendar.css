@@ -20,6 +20,7 @@
      height: 20px;
      font-size: 10px;
      font-weight: bold;
+     background: #EEEEEE
 }    
 #calendar table td{
      border: solid 1px gray;
@@ -39,5 +40,17 @@
 }
 #calendar table td.date-cell{
 	text-align: right;
+	font-size: 10px;
 	vertical-align:text-top;
 }
+
+#weekTable{
+     border: solid 1px gray;
+     font-size: 10px;
+     font-weight: normal;
+   	 
+}
+#weekHead{
+	background:#EEEEEE;
+}
+
