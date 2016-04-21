@@ -25,12 +25,11 @@ public class ProjectCreateAction implements Action {
 		ProjectBoard project = new ProjectBoard(p_name, p_start, p_end, p_memo);
 		
 		Service service = Service.getInstance();
-		
 		service.projectInsertService(project);
 		
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(false);
-		forward.setPath("projectList.do");
+		forward.setRedirect(true);
+		forward.setPath("main.jsp");
 		
 		return forward;
 		

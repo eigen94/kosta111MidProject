@@ -6,7 +6,7 @@
 	<cache />
 
 	<select id="projectList" resultType="ProjectBoard">
-		select * from project
+		select * from project order by p_id
 	</select>
 
 	<insert id="projectInsert" parameterType="ProjectBoard">
@@ -32,7 +32,7 @@
 	</delete>
 
 	<select id="selectMaxP_id" resultType="Integer">
-		select p_id from project
+		select max(p_id) from project
 	</select>
 	
 	<select id="getDetailId" resultType="Integer">

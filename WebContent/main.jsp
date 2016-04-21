@@ -4,6 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -90,7 +93,6 @@
         </div>
         
       </div><!-- end row -->
-      
     <button class="btn btn-default" data-toggle="modal" data-target="#projectCreateModal">프로젝트생성</button>
     <br>
     
@@ -137,7 +139,7 @@
       
       
     </div><!-- end container -->
-    
+    </div>
     
     
     <!-- end of bodycontent -->
@@ -153,27 +155,27 @@
 	    <div class="modal-content">
 	      <div class="modal-body">
 	      
-	        <form action="#" method="post" class="form-horizontal">
+	        <form action="insert.do" method="get" class="form-horizontal">
 		        <div class="form-group">
 	       			<label for="inputName" class="col-sm-3 control-label">프로젝트 이름</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputName" type="text" name="m_name" size="20" placeholder="프로젝트 이름을 입력하세요"><br>
+						<input class="form-control" id="inputName" type="text" name="p_name" size="20" placeholder="프로젝트 이름을 입력하세요"><br>
 					</div>
 	       			<label for="inputEmail" class="col-sm-3 control-label">시작일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
+						<input class="form-control" id="inputEmail" type="text" name="p_email" size="20" placeholder="이메일을 입력하세요"><br>
 					</div>
 	       			<label for="inputPassword" class="col-sm-3 control-label">종료일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
+						<input class="form-control" id="inputPassword" type="text" name="p_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
 					</div>
 	       			<label for="inputPwdCheck" class="col-sm-3 control-label">메모</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPwdCheck" type="password" name="m_pwd" size="20" placeholder="메모를 입력하세요"><br>
+						<input class="form-control" id="inputPwdCheck" type="text" name="p_memo" size="20" placeholder="메모를 입력하세요"><br>
 					</div>
 	       			<label for="inputPhone" class="col-sm-3 control-label">맴버추가</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPhone" type="text" name="m_phone" size="20" placeholder="추가할 맴버 이름이나 이메일을 입력하세요"><br>
+						<input class="form-control" id="inputPhone" type="text" name="p_phone" size="20" placeholder="추가할 맴버 이름이나 이메일을 입력하세요"><br>
 					</div>
 		        
 		        </div>
@@ -189,5 +191,16 @@
 	
 	  </div>
 	</div>
+	
+ 
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
 </body>
 </html>
