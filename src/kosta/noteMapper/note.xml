@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kosta.noteMapper.noteMapper">
+<cache/>
+	<insert id="insertNote" parameterType="Note">
+		insert into note
+			(n_id, n_title, n_content, n_sender,n_receive,n_date)
+			values(
+			NVL((select max(n_id) from note)+1,0), #{n_title},#{n_content},#{n_sender},#{n_receive},SYSDATE 
+			)
+	</insert>
+
+	<select id ="selectNote" parameterType="int" resultType="Note">
+	select * from note where n_receive = #{n_id}
+	</select>
+
+	
+</mapper>

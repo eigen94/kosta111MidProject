@@ -9,7 +9,8 @@
 		<typeAlias type="kosta.model.Uml" alias="Uml"/>
 		<typeAlias type="kosta.login.Member" alias="Member"/>
 		<typeAlias type="kosta.imgModel.Image" alias="Image"/>
-		
+				<typeAlias type="kosta.model.ProjectDetail" alias="Detail"/>
+		<typeAlias type="kosta.note.Note" alias="Note"/>
 		
 	</typeAliases>
 	
@@ -27,6 +28,7 @@
 		<mapper resource="kosta/loginMapper/login.xml"/>
 		<mapper resource="kosta/imgMapper/imgBoard.xml"/>
 		<mapper resource="kosta/umlMapper/Uml.xml"/>
+		<mapper resource="kosta/noteMapper/note.xml"/>
 		
 	</mappers>
 	
