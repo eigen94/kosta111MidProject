@@ -86,7 +86,7 @@ public class Controller extends HttpServlet {
     	else if(command.equals("json.do"))
     	{
     		System.out.println("具具具具具剧");
-    		action = new insertJSON();
+    		//action = new insertJSON();
     		forward = action.execute(request, response);
     	}
     	
