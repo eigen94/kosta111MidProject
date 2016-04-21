@@ -95,6 +95,9 @@ public class Controller extends HttpServlet {
     	{
     		action = new UmlInsertAction();
     		forward = action.execute(request, response);
+    	}else if(command.equals("usecase.do")){
+    		action = new UsecaseInsertAction();
+    		forward = action.execute(request, response);
     	}
     	
     	
