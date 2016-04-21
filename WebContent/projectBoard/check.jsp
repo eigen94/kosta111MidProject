@@ -9,22 +9,23 @@
 </head>
 <body>
 
-		${detail.check_name }<br>
+		<a href="checkDetail.do?check_id=${detail.check_id }">${detail.check_name }</a>
+		<br>
 		${detail.check_start }<br>
 		${detail.check_end }<br>
 		${detail.check_manager }<br>
 		<c:choose>
 			<c:when test="${detail.check_type == 1 }">
-				하하1
+				데이터명세
 			</c:when>
 			<c:when test="${detail.check_type == 2 }">
-				하하2
+				기능명세
 			</c:when>
 			<c:when test="${detail.check_type == 3 }">
-				하하3
+				화면명세
 			</c:when>
 			<c:when test="${detail.check_type == 4 }">
-				하하4
+				자유양식
 			</c:when>
 		</c:choose><br>
 		${detail.check_content }<br>

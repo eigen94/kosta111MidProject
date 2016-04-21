@@ -15,11 +15,13 @@ import kosta.action.CheckCreate;
 import kosta.action.CheckDetail;
 import kosta.action.CheckDelete;
 import kosta.action.CheckUpdate;
+import kosta.action.Detailview;
 import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
 import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
+import kosta.action.DateCreate;
 import kosta.action.UmlInsertAction;
 
 
@@ -82,6 +84,12 @@ public class Controller extends HttpServlet {
     	}else if(command.equals("checkListUpdate.do"))
     	{
     		action = new CheckUpdate();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("data.do")){
+    		action = new DateCreate();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("checkDetail.do")){
+    		action = new Detailview();
     		forward = action.execute(request, response);
     	}
     	
