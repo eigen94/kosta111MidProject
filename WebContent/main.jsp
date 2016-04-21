@@ -15,8 +15,9 @@
 <a href="messenger/broadcast.html"><button>매신저</button></a>
 
 <br>
-<a href="projectBoard/insertForm.jsp"><button>프로젝트 생성</button></a>
-
+<a href="projectBoard/inserdtForm.jsp"><button>프로젝트 생성</button></a>
+<br>
+<a href="imgProjectBoard/imgBoard.jsp"><button>이미지 게시판</button></a>
 
 </body>
 </html>
