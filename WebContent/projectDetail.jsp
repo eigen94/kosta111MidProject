@@ -1,9 +1,30 @@
+<%@page import="kosta.model.ProjectDetail"%>
 <%@page import="kosta.model.ProjectBoard"%>
 <%@page import="java.util.List"%>
 <%@page import="kosta.service.Service"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%
+	Service service = Service.getInstance();
+
+    String tmp = request.getParameter("p_id");
+    		int p_id=0;
+    		if(tmp!=null){
+    			p_id = Integer.parseInt(tmp);
+    		}
+	List<ProjectBoard> list = service.projectListService();
+	ProjectBoard project = service.projectSelectService(p_id);
+	List<ProjectDetail> checkList = service.detailListService(p_id);
+	
+	request.setAttribute("checkList", checkList);
+	request.setAttribute("list", list);
+	request.setAttribute("project", project);
+	request.setAttribute("p_id", p_id);
+	//ProjectDetail check = service.selectDetail(check_id);
+	
+	%>  
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -66,16 +87,92 @@
       </div>
     </nav>
 
+
+
     <!-- Carousel
     ================================================== -->
     <div id="bodyContent">
     <div class="container-fluid">
       <div class="row">
       
-        <div class="col-sm-8 col-md-10 main">
-          <h1 class="page-header">프로젝트 관리</h1>
-        </div>
+		<!-- projectList  -->
+        <div class="col-sm-3 col-md-2 sidebar">
+          <ul class="nav nav-sidebar">
+          	<c:forEach var="project" items="${list }">
+          	<c:choose>
+          	<c:when test="${project.p_id==p_id }">
+          	<li class="active"><a href="#">${project.p_name }</a></li>
+          	</c:when>
+          	<c:when test="${project.p_id!=p_id }">
+          	<li><a href="projectDetail.jsp?p_id=${project.p_id }">${project.p_name }</a></li>
+          	</c:when>
+            
+          	</c:choose>
+          	
+          	</c:forEach>
+<!--             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
+            <li><a href="#">Analytics</a></li>
+            <li><a href="#">Export</a></li> -->
+          </ul>
+        </div><!-- end of project List -->
+      
+        <div class="col-sm-8 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h1 class="page-header">${project.p_name }</h1>
+          
         
+        <!-- contents -->
+        
+        <!-- checklist -->
+        
+        <div class="col-sm-4 col-md-4 main">
+        <ul class="list-group">
+		  <li class="list-group-item" data-toggle="modal" data-target="#checkCreateModal">일정생성</li>
+		  
+		  <!--  
+		  checkCreate
+		  -->
+        <c:forEach var="checkList" items="${checkList }">
+		  <li class="list-group-item">${checkList.check_name }</li>
+        </c:forEach>
+		</ul>
+        </div><!-- end of checklist -->
+        
+        <!-- calendar -->
+        <div class="col-sm-8 col-md-8 main">
+        
+        
+        </div><!-- end of calendar -->
+
+<!-- 
+          <div class="row placeholders">
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+            <div class="col-xs-6 col-sm-3 placeholder">
+              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
+              <h4>Label</h4>
+              <span class="text-muted">Something else</span>
+            </div>
+          </div>
+        </div>
+           -->
+        <%-- <div class="col-sm-2 col-md-2 main">
+          ${project.p_name } ${project.p_start } ~ ${project.p_end }
+        </div> --%>
+        <!-- modechange btn -->
+        <!-- 
         <div class="col-sm-3 col-md-2 main">
 			<div class="btn-group" data-toggle="buttons">
 				<label class="btn btn-default change_viewtype ">
@@ -87,55 +184,12 @@
 				<span class="glyphicon glyphicon-th-large"></span>
 				</label>
 			</div>
-        </div>
-        
+ -->
+         </div><!-- end of main -->
       </div><!-- end row -->
       
-    <button class="btn btn-default" data-toggle="modal" data-target="#projectCreateModal">프로젝트생성</button>
     <br>
     
-    <!-- projectList -->
-	<%
-	Service service = Service.getInstance();
-	List<ProjectBoard> list = service.projectListService();
-	request.setAttribute("list", list);
-//	for(int i = 0; i< list.size(); i++){
-//		out.println("프로젝트 이름 : "+list.get(i).getP_name()+"<br>");
-//	}
-	
-	%>    
-	
-	
-      <div class="row row-offcanvas row-offcanvas-right">
-
-        <div class="col-xs-12 col-sm-10">
-          
-          <div class="row">
-          <c:choose>
-          <c:when test="${list!=null }">
-	          <c:forEach var="project" items="${list }">
-	            <div class="col-xs-6 col-lg-4">
-	              <h2>${project.p_name }</h2>
-	              <p>${project.p_memo } </p>
-	              <p><a class="btn btn-default" href="projectDetail.jsp?p_id=${project.p_id }" role="button">프로젝트 시작하기 &raquo;</a></p>
-	            </div><!--/.col-xs-6.col-lg-4-->
-	          </c:forEach>
-          </c:when>
-          <c:when test="${list==null }">
-          <h2>프로젝트가 없습니다!</h2>
-          <p>프로젝트를 생성하세요.</p>
-          </c:when>
-          </c:choose>
-          
-          
-          </div><!--/row-->
-        </div><!--/.col-xs-12.col-sm-9-->
-
-      </div><!--/row-->
-    
-    <!-- end of projectList -->
-      
-      
     </div><!-- end container -->
     
     
@@ -143,9 +197,33 @@
     <!-- end of bodycontent -->
 
 
+      <!-- FOOTER -->
+<!--       <div class="container">
+	      <footer>
+	        <p class="pull-right"><a href="#">Back to top</a></p>
+	        <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+	      </footer>
+      
+      </div> -->
+
+    </div><!-- /.container -->
+
+	<!-- messenger -->
+	<!-- 
+	<div class="" id="messenger" style="max-height: 305px;left: auto; right: 0; bottom: 0; position: absolute;">
+		<h4>매신저</h4>
+	    <fieldset>
+	        <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
+	        <br/>
+	        <input id="inputMessage" type="text"/>
+	        <input type="submit" value="send" onclick="send()" />
+    	</fieldset>
+	</div>
+ -->
+	
 	<!-- Modal -->
 
-	<!-- registerFormMoadl -->
+	<!-- checkCreateModal -->
 	<div id="projectCreateModal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 	
@@ -189,34 +267,8 @@
 	
 	  </div>
 	</div>
-
-
-
-
-
-      <!-- FOOTER -->
-<!--       <div class="container">
-	      <footer>
-	        <p class="pull-right"><a href="#">Back to top</a></p>
-	        <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	      </footer>
-      
-      </div> -->
-
-    </div><!-- /.container -->
-
-	<!-- messenger -->
-	<!-- 
-	<div class="" id="messenger" style="max-height: 305px;left: auto; right: 0; bottom: 0; position: absolute;">
-		<h4>매신저</h4>
-	    <fieldset>
-	        <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
-	        <br/>
-	        <input id="inputMessage" type="text"/>
-	        <input type="submit" value="send" onclick="send()" />
-    	</fieldset>
-	</div>
- -->
+	
+ 
  
     <!-- Bootstrap core JavaScript
     ================================================== -->
