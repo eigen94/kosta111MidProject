@@ -6,6 +6,7 @@ import java.util.List;
 
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
+import kosta.usecaseMapper.usecaseMapper;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -259,7 +260,7 @@ public class Dao {
 		int re =-1;
 		
 		try {
-			re=sqlSession.getMapper(UmlMapper.class).usecaseInsert(json);
+			re=sqlSession.getMapper(usecaseMapper.class).usecaseInsert(json);
 			
 			if(re>0){
 				sqlSession.commit();

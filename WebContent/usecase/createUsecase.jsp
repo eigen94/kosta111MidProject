@@ -55,7 +55,16 @@
 		
 		$.ajax({
 			type:"post",
-			url:
+			url:"usecase.do",
+			data:{
+				json:finalJsonObj
+			},
+			dataType: "text",
+			success: function(data){
+				alert("성공");
+			},error: function(data){
+				alert("실패");
+			}
 		})
 		
 		});
