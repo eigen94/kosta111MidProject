@@ -6,7 +6,8 @@
 	<cache />
 	
 	<insert id="umlInsert" parameterType="String">
-		insert into
+		insert into checklist
+		(CHECK_CONTENT, CHECK_ID) values(#{check_content}, nvl((select max(CHECK_ID) from checklist)+1,0))
 	
 	</insert>
 	

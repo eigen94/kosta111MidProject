@@ -22,7 +22,9 @@ public class UmlInsertAction implements Action {
 		
 		Service service = Service.getInstance();
 				
-		service.umlInsertService(json);
+		String check_content = json;
+		
+		service.umlInsertService(check_content);
 		
 		/*JSONParser parser = new JSONParser();
 		JSONObject jsonObj=null;

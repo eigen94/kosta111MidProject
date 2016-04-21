@@ -51,9 +51,9 @@
 				}		
 			
 			jsonArray.push(jsonObj); //json배열에 만들어진 한개의 UML을 넣음
-			console.log(jsonArray);
+			//console.log(jsonArray);
 			var finalJsonObj = JSON.stringify(jsonObj); //json을 ajax로 보내기 위한 과정
-			console.log(finalJsonObj);
+			//console.log(finalJsonObj);
 			
 			$.ajax({
 				type : "post",
@@ -62,11 +62,11 @@
 					json : finalJsonObj
 				},
 				dataType : "text",				
-				success : function()
+				success : function(data)
 				{
 					alert("성공");
 				},
-				error : function()
+				error : function(data)
 				{
 					alert("실패");
 				}

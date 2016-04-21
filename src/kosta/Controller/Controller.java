@@ -83,12 +83,13 @@ public class Controller extends HttpServlet {
     		action = new CheckUpdate();
     		forward = action.execute(request, response);
     	}
-    	else if(command.equals("json.do"))
-    	{
-    		System.out.println("具具具具具剧");
-    		//action = new insertJSON();
-    		forward = action.execute(request, response);
-    	}
+    	
+//    	else if(command.equals("json.do"))
+//    	{
+//    		System.out.println("锟竭具具具具撅拷");
+//    		action = new insertJSON();
+//    		forward = action.execute(request, response);
+//    	}
     	
     	else if(command.equals("uml.do"))
     	{
