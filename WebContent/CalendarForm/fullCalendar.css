@@ -1,0 +1,65 @@
+@charset "UTF-8";
+
+.wrap {
+     width:400px;
+}
+.btn-holder {
+     margin: 10px 0 10px 0;
+}
+#currentMonth{
+	font-weight: bold;
+	font-size: 40px;
+}
+
+
+#calendar table {
+     border-collapse: collapse;
+     text-align: center;
+}
+#calendar table thead td {
+     height: 20px;
+     font-size: 10px;
+     font-weight: bold;
+     background: #EEEEEE
+}    
+#calendar table td{
+     border: solid 1px gray;
+   	 
+}
+#calendar table td.date-cell {
+     height: 50px;
+}
+#calendar table td.sun {
+     color: red;
+}
+#calendar table td.sat {
+     color: blue;
+}
+#calendar table td.not-this-month {
+     color: #999;
+}
+#calendar table td.date-cell{
+	text-align: right;
+	font-size: 10px;
+	vertical-align:text-top;
+}
+
+#weekTable table{
+	width: 300px;
+	  border-collapse: collapse;
+	  border: 1px solid gray;
+}
+
+#weekTable table tr.weekHead{
+	background: #EEEEEE;
+	font-size: 10px;
+	border: 1px solid gray;
+}
+#weekTable table tr.weekHead td{
+	border: 1px solid gray;
+}
+
+#weekTable table tr{
+		border: 1px solid gray;
+}
+

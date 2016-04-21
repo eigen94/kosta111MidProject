@@ -9,14 +9,14 @@
 <body>
 
 	<form action="insert.do" method="post">
-	프로젝트 이름 : <input type="text" name="p_name"><br>
-	프로젝트 시작일 : <input type="text" name="p_start">
-	프로젝트 종료일 : <input type="text" name="p_end"><br>
-	메모 <br>
-	<textarea rows="6" cols="70" name="p_memo"></textarea>
-	<br>
-	<input type="submit" value="등록">	
-</form>
-<a href="projectList.do"><button>목록보기</button></a>
+		프로젝트 이름 : <input type="text" name="p_name"><br>
+		프로젝트 시작일 : <input type="text" name="p_start">
+		프로젝트 종료일 : <input type="text" name="p_end"><br>
+		메모 <br>
+		<textarea rows="6" cols="70" name="p_memo"></textarea>
+		<br>
+		<input type="submit" value="등록">
+		</form>
+	<a href="projectList.do"><button>목록보기</button></a>
 </body>
 </html>
