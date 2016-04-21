@@ -76,6 +76,11 @@ public class Service {
 		dao.umlInsert(json);
 		
 	}
+
+	public void usecaseService(String json) {
+		dao.usecaseInsert(json);
+		
+	}
 }
 
 

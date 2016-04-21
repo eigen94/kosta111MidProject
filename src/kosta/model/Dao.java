@@ -254,6 +254,26 @@ public class Dao {
 		
 	}
 
+	public void usecaseInsert(String json) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re =-1;
+		
+		try {
+			re=sqlSession.getMapper(UmlMapper.class).usecaseInsert(json);
+			
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
 	
 }
 
