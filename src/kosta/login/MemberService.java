@@ -13,7 +13,7 @@ public class MemberService {
 		return service;	
 	}	
 	
-	public int loginMemberService(String m_email, String m_pwd){
+	public Member loginMemberService(String m_email, String m_pwd){
 		System.out.println(testSHA256(m_pwd));
 		return dao.loginMember(m_email,testSHA256(m_pwd));
 	}
