@@ -262,9 +262,9 @@ function getResults(str) {
  * ('switcher-narrow') { $('body').addClass('narrow'); }
  * 
  * event.stopPropagation(); }); });
- */
+ 
 // step 10
-/*
+
  * $(function() { $('#switcher').on('click.kosta', function() { $('#switcher
  * .button').toggleClass('hidden'); });
  * 
@@ -282,5 +282,5 @@ function getResults(str) {
  * 
  * $('#switcher').trigger('click.kosta'); }); });
  * 
- */
-
+ 
+*/
