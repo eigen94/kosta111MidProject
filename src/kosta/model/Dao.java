@@ -228,6 +228,64 @@ public class Dao {
 		
 	}
 
+	public void dBCreate(DB db) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).dBCreate(db);
+			
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	public int dBId() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int id = 0;
+		if(sqlSession.getMapper(ProjectBoardMapper.class).dBId() == null)
+		{
+			sqlSession.close();
+			return id;
+		}
+		else
+		{	
+			id=sqlSession.getMapper(ProjectBoardMapper.class).dBId();
+			sqlSession.close();
+			return id;
+		}
+	}
+
+	public List<DB> dBList(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<DB> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
+		System.out.println(list);
+		sqlSession.close();
+		if(list == null){
+			return null;
+		}else{
+			
+			return list;
+		}
+	}
+
+	public void createDB(DB db) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).createDB(db);
+			
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
 	public void umlInsert(String json) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;

@@ -11,6 +11,7 @@
 		<typeAlias type="kosta.imgModel.Image" alias="Image"/>
 				<typeAlias type="kosta.model.ProjectDetail" alias="Detail"/>
 		<typeAlias type="kosta.note.Note" alias="Note"/>
+		<typeAlias type="kosta.model.DB" alias="Dbj"/>
 		
 	</typeAliases>
 	

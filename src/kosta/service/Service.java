@@ -2,6 +2,7 @@ package kosta.service;
 
 import java.util.List;
 
+import kosta.model.DB;
 import kosta.model.Dao;
 import kosta.model.ProjectBoard;
 import kosta.model.ProjectDetail;
@@ -24,6 +25,7 @@ public class Service {
 	public void projectInsertService(ProjectBoard projectBoard)
 	{
 		projectBoard.setP_id(dao.selectMaxP_id()+1);
+		System.out.println(projectBoard.toString());
 		dao.projectInsert(projectBoard);
 	}
 
@@ -40,7 +42,6 @@ public class Service {
 	{
 		dao.projectDelete(p_id);
 	}
-
 
 	public int getDetailId() {
 		return dao.getDetailId();
@@ -69,6 +70,28 @@ public class Service {
 
 	public void checkUpdate(ProjectDetail detail) {
 		dao.CheckUpdate(detail);
+		
+	}
+
+	
+
+	public void dBCreate(DB db) {
+		dao.dBCreate(db);
+		
+	}
+
+	public int getDBId() {
+		
+		return dao.dBId();
+	}
+
+	public List<DB> dBList(int id) {
+		
+		return dao.dBList(id);
+	}
+
+	public void createDB(DB db) {
+		dao.createDB(db);
 		
 	}
 
