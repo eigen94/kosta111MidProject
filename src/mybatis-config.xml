@@ -6,6 +6,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="kosta.model.ProjectBoard" alias="ProjectBoard"/>
+		<typeAlias type="kosta.model.UmlObject" alias="UmlObject"/>
 		<typeAlias type="kosta.login.Member" alias="Member"/>
 		<typeAlias type="kosta.model.ProjectDetail" alias="Detail"/>
 		
@@ -23,6 +24,7 @@
 	<mappers>
 		<mapper resource="kosta/projectMapper/ProjectBoard.xml"/>
 		<mapper resource="kosta/loginMapper/login.xml"/>
+		<mapper resource="kosta/umlMapper/Uml.xml"/>
 		
 	</mappers>
 	

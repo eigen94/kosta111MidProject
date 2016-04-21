@@ -41,6 +41,7 @@ public class Service {
 		dao.projectDelete(p_id);
 	}
 
+
 	public int getDetailId() {
 		return dao.getDetailId();
 		
@@ -68,6 +69,11 @@ public class Service {
 
 	public void checkUpdate(ProjectDetail detail) {
 		dao.CheckUpdate(detail);
+		
+	}
+
+	public void umlInsertService(String json) {
+		dao.umlInsert(json);
 		
 	}
 }
