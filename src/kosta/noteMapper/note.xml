@@ -12,5 +12,9 @@
 			)
 	</insert>
 
+	<select id ="selectNote" parameterType="int" resultType="Note">
+	select * from note where n_receive = #{n_id}
+	</select>
+
 	
 </mapper>

@@ -14,9 +14,11 @@
 	re = service.insertNoteService(note);
 	
 	if(re>0){
-		out.print("<script type='text/javascript'>alert('보내졌음'); historyback();</script>");
+		response.sendRedirect("noteStorage.jsp");
+		  out.print("<script type='text/javascript'>alert('보내졌음');</script>");  
+		
 	}else{
-		out.print("<script type='text/javascript'>alert('노노 실패'); historyback();</script>");
+		out.print("<script type='text/javascript'>alert('노노 실패'); history.back();</script>");
 	}
 	%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

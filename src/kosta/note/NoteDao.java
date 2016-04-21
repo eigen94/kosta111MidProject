@@ -1,6 +1,8 @@
 package kosta.note;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import kosta.noteMapper.noteMapper;
 
@@ -43,6 +45,20 @@ public class NoteDao {
 			sqlSession.close();
 		}
 		return re;
+	}
+
+
+	public List<Note> selectNote(int n_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<Note> note = new ArrayList<Note>();
+		try {
+			note = sqlSession.getMapper(noteMapper.class).selectNote(n_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return note;
 	}
 	
 	
