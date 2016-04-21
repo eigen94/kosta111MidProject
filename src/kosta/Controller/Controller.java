@@ -22,6 +22,7 @@ import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.DateCreate;
+import kosta.action.UmlInsertAction;
 
 
 @WebServlet("*.do")
@@ -88,6 +89,19 @@ public class Controller extends HttpServlet {
     		forward = action.execute(request, response);
     	}else if(command.equals("checkDetail.do")){
     		action = new Detailview();
+    		forward = action.execute(request, response);
+    	}
+    	
+//    	else if(command.equals("json.do"))
+//    	{
+//    		System.out.println("�߾߾߾߾߾�");
+//    		action = new insertJSON();
+//    		forward = action.execute(request, response);
+//    	}
+    	
+    	else if(command.equals("uml.do"))
+    	{
+    		action = new UmlInsertAction();
     		forward = action.execute(request, response);
     	}
     	

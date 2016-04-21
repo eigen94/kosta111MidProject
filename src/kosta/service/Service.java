@@ -93,6 +93,11 @@ public class Service {
 		dao.createDB(db);
 		
 	}
+
+	public void umlInsertService(String json) {
+		dao.umlInsert(json);
+		
+	}
 }
 
 

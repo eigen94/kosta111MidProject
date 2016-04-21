@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kosta.imgMapper.imgBoardMapper">
+	<cache />
+
+	<insert id="imgInsertService" parameterType="String">
+		INSERT INTO checklist(
+		check_id , check_content 
+		)VALUES(
+		nvl((select max(check_id) from checklist)+1,0),#{str}
+		)
+	</insert>
+	
+	<select id="imgListBoard" resultType="String">
+		select check_content from checklist
+	</select>
+
+</mapper>

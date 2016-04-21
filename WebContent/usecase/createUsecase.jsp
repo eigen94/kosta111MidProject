@@ -17,16 +17,18 @@
 	</div>
 	<div class="mid_position">
 		<h3>기능명세 - Use_case</h3><br>
-		<div class="tuple1">
-			<select name="select">
-    			<option value="">선택</option>
-    			<option value="개요">개요</option>
-    			<option value="관련엑터">관련엑터</option>
-    			<option value="선행조건">선행조건</option>
-			</select>
-			<input type="text" name="내용" value="내용을 입력하세요.">
-			<a href="usecaseDelete.do"><button>ㅡ</button></a>
+		<div id="item">
+				<select name="select">
+    				<option value="1">개요</option>
+    				<option value="2">관련엑터</option>
+    				<option value="3">선행조건</option>
+				</select>
+				<input type="text" name="내용" value="내용을 입력하세요.">
+				<!-- <span id="minus_btn"> -->
+					<button>ㅡ</button>
+				<!-- </span> -->
 		</div>
+		<div id="field"></div>
 		<div id="plus_btn">
 			<button>+</button>
 		</div>

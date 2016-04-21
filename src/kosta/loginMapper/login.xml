@@ -14,6 +14,8 @@
 	<select id="loginMember" parameterType="Member" resultType="int">
 	select count(*) from member where m_email = #{m_email} and m_pwd = #{m_pwd}
 	</select>
-	
+	<select id="getMemberInfo" parameterType="Member" resultType="Member">
+	select m_id,m_name from member Where m_email = #{m_email}
+	</select>
 	
 </mapper>
