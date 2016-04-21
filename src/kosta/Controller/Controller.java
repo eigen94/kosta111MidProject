@@ -16,6 +16,7 @@ import kosta.action.ProjectListAction;
 import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
+import kosta.action.UmlInsertAction;
 
 
 @WebServlet("*.do")
@@ -62,6 +63,12 @@ public class Controller extends HttpServlet {
     	else if(command.equals("delete.do"))
     	{
     		action = new ProjectDeleteAction();
+    		forward = action.execute(request, response);
+    	}
+    	
+    	else if(command.equals("uml.do"))
+    	{
+    		action = new UmlInsertAction();
     		forward = action.execute(request, response);
     	}
     	

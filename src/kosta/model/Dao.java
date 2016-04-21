@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import kosta.projectMapper.ProjectBoardMapper;
+import kosta.umlMapper.UmlMapper;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -137,6 +138,32 @@ public class Dao {
 		{
 			return sqlSession.getMapper(ProjectBoardMapper.class).selectMaxP_id();
 		}
+	}
+
+	public void umlInsert(String json) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = -1;
+		
+		try {
+			re = sqlSession.getMapper(UmlMapper.class).umlInsert(json);
+			
+			if(re > 0)
+			{
+				sqlSession.commit();
+			}
+			else
+			{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		finally
+		{
+			sqlSession.close();
+		}
+		
+		
 	}
 
 	

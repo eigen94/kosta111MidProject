@@ -39,6 +39,11 @@ public class Service {
 	{
 		dao.projectDelete(p_id);
 	}
+
+	public void umlInsertService(String json) {
+		dao.umlInsert(json);
+		
+	}
 }
 
 
