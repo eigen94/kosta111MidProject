@@ -13,17 +13,12 @@
 	<a href=""></a>
 
 	<table border="1" cellpadding="0" cellspacing="0">
-		<tr height="30">
-			<th width="50">번호</th>
-			<th width="300">이미지</th>
-			<th width="300">메모</th>
-		</tr>
-		
-		<tr height="50">
-			<td align="center">${map. }</td>
-			<td align="center"></td>
-		</tr>
-		
+		<c:forEach var="a" items="${jsonList}">
+			<tr height="200">
+				<td align="center">${a.check_urlId}</td>
+				<td align="center">${a.check_textArea}</td>
+			</tr>
+		</c:forEach>
 	</table>
 
 </body>

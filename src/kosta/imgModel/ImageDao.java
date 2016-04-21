@@ -52,26 +52,15 @@ public class ImageDao {
 		}
 	}
 
-	public List<HashMap<String, String>> listImgBoardService() {
+	public List<String> listImgBoardService() {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
-		List<Object> list = sqlSession.getMapper(imgBoardMapper.class)
-				.imgListBoard();
+		List<String> list = sqlSession.getMapper(imgBoardMapper.class).imgListBoard();
 		
-		List<HashMap<String, String>> list2 = new ArrayList<HashMap<String,String>>();
-		
-		for(int i=0; i<list.size(); i++){
-			String key = ((String)list.get(i)).substring(1, ((String)list.get(i)).indexOf("="));
-			String value = ((String)list.get(i)).substring(((String)list.get(i)).indexOf("=")+1,((String)list.get(i)).indexOf("}"));
-			
-			HashMap<String, String> map = new HashMap<String, String>();
-			map.put(key, value);
-			
-			
-			list2.add(map);
+		return list;
 		}
 		
-		return list2;
+		
 	}
-}
+

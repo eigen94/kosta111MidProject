@@ -39,7 +39,7 @@ public class ImageService {
 		dao.imgInsertService(str);
 	}
 	
-	public List<HashMap<String, String>> listImgBoardService(){
+	public List<String> listImgBoardService(){
 		return dao.listImgBoardService();
 	}
 	
