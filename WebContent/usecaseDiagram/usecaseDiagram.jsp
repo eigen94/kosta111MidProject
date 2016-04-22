@@ -31,14 +31,16 @@
 			<button>+</button>
 		</div>
 		<span id="item2">
-			<input type="text" value="내용을 입력하세요.">
+			시작점:<input class="start" type="text">
+			끝점:<input class="end" type="text">
+			<input class="value" type="text" value="내용을 입력하세요.">
 			<button>-</button>
 			<br>
 		</span>
 	</span>
 	<span id="field2">
 	</span>
-	<div class="save2">
+	<div class="save">
 		<button>저장</button>
 	</div>
 	

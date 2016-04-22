@@ -1,5 +1,6 @@
 $(function() {
 	count = 1;
+	count2 = 1;
 	// 콜릭하면 내용을 지운다.
 	$('input').on('click', function() {
 		$(this).val('');
@@ -12,6 +13,12 @@ $(function() {
 		document.getElementById('field').appendChild(span);
 		count++;
 	}
+	function addRow2() {
+		var span2 = document.createElement('span');
+		span2.innerHTML = document.getElementById('item2').innerHTML;
+		document.getElementById('item2').appendChild(span2);
+		count2++;
+	}
 
 	// 삭제
 	function deleteRow(obj) {
@@ -23,24 +30,39 @@ $(function() {
 	function save() {
 		var jsonArray = new Array();
 		var jsonObj = new Object();
+		jsonObj.relation = new Array();
+		
 		var tmp1=[];
 		var tmp2 =[];
+		var temp3=[];
 		
 		//반복문 시작
 		for(var i=0;i<count;i++){
 			if($('select').eq(i).val() == 'act'){
-			
-					tmp1.push($('input').eq(i).val());
-					
+					tmp1.push($('input').eq(i).val());			
 			}else if($('select').eq(i).val() == 'even'){
 					tmp2.push($('input').eq(i).val());
 			}
-			
-		}		//반복문 종료
+		}//반복문 종료
+	
+		for(var i=0; i<count2; i++){
+			var jsonObjRe = new Object();
+			jsonObjRe.start = $('.start').eq(i).val();
+			console.log($('.start').eq(i).val());
+			jsonObjRe.end = $('.end').eq(i).val();
+			jsonObjRe.value = $('.value').eq(i).val();		
+			jsonObj.relation.push(jsonObjRe);
+			console.log(jsonObj.relation)
+		}
+		
+		
 		jsonObj.act = tmp1;
 		jsonObj.even = tmp2;
 		
+		
+		
 		jsonArray.push(jsonObj);
+		
 		
 		var finalJsonObj = JSON.stringify(jsonObj);
 		console.log(finalJsonObj);
@@ -59,13 +81,13 @@ $(function() {
 			}
 		})
 	}
-
-	
-	
 	
 	// +버튼->addRow()
 	$(document).on('click', '#plus_btn button', function() {
 		addRow();
+	});
+	$(document).on('click', '#plus_btn2 button', function() {
+		addRow2();
 	});
 	// -버튼 -> deleteRow()
 	$(document).on('click', '#field button', function() {
