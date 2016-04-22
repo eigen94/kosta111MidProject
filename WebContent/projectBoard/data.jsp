@@ -12,12 +12,9 @@
 <title>Insert title here</title>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 
-
-
 <script type="text/javascript">
 	var attrCount = 0;
-	var opCount = 0;
-	var check_id = <% request.getParameter("check_id");%>
+
 	$(function(){		
 		var jsonArray = new Array(); //UML은 여러개가 나올 수 있으니 배열로 선언		
 		
@@ -70,10 +67,21 @@
 			var add = '<div class="attribute"><input type="text" class="name" name="attri"><select class="type" name="type"><option value="varchar2">varchar2</option><option value="number">number</option><option value="date">date</option></select><select class="key" name="key1"><option value=" "></option><option value="PK">PK</option><option value="FK">FK</option><option value="NOTNULL">notnull</option><option value="UNIQUE">unique</option></select><br></div>'
 			$("tr:eq(1) td").append(add);			
 			attrCount++;				
-		});	               
+		});
+		
+		$(".pk").on("click",function(){
+			alert($(this).val());
+		})
+		
 	});
 </script>
-
+<style type="text/css">
+	div{
+		display:block;
+		border : solid 1px;
+		
+	}
+</style>
 </head>
 <body>
 	<input type="hidden" id="check_id" value="${param.check_id }">
@@ -90,16 +98,26 @@
 
 	<button id="submit">전송</button>
 
-	<c:forEach var="json" items="${jsonList }">
-		<hr>
-		${json.get("title") }<br>
+	<c:forEach var="json" varStatus="v" items="${jsonList }">
+		<div id="div">
+		<input type="hidden" id="count" value="${v.count }">
+		<input type="hidden" id="c_id" value="${param.check_id }">
+		${json.get("title") } &nbsp;&nbsp; <input type="checkbox">
+		<br>
 		--------------<br>
 		<c:forEach var="i" items="${json.attribute }">
 			${i.get("name")}&nbsp;&nbsp;
 			${i.get("type")}&nbsp;&nbsp;
-			${i.get("key")}<br>
+			${i.get("key")}
+			<c:if test="${i.get('key') eq 'FK'}">
+				
+			</c:if>
+			<c:if test="${i.get('key') eq 'PK' }">
+				<input type="checkbox" class="pk" value="">
+			</c:if>
+			<br>
 		</c:forEach>
-		<hr>
+		</div>
 	</c:forEach>
 
 
