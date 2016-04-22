@@ -18,12 +18,12 @@
 	<div class="mid_position">
 		<h3>기능명세 - Use_case</h3><br>
 		<div id="item">
-				<select name="select">
+				<select id="select">
     				<option value="1">개요</option>
     				<option value="2">관련엑터</option>
     				<option value="3">선행조건</option>
 				</select>
-				<input type="text" name="내용" value="내용을 입력하세요.">
+				<input type="text" name="내용" id="usecaseContent" value="내용을 입력하세요.">
 				<span id="minus_btn">
 					<button>ㅡ</button>
 				</span>
@@ -35,7 +35,7 @@
 	</div>
 	<div class="bot_position">
 		<div class="save">
-			<button>저장</button>
+			<button id="submit">저장</button>
 		</div>
 	</div>
 	<!-- <script src="usecaseDetail.js"></script> -->
@@ -49,9 +49,14 @@
 			var jsonObj = new Object();
 			jsonObj.select = $("#select").val();
 			jsonObj.content= $("#usecaseContent").val();
+			console.log(jsonObj);
+			
 			
 		jsonArray.push(jsonObj);
+		
 		var finalJsonObj = JSON.stringify(jsonObj);
+		
+		console.log(finalJsonObj);
 		
 		$.ajax({
 			type:"post",
@@ -80,7 +85,7 @@
 			var num2 ="2";
 			var num3 ="3";
 			var add = '<br>';
-			add += '<select name='+select+'>';
+			add += '<select id='+select+'>';
 			add += '<option value='+num1+'>'+'개요'+'</option>';
 			add += '<option value='+num2+'>'+'관련액터'+'</option>';
 			add += '<option value='+num3+'>'+'선행조건'+'</option></select>';
