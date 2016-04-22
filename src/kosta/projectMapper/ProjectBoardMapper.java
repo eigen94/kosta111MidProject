@@ -19,7 +19,7 @@ public interface ProjectBoardMapper {
 	public void checkDelet(int id);
 	public void checkUpdate(ProjectDetail detail);
 	public Integer dBId();
-	public void dBCreate(DB db);
+	
 	public List<DB> dBList(int id);
 	public void createDB(DB db);
 }

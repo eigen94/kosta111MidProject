@@ -228,20 +228,6 @@ public class Dao {
 		
 	}
 
-	public void dBCreate(DB db) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try {
-			sqlSession.getMapper(ProjectBoardMapper.class).dBCreate(db);
-			
-			sqlSession.commit();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			sqlSession.close();
-		}
-	}
-
 	public int dBId() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int id = 0;

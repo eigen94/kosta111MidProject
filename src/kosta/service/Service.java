@@ -72,13 +72,6 @@ public class Service {
 		
 	}
 
-	
-
-	public void dBCreate(DB db) {
-		dao.dBCreate(db);
-		
-	}
-
 	public int getDBId() {
 		
 		return dao.dBId();

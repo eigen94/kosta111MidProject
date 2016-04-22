@@ -21,28 +21,19 @@ public class DateCreate implements Action {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		int check_id = Integer.parseInt(request.getParameter("check_id"));
+		int id = Integer.parseInt(request.getParameter("check_id"));
+		System.out.println(id);
+		String json = request.getParameter("json");
+		System.out.println(json);
 		Service service = Service.getInstance();
-		String title = request.getParameter("title");
-		DB db = new DB();
+		DB db = new DB(json,id);
+		service.createDB(db);
 		
-		db.setTitle(title);
-		db.setCheck_id(check_id);
-		int id = service.getDBId()+1;
-		for(int i=1;i<4;i++){
-			db.setD_id(id);
-			System.out.println(id);
-			db.setd_attr(request.getParameter("attri"+i));
-			db.setType(request.getParameter("type"+i));
-			db.setD_key(request.getParameter("key"+i));
-			
-			service.createDB(db);
-		}
+
 	
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
-		forward.setPath("checkDetail.do?check_id="+check_id);
+		forward.setPath("checkDetail.do?check_id="+id);
 		
 		
 		return forward;
