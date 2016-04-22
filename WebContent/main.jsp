@@ -4,6 +4,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+request.setCharacterEncoding("utf-8");
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -90,7 +93,6 @@
         </div>
         
       </div><!-- end row -->
-      
     <button class="btn btn-default" data-toggle="modal" data-target="#projectCreateModal">프로젝트생성</button>
     <br>
     
@@ -137,7 +139,7 @@
       
       
     </div><!-- end container -->
-    
+    </div>
     
     
     <!-- end of bodycontent -->
@@ -153,27 +155,27 @@
 	    <div class="modal-content">
 	      <div class="modal-body">
 	      
-	        <form action="#" method="post" class="form-horizontal">
+	        <form action="insert.do" method="get" class="form-horizontal">
 		        <div class="form-group">
 	       			<label for="inputName" class="col-sm-3 control-label">프로젝트 이름</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputName" type="text" name="m_name" size="20" placeholder="프로젝트 이름을 입력하세요"><br>
+						<input class="form-control" id="inputName" type="text" name="p_name" size="20" placeholder="프로젝트 이름을 입력하세요"><br>
 					</div>
 	       			<label for="inputEmail" class="col-sm-3 control-label">시작일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
+						<input class="form-control" id="inputEmail" type="text" name="p_email" size="20" placeholder="이메일을 입력하세요"><br>
 					</div>
 	       			<label for="inputPassword" class="col-sm-3 control-label">종료일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
+						<input class="form-control" id="inputPassword" type="text" name="p_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
 					</div>
 	       			<label for="inputPwdCheck" class="col-sm-3 control-label">메모</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPwdCheck" type="password" name="m_pwd" size="20" placeholder="메모를 입력하세요"><br>
+						<input class="form-control" id="inputPwdCheck" type="text" name="p_memo" size="20" placeholder="메모를 입력하세요"><br>
 					</div>
 	       			<label for="inputPhone" class="col-sm-3 control-label">맴버추가</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPhone" type="text" name="m_phone" size="20" placeholder="추가할 맴버 이름이나 이메일을 입력하세요"><br>
+						<input class="form-control" id="inputPhone" type="text" name="p_phone" size="20" placeholder="추가할 맴버 이름이나 이메일을 입력하세요"><br>
 					</div>
 		        
 		        </div>
@@ -189,34 +191,7 @@
 	
 	  </div>
 	</div>
-
-
-
-
-
-      <!-- FOOTER -->
-<!--       <div class="container">
-	      <footer>
-	        <p class="pull-right"><a href="#">Back to top</a></p>
-	        <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	      </footer>
-      
-      </div> -->
-
-    </div><!-- /.container -->
-
-	<!-- messenger -->
-	<!-- 
-	<div class="" id="messenger" style="max-height: 305px;left: auto; right: 0; bottom: 0; position: absolute;">
-		<h4>매신저</h4>
-	    <fieldset>
-	        <textarea id="messageWindow" rows="10" cols="50" readonly="true"></textarea>
-	        <br/>
-	        <input id="inputMessage" type="text"/>
-	        <input type="submit" value="send" onclick="send()" />
-    	</fieldset>
-	</div>
- -->
+	
  
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -227,35 +202,5 @@
     <script src="../../assets/js/vendor/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
-  <!-- 
-      <script type="text/javascript">
-        var textarea = document.getElementById("messageWindow");
-        var webSocket = new WebSocket('ws://localhost:8081/kosta111MidProject/broadcasting');
-        var inputMessage = document.getElementById('inputMessage');
-    webSocket.onerror = function(event) {
-      onError(event)
-    };
-    webSocket.onopen = function(event) {
-      onOpen(event)
-    };
-    webSocket.onmessage = function(event) {
-      onMessage(event)
-    };
-    function onMessage(event) {
-        textarea.value += "상대 : " + event.data + "\n";
-    }
-    function onOpen(event) {
-        textarea.value += "연결 성공\n";
-    }
-    function onError(event) {
-      alert(event.data);
-    }
-    function send() {
-        textarea.value += "나 : " + inputMessage.value + "\n";
-        webSocket.send(inputMessage.value);
-        inputMessage.value = "";
-    }
-  </script>
-   -->
+</body>
 </html>

@@ -1,6 +1,7 @@
 package kosta.projectMapper;
 import java.util.List;
 
+import kosta.model.DB;
 import kosta.model.ProjectBoard;
 import kosta.model.ProjectDetail;
 public interface ProjectBoardMapper {
@@ -17,4 +18,8 @@ public interface ProjectBoardMapper {
 	public ProjectDetail selectDetail(int check_id);
 	public void checkDelet(int id);
 	public void checkUpdate(ProjectDetail detail);
+	public Integer dBId();
+	public void dBCreate(DB db);
+	public List<DB> dBList(int id);
+	public void createDB(DB db);
 }

@@ -6,7 +6,7 @@
 	<cache />
 
 	<select id="projectList" resultType="ProjectBoard">
-		select * from project
+		select * from project order by p_id
 	</select>
 
 	<insert id="projectInsert" parameterType="ProjectBoard">
@@ -32,7 +32,7 @@
 	</delete>
 
 	<select id="selectMaxP_id" resultType="Integer">
-		select p_id from project
+		select max(p_id) from project
 	</select>
 	
 	<select id="getDetailId" resultType="Integer">
@@ -40,12 +40,17 @@
 	</select>
 	
 	<insert id="checkCreate" parameterType="Detail">
-		insert into checklist(
+		<!-- insert into checklist(
 			check_id,check_name,check_projectId,check_start,check_end,check_manager,check_sign,check_type,check_content
 		)values(
 			#{check_id},#{check_name},#{check_projectId},SYSDATE,#{check_end},#{check_manager},#{check_sign},#{check_type},#{check_content}
-		)
+		) -->
 		
+		insert into checklist(
+			check_id, check_content
+		)values(
+			123, #{check_content}
+		)
 	</insert>
 	<select id="detailList" resultType="Detail" parameterType="int">
 		select * from checklist where check_projectid = #{id}
@@ -61,4 +66,17 @@
 		check_name = #{check_name}, check_content = #{check_content},check_end = #{check_end}
 		where check_id = #{check_id}
 	</update>
+	<select id="dBId" resultType="Integer">
+		select max(d_id) from DB
+	</select>
+	<insert id="createDB" parameterType="Dbj">
+		insert into DB(
+			d_id,title,type,d_attr,d_key,check_id
+		)values(
+			#{d_id},#{title},#{type},#{d_attr},#{d_key},#{check_id}
+		)
+	</insert>
+	<select id="dBList" resultType="Dbj" parameterType="int">
+		select * from DB where check_id = #{id}
+	</select>
 </mapper>

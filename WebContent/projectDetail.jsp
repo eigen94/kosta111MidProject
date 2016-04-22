@@ -97,6 +97,7 @@
       
 		<!-- projectList  -->
         <div class="col-sm-3 col-md-2 sidebar">
+        <label >프로젝트 리스트</label>
           <ul class="nav nav-sidebar">
           	<c:forEach var="project" items="${list }">
           	<c:choose>
@@ -126,7 +127,7 @@
         
         <div class="col-sm-4 col-md-4 main">
         <ul class="list-group">
-		  <li class="list-group-item" data-toggle="modal" data-target="#checkCreateModal">일정생성</li>
+		  <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#checkCreateModal">일정생성</a></li>
 		  
 		  <!--  
 		  checkCreate
@@ -224,7 +225,7 @@
 	<!-- Modal -->
 
 	<!-- checkCreateModal -->
-	<div id="projectCreateModal" class="modal fade" role="dialog">
+	<div id="checkCreateModal" class="modal fade" role="dialog">
 	  <div class="modal-dialog">
 	
 	    <!-- Modal content-->
@@ -233,31 +234,32 @@
 	      
 	        <form action="#" method="post" class="form-horizontal">
 		        <div class="form-group">
-	       			<label for="inputName" class="col-sm-3 control-label">프로젝트 이름</label>
+	       			<label for="inputName" class="col-sm-3 control-label">체크리스트 이름</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputName" type="text" name="m_name" size="20" placeholder="프로젝트 이름을 입력하세요"><br>
+						<input class="form-control" id="inputName" type="text" name="check_name" size="20" placeholder="체크리스트 이름을 입력하세요"><br>
 					</div>
 	       			<label for="inputEmail" class="col-sm-3 control-label">시작일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
+						<input class="form-control" id="inputEmail" type="text" name="check_start" size="20" placeholder="시작일을 입력하세요"><br>
 					</div>
 	       			<label for="inputPassword" class="col-sm-3 control-label">종료일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
+						<input class="form-control" id="inputPassword" type="text" name="check_end" size="20" placeholder="종료일을 입력하세요"><br>
 					</div>
-	       			<label for="inputPwdCheck" class="col-sm-3 control-label">메모</label>
+	       			<label for="inputPwdCheck" class="col-sm-3 control-label">일정타입</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPwdCheck" type="password" name="m_pwd" size="20" placeholder="메모를 입력하세요"><br>
+						<input class="form-control" id="inputPwdCheck" type="text" name="check_type" size="20" placeholder="메모를 입력하세요"><br>
 					</div>
-	       			<label for="inputPhone" class="col-sm-3 control-label">맴버추가</label>
+	       			<label for="inputPhone" class="col-sm-3 control-label">담당자</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPhone" type="text" name="m_phone" size="20" placeholder="추가할 맴버 이름이나 이메일을 입력하세요"><br>
+						<input class="form-control" id="inputPhone" type="text" name="check_manager" size="20" placeholder="일정약식을 입력하세요"><br>
 					</div>
+					<input type="hidden" name="check_projectId" value="${project.p_id }">
 		        
 		        </div>
 			  	<div class="form-group">
 			    	<div class="col-sm-offset-3 col-sm-9">
-			      		<button type="submit" class="btn btn-default">프로젝트 생성</button>
+			      		<button type="submit" class="btn btn-default">일정 생성</button>
 			    	</div>
 			  	</div>
 			</form>

@@ -5,10 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import kosta.service.Service;
 
-import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
-import org.json.simple.parser.JSONParser;
-
 public class UmlInsertAction implements Action {
 
 	@Override
