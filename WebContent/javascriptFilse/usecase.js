@@ -70,6 +70,22 @@ $(function() {
 	function deleteRow(obj) {
 		document.getElementById('field').removeChild(obj.parentNode);
 	}
+	
+	//전송
+	function post_to_url(path, params, method) {
+		alert(params);
+	    method = method || "post";
+	    var form = document.createElement("form");
+	    form.setAttribute("method", method);
+	    form.setAttribute("action", path);
+	        var hiddenField = document.createElement("input");
+	        hiddenField.setAttribute("type", "hidden");
+	        hiddenField.setAttribute("name", 'check_content');
+	        hiddenField.setAttribute("value", params);
+	        form.appendChild(hiddenField);
+	    document.body.appendChild(form);
+	    form.submit();
+	}
 
 	// 저장
 	function save() {
@@ -103,7 +119,7 @@ $(function() {
 		
 		alert(json_obj);
 		
-		location.href='json.do';
+		post_to_url('projectDetail.do', json_obj);
 		
 		/*
 		 * $selector.each(function(i, e) { json += ', "' + $select + '" : "' +
