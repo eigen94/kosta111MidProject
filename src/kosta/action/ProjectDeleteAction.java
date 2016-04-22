@@ -18,7 +18,7 @@ public class ProjectDeleteAction implements Action {
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
-		forward.setPath("projectList.do");
+		forward.setPath("main.jsp");
 		
 		return forward;
 	}

@@ -44,7 +44,7 @@ public class Controller extends HttpServlet {
     	
     	if(command.equals("insert.do"))
     	{   		
-    		System.out.println("controllor p_name : "+request.getParameter("p_name"));
+    		//System.out.println("controllor p_name : "+request.getParameter("p_name"));
     		action = new ProjectCreateAction();
     		forward = action.execute(request, response);
     	}

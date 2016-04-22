@@ -17,7 +17,7 @@
 	List<ProjectBoard> list = service.projectListService();
 	ProjectBoard project = service.projectSelectService(p_id);
 	List<ProjectDetail> checkList = service.detailListService(p_id);
-	
+	System.out.println(checkList);
 	request.setAttribute("checkList", checkList);
 	request.setAttribute("list", list);
 	request.setAttribute("project", project);
@@ -40,7 +40,9 @@
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href='http://fullcalendar.io/js/fullcalendar-2.6.1/fullcalendar.css' rel='stylesheet' />
+	<link href='http://fullcalendar.io/js/fullcalendar-2.6.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+	
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
@@ -97,8 +99,8 @@
       
 		<!-- projectList  -->
         <div class="col-sm-3 col-md-2 sidebar">
-        <label >프로젝트 리스트</label>
           <ul class="nav nav-sidebar">
+	        <li><a href="main.jsp"><label>프로젝트 리스트</label></a></li>
           	<c:forEach var="project" items="${list }">
           	<c:choose>
           	<c:when test="${project.p_id==p_id }">
@@ -126,21 +128,37 @@
         <!-- checklist -->
         
         <div class="col-sm-4 col-md-4 main">
-        <ul class="list-group">
-		  <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#checkCreateModal">일정생성</a></li>
+        <div class="list-group">
+		  <a class="list-group-item list-group-item-warning" href="#" data-toggle="modal" data-target="#checkCreateModal">일정생성</a>
 		  
 		  <!--  
 		  checkCreate
 		  -->
         <c:forEach var="checkList" items="${checkList }">
-		  <li class="list-group-item">${checkList.check_name }</li>
+        
+        <div class="col-sm-4 col-md-9" style="padding-left: 0px; padding-right: 0px;">
+		  <a class="list-group-item" href="#" data-toggle="modal" data-target="#checkDetailModal">&nbsp;${checkList.check_name }
+		  <%-- 
+		  	<div class="input-group">
+		        <input type="text" class="form-control" placeholder="Search for...">
+				<span class="input-group-btn">
+					<a href="checkDelete.do?check_id=${checkList.check_id }&check_projectid=${project.p_id}"><button class="btn btn-default" type="button">delete</button></a>
+				</span>
+			</div><!-- /input-group -->
+			 --%>
+			</a>
+			</div>
+        <div class="col-sm-4 col-md-3" style="padding-left: 0px; padding-right: 0px;">
+			<a class="list-group-item list-group-item-danger" href="checkDelete.do?check_id=${checkList.check_id }&check_projectid=${project.p_id}">delete</a>
+			</div>
         </c:forEach>
-		</ul>
+		</div>
         </div><!-- end of checklist -->
         
         <!-- calendar -->
-        <div class="col-sm-8 col-md-8 main">
+        <div class="col-sm-8 col-md-8 main" style="padding-left: 0px; padding-top: 0px;">
         
+        <div id='calendar' style="margin-top: 20px;"></div>
         
         </div><!-- end of calendar -->
 
@@ -169,23 +187,6 @@
           </div>
         </div>
            -->
-        <%-- <div class="col-sm-2 col-md-2 main">
-          ${project.p_name } ${project.p_start } ~ ${project.p_end }
-        </div> --%>
-        <!-- modechange btn -->
-        <!-- 
-        <div class="col-sm-3 col-md-2 main">
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-default change_viewtype ">
-				<input id="view_type_media" type="radio" value="media" name="view_type">
-				<span class="glyphicon glyphicon-list"></span>
-				</label>
-				<label class="btn btn-default change_viewtype active">
-				<input id="view_type_card" type="radio" value="card" name="view_type">
-				<span class="glyphicon glyphicon-th-large"></span>
-				</label>
-			</div>
- -->
          </div><!-- end of main -->
       </div><!-- end row -->
       
@@ -232,7 +233,7 @@
 	    <div class="modal-content">
 	      <div class="modal-body">
 	      
-	        <form action="#" method="post" class="form-horizontal">
+	        <form action="projectDetail.do" method="post" class="form-horizontal">
 		        <div class="form-group">
 	       			<label for="inputName" class="col-sm-3 control-label">체크리스트 이름</label>
 	   				<div class="col-sm-7">
@@ -248,11 +249,26 @@
 					</div>
 	       			<label for="inputPwdCheck" class="col-sm-3 control-label">일정타입</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPwdCheck" type="text" name="check_type" size="20" placeholder="메모를 입력하세요"><br>
+					  <label for="sel1">Select list:</label>
+					  <select class="form-control" id="sel1" name="check_type">
+					    <option value="1">1</option>
+					    <option>2</option>
+					    <option>3</option>
+					    <option>4</option>
+					  </select>
+	   				
+	   				<!-- 
+	   					<select class="form-control" name="check_type">
+	   					<option value="0">화면명세</option>
+	   					<option value="1">기능명세</option>
+	   					<option value="2">uml</option>
+	   					</select>
+	   				 -->	
+						<!-- <input class="form-control" id="inputPwdCheck" type="text" name="check_type" size="20" placeholder="메모를 입력하세요"><br> -->
 					</div>
 	       			<label for="inputPhone" class="col-sm-3 control-label">담당자</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPhone" type="text" name="check_manager" size="20" placeholder="일정약식을 입력하세요"><br>
+						<input class="form-control" id="inputPhone" type="text" name="check_manager" size="20" placeholder="담당자를 입력하세요"><br>
 					</div>
 					<input type="hidden" name="check_projectId" value="${project.p_id }">
 		        
@@ -268,6 +284,22 @@
 	    </div>
 	
 	  </div>
+	</div><!--end of checkCreateModal -->
+	
+
+	<!-- checkDetailModal -->
+	<div id="checkDetailModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog">
+	
+	    <!-- Modal content-->
+	    <div class="modal-content">
+	      <div class="modal-body">
+	      detail!
+	      
+	      </div>
+	    </div>
+	
+	  </div>
 	</div>
 	
  
@@ -275,12 +307,88 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script src='http://fullcalendar.io/js/fullcalendar-2.6.1/lib/moment.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src='http://fullcalendar.io/js/fullcalendar-2.6.1/fullcalendar.min.js'></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../../assets/js/vendor/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+	<script>
+	
+		$(document).ready(function() {
+			
+			$('#calendar').fullCalendar({
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				defaultDate: '2016-01-12',
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+				events: [
+					{
+						title: 'All Day Event',
+						start: '2016-01-01'
+					},
+					{
+						title: 'Long Event',
+						start: '2016-01-07',
+						end: '2016-01-10'
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: '2016-01-09T16:00:00'
+					},
+					{
+						id: 999,
+						title: 'Repeating Event',
+						start: '2016-01-16T16:00:00'
+					},
+					{
+						title: 'Conference',
+						start: '2016-01-11',
+						end: '2016-01-13'
+					},
+					{
+						title: 'Meeting',
+						start: '2016-01-12T10:30:00',
+						end: '2016-01-12T12:30:00'
+					},
+					{
+						title: 'Lunch',
+						start: '2016-01-12T12:00:00'
+					},
+					{
+						title: 'Meeting',
+						start: '2016-01-12T14:30:00'
+					},
+					{
+						title: 'Happy Hour',
+						start: '2016-01-12T17:30:00'
+					},
+					{
+						title: 'Dinner',
+						start: '2016-01-12T20:00:00'
+					},
+					{
+						title: 'Birthday Party',
+						start: '2016-01-13T07:00:00'
+					},
+					{
+						title: 'Click for Google',
+						url: 'http://google.com/',
+						start: '2016-01-28'
+					}
+				]
+			});
+			
+		});
+	
+	</script>
   </body>
   <!-- 
       <script type="text/javascript">

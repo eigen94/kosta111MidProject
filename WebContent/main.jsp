@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-request.setCharacterEncoding("utf-8");
+//request.setCharacterEncoding("utf-8");
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +22,7 @@ request.setCharacterEncoding("utf-8");
 
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -120,6 +121,7 @@ request.setCharacterEncoding("utf-8");
 	              <h2>${project.p_name }</h2>
 	              <p>${project.p_memo } </p>
 	              <p><a class="btn btn-default" href="projectDetail.jsp?p_id=${project.p_id }" role="button">프로젝트 시작하기 &raquo;</a></p>
+	              <p><a class="btn btn-default" href="delete.do?p_id=${project.p_id }" role="button">프로젝트 삭제하기 &raquo;</a></p>
 	            </div><!--/.col-xs-6.col-lg-4-->
 	          </c:forEach>
           </c:when>
@@ -155,19 +157,31 @@ request.setCharacterEncoding("utf-8");
 	    <div class="modal-content">
 	      <div class="modal-body">
 	      
-	        <form action="insert.do" method="get" class="form-horizontal">
+	        <form action="insert.do" method="post" class="form-horizontal">
 		        <div class="form-group">
 	       			<label for="inputName" class="col-sm-3 control-label">프로젝트 이름</label>
 	   				<div class="col-sm-7">
 						<input class="form-control" id="inputName" type="text" name="p_name" size="20" placeholder="프로젝트 이름을 입력하세요"><br>
 					</div>
-	       			<label for="inputEmail" class="col-sm-3 control-label">시작일</label>
+					
+	       			<label for="inputStartDate" class="col-sm-3 control-label">시작일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputEmail" type="text" name="p_email" size="20" placeholder="이메일을 입력하세요"><br>
+		                <div class='input-group date' id='datetimepicker1'>
+		                    <input type='text' id="inputStartDate" class="form-control" name="p_start"/>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
 					</div>
-	       			<label for="inputPassword" class="col-sm-3 control-label">종료일</label>
+					
+	       			<label for="inputEndDate" class="col-sm-3 control-label">종료일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPassword" type="text" name="p_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
+		                <div class='input-group date' id='datetimepicker2'>
+		                    <input type='text' id="inputEndDate" class="form-control" name="p_end"/>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
 					</div>
 	       			<label for="inputPwdCheck" class="col-sm-3 control-label">메모</label>
 	   				<div class="col-sm-7">
@@ -198,9 +212,18 @@ request.setCharacterEncoding("utf-8");
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+	<script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>    
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../../assets/js/vendor/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD'});
+                $('#datetimepicker2').datetimepicker({format: 'YYYY-MM-DD'});
+            });
+        </script>
 </body>
 </html>
