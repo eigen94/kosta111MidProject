@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-2.2.3.js"></script>
-<script src="../javascriptFilse/usecase.js" type="text/javascript"></script> 
+<script src="../javascriptFilse/jquery-2.2.3.min.js" type="text/javascript"></script>
+<script src="../javascriptFilse/usecase.js" type="text/javascript"></script>
 <link rel="stylesheet" href="../cssFiles/tmp.css" type="text/css" />
 </head>
 <body>
@@ -18,29 +18,28 @@
 	<div class="mid_position">
 		<h3>기능명세 - Use_case</h3><br>
 		<div id="item">
-				<select id="select">
-    				<option value="1">개요</option>
-    				<option value="2">관련엑터</option>
-    				<option value="3">선행조건</option>
+				<select name="select">
+    				<option value="outline">개요</option>
+    				<option value="aaa">관련엑터</option>
+    				<option value="bbb">선행조건</option>
+    				<option value="event">이벤트</option>
 				</select>
-				<input type="text" name="outline" value="내용을 입력하세요.">
-				<span id="minus_btn">
+				<input type="text" name="내용" value="내용을 입력하세요.">
+				<!-- <span id="minus_btn"> -->
 					<button>ㅡ</button>
-				</span>
+				<!-- </span> -->
 		</div>
-		<div id="field"></div>
+		<div id="field">
+		</div>
 		<div id="plus_btn">
-			<button id="addUsecase">+</button>
+			<button>+</button>
 		</div>
 	</div>
 	<div class="bot_position">
 		<div class="save">
-			<button id="submit">저장</button>
+			<button>저장</button>
 		</div>
 	</div>
-	<!-- <script src="usecaseDetail.js"></script> -->
-
-	
 </body>
 </html>
 
