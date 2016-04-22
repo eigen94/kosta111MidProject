@@ -48,43 +48,51 @@ $(function() {
 		form.submit();
 	}
 
+	//////////////////////////////////////////////////
+	$(function(){
+		
+		
+	});
+	///////////////////////////////////////////////////
+	
+	
 	// 저장
 	function save() {
-		var $itemSelect = $('.mid_position #item').find('select').val();
-		var $itemInput = $('.mid_position #item').find('input').val();
-		var $selector = $('.mid_position #field').find('div');
-		var $select = $selector.find('select').val();
-		var $input = $selector.find('input').val();
-		var json = '{ " ' + $itemSelect + '" : "' + $itemInput + '"';
+var jsonArray = new Array();
+		alert("11123");
 
-		json += ', "' + $select + '" : "' + $input + '"';
-
-		json += '}';
-
-		/*
-		 * $select.each(function(i, e) { var select = $(this).val(); json +=
-		 * ',"' + select; }); $input.each(function(i, e) { var input =
-		 * $(this).val(); json += '", "' + input +'"'; });
-		 */
-
-		var json1 = new Object();
-		json1.select1 = $itemSelect;
-		json1.input1 = $itemInput;
-		json1.select = $select;
-		json1.input = $input;
-
-		var json_obj = JSON.stringify(json1);
-
-		alert(json_obj);
-
-		post_to_url('projectDetail.do', json_obj);
-
-		/*
-		 * $selector.each(function(i, e) { json += ', "' + $select + '" : "' +
-		 * $input +'"'; });
-		 */
-
-		// json += ',"' + select + '", "' + input +'"'; alert(json);
+		var jsonObj = new Object();
+		if($('#item select').val() == 'outline'){
+			jsonObj.outline = $('#item select').parent().find('input').val();
+		}
+			
+			
+			////////
+			
+			//////
+			
+			
+			
+		jsonArray.push(jsonObj);
+		
+		var finalJsonObj = JSON.stringify(jsonObj);
+		
+		alert(finalJsonObj +"44444");
+		
+		$.ajax({
+			type:"post",
+			url:"usecase.do",
+			data:{
+				json:finalJsonObj
+			},
+			dataType: "text",
+			success: function(data){
+				alert("성공");
+			},error: function(data){
+				alert("실패");
+			}
+		})
+		
 	}
 
 	// +버튼->addRow()

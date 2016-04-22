@@ -19,7 +19,7 @@
 		<h3>기능명세 - Use_case</h3><br>
 		<div id="item">
 				<select name="select">
-    				<option value="1">개요</option>
+    				<option value="outline">개요</option>
     				<option value="2">관련엑터</option>
     				<option value="3">선행조건</option>
 				</select>

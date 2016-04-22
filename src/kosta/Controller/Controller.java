@@ -83,27 +83,29 @@ public class Controller extends HttpServlet {
     	{
     		action = new CheckUpdate();
     		forward = action.execute(request, response);
-    	}else if(command.equals("data.do")){
+    	}
+    	else if(command.equals("data.do")){
     		action = new DateCreate();
     		forward = action.execute(request, response);
-    	}else if(command.equals("checkDetail.do")){
+    	}
+    	else if(command.equals("checkDetail.do")){
     		action = new Detailview();
     		forward = action.execute(request, response);
     	}
 
     	
-//    	else if(command.equals("json.do"))
-//    	{
-//    		System.out.println("�߾߾߾߾߾�");
-//    		action = new insertJSON();
-//    		forward = action.execute(request, response);
-//    	}
+    	else if(command.equals("json.do"))
+    	{
+    		System.out.println("�߾߾߾߾߾�");
+    		action = new insertJSON();
+    		forward = action.execute(request, response);
+    	}
     	
-    	else if(command.equals("uml.do"))
+    	/*else if(command.equals("uml.do"))
     	{
     		action = new UmlInsertAction();
     		forward = action.execute(request, response);
-    	}
+    	}*/
     	
     	
     	if(forward != null)
