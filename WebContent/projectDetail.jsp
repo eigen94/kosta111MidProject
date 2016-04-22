@@ -42,7 +42,7 @@
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href='http://fullcalendar.io/js/fullcalendar-2.6.1/fullcalendar.css' rel='stylesheet' />
 	<link href='http://fullcalendar.io/js/fullcalendar-2.6.1/fullcalendar.print.css' rel='stylesheet' media='print' />
-	
+	<link href="bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
@@ -113,9 +113,6 @@
           	</c:choose>
           	
           	</c:forEach>
-<!--             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li> -->
           </ul>
         </div><!-- end of project List -->
       
@@ -136,19 +133,11 @@
 		  -->
         <c:forEach var="checkList" items="${checkList }">
         
-        <div class="col-sm-4 col-md-9" style="padding-left: 0px; padding-right: 0px;">
+        <div class="col-sm-9 col-md-9" style="padding-left: 0px; padding-right: 0px;">
 		  <a class="list-group-item" href="#" data-toggle="modal" data-target="#checkDetailModal">&nbsp;${checkList.check_name }
-		  <%-- 
-		  	<div class="input-group">
-		        <input type="text" class="form-control" placeholder="Search for...">
-				<span class="input-group-btn">
-					<a href="checkDelete.do?check_id=${checkList.check_id }&check_projectid=${project.p_id}"><button class="btn btn-default" type="button">delete</button></a>
-				</span>
-			</div><!-- /input-group -->
-			 --%>
 			</a>
 			</div>
-        <div class="col-sm-4 col-md-3" style="padding-left: 0px; padding-right: 0px;">
+        <div class="col-sm-3 col-md-3" style="padding-left: 0px; padding-right: 0px;">
 			<a class="list-group-item list-group-item-danger" href="checkDelete.do?check_id=${checkList.check_id }&check_projectid=${project.p_id}">delete</a>
 			</div>
         </c:forEach>
@@ -198,16 +187,6 @@
     
     <!-- end of bodycontent -->
 
-
-      <!-- FOOTER -->
-<!--       <div class="container">
-	      <footer>
-	        <p class="pull-right"><a href="#">Back to top</a></p>
-	        <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	      </footer>
-      
-      </div> -->
-
     </div><!-- /.container -->
 
 	<!-- messenger -->
@@ -221,8 +200,8 @@
 	        <input type="submit" value="send" onclick="send()" />
     	</fieldset>
 	</div>
- -->
-	
+
+ -->	
 	<!-- Modal -->
 
 	<!-- checkCreateModal -->
@@ -239,13 +218,25 @@
 	   				<div class="col-sm-7">
 						<input class="form-control" id="inputName" type="text" name="check_name" size="20" placeholder="체크리스트 이름을 입력하세요"><br>
 					</div>
-	       			<label for="inputEmail" class="col-sm-3 control-label">시작일</label>
+					
+	       			<label for="inputStartDate" class="col-sm-3 control-label">시작일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputEmail" type="text" name="check_start" size="20" placeholder="시작일을 입력하세요"><br>
+		                <div class='input-group date' id='datetimepicker1'>
+		                    <input type='text' id="inputStartDate" class="form-control" name="check_start"/>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
 					</div>
-	       			<label for="inputPassword" class="col-sm-3 control-label">종료일</label>
+					
+	       			<label for="inputEndDate" class="col-sm-3 control-label">종료일</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPassword" type="text" name="check_end" size="20" placeholder="종료일을 입력하세요"><br>
+		                <div class='input-group date' id='datetimepicker2'>
+		                    <input type='text' id="inputEndDate" class="form-control" name="check_end"/>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
 					</div>
 	       			<label for="inputPwdCheck" class="col-sm-3 control-label">일정타입</label>
 	   				<div class="col-sm-7">
@@ -296,6 +287,8 @@
 	      <div class="modal-body">
 	      detail!
 	      
+	      
+	      
 	      </div>
 	    </div>
 	
@@ -307,10 +300,15 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <!-- for fullcalendar -->
     <script src='http://fullcalendar.io/js/fullcalendar-2.6.1/lib/moment.min.js'></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- for fullcalendar -->
 	<script src='http://fullcalendar.io/js/fullcalendar-2.6.1/fullcalendar.min.js'></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- for dateTimePicker -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
+	<script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../../assets/js/vendor/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -318,70 +316,31 @@
 	<script>
 	
 		$(document).ready(function() {
-			
+			$.ajax({
+				url : 'checkListList.do',
+				data : {
+					p_id : 4
+				},
+				dataType : 'json',
+				success : function(data){
+					console.log(data);
+				}
+				
+			})
 			$('#calendar').fullCalendar({
 				header: {
 					left: 'prev,next today',
 					center: 'title',
 					right: 'month,agendaWeek,agendaDay'
 				},
-				defaultDate: '2016-01-12',
+				//defaultDate: '2016-01-12',
 				editable: true,
 				eventLimit: true, // allow "more" link when too many events
 				events: [
 					{
-						title: 'All Day Event',
-						start: '2016-01-01'
-					},
-					{
 						title: 'Long Event',
 						start: '2016-01-07',
 						end: '2016-01-10'
-					},
-					{
-						id: 999,
-						title: 'Repeating Event',
-						start: '2016-01-09T16:00:00'
-					},
-					{
-						id: 999,
-						title: 'Repeating Event',
-						start: '2016-01-16T16:00:00'
-					},
-					{
-						title: 'Conference',
-						start: '2016-01-11',
-						end: '2016-01-13'
-					},
-					{
-						title: 'Meeting',
-						start: '2016-01-12T10:30:00',
-						end: '2016-01-12T12:30:00'
-					},
-					{
-						title: 'Lunch',
-						start: '2016-01-12T12:00:00'
-					},
-					{
-						title: 'Meeting',
-						start: '2016-01-12T14:30:00'
-					},
-					{
-						title: 'Happy Hour',
-						start: '2016-01-12T17:30:00'
-					},
-					{
-						title: 'Dinner',
-						start: '2016-01-12T20:00:00'
-					},
-					{
-						title: 'Birthday Party',
-						start: '2016-01-13T07:00:00'
-					},
-					{
-						title: 'Click for Google',
-						url: 'http://google.com/',
-						start: '2016-01-28'
 					}
 				]
 			});
@@ -389,6 +348,14 @@
 		});
 	
 	</script>
+	
+	<!-- datetimepicker -->
+	        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD'});
+                $('#datetimepicker2').datetimepicker({format: 'YYYY-MM-DD'});
+            });
+        </script><!-- end of datetimepicker -->
   </body>
   <!-- 
       <script type="text/javascript">

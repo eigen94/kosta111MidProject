@@ -24,7 +24,7 @@ public class CheckCreate implements Action {
 		int check_id = service.getDetailId()+1;
 		String check_name = request.getParameter("check_name");
 		int check_projectId = Integer.parseInt(request.getParameter("check_projectId"));
-		String check_start = null;
+		String check_start = request.getParameter("check_start");
 		String check_end = request.getParameter("check_end");
 		int check_type = Integer.parseInt(request.getParameter("check_type"));
 		int check_sign = 0;
