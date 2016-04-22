@@ -25,6 +25,7 @@ public class Service {
 	public void projectInsertService(ProjectBoard projectBoard)
 	{
 		projectBoard.setP_id(dao.selectMaxP_id()+1);
+		System.out.println(projectBoard.toString());
 		dao.projectInsert(projectBoard);
 	}
 

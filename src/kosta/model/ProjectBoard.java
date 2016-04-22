@@ -4,13 +4,13 @@ import java.io.Serializable;
 import java.sql.Timestamp;
 
 public class ProjectBoard implements Serializable {
-	private int p_id;	//ÇÁ·ÎÁ§Æ® ¾ÆÀÌµð
-	private String p_name;	//ÇÁ·ÎÁ§Æ® ÀÌ¸§
-	private String p_start;	//ÇÁ·ÎÁ§Æ® ½ÃÀÛÀÏ
-	private String p_end;	//ÇÁ·ÎÁ§Æ® Á¾·áÀÏ
-	private int p_pmid;	//PMÀÇ ID
-	private String p_crew;	//ÇÁ·ÎÁ§Æ® Âü¿©ÀÎ¿ø
-	private String p_memo;	//ÇÁ·ÎÁ§Æ®¿¡ °üÇÑ »ó¼¼ ¸Þ¸ð
+	private int p_id;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½Ìµï¿½
+	private String p_name;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ì¸ï¿½
+	private String p_start;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private String p_end;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	private int p_pmid;	//PMï¿½ï¿½ ID
+	private String p_crew;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Î¿ï¿½
+	private String p_memo;	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Þ¸ï¿½
 	
 	public ProjectBoard() {}
 
@@ -90,6 +90,14 @@ public class ProjectBoard implements Serializable {
 	public void setP_memo(String p_memo) {
 		this.p_memo = p_memo;
 	}
+
+	@Override
+	public String toString() {
+		return "ProjectBoard [p_id=" + p_id + ", p_name=" + p_name
+				+ ", p_start=" + p_start + ", p_end=" + p_end + ", p_pmid="
+				+ p_pmid + ", p_crew=" + p_crew + ", p_memo=" + p_memo + "]";
+	}
+	
 }
 
 

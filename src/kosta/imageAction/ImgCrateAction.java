@@ -21,7 +21,6 @@ public class ImgCrateAction implements ImgAction {
 		String json = request.getParameter("json");
 		System.out.println(json);
 		
-		
 		ImageService service = ImageService.getInstance();
 		
 		String str = json;
