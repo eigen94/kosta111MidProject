@@ -1,20 +1,5 @@
 $(function() {
-	/*
-	 * Map = function() { this.map = new Object(); }; Map.prototype = { put :
-	 * function(key, value) { this.map[key] = value; }, get : function(key) {
-	 * return this.map[key]; }, containsKey : function(key) { return key in
-	 * this.map; }, containsValue : function(value) { for ( var prop in
-	 * this.map) { if (this.map[prop] == value) return true; } return false; },
-	 * isEmpty : function(key) { return (this.size() == 0); }, clear :
-	 * function() { for ( var prop in this.map) { delete this.map[prop]; } },
-	 * remove : function(key) { delete this.map[key]; }, keys : function() { var
-	 * keys = new Array(); for ( var prop in this.map) { keys.push(prop); }
-	 * return keys; }, values : function() { var values = new Array(); for ( var
-	 * prop in this.map) { values.push(this.map[prop]); } return values; }, size :
-	 * function() { var count = 0; for ( var prop in this.map) { count++; }
-	 * return count; } };
-	 */
-
+	count = 1;
 	// 콜릭하면 내용을 지운다.
 	$('input').on('click', function() {
 		$(this).val('');
@@ -25,66 +10,87 @@ $(function() {
 		var div = document.createElement('div');
 		div.innerHTML = document.getElementById('item').innerHTML;
 		document.getElementById('field').appendChild(div);
+		count++;
 	}
 
 	// 삭제
 	function deleteRow(obj) {
 		document.getElementById('field').removeChild(obj.parentNode);
 	}
-
-	// 전송
-	function post_to_url(path, params, method) {
-		alert(params);
-		method = method || "post";
-		var form = document.createElement("form");
-		form.setAttribute("method", method);
-		form.setAttribute("action", path);
-		var hiddenField = document.createElement("input");
-		hiddenField.setAttribute("type", "hidden");
-		hiddenField.setAttribute("name", 'check_content');
-		hiddenField.setAttribute("value", params);
-		form.appendChild(hiddenField);
-		document.body.appendChild(form);
-		form.submit();
-	}
-
+	
 	// 저장
 	function save() {
-		var $itemSelect = $('.mid_position #item').find('select').val();
-		var $itemInput = $('.mid_position #item').find('input').val();
-		var $selector = $('.mid_position #field').find('div');
-		var $select = $selector.find('select').val();
-		var $input = $selector.find('input').val();
-		var json = '{ " ' + $itemSelect + '" : "' + $itemInput + '"';
-
-		json += ', "' + $select + '" : "' + $input + '"';
-
-		json += '}';
-
-		/*
-		 * $select.each(function(i, e) { var select = $(this).val(); json +=
-		 * ',"' + select; }); $input.each(function(i, e) { var input =
-		 * $(this).val(); json += '", "' + input +'"'; });
-		 */
-
-		var json1 = new Object();
-		json1.select1 = $itemSelect;
-		json1.input1 = $itemInput;
-		json1.select = $select;
-		json1.input = $input;
-
-		var json_obj = JSON.stringify(json1);
-
-		alert(json_obj);
-
-		post_to_url('projectDetail.do', json_obj);
-
-		/*
-		 * $selector.each(function(i, e) { json += ', "' + $select + '" : "' +
-		 * $input +'"'; });
-		 */
-
-		// json += ',"' + select + '", "' + input +'"'; alert(json);
+		var jsonArray = new Array();
+		var jsonObj = new Object();
+		
+		//반복문 시작
+		for(var i=0;i<count;i++){
+			alert($('select').eq(i).val());
+			if($('select').eq(i).val() == 'outline'){
+				jsonObj.outline = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'actor'){
+				jsonObj.actor = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'conditionF'){
+				jsonObj.conditionF = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'event'){
+			jsonObj.event = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'eventDetail'){
+				jsonObj.eventDetail = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'conditionB'){
+			jsonObj.conditionB = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'claim'){
+				jsonObj.claim = $('.mid_position input').eq(i).val();
+			}
+			
+			
+			
+			if($('select').eq(i).val() == 'aaa'){
+				jsonObj.aaa = $('.mid_position input').eq(i).val();
+			}
+			if($('select').eq(i).val() == 'bbb'){
+				jsonObj.bbb = $('.mid_position input').eq(i).val();
+			}
+			
+		}		//반복문 종료
+		jsonArray.push(jsonObj);
+		//반복문 시작
+		//반복문 시작
+		for(var i=0;i<count;i++){
+			if($('select').eq(i).val() == 'outline'){
+				jsonObj.outline = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'actor'){
+				jsonObj.actor = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'conditionF'){
+				jsonObj.conditionF = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'event'){
+			jsonObj.event = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'eventDetail'){
+				jsonObj.eventDetail = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'conditionB'){
+			jsonObj.conditionB = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'claim'){
+				jsonObj.claim = $('.mid_position input').eq(i).val();
+			}
+			
+		}		//반복문 종료
+		jsonArray.push(jsonObj);
+		
+		var finalJsonObj = JSON.stringify(jsonObj);
+		
+		$.ajax({
+			type:"post",
+			url:"usecase.do",
+			data:{
+				json:finalJsonObj
+			},
+			dataType: "text",
+			success: function(data){
+				alert("성공");
+			},error: function(data){
+				alert("실패");
+			}
+		})
+		
 	}
 
 	// +버튼->addRow()
@@ -103,22 +109,6 @@ $(function() {
 
 });
 // ///////////////////////////////////////////////////////////
-function getResults(str) {
-	$.ajax({
-		url : 'suggest.html',
-		type : 'POST',
-		data : 'q=' + str,
-		dataType : 'json',
-		success : function(json) {
-			$('#myselect').append(json);
-
-		}
-	});
-};
-
-$('.suggest').keyup(function() {
-	getResults($(this).val());
-});
 
 
 
