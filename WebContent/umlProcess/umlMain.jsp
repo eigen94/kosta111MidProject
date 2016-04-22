@@ -64,7 +64,7 @@
 				dataType : "text",				
 				success : function(data)
 				{
-					alert("성공");
+					location.href="umlList.do";
 				},
 				error : function(data)
 				{
@@ -83,7 +83,9 @@
 			var add = '<div class="operation"><input type="text" class="accessOp" size="1">&nbsp;<input type="text" class="typeOp">&nbsp;<input type="text" class="nameOp">&nbsp;<input type="text" class="paraOp"></div>'
 			$("tr:eq(2) td").append(add);
 			opCount++;
-		});		               
+		});		
+		
+		
 	});
 </script>
 
@@ -101,10 +103,17 @@
 		<tr height="80">
 			<td width="800" align="center"></td>
 		</tr>
+		
+		<tr height="30">
+			<td align="center">
+				<button id="addAttr">어트리뷰트 추가</button>&nbsp;
+				<button id="addOp">오퍼레이션 추가</button>&nbsp;
+				<button id="submit">전송</button>
+			</td>
+		</tr>
 	</table>
-	<button id="addAttr">어트리뷰트 추가</button>
-	<button id="addOp">오퍼레이션 추가</button>
-	<button id="submit">전송</button>
+	
+	
 
 
 </body>

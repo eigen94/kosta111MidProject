@@ -254,6 +254,12 @@ public class Dao {
 		
 	}
 
+	public List<String> umlList() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		return sqlSession.getMapper(UmlMapper.class).umlList();
+	}
+
 	
 }
 
