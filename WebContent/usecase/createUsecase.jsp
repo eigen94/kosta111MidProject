@@ -47,8 +47,8 @@
 		
 		$("#submit").click(function(){
 			var jsonObj = new Object();
-			jsonObj.select = $("#select").val();
-			jsonObj.content= $("#usecaseContent").val();
+			jsonObj.outline =$("#usecaseContent").val();
+			
 			console.log(jsonObj);
 			
 			
