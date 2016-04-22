@@ -3,8 +3,10 @@ package kosta.action;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,8 +26,7 @@ public class Detailview implements Action {
 		
 		Service service = Service.getInstance();
 		List<String> list = service.dBList(id);
-		System.out.println("------");
-		System.out.println(list);
+
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj= null;
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
@@ -41,7 +42,7 @@ public class Detailview implements Action {
 		System.out.println(jsonList);
 		request.setAttribute("jsonList", jsonList);
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(true);
+		forward.setRedirect(false);
 		forward.setPath("data.jsp?check_id="+id);
 
 		return forward;

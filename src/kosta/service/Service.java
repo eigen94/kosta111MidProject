@@ -59,7 +59,6 @@ public class Service {
 	}
 
 	public ProjectDetail selectDetail(int check_id) {
-		
 		return dao.selectDetail(check_id);
 	}
 
