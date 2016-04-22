@@ -26,7 +26,6 @@ $(function() {
 		//반복문 시작
 		//반복문 시작
 		for(var i=0;i<count;i++){
-			alert($('select').eq(i).val());
 			if($('select').eq(i).val() == 'outline'){
 				jsonObj.outline = $('.mid_position input').eq(i).val();
 			}else if($('select').eq(i).val() == 'actor'){

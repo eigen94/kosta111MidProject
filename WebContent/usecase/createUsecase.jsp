@@ -20,9 +20,12 @@
 		<div id="item">
 				<select name="select">
     				<option value="outline">개요</option>
-    				<option value="aaa">관련엑터</option>
-    				<option value="bbb">선행조건</option>
+    				<option value="actor">관련엑터</option>
+    				<option value="conditionF">선행조건</option>
     				<option value="event">이벤트</option>
+    				<option value="eventDetail">이벤트 상세내역</option>
+    				<option value="conditionB">후행조건</option>
+    				<option value="claim">요구사항</option>
 				</select>
 				<input type="text" name="내용" value="내용을 입력하세요.">
 				<!-- <span id="minus_btn"> -->
