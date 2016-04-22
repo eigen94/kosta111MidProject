@@ -15,6 +15,7 @@ import kosta.action.CheckCreate;
 import kosta.action.CheckDetail;
 import kosta.action.CheckDelete;
 import kosta.action.CheckUpdate;
+import kosta.action.Detailview;
 import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
 import kosta.action.ProjectCreateAction;
@@ -41,6 +42,7 @@ public class Controller extends HttpServlet {
     	
     	if(command.equals("insert.do"))
     	{   		
+    		System.out.println("controllor p_name : "+request.getParameter("p_name"));
     		action = new ProjectCreateAction();
     		forward = action.execute(request, response);
     	}
@@ -80,6 +82,26 @@ public class Controller extends HttpServlet {
     	}else if(command.equals("checkListUpdate.do"))
     	{
     		action = new CheckUpdate();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("data.do")){
+    		action = new DateCreate();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("checkDetail.do")){
+    		action = new Detailview();
+    		forward = action.execute(request, response);
+    	}
+
+    	
+//    	else if(command.equals("json.do"))
+//    	{
+//    		System.out.println("�߾߾߾߾߾�");
+//    		action = new insertJSON();
+//    		forward = action.execute(request, response);
+//    	}
+    	
+    	else if(command.equals("uml.do"))
+    	{
+    		action = new UmlInsertAction();
     		forward = action.execute(request, response);
     	}
     	

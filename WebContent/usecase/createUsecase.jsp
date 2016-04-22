@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="../javascriptFilse/jquery.min.2.0.3.js" type="text/javascript"></script>
+<script src="../javascriptFilse/jquery-2.2.3.min.js" type="text/javascript"></script>
 <script src="../javascriptFilse/usecase.js" type="text/javascript"></script>
 <link rel="stylesheet" href="../cssFiles/tmp.css" type="text/css" />
 </head>

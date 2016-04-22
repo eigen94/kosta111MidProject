@@ -1,22 +1,19 @@
-package kosta.login;
+package kosta.note;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
-import kosta.loginMapper.loginMapper;
-
-
-
+import kosta.noteMapper.noteMapper;
 
 import org.apache.ibatis.io.Resources;
-import org.apache.ibatis.jdbc.SQL;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-public class MemberDao {
-	
-	private static MemberDao dao = new MemberDao();
-	public static MemberDao getInsetance(){
+public class NoteDao {
+	private static NoteDao dao= new NoteDao();
+	public static NoteDao getInstance(){
 		return dao;
 	}
 	
@@ -25,45 +22,18 @@ public class MemberDao {
 		InputStream input = null;
 		
 		try {
-			input = Resources.getResourceAsStream(resource);
+			input= Resources.getResourceAsStream(resource);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return new SqlSessionFactoryBuilder().build(input);
 	}
 
-	public Member loginMember(String m_email, String m_pwd) {
+	public int insertNote(Note note) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		Member member = new Member();
-		
-		member.setM_email(m_email);
-		member.setM_pwd(m_pwd);
-	
-		int re = -1;
-		
+		int re=-1;
 		try {
-			re = sqlSession.getMapper(loginMapper.class).loginMember(member);
-			System.out.println(re);
-			if(re>0){
-				sqlSession.commit();
-				member = sqlSession.getMapper(loginMapper.class).getMemberInfo(member);
-			}else{
-				sqlSession.rollback();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			sqlSession.close();
-		}
-		return member;
-	}
-
-	public int insertMember(Member member) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		int re = -1;
-		
-		try {
-			re = sqlSession.getMapper(loginMapper.class).insertMember(member);
+			re=sqlSession.getMapper(noteMapper.class).insertNote(note);
 			if(re>0){
 				sqlSession.commit();
 			}else{
@@ -76,4 +46,21 @@ public class MemberDao {
 		}
 		return re;
 	}
+
+
+	public List<Note> selectNote(int n_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<Note> note = new ArrayList<Note>();
+		try {
+			note = sqlSession.getMapper(noteMapper.class).selectNote(n_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return note;
+	}
+	
+	
+
 }

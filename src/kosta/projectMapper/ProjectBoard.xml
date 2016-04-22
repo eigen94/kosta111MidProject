@@ -6,7 +6,7 @@
 	<cache />
 
 	<select id="projectList" resultType="ProjectBoard">
-		select * from project
+		select * from project order by p_id
 	</select>
 
 	<insert id="projectInsert" parameterType="ProjectBoard">
@@ -32,7 +32,7 @@
 	</delete>
 
 	<select id="selectMaxP_id" resultType="Integer">
-		select p_id from project
+		select max(p_id) from project
 	</select>
 	
 	<select id="getDetailId" resultType="Integer">
@@ -66,4 +66,17 @@
 		check_name = #{check_name}, check_content = #{check_content},check_end = #{check_end}
 		where check_id = #{check_id}
 	</update>
+	<select id="dBId" resultType="Integer">
+		select max(d_id) from DB
+	</select>
+	<insert id="createDB" parameterType="Dbj">
+		insert into DB(
+			d_id,title,type,d_attr,d_key,check_id
+		)values(
+			#{d_id},#{title},#{type},#{d_attr},#{d_key},#{check_id}
+		)
+	</insert>
+	<select id="dBList" resultType="Dbj" parameterType="int">
+		select * from DB where check_id = #{id}
+	</select>
 </mapper>
