@@ -26,7 +26,19 @@
 	</span>
 	<span id="field">
 	</span>
-	<div class="save">
+	
+		<div class id="plus_btn2">
+			<button>+</button>
+		</div>
+		<span id="item2">
+			<input type="text" value="내용을 입력하세요.">
+			<button>-</button>
+			<br>
+		</span>
+	</span>
+	<span id="field2">
+	</span>
+	<div class="save2">
 		<button>저장</button>
 	</div>
 	
