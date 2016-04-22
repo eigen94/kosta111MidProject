@@ -20,6 +20,6 @@ public interface ProjectBoardMapper {
 	public void checkUpdate(ProjectDetail detail);
 	public Integer dBId();
 	
-	public List<DB> dBList(int id);
+	public List<String> dBList(int id);
 	public void createDB(DB db);
 }

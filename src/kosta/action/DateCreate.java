@@ -22,15 +22,11 @@ public class DateCreate implements Action {
 			e.printStackTrace();
 		}
 		int id = Integer.parseInt(request.getParameter("check_id"));
-		System.out.println(id);
 		String json = request.getParameter("json");
-		System.out.println(json);
 		Service service = Service.getInstance();
 		DB db = new DB(json,id);
 		service.createDB(db);
 		
-
-	
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
 		forward.setPath("checkDetail.do?check_id="+id);
