@@ -103,6 +103,10 @@ public class Service {
 		dao.usecaseInsert(json);
 		
 	}
+
+	public List<String> getUseCaseService() {
+		return dao.getUseCase();
+	}
 }
 
 

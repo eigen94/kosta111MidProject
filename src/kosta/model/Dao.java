@@ -325,6 +325,13 @@ public class Dao {
 		
 	}
 
+	public List<String> getUseCase() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<String> list = sqlSession.getMapper(usecaseMapper.class).getUseCase();
+		return list;
+	}
+
 	
 }
 

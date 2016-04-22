@@ -1,11 +1,13 @@
-package kosta.action;
+package kosta.useCaseAction;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kosta.action.Action;
+import kosta.action.ActionForward;
 import kosta.service.Service;
 
-public class UsecaseInsertAction implements Action {
+public class UseCaseListAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,

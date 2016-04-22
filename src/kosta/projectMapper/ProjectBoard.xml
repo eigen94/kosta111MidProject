@@ -40,17 +40,12 @@
 	</select>
 	
 	<insert id="checkCreate" parameterType="Detail">
-		<!-- insert into checklist(
+		insert into checklist(
 			check_id,check_name,check_projectId,check_start,check_end,check_manager,check_sign,check_type,check_content
 		)values(
 			#{check_id},#{check_name},#{check_projectId},SYSDATE,#{check_end},#{check_manager},#{check_sign},#{check_type},#{check_content}
-		) -->
-		
-		insert into checklist(
-			check_id, check_content
-		)values(
-			123, #{check_content}
 		)
+		
 	</insert>
 	<select id="detailList" resultType="Detail" parameterType="int">
 		select * from checklist where check_projectid = #{id}
