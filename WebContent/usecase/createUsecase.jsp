@@ -32,7 +32,8 @@
 					<button>ㅡ</button>
 				<!-- </span> -->
 		</div>
-		<div id="field"></div>
+		<div id="field">
+		</div>
 		<div id="plus_btn">
 			<button>+</button>
 		</div>

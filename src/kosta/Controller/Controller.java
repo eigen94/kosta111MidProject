@@ -24,6 +24,7 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
+import kosta.action.UsecaseInsertAction;
 
 
 @WebServlet("*.do")
@@ -96,12 +97,12 @@ public class Controller extends HttpServlet {
     	}
 
     	
-    	else if(command.equals("json.do"))
+    /*	else if(command.equals("json.do"))
     	{
     		System.out.println("�߾߾߾߾߾�");
     		action = new insertJSON();
     		forward = action.execute(request, response);
-    	}
+    	}*/
     	
     	/*else if(command.equals("uml.do"))
     	{
@@ -113,6 +114,9 @@ public class Controller extends HttpServlet {
     	{
     		System.out.println("dd");
     		action = new UmlListAction();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("usecase.do")){
+    		action = new UsecaseInsertAction();
     		forward = action.execute(request, response);
     	}
     	

@@ -53,6 +53,27 @@ $(function() {
 			
 		}		//반복문 종료
 		jsonArray.push(jsonObj);
+		//반복문 시작
+		//반복문 시작
+		for(var i=0;i<count;i++){
+			if($('select').eq(i).val() == 'outline'){
+				jsonObj.outline = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'actor'){
+				jsonObj.actor = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'conditionF'){
+				jsonObj.conditionF = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'event'){
+			jsonObj.event = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'eventDetail'){
+				jsonObj.eventDetail = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'conditionB'){
+			jsonObj.conditionB = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'claim'){
+				jsonObj.claim = $('.mid_position input').eq(i).val();
+			}
+			
+		}		//반복문 종료
+		jsonArray.push(jsonObj);
 		
 		var finalJsonObj = JSON.stringify(jsonObj);
 		

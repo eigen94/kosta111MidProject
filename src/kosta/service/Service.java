@@ -98,6 +98,11 @@ public class Service {
 	}
 	
 	
+
+	public void usecaseService(String json) {
+		dao.usecaseInsert(json);
+		
+	}
 }
 
 
