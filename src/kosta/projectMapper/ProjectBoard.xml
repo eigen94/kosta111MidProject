@@ -71,12 +71,12 @@
 	</select>
 	<insert id="createDB" parameterType="Dbj">
 		insert into DB(
-			d_id,title,type,d_attr,d_key,check_id
+			d_id,content,check_id
 		)values(
-			#{d_id},#{title},#{type},#{d_attr},#{d_key},#{check_id}
+			nvl((select max(d_id) from db)+1,0),#{json},#{check_id}
 		)
 	</insert>
-	<select id="dBList" resultType="Dbj" parameterType="int">
-		select * from DB where check_id = #{id}
+	<select id="dBList" resultType="String" parameterType="int">
+		select content from DB where check_id = #{id}
 	</select>
 </mapper>

@@ -228,20 +228,6 @@ public class Dao {
 		
 	}
 
-	public void dBCreate(DB db) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try {
-			sqlSession.getMapper(ProjectBoardMapper.class).dBCreate(db);
-			
-			sqlSession.commit();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			sqlSession.close();
-		}
-	}
-
 	public int dBId() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int id = 0;
@@ -258,10 +244,10 @@ public class Dao {
 		}
 	}
 
-	public List<DB> dBList(int id) {
+	public List<String> dBList(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<DB> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
+		List<String> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
 		System.out.println(list);
 		sqlSession.close();
 		if(list == null){
@@ -310,6 +296,12 @@ public class Dao {
 		}
 		
 		
+	}
+
+	public List<String> umlList() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		return sqlSession.getMapper(UmlMapper.class).umlList();
 	}
 
 	

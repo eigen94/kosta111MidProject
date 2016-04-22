@@ -17,9 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 
 
 
+
 import kosta.imgModel.Image;
 import kosta.imgModel.ImageDao;
 import kosta.imgModel.ImageUtil;
+import kosta.model.DB;
 import kosta.model.ProjectBoard;
 
 import com.oreilly.servlet.MultipartRequest;
