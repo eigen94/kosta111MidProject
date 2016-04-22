@@ -92,6 +92,13 @@ public class Service {
 		dao.umlInsert(json);
 		
 	}
+
+	public List<String> umlListService() {
+		
+		return dao.umlList();
+	}
+	
+	
 }
 
 

@@ -15,12 +15,15 @@ import kosta.action.CheckCreate;
 import kosta.action.CheckDetail;
 import kosta.action.CheckDelete;
 import kosta.action.CheckUpdate;
+import kosta.action.DateCreate;
 import kosta.action.Detailview;
 import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
 import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
+import kosta.action.UmlInsertAction;
+import kosta.action.UmlListAction;
 
 
 @WebServlet("*.do")
@@ -42,7 +45,6 @@ public class Controller extends HttpServlet {
     	
     	if(command.equals("insert.do"))
     	{   		
-    		System.out.println("controllor p_name : "+request.getParameter("p_name"));
     		action = new ProjectCreateAction();
     		forward = action.execute(request, response);
     	}
@@ -105,16 +107,25 @@ public class Controller extends HttpServlet {
     		forward = action.execute(request, response);
     	}
     	
+    	else if(command.equals("umlList.do"))
+    	{
+    		System.out.println("dd");
+    		action = new UmlListAction();
+    		forward = action.execute(request, response);
+    	}
+    	
     	
     	if(forward != null)
     	{
     		if(forward.isRedirect())
     		{
+    			//System.out.println(forward.getPath());
     			response.sendRedirect(forward.getPath());
     		}
     		
     		else
     		{
+    			//System.out.println("forward: " +forward.getPath());
     			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
     			dispatcher.forward(request, response);
     		}
