@@ -24,19 +24,23 @@ $(function() {
 		var jsonObj = new Object();
 		
 		//반복문 시작
+		//반복문 시작
 		for(var i=0;i<count;i++){
 			alert($('select').eq(i).val());
 			if($('select').eq(i).val() == 'outline'){
 				jsonObj.outline = $('.mid_position input').eq(i).val();
-			}
-			if($('select').eq(i).val() == 'event'){
-				jsonObj.event = $('.mid_position input').eq(i).val();
-			}
-			if($('select').eq(i).val() == 'aaa'){
-				jsonObj.aaa = $('.mid_position input').eq(i).val();
-			}
-			if($('select').eq(i).val() == 'bbb'){
-				jsonObj.bbb = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'actor'){
+				jsonObj.actor = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'conditionF'){
+				jsonObj.conditionF = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'event'){
+			jsonObj.event = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'eventDetail'){
+				jsonObj.eventDetail = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'conditionB'){
+			jsonObj.conditionB = $('.mid_position input').eq(i).val();
+			}else if($('select').eq(i).val() == 'claim'){
+				jsonObj.claim = $('.mid_position input').eq(i).val();
 			}
 			
 		}		//반복문 종료
