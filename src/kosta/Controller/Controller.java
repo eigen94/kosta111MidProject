@@ -21,8 +21,6 @@ import kosta.action.ProjectListAction;
 import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
-import kosta.action.DateCreate;
-import kosta.action.UmlInsertAction;
 
 
 @WebServlet("*.do")
@@ -92,6 +90,7 @@ public class Controller extends HttpServlet {
     		action = new Detailview();
     		forward = action.execute(request, response);
     	}
+
     	
 //    	else if(command.equals("json.do"))
 //    	{

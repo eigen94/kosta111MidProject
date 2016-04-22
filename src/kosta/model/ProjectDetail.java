@@ -15,7 +15,11 @@ public class ProjectDetail implements Serializable{
 	
 	
 	public ProjectDetail() {}
-	
+
+	public ProjectDetail(String check_content) {
+		this.check_content = check_content;
+	}
+
 	public ProjectDetail(int check_id, String check_name, int check_projectId,
 			String check_start, String check_end, int check_manager,
 			int check_sign, int check_type, String check_content) {
