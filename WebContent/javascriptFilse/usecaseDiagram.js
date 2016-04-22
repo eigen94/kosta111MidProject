@@ -7,9 +7,9 @@ $(function() {
 
 	// select창 1줄 추가
 	function addRow() {
-		var div = document.createElement('div');
-		div.innerHTML = document.getElementById('item').innerHTML;
-		document.getElementById('field').appendChild(div);
+		var span = document.createElement('span');
+		span.innerHTML = document.getElementById('item').innerHTML;
+		document.getElementById('field').appendChild(span);
 		count++;
 	}
 
@@ -23,25 +23,23 @@ $(function() {
 	function save() {
 		var jsonArray = new Array();
 		var jsonObj = new Object();
+		var tmp1=[];
+		var tmp2 =[];
 		
 		//반복문 시작
 		for(var i=0;i<count;i++){
-			if($('select').eq(i).val() == 'outline'){
-				jsonObj.outline = $('.mid_position input').eq(i).val();
-			}else if($('select').eq(i).val() == 'actor'){
-				jsonObj.actor = $('.mid_position input').eq(i).val();
-			}else if($('select').eq(i).val() == 'conditionF'){
-				jsonObj.conditionF = $('.mid_position input').eq(i).val();
-			}else if($('select').eq(i).val() == 'event'){
-			jsonObj.event = $('.mid_position input').eq(i).val();
-			}else if($('select').eq(i).val() == 'eventDetail'){
-				jsonObj.eventDetail = $('.mid_position input').eq(i).val();
-			}else if($('select').eq(i).val() == 'conditionB'){
-			jsonObj.conditionB = $('.mid_position input').eq(i).val();
-			}else if($('select').eq(i).val() == 'claim'){
-				jsonObj.claim = $('.mid_position input').eq(i).val();
+			if($('select').eq(i).val() == 'act'){
+			
+					tmp1.push($('input').eq(i).val());
+					
+			}else if($('select').eq(i).val() == 'even'){
+					tmp2.push($('input').eq(i).val());
 			}
+			
 		}		//반복문 종료
+		jsonObj.act = tmp1;
+		jsonObj.even = tmp2;
+		
 		jsonArray.push(jsonObj);
 		
 		var finalJsonObj = JSON.stringify(jsonObj);
@@ -49,7 +47,7 @@ $(function() {
 		
 		$.ajax({
 			type:"post",
-			url:"usecase.do",
+			url:"usecaseDiagram.do",
 			data:{
 				json:finalJsonObj
 			},
@@ -80,7 +78,6 @@ $(function() {
 	});
 
 });
-// ///////////////////////////////////////////////////////////
 
 
 

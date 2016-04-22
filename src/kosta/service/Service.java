@@ -103,6 +103,11 @@ public class Service {
 		dao.usecaseInsert(json);
 		
 	}
+
+	public void usecaseDiagramService(String json) {
+		dao.usecaseDiagram(json);
+		
+	}
 }
 
 

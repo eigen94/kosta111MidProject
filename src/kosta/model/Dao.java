@@ -6,6 +6,7 @@ import java.util.List;
 
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
+import kosta.usecaseDiagramMapper.usecaseDiagramMapper;
 import kosta.usecaseMapper.usecaseMapper;
 
 import org.apache.ibatis.io.Resources;
@@ -311,6 +312,26 @@ public class Dao {
 		
 		try {
 			re=sqlSession.getMapper(usecaseMapper.class).usecaseInsert(json);
+			
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
+	public void usecaseDiagram(String json) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re =-1;
+		
+		try {
+			re=sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagram(json);
 			
 			if(re>0){
 				sqlSession.commit();

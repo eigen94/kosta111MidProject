@@ -13,6 +13,7 @@
 		<typeAlias type="kosta.note.Note" alias="Note"/>
 		<typeAlias type="kosta.model.DB" alias="Dbj"/>
 		<typeAlias type="kosta.model.Usecase" alias="Usecase"/>
+		<typeAlias type="kosta.model.UsecaseDiagram" alias="UsecaseDiagram"/>
 		
 	</typeAliases>
 	
@@ -32,6 +33,7 @@
 		<mapper resource="kosta/umlMapper/Uml.xml"/>
 		<mapper resource="kosta/noteMapper/note.xml"/>
 		<mapper resource="kosta/usecaseMapper/usecase.xml"/>
+		<mapper resource="kosta/usecaseDiagramMapper/usecaseDiagram.xml"/>
 		
 	</mappers>
 	
