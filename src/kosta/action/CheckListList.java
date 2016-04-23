@@ -23,9 +23,17 @@ public class CheckListList implements Action {
 		System.out.println("p_id : "+p_id);
 		List<ProjectDetail> list = new ArrayList<ProjectDetail>();
 		list = service.detailListService(p_id);
-		
-		
-//		request.setAttribute("json", sendJSON);
+		List<JSONObject> sendList = new ArrayList<JSONObject>();
+		for(int i=0; i<list.size(); i++){
+			JSONObject obj = new JSONObject();
+			obj.put("check_id", list.get(i).getCheck_id());
+			obj.put("check_name", list.get(i).getCheck_name());
+			obj.put("check_start", list.get(i).getCheck_start());
+			obj.put("check_end", list.get(i).getCheck_end());
+			sendList.add(obj);
+		}
+		System.out.println(sendList);
+		request.setAttribute("json", sendList);
 		
 		
 		ActionForward action = new ActionForward();
