@@ -6,7 +6,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+
 import kosta.model.ProjectDetail;
 import kosta.service.Service;
 
@@ -22,11 +24,9 @@ public class CheckListList implements Action {
 		List<ProjectDetail> list = new ArrayList<ProjectDetail>();
 		list = service.detailListService(p_id);
 		
-		JSONArray json = JSONArray.fromObject(list);
-		System.out.println(json);
-		String sendJSON = json.toString();
 		
-		request.setAttribute("json", sendJSON);
+//		request.setAttribute("json", sendJSON);
+		
 		
 		ActionForward action = new ActionForward();
 		action.setRedirect(false);
