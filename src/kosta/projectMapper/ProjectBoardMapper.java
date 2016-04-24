@@ -13,7 +13,7 @@ public interface ProjectBoardMapper {
 	public int projectDelete(int p_id);
 	public Integer selectMaxP_id();
 	public Integer getDetailId();
-	public void checkCreate(ProjectDetail detail);
+	public int checkCreate(ProjectDetail detail);
 	public List<ProjectDetail> detailList(int id);
 	public ProjectDetail selectDetail(int check_id);
 	public void checkDelet(int id);

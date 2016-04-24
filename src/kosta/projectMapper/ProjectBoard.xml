@@ -13,7 +13,7 @@
 		INSERT INTO project(
 		P_ID, P_NAME, P_START, P_END, P_MEMO
 		)VALUES(
-		#{p_id}, #{p_name }, sysdate, sysdate, #{p_memo }
+		#{p_id}, #{p_name }, #{p_start }, #{p_end }, #{p_memo }
 		)
 	</insert>
 	
@@ -43,9 +43,8 @@
 		insert into checklist(
 			check_id,check_name,check_projectId,check_start,check_end,check_manager,check_sign,check_type,check_content
 		)values(
-			#{check_id},#{check_name},#{check_projectId},SYSDATE,#{check_end},#{check_manager},#{check_sign},#{check_type},#{check_content}
+			#{check_id},#{check_name},#{check_projectId},#{check_start },#{check_end },#{check_manager},#{check_sign},#{check_type},#{check_content}
 		)
-		
 	</insert>
 	<select id="detailList" resultType="Detail" parameterType="int">
 		select * from checklist where check_projectid = #{id}

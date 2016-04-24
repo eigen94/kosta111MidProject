@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletResponse;
 import kosta.action.Action;
 import kosta.action.ActionForward;
 
-public class UseCasePrintAction implements Action {
+public class UseCasePrintAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
