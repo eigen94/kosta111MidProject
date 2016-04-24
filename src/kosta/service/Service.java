@@ -48,9 +48,10 @@ public class Service {
 		
 	}
 
-	public void checkCreate(ProjectDetail detail) {
-		dao.checkCreate(detail);
-		
+	public int checkCreate(ProjectDetail detail) {
+		int re = 0;
+		re = dao.checkCreate(detail);
+		return re;
 	}
 
 	public List<ProjectDetail> detailListService(int id) {
@@ -102,6 +103,10 @@ public class Service {
 	public void usecaseService(String json) {
 		dao.usecaseInsert(json);
 		
+	}
+
+	public List<String> getUseCaseService() {
+		return dao.getUseCase();
 	}
 }
 

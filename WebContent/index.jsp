@@ -30,38 +30,11 @@
     <link href="cssFiles/carousel.css" rel="stylesheet">
 
   </head>
+  <body>
 <!-- NAVBAR
 ================================================== -->
-  <body>
-    <div class="navbar-wrapper">
-      <div class="container">
-
-        <nav class="navbar navbar-inverse navbar-fixed-top">
-          <div class="container">
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="#">코스타 중간프로젝트</a>
-            </div>
-            <div id="navbar" class="navbar-collapse collapse">
-	          <ul class="nav navbar-nav pull-right">
-	          <!-- 
-	            <li role="presentation"><a href="#" data-toggle="modal" data-target="#registerFormModal">회원가입</a></li>
-	           -->  
-	            <li role="presentation"><a href="#" data-toggle="modal" data-target="#registerFormModal">로그인/회원가입</a></li>
-	          </ul>
-            </div>
-          </div>
-        </nav>
-
-      </div>
-    </div>
-
-
+  <jsp:include page="pageModule/navBar.jsp"></jsp:include>
+  
     <!-- Carousel
     ================================================== -->
     <div id="bodyContent">
@@ -192,6 +165,8 @@
     
     <!-- end of bodycontent -->
 
+
+
 	<!-- Modal -->
 
 	<!-- registerFormMoadl -->
@@ -204,88 +179,88 @@
 	      
 	        <div class="tabbable"> <!-- Only required for left/right tabs -->
 		        <ul class="nav nav-tabs">
-		        <li class="active"><a href="#tab1" data-toggle="tab">로그인</a></li>
-		        <li><a href="#tab2" data-toggle="tab">회원가입</a></li>
+			        <li class="active"><a href="#tab1" data-toggle="tab">로그인</a></li>
+			        <li><a href="#tab2" data-toggle="tab">회원가입</a></li>
 		        </ul>
 		        
-	        <!-- Modal tab -->
-	        <div class="tab-content">
-	        <div class="tab-pane active" id="tab1">
-	        <br><br>
-       			<form action="loginForm/loginOk.jsp" method="post" class="form-horizontal">
-	       			<div class="form-group">
-		       			<label for="inputEmail" class="col-sm-2 control-label">Email</label>
-		   				<div class="col-sm-10">
-							<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
-						</div>
-					</div>
-	       			<div class="form-group">
-		       			<label for="inputPassword" class="col-sm-2 control-label">Password</label>
-		   				<div class="col-sm-10">
-							<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
-						</div>
-					</div>
-				  	<div class="form-group">
-				    	<div class="col-sm-offset-2 col-sm-10">
-				      		<button type="submit" class="btn btn-default">로그인</button>
-				    	</div>
-				  	</div>
-				</form>
-	        </div>
-	        
-	        <div class="tab-pane" id="tab2">
-	        <br>
-	        <br>
-		        <form action="registerOk.jsp" method="post" class="form-horizontal">
-		        <div class="form-group">
-	       			<label for="inputName" class="col-sm-3 control-label">이름</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputName" type="text" name="m_name" size="20" placeholder="이름을 입력하세요"><br>
-					</div>
-	       			<label for="inputEmail" class="col-sm-3 control-label">이메일</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
-					</div>
-	       			<label for="inputPassword" class="col-sm-3 control-label">비밀번호</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
-					</div>
-	       			<label for="inputPwdCheck" class="col-sm-3 control-label">비밀번호 확인</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPwdCheck" type="password" name="m_pwd" size="20" placeholder="비밀번호를 다시 입력하세요"><br>
-					</div>
-	       			<label for="inputPhone" class="col-sm-3 control-label">연락처</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPhone" type="text" name="m_phone" size="20" placeholder="연락처를 입력하세요"><br>
-					</div>
-	       			<label for="inputAnswer" class="col-sm-3 control-label">비밀번호 찾기 답</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputAnswer" type="text" name="m_answer" size="20" placeholder="비밀번호 찾기 답을 입력하세요"><br>
-					</div>
+			    <!-- Modal tab content -->
+		        <div class="tab-content">
+		        <!-- Modal tab1 -->
+			        <div class="tab-pane active" id="tab1">
+			        <br><br>
+		       			<form action="loginOk.do" method="post" class="form-horizontal">
+			       			<div class="form-group">
+				       			<label for="inputEmail" class="col-sm-2 control-label">Email</label>
+				   				<div class="col-sm-10">
+									<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
+								</div>
+							</div>
+			       			<div class="form-group">
+				       			<label for="inputPassword" class="col-sm-2 control-label">Password</label>
+				   				<div class="col-sm-10">
+									<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
+								</div>
+							</div>
+						  	<div class="form-group">
+						    	<div class="col-sm-offset-2 col-sm-10">
+						      		<button type="submit" class="btn btn-default">로그인</button>
+						    	</div>
+						  	</div>
+						</form><!-- end of login form -->
+			        </div><!-- end of Modal tab1 -->
 		        
-		        </div>
-   				  	<div class="form-group">
-				    	<div class="col-sm-offset-3 col-sm-9">
-				      		<button type="submit" class="btn btn-default">회원가입</button>
-				    	</div>
-				  	</div>
-				</form>
-	        
-	        </div>
-	        </div>
-	        </div>
-	      </div>
-	    </div>
-	
-	  </div>
-	</div>
+			        <!-- Modal tab2 -->
+			        <div class="tab-pane" id="tab2">
+			        <br><br>
+				        <form action="registerOk.do" method="post" class="form-horizontal">
+					        <div class="form-group">
+				       			<label for="inputName" class="col-sm-3 control-label">이름</label>
+				   				<div class="col-sm-7">
+									<input class="form-control" id="inputName" type="text" name="m_name" size="20" placeholder="이름을 입력하세요"><br>
+								</div>
+				       			<label for="inputEmail" class="col-sm-3 control-label">이메일</label>
+				   				<div class="col-sm-7">
+									<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
+								</div>
+				       			<label for="inputPassword" class="col-sm-3 control-label">비밀번호</label>
+				   				<div class="col-sm-7">
+									<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
+								</div>
+				       			<label for="inputPwdCheck" class="col-sm-3 control-label">비밀번호 확인</label>
+				   				<div class="col-sm-7">
+									<input class="form-control" id="inputPwdCheck" type="password" name="m_pwd" size="20" placeholder="비밀번호를 다시 입력하세요"><br>
+								</div>
+				       			<label for="inputPhone" class="col-sm-3 control-label">연락처</label>
+				   				<div class="col-sm-7">
+									<input class="form-control" id="inputPhone" type="text" name="m_phone" size="20" placeholder="연락처를 입력하세요"><br>
+								</div>
+				       			<label for="inputAnswer" class="col-sm-3 control-label">비밀번호 찾기 답</label>
+				   				<div class="col-sm-7">
+									<input class="form-control" id="inputAnswer" type="text" name="m_answer" size="20" placeholder="비밀번호 찾기 답을 입력하세요"><br>
+								</div>
+					        </div><!-- end of form-grop -->
+					        
+		   				  	<div class="form-group">
+						    	<div class="col-sm-offset-3 col-sm-9">
+						      		<button type="submit" class="btn btn-default">회원가입</button>
+						    	</div>
+						  	</div>
+						  	
+				  </form><!-- end of register form -->
+			    </div><!-- end of Modal tab2 -->
+		      </div><!-- end of Modal tab content -->
+	        </div><!-- end of Modal tabbable -->
+	      </div><!-- end of ModalBody -->
+	    </div><!-- end of ModalBody Content -->
+	  </div><!-- end of modal dialog -->
+	</div><!-- end of modal  -->
 
       <!-- FOOTER -->
      <div class="container">
       <footer>
         <p class="pull-right"><a href="#">Back to top</a></p>
         <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-      </footer>
+      </footer><!--end of FOOTER -->
      
      </div>
 

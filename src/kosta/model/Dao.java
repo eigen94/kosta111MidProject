@@ -161,20 +161,27 @@ public class Dao {
 		
 	}
 
-	public void checkCreate(ProjectDetail detail) {
+	public int checkCreate(ProjectDetail detail) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		System.out.println(detail);
+		int re = 0;
+		System.out.println("dao checkCreate : "+detail);
 		try {
-			sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
-			
-			sqlSession.commit();
+			re = sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
+			if (re>0)
+			{
+				sqlSession.commit();
+			}
+			else
+			{
+				sqlSession.rollback();
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			sqlSession.close();
 		}
-		
+		return re;
 	}
 
 	public List<ProjectDetail> detailListService(int id) {
@@ -323,6 +330,13 @@ public class Dao {
 			sqlSession.close();
 		}
 		
+	}
+
+	public List<String> getUseCase() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<String> list = sqlSession.getMapper(usecaseMapper.class).getUseCase();
+		return list;
 	}
 
 	

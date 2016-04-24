@@ -1,3 +1,4 @@
+//입력단 스크립트
 $(function() {
 	count = 1;
 	// 콜릭하면 내용을 지운다.
@@ -77,11 +78,27 @@ $(function() {
 	$('.save button').on('click', function() {
 		save();
 	});
-
 });
-// ///////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////
 
-
+//출력단 쿼리
+$(function() {
+	
+	function print() {
+		var div = document.createElement('div');
+		alert("Asd");
+		location.href= "getUseCase.do"
+	}
+	
+	
+	
+	
+	$('.package button').on('click', function(){
+		print();
+	})
+	
+	
+});
 
 
 

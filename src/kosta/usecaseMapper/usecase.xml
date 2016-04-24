@@ -11,5 +11,8 @@
 	
 	</insert>
 	
+	<select id="getUseCase" resultType="String">
+		SELECT CHECK_CONTENT FROM CHECKLIST
+	</select>
 	
 </mapper>
