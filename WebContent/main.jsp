@@ -35,66 +35,42 @@
     <link href="cssFiles/main.css" rel="stylesheet">
 
   </head>
-<!-- NAVBAR
-================================================== -->
   <body>
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">프로젝트 중간프로젝트</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">안녕하세요! <%=session.getAttribute("m_name") %> 님!</a></li>
-            <li><a href="projectBoard/insertForm.jsp">새프로젝트</a></li>
-            <li><a href="#">쪽지</a></li>
-            <li role="presentation"><a href="#" data-toggle="modal" data-target="#messengerModal">매신저</a></li>
-            
-            <li role="presentation"><a href="loginForm/logout.jsp">로그아웃</a></li>
-          </ul>
-          <!-- 
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-           -->
-        </div>
-      </div>
-    </nav>
-
-    <!-- Carousel
-    ================================================== -->
+  
+  <!-- navBar -->
+	<jsp:include page="pageModule/navBar.jsp"></jsp:include>
+   <!-- Carousel
+   ================================================== -->
     <div id="bodyContent">
     <div class="container-fluid">
-      <div class="row">
+
+    <!-- main bar -->
+    <div class="row">
+    
+      <div class="col-sm-8 col-md-10 main">
+        <h1 class="page-header">프로젝트 관리</h1>
+      </div>
       
-        <div class="col-sm-8 col-md-10 main">
-          <h1 class="page-header">프로젝트 관리</h1>
-        </div>
-        
-        <div class="col-sm-3 col-md-2 main">
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-default change_viewtype ">
-				<input id="view_type_media" type="radio" value="media" name="view_type">
-				<span class="glyphicon glyphicon-list"></span>
-				</label>
-				<label class="btn btn-default change_viewtype active">
-				<input id="view_type_card" type="radio" value="card" name="view_type">
-				<span class="glyphicon glyphicon-th-large"></span>
-				</label>
-			</div>
-        </div>
-        
-      </div><!-- end row -->
-    <button class="btn btn-default" data-toggle="modal" data-target="#projectCreateModal">프로젝트생성</button>
-    <br>
+      <div class="col-sm-3 col-md-2 main">
+	<div class="btn-group" data-toggle="buttons">
+		<label class="btn btn-default change_viewtype ">
+		<input id="view_type_media" type="radio" value="media" name="view_type">
+		<span class="glyphicon glyphicon-list"></span>
+		</label>
+		<label class="btn btn-default change_viewtype active">
+		<input id="view_type_card" type="radio" value="card" name="view_type">
+		<span class="glyphicon glyphicon-th-large"></span>
+		</label>
+	</div>
+      </div>
+      
+    </div><!-- end row -->
+    
+	<button class="btn btn-default" data-toggle="modal" data-target="#projectCreateModal">프로젝트생성</button>
+	<br>
     
     <!-- projectList -->
+    
 	<%
 	Service service = Service.getInstance();
 	List<ProjectBoard> list = service.projectListService();
@@ -134,7 +110,7 @@
       
       
     </div><!-- end container -->
-    </div>
+    </div><!-- end of body content -->
     
     
     <!-- end of bodycontent -->

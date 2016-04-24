@@ -6,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ include file="pageModule/sessionCheck.jsp" %>
 <%
 	Service service = Service.getInstance();
 
@@ -22,8 +23,6 @@
 	request.setAttribute("list", list);
 	request.setAttribute("project", project);
 	request.setAttribute("p_id", p_id);
-	//ProjectDetail check = service.selectDetail(check_id);
-	
 	%>  
 <!DOCTYPE html>
 <html lang="en">
@@ -60,36 +59,7 @@
 <!-- NAVBAR
 ================================================== -->
   <body>
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">프로젝트 중간프로젝트</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">안녕하세요! <%=session.getAttribute("m_name") %> 님!</a></li>
-            <li><a href="projectBoard/insertForm.jsp">새프로젝트</a></li>
-            <li><a href="#">쪽지</a></li>
-            <li role="presentation"><a href="#" data-toggle="modal" data-target="#messengerModal">매신저</a></li>
-            
-            <li role="presentation"><a href="loginForm/logout.jsp">로그아웃</a></li>
-          </ul>
-          <!-- 
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-           -->
-        </div>
-      </div>
-    </nav>
-
-
+  <jsp:include page="pageModule/navBar.jsp"></jsp:include>
 
     <!-- Carousel
     ================================================== -->
@@ -126,19 +96,21 @@
         
         <div class="col-sm-4 col-md-4 main">
         <div class="list-group">
-		  <a class="list-group-item list-group-item-warning" href="#" data-toggle="modal" data-target="#checkCreateModal">일정생성</a>
+		  <div class="list-group-item list-group-item-info" data-toggle="modal" data-target="#checkCreateModal">일정생성</div>
 		  
 		  <!--  
 		  checkCreate
 		  -->
         <c:forEach var="checkList" items="${checkList }">
-        
-        <div class="col-sm-9 col-md-9" style="padding-left: 0px; padding-right: 0px;">
-		  <a class="list-group-item" href="#" data-toggle="modal" data-target="#checkDetailModal">&nbsp;${checkList.check_name }
-			</a>
+	       	<div class="list-group-item" data-toggle="collapse" data-target="#${checkList.check_id }" aria-expanded="false" aria-controls="${checkList.check_id }">
+			&nbsp;${checkList.check_name }
+	       	</div>
+			<div class="collapse" id="${checkList.check_id }">
+			<div class="list-group-item list-group-item-danger">
+			<a href="checkDelete.do?check_id=${checkList.check_id }&check_projectid=${project.p_id}"><button>삭제</button></a>
+			<a href="checkDetail.do?check_id=${checkList.check_id }&check_projectid=${project.p_id}"><button>편집</button></a>
+			
 			</div>
-        <div class="col-sm-3 col-md-3" style="padding-left: 0px; padding-right: 0px;">
-			<a class="list-group-item list-group-item-danger" href="checkDelete.do?check_id=${checkList.check_id }&check_projectid=${project.p_id}">delete</a>
 			</div>
         </c:forEach>
 		</div>
@@ -151,31 +123,6 @@
         
         </div><!-- end of calendar -->
 
-<!-- 
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
-        </div>
-           -->
          </div><!-- end of main -->
       </div><!-- end row -->
       
@@ -222,7 +169,7 @@
 	       			<label for="inputStartDate" class="col-sm-3 control-label">시작일</label>
 	   				<div class="col-sm-7">
 		                <div class='input-group date' id='datetimepicker1'>
-		                    <input type='text' id="inputStartDate" class="form-control" name="check_start"/>
+		                    <input type='text' id="inputStartDate" class="form-control" name="check_start" value=""/>
 		                    <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
@@ -240,12 +187,12 @@
 					</div>
 	       			<label for="inputPwdCheck" class="col-sm-3 control-label">일정타입</label>
 	   				<div class="col-sm-7">
-					  <label for="sel1">Select list:</label>
-					  <select class="form-control" id="sel1" name="check_type">
-					    <option value="1">1</option>
-					    <option>2</option>
-					    <option>3</option>
-					    <option>4</option>
+					  <select class="form-control" id="inputPwdCheck" name="check_type">
+					    <option value="1">기능명세(usecase)</option>
+					    <option>기능명세(usecase diaram)</option>
+					    <option>데이터명세(uml)</option>
+					    <option>데이터명세(ERD)</option>
+					    <option>화면명세</option>
 					  </select>
 	   				
 	   				<!-- 
@@ -277,25 +224,6 @@
 	  </div>
 	</div><!--end of checkCreateModal -->
 	
-
-	<!-- checkDetailModal -->
-	<div id="checkDetailModal" class="modal fade" role="dialog">
-	  <div class="modal-dialog">
-	
-	    <!-- Modal content-->
-	    <div class="modal-content">
-	      <div class="modal-body">
-	      detail!
-	      
-	      
-	      
-	      </div>
-	    </div>
-	
-	  </div>
-	</div>
-	
- 
  
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -316,41 +244,50 @@
 	<script>
 	
 		$(document).ready(function() {
-			$.ajax({
+			var checkList = [];//불러올 체크리스트들을 담을 배열
+			var projectIdFromUri = location.search; //주소줄에서 get요청 값 추출
+			var regGetProjectId = /\d/g; //추출한 값에서 숫자만 추출할 정규표현식
+			var projectId = regGetProjectId.exec(projectIdFromUri)[0]; //추출결과
+			
+			$.ajax({//체크리스트 목록을 가져오는 ajax부분
 				url : 'checkListList.do',
-				data : {
-					p_id : 4
+				data : 
+				{
+					p_id : projectId
 				},
 				dataType : 'json',
 				success : function(json){
-					console.log(json);
+					console.log("success");
+					for(var i=0; i<json.length; i++){//체크리스트의 키값과 켈린더에서 일정의 변수명이 다른 것을 매칭해주는 작업
+						var jsonObj = {};
+						jsonObj.title = json[i].check_name; 
+						jsonObj.start = json[i].check_start; 
+						jsonObj.end = json[i].check_end;
+						checkList.push(jsonObj);
+					}
+					
+					$('#calendar').fullCalendar({//성공 후, 체크리스트들을 달력에 넣어준다.
+						header: {
+							left: 'prev,next today',
+							center: 'title',
+							right: 'month,agendaWeek,agendaDay'
+						},
+						editable: true,
+						eventLimit: true, // allow "more" link when too many events
+						events: checkList //ajax로 불러온 값을 넣어준다.
+					});
+				},
+				error : function(){
+					console.log("fail");
 				}
 				
 			})
-			$('#calendar').fullCalendar({
-				header: {
-					left: 'prev,next today',
-					center: 'title',
-					right: 'month,agendaWeek,agendaDay'
-				},
-				//defaultDate: '2016-01-12',
-				editable: true,
-				eventLimit: true, // allow "more" link when too many events
-				events: [
-					{
-						title: 'Long Event',
-						start: '2016-01-07',
-						end: '2016-01-10'
-					}
-				]
-			});
-			
 		});
 	
 	</script>
 	
 	<!-- datetimepicker -->
-	        <script type="text/javascript">
+        <script type="text/javascript">
             $(function () {
                 $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD'});
                 $('#datetimepicker2').datetimepicker({format: 'YYYY-MM-DD'});

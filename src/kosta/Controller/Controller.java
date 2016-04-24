@@ -24,6 +24,9 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.DateCreate;
 import kosta.action.UmlInsertAction;
+import kosta.action.memberLoginOk;
+import kosta.action.memberLogoutOk;
+import kosta.action.memberRegister;
 
 
 @WebServlet("*.do")
@@ -119,6 +122,21 @@ public class Controller extends HttpServlet {
     	else if(command.equals("uml.do"))
     	{
     		action = new UmlInsertAction();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("loginOk.do"))
+    	{
+    		action = new memberLoginOk();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("logoutOk.do"))
+    	{
+    		action = new memberLogoutOk();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("registerOk.do"))
+    	{
+    		action = new memberRegister();
     		forward = action.execute(request, response);
     	}
     	

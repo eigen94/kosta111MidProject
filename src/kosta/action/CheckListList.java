@@ -30,15 +30,18 @@ public class CheckListList implements Action {
 			obj.put("check_name", list.get(i).getCheck_name());
 			obj.put("check_start", list.get(i).getCheck_start());
 			obj.put("check_end", list.get(i).getCheck_end());
+			obj.put("check_manager", list.get(i).getCheck_manager());
+			obj.put("check_type", list.get(i).getCheck_type());
+			obj.put("check_content", list.get(i).getCheck_content());
 			sendList.add(obj);
 		}
 		System.out.println(sendList);
-		request.setAttribute("json", sendList);
+		request.setAttribute("out", sendList);
 		
 		
 		ActionForward action = new ActionForward();
 		action.setRedirect(false);
-		action.setPath("");
+		action.setPath("out.jsp");
 		
 		return action;
 	}
