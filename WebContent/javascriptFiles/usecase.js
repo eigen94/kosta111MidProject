@@ -84,10 +84,10 @@ $(function() {
 //출력단 쿼리
 $(function() {
 	$('.package button').on('click', function(){
-		location.href= "useCaseList.do"
+		alert($('.package input').val());
+		location.href= "useCaseList.do?check_id="+ $('.package input').val()
 	})
 });
-
 
 
 

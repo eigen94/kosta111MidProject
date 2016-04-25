@@ -11,18 +11,39 @@
 </head>
 <body>
 	<div class="package">
+		<input type="text" name="check_id"> 번  
 		<button> 나와라 </button>
-			<c:forEach var="obj" items="${jsonList }">
-				<hr>
-				${obj.outline }, 
-				${obj.actor }, 
-				${obj.conditionF }, 
-				${obj.event }, 
-				${obj.eventDetail }, 
-				${obj.conditionB }, 
-				${obj.claim }, 
-				<hr>
-			</c:forEach>
+			<hr>
+			${jsonObj.outline }, 
+			${jsonObj.actor }, 
+			${jsonObj.conditionF }, 
+			${jsonObj.event }, 
+			${jsonObj.eventDetail }, 
+			${jsonObj.conditionB }, 
+			${jsonObj.claim }, 
+			<hr>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>
