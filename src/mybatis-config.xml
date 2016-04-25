@@ -13,6 +13,7 @@
 		<typeAlias type="kosta.note.Note" alias="Note"/>
 		<typeAlias type="kosta.model.DB" alias="Dbj"/>
 		<typeAlias type="kosta.model.Usecase" alias="Usecase"/>
+		<typeAlias type="kosta.model.CheckList" alias="CheckList"/>
 		
 	</typeAliases>
 	

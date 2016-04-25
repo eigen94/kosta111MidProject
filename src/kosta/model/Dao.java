@@ -332,11 +332,11 @@ public class Dao {
 		
 	}
 
-	public List<String> useCaseList() {
+	public CheckList useCaseList(int check_id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<String> list = sqlSession.getMapper(usecaseMapper.class).useCaseList();
-		return list;
+		CheckList checkList = sqlSession.getMapper(usecaseMapper.class).useCaseList(check_id);
+		return checkList;
 	}
 
 	

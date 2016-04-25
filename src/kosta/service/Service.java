@@ -2,6 +2,7 @@ package kosta.service;
 
 import java.util.List;
 
+import kosta.model.CheckList;
 import kosta.model.DB;
 import kosta.model.Dao;
 import kosta.model.ProjectBoard;
@@ -103,8 +104,8 @@ public class Service {
 		
 	}
 
-	public List<String> useCaseListService() {
-		return dao.useCaseList();
+	public CheckList useCaseListService(int check_id) {
+		return dao.useCaseList(check_id);
 	}
 }
 
