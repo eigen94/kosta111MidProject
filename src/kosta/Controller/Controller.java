@@ -25,6 +25,7 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
+import kosta.action.projectDetailAction;
 import kosta.useCaseAction.UseCaseListAction;
 import kosta.useCaseAction.UseCasePrintAction;
 import kosta.action.memberLoginOk;
@@ -62,6 +63,12 @@ public class Controller extends HttpServlet {
     		forward = action.execute(request, response);
     	}
 
+    	else if(command.equals("projectDetail.do"))
+    	{    		
+    		action = new projectDetailAction();
+    		forward = action.execute(request, response);
+    	}
+    	
     	else if(command.equals("projectSelect.do"))
     	{    		
     		action = new ProjectSelectAction();
@@ -79,7 +86,7 @@ public class Controller extends HttpServlet {
     		action = new ProjectDeleteAction();
     		forward = action.execute(request, response);
     	}
-    	else if(command.equals("projectDetail.do"))
+    	else if(command.equals("CheckCreate.do"))
     	{
     		action = new CheckCreate();
        		forward = action.execute(request, response);

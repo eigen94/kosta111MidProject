@@ -19,7 +19,7 @@ public class CheckDelete implements Action {
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
-		forward.setPath("projectDetail.jsp?p_id="+c_id);
+		forward.setPath("projectDetail.do?p_id="+c_id);
 		
 		return forward;
 	}
