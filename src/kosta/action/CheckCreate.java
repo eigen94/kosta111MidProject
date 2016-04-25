@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kosta.model.ProjectDetail;
 import kosta.service.Service;
@@ -14,6 +15,7 @@ public class CheckCreate implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) {
+		HttpSession session = request.getSession();
 		Service service = Service.getInstance();
 		try {
 			request.setCharacterEncoding("utf-8");
@@ -29,7 +31,7 @@ public class CheckCreate implements Action {
 		int check_sign = 0;
 //		String check_content = request.getParameter("check_content");
 		String check_content = "";
-		int check_manager = 1;
+		int check_manager = (Integer)session.getAttribute("m_id");
 		
 		ProjectDetail detail = new ProjectDetail(check_id,check_name,check_projectId,check_start,check_end,check_manager,check_sign,check_type,check_content);
 		int re = 0;
