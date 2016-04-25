@@ -33,13 +33,12 @@ $(function() {
 	
 	// 저장
 	function save() {
-		var jsonArray = new Array();
+		
 		var jsonObj = new Object();
 		jsonObj.relation = new Array();
 		
 		var tmp1=[];
 		var tmp2 =[];
-		var temp3=[];
 		
 		//반복문 시작
 		for(var i=0;i<count;i++){
@@ -59,13 +58,9 @@ $(function() {
 	
 		}
 		
-		
 		jsonObj.act = tmp1;
 		jsonObj.even = tmp2;
 		
-		
-		
-		jsonArray.push(jsonObj);
 		
 		var obj = jsonObj;
 		var	str = "actor: "+obj.act+"<br>";
@@ -77,6 +72,7 @@ $(function() {
 		}
 		
 		$("#list").append(str);
+		
 		
 		var finalJsonObj = JSON.stringify(jsonObj);
 		console.log(finalJsonObj);
