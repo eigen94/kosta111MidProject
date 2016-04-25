@@ -31,12 +31,11 @@ public class CheckCreate implements Action {
 		String check_content = "";
 		int check_manager = 1;
 		
-		ProjectDetail detail = new ProjectDetail(check_content);
-				new ProjectDetail(check_id,check_name,check_projectId,check_start,check_end,check_manager,check_sign,check_type,check_content);
+		ProjectDetail detail = new ProjectDetail(check_id,check_name,check_projectId,check_start,check_end,check_manager,check_sign,check_type,check_content);
 		int re = 0;
+		System.out.println("check : "+detail);
 		re = service.checkCreate(detail);
 		System.out.println("re : "+re);
-		System.out.println("check : "+detail);
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
 		forward.setPath("projectDetail.jsp?p_id="+check_projectId);

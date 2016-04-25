@@ -89,7 +89,7 @@
 	            <div class="col-xs-6 col-lg-4">
 	              <h2>${project.p_name }</h2>
 	              <p>${project.p_memo } </p>
-	              <p><a class="btn btn-default" href="projectDetail.jsp?p_id=${project.p_id }" role="button">프로젝트 시작하기 &raquo;</a></p>
+	              <p><a class="btn btn-default" href="projectDetail.do?p_id=${project.p_id }" role="button">프로젝트 시작하기 &raquo;</a></p>
 	              <p><a class="btn btn-default" href="delete.do?p_id=${project.p_id }" role="button">프로젝트 삭제하기 &raquo;</a></p>
 	            </div><!--/.col-xs-6.col-lg-4-->
 	          </c:forEach>

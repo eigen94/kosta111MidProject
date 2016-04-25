@@ -47,7 +47,7 @@
 		)
 	</insert>
 	<select id="detailList" resultType="Detail" parameterType="int">
-		select * from checklist where check_projectid = #{id}
+		select * from checklist where check_projectid = #{id} order by check_start
 	</select>
 	<select id="selectDetail" resultType="Detail" parameterType="int">
 		select * from checklist where check_id = #{check_id}
