@@ -228,12 +228,26 @@
 								</div>
 				       			<label for="inputPwdCheck" class="col-sm-3 control-label">비밀번호 확인</label>
 				   				<div class="col-sm-7">
-									<input class="form-control" id="inputPwdCheck" type="password" name="m_pwd" size="20" placeholder="비밀번호를 다시 입력하세요"><br>
+									<input class="form-control" id="inputPwdCheck" type="password" size="20" placeholder="비밀번호를 다시 입력하세요"><br>
 								</div>
 				       			<label for="inputPhone" class="col-sm-3 control-label">연락처</label>
 				   				<div class="col-sm-7">
 									<input class="form-control" id="inputPhone" type="text" name="m_phone" size="20" placeholder="연락처를 입력하세요"><br>
 								</div>
+								<label for="inputquestion" class="col-sm-3 control-label">Select list:</label>
+								<div class="col-sm-7">
+								<select class="form-control" id="inputquestion" name="m_question">
+								    <option value="1">1</option>
+								    <option value="2">2</option>
+								    <option value="3">3</option>
+								    <option value="4">4</option>
+								    <option value="5">5</option>
+								    <option value="6">6</option>
+								    <option value="7">7</option>
+								</select>
+								<br>
+								</div>
+								<br><br>
 				       			<label for="inputAnswer" class="col-sm-3 control-label">비밀번호 찾기 답</label>
 				   				<div class="col-sm-7">
 									<input class="form-control" id="inputAnswer" type="text" name="m_answer" size="20" placeholder="비밀번호 찾기 답을 입력하세요"><br>

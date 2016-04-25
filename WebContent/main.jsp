@@ -71,11 +71,11 @@
     
     <!-- projectList -->
     
-	<%
+<%-- 	<%
 	Service service = Service.getInstance();
 	List<ProjectBoard> list = service.projectListService();
 	request.setAttribute("list", list);
-	%>    
+	%>     --%>
 	
 	
       <div class="row row-offcanvas row-offcanvas-right">
