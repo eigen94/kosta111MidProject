@@ -14,7 +14,6 @@ import kosta.action.ActionForward;
 import kosta.action.CheckCreate;
 import kosta.action.CheckDetail;
 import kosta.action.CheckDelete;
-import kosta.action.CheckListList;
 import kosta.action.CheckUpdate;
 import kosta.action.DateCreate;
 import kosta.action.Detailview;
@@ -52,7 +51,6 @@ public class Controller extends HttpServlet {
     	
     	if(command.equals("insert.do"))
     	{   		
-    		//System.out.println("controllor p_name : "+request.getParameter("p_name"));
     		action = new ProjectCreateAction();
     		forward = action.execute(request, response);
     	}
@@ -63,12 +61,6 @@ public class Controller extends HttpServlet {
     		forward = action.execute(request, response);
     	}
 
-    	else if(command.equals("projectDetail.do"))
-    	{    		
-    		action = new projectDetailAction();
-    		forward = action.execute(request, response);
-    	}
-    	
     	else if(command.equals("projectSelect.do"))
     	{    		
     		action = new ProjectSelectAction();
@@ -86,7 +78,7 @@ public class Controller extends HttpServlet {
     		action = new ProjectDeleteAction();
     		forward = action.execute(request, response);
     	}
-    	else if(command.equals("CheckCreate.do"))
+    	else if(command.equals("projectDetail.do"))
     	{
     		action = new CheckCreate();
        		forward = action.execute(request, response);
@@ -100,13 +92,7 @@ public class Controller extends HttpServlet {
     	{
     		action = new CheckDelete();
     		forward = action.execute(request, response);
-    	}
-    	else if(command.equals("checkListList.do"))
-    	{
-    		action = new CheckListList();
-    		forward = action.execute(request, response);
-    	}
-    	else if(command.equals("checkListUpdate.do"))
+    	}else if(command.equals("checkListUpdate.do"))
     	{
     		action = new CheckUpdate();
     		forward = action.execute(request, response);
@@ -121,30 +107,28 @@ public class Controller extends HttpServlet {
     		action = new Detailview();
     		forward = action.execute(request, response);
     	}
-    	else if(command.equals("getUseCase.do")){
-    		action = new UseCasePrintAction();
-    		forward = action.execute(request, response);
-    	}
 
     	
-    /*	else if(command.equals("json.do"))
-    	{
-    		System.out.println("�߾߾߾߾߾�");
-    		action = new insertJSON();
-    		forward = action.execute(request, response);
-    	}*/
+//    	else if(command.equals("json.do"))
+//    	{
+//    		System.out.println("�߾߾߾߾߾�");
+//    		action = new insertJSON();
+//    		forward = action.execute(request, response);
+//    	}
     	
-    	/*else if(command.equals("uml.do"))
+    	else if(command.equals("uml.do"))
     	{
     		action = new UmlInsertAction();
     		forward = action.execute(request, response);
-    	}*/
+    	}
     	
     	else if(command.equals("umlList.do"))
-    	{
+    	{    		
     		action = new UmlListAction();
     		forward = action.execute(request, response);
-    	}else if(command.equals("usecase.do")){
+    	}
+    	else if(command.equals("usecase.do"))
+    	{
     		action = new UseCaseListAction();
     		forward = action.execute(request, response);
     	}
@@ -169,11 +153,13 @@ public class Controller extends HttpServlet {
     	{
     		if(forward.isRedirect())
     		{
+    			//System.out.println(forward.getPath());
     			response.sendRedirect(forward.getPath());
     		}
     		
     		else
     		{
+    			//System.out.println("forward: " +forward.getPath());
     			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
     			dispatcher.forward(request, response);
     		}
