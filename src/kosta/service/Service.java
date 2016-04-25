@@ -48,8 +48,8 @@ public class Service {
 		
 	}
 
-	public void checkCreate(ProjectDetail detail) {
-		dao.checkCreate(detail);
+	public int checkCreate(ProjectDetail detail) {
+		return dao.checkCreate(detail);
 		
 	}
 
@@ -111,6 +111,10 @@ public class Service {
 
 	public List<String> getUseCaseService() {
 		return dao.getUseCase();
+	}
+
+	public List<String> usecaseDiagramListService() {
+		return dao.usecaseDiagramList();
 	}
 }
 

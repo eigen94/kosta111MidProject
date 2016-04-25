@@ -360,6 +360,13 @@ public class Dao {
 		return list;
 	}
 
+	public List<String> usecaseDiagramList() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<String> list = sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagramList();
+		return list;
+	}
+
 	
 }
 

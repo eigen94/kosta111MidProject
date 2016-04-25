@@ -7,9 +7,11 @@
 	
 	<insert id="usecaseInsert" parameterType="String">
 		insert into checklist
-		(CHECK_CONTENT, CHECK_ID) values(#{check_content}, nvl((select max(CHECK_ID) from checklist)+1,0))
-	
+		(CHECK_CONTENT, CHECK_ID) values(#{check_content}, nvl((select max(CHECK_ID) from checklist)+1,0))	
 	</insert>
 	
+	<select id ="usecaseDiagaramList" resultType="String">
+	select check_content from checklist
+	</select>
 	
 </mapper>

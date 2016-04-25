@@ -5,19 +5,24 @@ $(function() {
 	$('input').on('click', function() {
 		$(this).val('');
 	});
-
 	// select창 1줄 추가
 	function addRow() {
 		var span = document.createElement('span');
 		span.innerHTML = document.getElementById('item').innerHTML;
 		document.getElementById('field').appendChild(span);
 		count++;
+		$('input').on('click', function() {
+			$(this).val('');
+		});
 	}
 	function addRow2() {
 		var span2 = document.createElement('span');
 		span2.innerHTML = document.getElementById('item2').innerHTML;
-		document.getElementById('item2').appendChild(span2);
+		document.getElementById('field2').appendChild(span2);
 		count2++;
+		$('input').on('click', function() {
+			$(this).val('');
+		});
 	}
 
 	// 삭제
@@ -47,12 +52,11 @@ $(function() {
 	
 		for(var i=0; i<count2; i++){
 			var jsonObjRe = new Object();
-			jsonObjRe.start = $('.start').eq(i).val();
-			console.log($('.start').eq(i).val());
+			jsonObjRe.start = $('.start').eq(i).val();	
 			jsonObjRe.end = $('.end').eq(i).val();
 			jsonObjRe.value = $('.value').eq(i).val();		
 			jsonObj.relation.push(jsonObjRe);
-			console.log(jsonObj.relation)
+	
 		}
 		
 		
@@ -63,6 +67,16 @@ $(function() {
 		
 		jsonArray.push(jsonObj);
 		
+		var obj = jsonObj;
+		var	str = "actor: "+obj.act+"<br>";
+			str += "event: " + obj.even+"<br>";
+		for(var j=0; j<count2; j++){
+			/*var g = obj.relation[j].start;*/
+			
+			str += "Relation start: " +obj.relation[j].start+" end: "+obj.relation[j].end+" value: "+obj.relation[j].value;
+		}
+		
+		$("#list").append(str);
 		
 		var finalJsonObj = JSON.stringify(jsonObj);
 		console.log(finalJsonObj);
@@ -75,7 +89,7 @@ $(function() {
 			},
 			dataType: "text",
 			success: function(data){
-				alert("성공");
+				location.href="usecaseDiagramList.do";
 			},error: function(data){
 				alert("실패");
 			}
@@ -95,9 +109,10 @@ $(function() {
 	});
 
 	// 저장->save()
-	$('.save button').on('click', function() {
+	$('.complete button').on('click', function() {
 		save();
 	});
+	
 
 });
 

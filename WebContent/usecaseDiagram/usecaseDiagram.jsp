@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<script src="../javascriptFilse/jquery-2.2.3.min.js" type="text/javascript"></script>
+<script src="../javascriptFiles/jquery-2.2.3.min.js" type="text/javascript"></script>
 <script src="../javascriptFilse/usecaseDiagram.js" type="text/javascript"></script>
 </head>
 <body>
@@ -37,11 +37,23 @@
 			<button>-</button>
 			<br>
 		</span>
+		<span id="field2">
+	</span>
+	
+		
 	</span>
 	<span id="field2">
 	</span>
-	<div class="save">
+	<div class="complete">
 		<button>저장</button>
+	</div>
+	
+		<div id="list">
+	<br>
+	<hr>
+	<hr>
+		<h3>usecaseDiagram List</h3>		
+		<br><br><br>
 	</div>
 	
 </body>
