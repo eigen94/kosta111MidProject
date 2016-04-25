@@ -25,7 +25,7 @@ public class Service {
 	public void projectInsertService(ProjectBoard projectBoard)
 	{
 		projectBoard.setP_id(dao.selectMaxP_id()+1);
-		System.out.println(projectBoard.toString());
+		//System.out.println(projectBoard.toString());
 		dao.projectInsert(projectBoard);
 	}
 
@@ -107,6 +107,10 @@ public class Service {
 	public void usecaseDiagramService(String json) {
 		dao.usecaseDiagram(json);
 		
+	}
+
+	public List<String> getUseCaseService() {
+		return dao.getUseCase();
 	}
 }
 
