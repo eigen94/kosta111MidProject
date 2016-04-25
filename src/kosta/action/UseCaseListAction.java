@@ -26,21 +26,16 @@ public class UseCaseListAction implements Action{
 		forward.setRedirect(false);
 		
 		int check_id = Integer.parseInt(request.getParameter("check_id"));
-		System.out.println(check_id);
 		Service service = Service.getInstance();
 		
 		CheckList checkList = service.useCaseListService(check_id);
-		List<JSONObject> jsonList = new ArrayList<JSONObject>();
-		
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj=null;
-			try {
-				jsonObj = (JSONObject)parser.parse(checkList.getCheck_content());
-//				jsonList.add(jsonObj);
-			} catch (Exception e) {			
-				e.printStackTrace();
-			}
-		System.out.println(jsonList);
+		try {
+			jsonObj = (JSONObject)parser.parse(checkList.getCheck_content());
+		} catch (Exception e) {			
+			e.printStackTrace();
+		}
 		request.setAttribute("jsonObj", jsonObj);
 		
 		return forward;
