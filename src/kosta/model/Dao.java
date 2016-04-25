@@ -6,6 +6,7 @@ import java.util.List;
 
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
+import kosta.usecaseMapper.usecaseMapper;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -160,20 +161,27 @@ public class Dao {
 		
 	}
 
-	public void checkCreate(ProjectDetail detail) {
+	public int checkCreate(ProjectDetail detail) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		System.out.println(detail);
+		int re = 0;
+		System.out.println("dao checkCreate : "+detail);
 		try {
-			sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
-			
-			sqlSession.commit();
+			re = sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
+			if (re>0)
+			{
+				sqlSession.commit();
+			}
+			else
+			{
+				sqlSession.rollback();
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			sqlSession.close();
 		}
-		
+		return re;
 	}
 
 	public List<ProjectDetail> detailListService(int id) {
@@ -228,20 +236,6 @@ public class Dao {
 		
 	}
 
-	public void dBCreate(DB db) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try {
-			sqlSession.getMapper(ProjectBoardMapper.class).dBCreate(db);
-			
-			sqlSession.commit();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			sqlSession.close();
-		}
-	}
-
 	public int dBId() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int id = 0;
@@ -258,10 +252,10 @@ public class Dao {
 		}
 	}
 
-	public List<DB> dBList(int id) {
+	public List<String> dBList(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<DB> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
+		List<String> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
 		System.out.println(list);
 		sqlSession.close();
 		if(list == null){
@@ -316,6 +310,33 @@ public class Dao {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		return sqlSession.getMapper(UmlMapper.class).umlList();
+	}
+
+	public void usecaseInsert(String json) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re =-1;
+		
+		try {
+			re=sqlSession.getMapper(usecaseMapper.class).usecaseInsert(json);
+			
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
+	public List<String> getUseCase() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<String> list = sqlSession.getMapper(usecaseMapper.class).getUseCase();
+		return list;
 	}
 
 	

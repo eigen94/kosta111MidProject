@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kosta.usecaseMapper.usecaseMapper">
+	<cache />
+	
+	<insert id="usecaseInsert" parameterType="String">
+		insert into checklist
+		(CHECK_CONTENT, CHECK_ID) values(#{check_content}, nvl((select max(CHECK_ID) from checklist)+1,0))
+	
+	</insert>
+	
+	<select id="getUseCase" resultType="String">
+		SELECT CHECK_CONTENT FROM CHECKLIST
+	</select>
+	
+</mapper>

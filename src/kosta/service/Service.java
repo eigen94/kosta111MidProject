@@ -48,9 +48,10 @@ public class Service {
 		
 	}
 
-	public void checkCreate(ProjectDetail detail) {
-		dao.checkCreate(detail);
-		
+	public int checkCreate(ProjectDetail detail) {
+		int re = 0;
+		re = dao.checkCreate(detail);
+		return re;
 	}
 
 	public List<ProjectDetail> detailListService(int id) {
@@ -59,7 +60,6 @@ public class Service {
 	}
 
 	public ProjectDetail selectDetail(int check_id) {
-		
 		return dao.selectDetail(check_id);
 	}
 
@@ -73,19 +73,12 @@ public class Service {
 		
 	}
 
-	
-
-	public void dBCreate(DB db) {
-		dao.dBCreate(db);
-		
-	}
-
 	public int getDBId() {
 		
 		return dao.dBId();
 	}
 
-	public List<DB> dBList(int id) {
+	public List<String> dBList(int id) {
 		
 		return dao.dBList(id);
 	}
@@ -106,6 +99,15 @@ public class Service {
 	}
 	
 	
+
+	public void usecaseService(String json) {
+		dao.usecaseInsert(json);
+		
+	}
+
+	public List<String> getUseCaseService() {
+		return dao.getUseCase();
+	}
 }
 
 

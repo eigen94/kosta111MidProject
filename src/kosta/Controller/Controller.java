@@ -24,6 +24,12 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
+import kosta.action.projectDetailAction;
+import kosta.useCaseAction.UseCaseListAction;
+import kosta.useCaseAction.UseCasePrintAction;
+import kosta.action.memberLoginOk;
+import kosta.action.memberLogoutOk;
+import kosta.action.memberRegister;
 
 
 @WebServlet("*.do")
@@ -71,13 +77,18 @@ public class Controller extends HttpServlet {
     	{
     		action = new ProjectDeleteAction();
     		forward = action.execute(request, response);
-    	}else if(command.equals("projectDetail.do")){
+    	}
+    	else if(command.equals("projectDetail.do"))
+    	{
     		action = new CheckCreate();
        		forward = action.execute(request, response);
-    	}else if(command.equals("check.do")){
+    	}
+    	else if(command.equals("check.do"))
+    	{
     		action = new CheckDetail();
     		forward = action.execute(request, response);
-    	}else if(command.equals("checkDelete.do"))
+    	}
+    	else if(command.equals("checkDelete.do"))
     	{
     		action = new CheckDelete();
     		forward = action.execute(request, response);
@@ -85,10 +96,14 @@ public class Controller extends HttpServlet {
     	{
     		action = new CheckUpdate();
     		forward = action.execute(request, response);
-    	}else if(command.equals("data.do")){
+    	}
+    	else if(command.equals("data.do"))
+    	{
     		action = new DateCreate();
     		forward = action.execute(request, response);
-    	}else if(command.equals("checkDetail.do")){
+    	}
+    	else if(command.equals("checkDetail.do"))
+    	{
     		action = new Detailview();
     		forward = action.execute(request, response);
     	}
@@ -110,6 +125,26 @@ public class Controller extends HttpServlet {
     	else if(command.equals("umlList.do"))
     	{    		
     		action = new UmlListAction();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("usecase.do"))
+    	{
+    		action = new UseCaseListAction();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("loginOk.do"))
+    	{
+    		action = new memberLoginOk();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("logoutOk.do"))
+    	{
+    		action = new memberLogoutOk();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("registerOk.do"))
+    	{
+    		action = new memberRegister();
     		forward = action.execute(request, response);
     	}
     	
