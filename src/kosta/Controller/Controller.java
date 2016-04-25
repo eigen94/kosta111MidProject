@@ -14,6 +14,7 @@ import kosta.action.ActionForward;
 import kosta.action.CheckCreate;
 import kosta.action.CheckDetail;
 import kosta.action.CheckDelete;
+import kosta.action.CheckListList;
 import kosta.action.CheckUpdate;
 import kosta.action.DateCreate;
 import kosta.action.Detailview;
@@ -94,11 +95,17 @@ public class Controller extends HttpServlet {
     		action = new CheckDetail();
     		forward = action.execute(request, response);
     	}
+    	else if(command.equals("checkListList.do"))
+    	{
+    		action = new CheckListList();
+    		forward = action.execute(request, response);
+    	}
     	else if(command.equals("checkDelete.do"))
     	{
     		action = new CheckDelete();
     		forward = action.execute(request, response);
-    	}else if(command.equals("checkListUpdate.do"))
+    	}
+    	else if(command.equals("checkListUpdate.do"))
     	{
     		action = new CheckUpdate();
     		forward = action.execute(request, response);
