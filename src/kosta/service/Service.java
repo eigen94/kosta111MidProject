@@ -77,7 +77,7 @@ public class Service {
 		return dao.dBId();
 	}
 
-	public List<String> dBList(int id) {
+	public List<DB> dBList(int id) {
 		
 		return dao.dBList(id);
 	}
@@ -101,6 +101,16 @@ public class Service {
 
 	public void usecaseService(String json) {
 		dao.usecaseInsert(json);
+		
+	}
+
+	public void updateDB(DB db) {
+		dao.updateDB(db);
+		
+	}
+
+	public void linkDB(DB db) {
+		dao.linkDB(db);
 		
 	}
 }

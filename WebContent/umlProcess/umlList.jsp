@@ -11,7 +11,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 	<c:forEach var="json" items="${jsonList }">
 		<hr>
 		${json.get("name") }<br>

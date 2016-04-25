@@ -15,7 +15,9 @@ import kosta.action.CheckCreate;
 import kosta.action.CheckDetail;
 import kosta.action.CheckDelete;
 import kosta.action.CheckUpdate;
+import kosta.action.DataUpdate;
 import kosta.action.DateCreate;
+import kosta.action.DateXY;
 import kosta.action.Detailview;
 import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
@@ -94,6 +96,12 @@ public class Controller extends HttpServlet {
     	else if(command.equals("checkDetail.do")){
     		action = new Detailview();
     		forward = action.execute(request, response);
+    	}else if(command.equals("dataLink.do")){
+    		action = new DataUpdate();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("dataXY.do")){
+    		action = new DateXY();
+    		forward = action.execute(request, response);
     	}
 
     	
@@ -119,6 +127,8 @@ public class Controller extends HttpServlet {
     		action = new UsecaseInsertAction();
     		forward = action.execute(request, response);
     	}
+    	
+    
     	
     	
     	if(forward != null)
