@@ -60,6 +60,12 @@ public class Controller extends HttpServlet {
     		action = new ProjectListAction();
     		forward = action.execute(request, response);
     	}
+    	
+    	else if(command.equals("projectDetail.do"))
+    	{    		
+    		action = new projectDetailAction();
+    		forward = action.execute(request, response);
+    	}
 
     	else if(command.equals("projectSelect.do"))
     	{    		
@@ -78,7 +84,7 @@ public class Controller extends HttpServlet {
     		action = new ProjectDeleteAction();
     		forward = action.execute(request, response);
     	}
-    	else if(command.equals("projectDetail.do"))
+    	else if(command.equals("CheckCreate.do"))
     	{
     		action = new CheckCreate();
        		forward = action.execute(request, response);
