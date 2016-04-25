@@ -4,6 +4,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+Service pService = Service.getInstance();
+List<ProjectBoard> list = pService.projectListService();
+request.setAttribute("list", list);
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
