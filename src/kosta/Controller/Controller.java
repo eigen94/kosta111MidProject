@@ -108,8 +108,7 @@ public class Controller extends HttpServlet {
     	}
     	
     	else if(command.equals("umlList.do"))
-    	{
-    		System.out.println("dd");
+    	{    		
     		action = new UmlListAction();
     		forward = action.execute(request, response);
     	}
