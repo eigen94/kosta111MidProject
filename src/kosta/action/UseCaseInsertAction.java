@@ -1,4 +1,4 @@
-package kosta.useCaseAction;
+package kosta.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -7,7 +7,7 @@ import kosta.action.Action;
 import kosta.action.ActionForward;
 import kosta.service.Service;
 
-public class UseCaseListAction implements Action {
+public class UseCaseInsertAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -21,7 +21,7 @@ public class UseCaseListAction implements Action {
 		
 		String check_content = json;
 		
-		service.usecaseService(check_content);
+		service.useCaseInsertService(check_content);
 		return null;
 	}
 

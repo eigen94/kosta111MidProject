@@ -98,15 +98,13 @@ public class Service {
 		return dao.umlList();
 	}
 	
-	
-
-	public void usecaseService(String json) {
-		dao.usecaseInsert(json);
+	public void useCaseInsertService(String json) {
+		dao.useCaseInsert(json);
 		
 	}
 
-	public List<String> getUseCaseService() {
-		return dao.getUseCase();
+	public List<String> useCaseListService() {
+		return dao.useCaseList();
 	}
 }
 

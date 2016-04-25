@@ -4,8 +4,8 @@ import java.util.List;
 
 public interface usecaseMapper {
 
-	public int usecaseInsert(String json);
+	public int useCaseInsert(String json);
 
-	public List<String> getUseCase();
+	public List<String> useCaseList();
 
 }
