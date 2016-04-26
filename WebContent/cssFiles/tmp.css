@@ -364,18 +364,11 @@
 		float: left;
 	}
 	
-	#object {
-    background: #fff none repeat scroll 0 0;
-    border-left: 1px solid #dfdfdf;
-    bottom: 0;
-    left: auto;
-    position: absolute;
-    right: 0;
-    top: 105px;
-    transition: all 0.2s ease 0s;
-    width: 300px;
-} 
-	
+	.toggle button{
+		position:relative;
+		float: left;
+		font-size: 25px;
+	}
 	
 	
 	
