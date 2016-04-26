@@ -25,6 +25,7 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
+import kosta.action.memberNameOrEmailSearch;
 import kosta.action.projectDetailAction;
 import kosta.useCaseAction.UseCaseListAction;
 import kosta.useCaseAction.UseCasePrintAction;
@@ -158,6 +159,11 @@ public class Controller extends HttpServlet {
     	else if(command.equals("registerOk.do"))
     	{
     		action = new memberRegister();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("memberNameOrEmailSearch.do"))
+    	{
+    		action = new memberNameOrEmailSearch();
     		forward = action.execute(request, response);
     	}
     	
