@@ -27,6 +27,7 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
+import kosta.action.UseCaseInsertAction;
 import kosta.action.UseCaseListAction;
 import kosta.action.memberNameOrEmailSearch;
 import kosta.action.projectDetailAction;

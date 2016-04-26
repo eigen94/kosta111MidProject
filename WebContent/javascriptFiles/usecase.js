@@ -9,11 +9,8 @@ $(function() {
 	// select창 1줄 추가
 	function addRow() {
 		var div = document.createElement('div');
-<<<<<<< HEAD
 		div.innerHTML = document.getElementById('selector').innerHTML;
-=======
 		div.innerHTML = document.getElementById('select').innerHTML;
->>>>>>> refs/heads/usecaseview
 		document.getElementById('newField').appendChild(div);
 		count++;
 	}
@@ -78,8 +75,6 @@ $(function() {
 	// 저장->save()
 	$('.save button').on('click', function() {
 //		save();
-<<<<<<< HEAD
-=======
 		location.href= "useCaseList.do?check_id="+ $('.package input').val()
 	});
 	
@@ -99,7 +94,6 @@ $(function() {
 //출력단 쿼리
 $(function() {
 	$('.package button').on('click', function(){
->>>>>>> refs/heads/usecaseview
 		location.href= "useCaseList.do?check_id="+ $('.package input').val()
 	});
 	
