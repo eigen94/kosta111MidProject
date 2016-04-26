@@ -24,6 +24,7 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
+import kosta.action.UsecaseDiagramInsertAction;
 import kosta.action.UsecaseDiagramListAction;
 import kosta.action.UsecaseDiagramtAction;
 import kosta.action.projectDetailAction;
@@ -153,6 +154,9 @@ public class Controller extends HttpServlet {
     		forward = action.execute(request, response);
     	}else if(command.equals("usecaseDiagramList.do")){
     		action = new UsecaseDiagramListAction();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("UsecaseDiagramInsert.do")){
+    		action = new UsecaseDiagramInsertAction();
     		forward = action.execute(request, response);
     	}
     	
