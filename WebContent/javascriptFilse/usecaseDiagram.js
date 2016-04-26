@@ -1,6 +1,10 @@
 $(function() {
 	count = 1;
 	count2 = 1;
+	var jsonObj = new Object();
+	jsonObj.relation = new Array();
+	
+	
 	// 콜릭하면 내용을 지운다.
 	$('input').on('click', function() {
 		$(this).val('');
@@ -32,10 +36,9 @@ $(function() {
 	}
 	
 	// 저장
-	function save() {
+	$("#ok").click(function(){
 		
-		var jsonObj = new Object();
-		jsonObj.relation = new Array();
+	
 		
 		var tmp1=[];
 		var tmp2 =[];
@@ -62,18 +65,18 @@ $(function() {
 		jsonObj.even = tmp2;
 		
 		
+		
 		var obj = jsonObj;
 		var	str = "actor: "+obj.act+"<br>";
 			str += "event: " + obj.even+"<br>";
-		for(var j=0; j<count2; j++){
-			/*var g = obj.relation[j].start;*/
-			
+		for(var j=0; j<count2; j++){	
 			str += "Relation start: " +obj.relation[j].start+" end: "+obj.relation[j].end+" value: "+obj.relation[j].value;
 		}
 		
 		$("#list").append(str);
 		
-		
+	})
+	$("#complete").click(function(){
 		var finalJsonObj = JSON.stringify(jsonObj);
 		console.log(finalJsonObj);
 		
@@ -90,8 +93,8 @@ $(function() {
 				alert("실패");
 			}
 		})
-	}
 	
+	})
 	// +버튼->addRow()
 	$(document).on('click', '#plus_btn button', function() {
 		addRow();
@@ -105,11 +108,11 @@ $(function() {
 	});
 
 	// 저장->save()
-	$('.complete button').on('click', function() {
-		save();
+	$('#complete').on('click', function() {
+	
 	});
 	
-
+	
 });
 
 

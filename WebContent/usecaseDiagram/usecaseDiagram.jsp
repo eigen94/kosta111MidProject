@@ -42,11 +42,10 @@
 	
 		
 	</span>
-	<span id="field2">
-	</span>
-	<div class="complete">
-		<button>저장</button>
-	</div>
+
+		
+		<button id="complete">전송</button>
+		<button id="ok">완료</button>
 	
 		<div id="list">
 	<br>
