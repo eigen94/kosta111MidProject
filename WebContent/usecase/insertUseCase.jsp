@@ -18,7 +18,7 @@
 	<div class="mid_position">
 		<h3>기능명세 - Use_case</h3><br>
 		<div id="item">
-				<select name="select">
+				<select name="selector">
     				<option value="outline">개요</option>
     				<option value="actor">관련엑터</option>
     				<option value="conditionF">선행조건</option>
