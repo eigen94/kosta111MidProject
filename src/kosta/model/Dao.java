@@ -312,12 +312,12 @@ public class Dao {
 		return sqlSession.getMapper(UmlMapper.class).umlList();
 	}
 
-	public void usecaseInsert(String json) {
+	public void useCaseInsert(String json) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re =-1;
 		
 		try {
-			re=sqlSession.getMapper(usecaseMapper.class).usecaseInsert(json);
+			re=sqlSession.getMapper(usecaseMapper.class).useCaseInsert(json);
 			
 			if(re>0){
 				sqlSession.commit();
@@ -332,11 +332,11 @@ public class Dao {
 		
 	}
 
-	public List<String> getUseCase() {
+	public CheckList useCaseList(int check_id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<String> list = sqlSession.getMapper(usecaseMapper.class).getUseCase();
-		return list;
+		CheckList checkList = sqlSession.getMapper(usecaseMapper.class).useCaseList(check_id);
+		return checkList;
 	}
 
 	

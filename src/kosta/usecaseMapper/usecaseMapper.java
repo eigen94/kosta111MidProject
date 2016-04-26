@@ -2,10 +2,12 @@ package kosta.usecaseMapper;
 
 import java.util.List;
 
+import kosta.model.CheckList;
+
 public interface usecaseMapper {
 
-	public int usecaseInsert(String json);
+	public int useCaseInsert(String json);
 
-	public List<String> getUseCase();
+	public CheckList useCaseList(int check_id);
 
 }

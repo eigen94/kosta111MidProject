@@ -49,7 +49,7 @@ $(function() {
 		
 		$.ajax({
 			type:"post",
-			url:"usecase.do",
+			url:"useCaseInsert.do",
 			data:{
 				json:finalJsonObj
 			},
@@ -83,23 +83,10 @@ $(function() {
 
 //출력단 쿼리
 $(function() {
-	
-	function print() {
-		var div = document.createElement('div');
-		alert("Asd");
-		location.href= "getUseCase.do"
-	}
-	
-	
-	
-	
 	$('.package button').on('click', function(){
-		print();
+		location.href= "useCaseList.do?check_id="+ $('.package input').val()
 	})
-	
-	
 });
-
 
 
 

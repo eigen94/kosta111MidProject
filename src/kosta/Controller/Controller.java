@@ -27,8 +27,8 @@ import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
 import kosta.action.memberNameOrEmailSearch;
 import kosta.action.projectDetailAction;
-import kosta.useCaseAction.UseCaseListAction;
-import kosta.useCaseAction.UseCasePrintAction;
+//import kosta.useCaseAction.UseCaseListAction;
+//import kosta.useCaseAction.UseCasePrintAction;
 import kosta.action.memberLoginOk;
 import kosta.action.memberLogoutOk;
 import kosta.action.memberRegister;
@@ -141,11 +141,11 @@ public class Controller extends HttpServlet {
     		action = new UmlListAction();
     		forward = action.execute(request, response);
     	}
-    	else if(command.equals("usecase.do"))
-    	{
-    		action = new UseCaseListAction();
-    		forward = action.execute(request, response);
-    	}
+//    	else if(command.equals("usecase.do"))
+//    	{
+//    		action = new UseCaseListAction();
+//    		forward = action.execute(request, response);
+//    	}
     	else if(command.equals("loginOk.do"))
     	{
     		action = new memberLoginOk();
@@ -166,6 +166,16 @@ public class Controller extends HttpServlet {
     		action = new memberNameOrEmailSearch();
     		forward = action.execute(request, response);
     	}
+//    	else if(command.equals("useCaseInsert.do"))
+//    	{
+//    		action = new UseCaseInsertAction();
+//    		forward = action.execute(request, response);
+//    	}
+//    	else if(command.equals("useCaseList.do"))
+//    	{
+//    		action = new UseCaseListAction();
+//    		forward = action.execute(request, response);
+//    	}
     	
     	
     	if(forward != null)

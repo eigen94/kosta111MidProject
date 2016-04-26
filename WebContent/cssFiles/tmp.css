@@ -1,45 +1,61 @@
+	h1 {
+		font-size: 45px;
+	}
+	
+	h2 {
+		font-size: 35px;
+	}
+	
+	h3 {
+		font-size: 25px;
+	}
+	
+	h4 {
+		font-size: 15px;
+	}
+	
+	h5 {
+		font-size: 5px;
+	}
+	
+	/* insert */
+	
+	/* list */
+	.div_table {
+		width: 600px;
+		height: 700px;
+		text-align: center;
+	}
+	
+	.use_key {
+		
+	}
+	
+	.use_value {
+		
+	}
+	
+	.tbl_th {
+	    background:#ddd; font-weight:bold;
+	    border:1px solid #ccc; border-left:0 none;
+	}
 
-	h1{
-		font-size: 45px;	
-	}
-	
-	h2{
-		font-size: 35px;	
-	}
-	
-	h3{
-		font-size: 25px;	
-	}
-	
-	h4{
-		font-size: 15px;	
-	}
-	
-	h5{
-		font-size: 5px;	
+	.tbl_th, .tbl_td {
+		
+	    display:table-cell; 
+	    width:250px; 
+	    height:50px;
+	    border-right:1px solid #ccc; 
+	    border-bottom:1px solid #ccc;
 	}
 
-/* create´Ü */
-	
-	
-	
-/* get´Ü */
-	.package {
+	.tbl_th:first-child, .tbl_td:first-child {
+	    border-left:1px solid #ccc;
 	}
 	
-	.use_key{
+	.tbl_th p, .tbl_td p { 
+		margin-left:10px; 
 	}
-	
-	.use_value{
-	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
