@@ -30,7 +30,6 @@
 		${select.p_pmid }<br>
 		${select.p_crew }<br>
 		${select.p_memo }<br>
-		
 		<hr>
 		<div>
 		<b>프로젝트 이름</b>

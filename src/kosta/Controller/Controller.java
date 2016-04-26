@@ -14,15 +14,28 @@ import kosta.action.ActionForward;
 import kosta.action.CheckCreate;
 import kosta.action.CheckDetail;
 import kosta.action.CheckDelete;
+import kosta.action.CheckListList;
 import kosta.action.CheckUpdate;
+import kosta.action.DataUpdate;
+import kosta.action.DateCreate;
+import kosta.action.DateXY;
 import kosta.action.Detailview;
 import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
 import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
-import kosta.action.DateCreate;
 import kosta.action.UmlInsertAction;
+import kosta.action.UmlListAction;
+import kosta.action.UseCaseInsertAction;
+import kosta.action.UseCaseListAction;
+import kosta.action.memberNameOrEmailSearch;
+import kosta.action.projectDetailAction;
+//import kosta.useCaseAction.UseCaseListAction;
+//import kosta.useCaseAction.UseCasePrintAction;
+import kosta.action.memberLoginOk;
+import kosta.action.memberLogoutOk;
+import kosta.action.memberRegister;
 
 
 @WebServlet("*.do")
@@ -44,7 +57,6 @@ public class Controller extends HttpServlet {
     	
     	if(command.equals("insert.do"))
     	{   		
-    		System.out.println("controllor p_name : "+request.getParameter("p_name"));
     		action = new ProjectCreateAction();
     		forward = action.execute(request, response);
     	}
@@ -52,6 +64,12 @@ public class Controller extends HttpServlet {
     	else if(command.equals("projectList.do"))
     	{    		
     		action = new ProjectListAction();
+    		forward = action.execute(request, response);
+    	}
+    	
+    	else if(command.equals("projectDetail.do"))
+    	{    		
+    		action = new projectDetailAction();
     		forward = action.execute(request, response);
     	}
 
@@ -71,27 +89,49 @@ public class Controller extends HttpServlet {
     	{
     		action = new ProjectDeleteAction();
     		forward = action.execute(request, response);
-    	}else if(command.equals("projectDetail.do")){
+    	}
+    	else if(command.equals("CheckCreate.do"))
+    	{
     		action = new CheckCreate();
        		forward = action.execute(request, response);
-    	}else if(command.equals("check.do")){
+    	}
+    	else if(command.equals("check.do"))
+    	{
     		action = new CheckDetail();
     		forward = action.execute(request, response);
-    	}else if(command.equals("checkDelete.do"))
+    	}
+    	else if(command.equals("checkListList.do"))
+    	{
+    		action = new CheckListList();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("checkDelete.do"))
     	{
     		action = new CheckDelete();
     		forward = action.execute(request, response);
-    	}else if(command.equals("checkListUpdate.do"))
+    	}
+    	else if(command.equals("checkListUpdate.do"))
     	{
     		action = new CheckUpdate();
     		forward = action.execute(request, response);
-    	}else if(command.equals("data.do")){
+    	}
+    	else if(command.equals("data.do"))
+    	{
     		action = new DateCreate();
     		forward = action.execute(request, response);
-    	}else if(command.equals("checkDetail.do")){
+    	}
+    	else if(command.equals("checkDetail.do"))
+    	{
     		action = new Detailview();
     		forward = action.execute(request, response);
+    	}else if(command.equals("dataLink.do")){
+    		action = new DataUpdate();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("dataXY.do")){
+    		action = new DateXY();
+    		forward = action.execute(request, response);
     	}
+
     	
 //    	else if(command.equals("json.do"))
 //    	{
@@ -106,16 +146,61 @@ public class Controller extends HttpServlet {
     		forward = action.execute(request, response);
     	}
     	
+    	else if(command.equals("umlList.do"))
+    	{    		
+    		action = new UmlListAction();
+    		forward = action.execute(request, response);
+    	}
+//    	else if(command.equals("usecase.do"))
+//    	{
+//    		action = new UseCaseListAction();
+//    		forward = action.execute(request, response);
+//    	}
+    	else if(command.equals("loginOk.do"))
+    	{
+    		action = new memberLoginOk();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("logoutOk.do"))
+    	{
+    		action = new memberLogoutOk();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("registerOk.do"))
+    	{
+    		action = new memberRegister();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("memberNameOrEmailSearch.do"))
+    	{
+    		action = new memberNameOrEmailSearch();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("useCaseInsert.do"))
+    	{
+    		action = new UseCaseInsertAction();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("useCaseList.do"))
+    	{
+    		action = new UseCaseListAction();
+    		forward = action.execute(request, response);
+    	}
+    	
+    
+    	
     	
     	if(forward != null)
     	{
     		if(forward.isRedirect())
     		{
+    			//System.out.println(forward.getPath());
     			response.sendRedirect(forward.getPath());
     		}
     		
     		else
     		{
+    			//System.out.println("forward: " +forward.getPath());
     			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
     			dispatcher.forward(request, response);
     		}

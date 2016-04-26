@@ -6,6 +6,7 @@ import java.util.List;
 
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
+import kosta.usecaseMapper.usecaseMapper;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -160,20 +161,27 @@ public class Dao {
 		
 	}
 
-	public void checkCreate(ProjectDetail detail) {
+	public int checkCreate(ProjectDetail detail) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		System.out.println(detail);
+		int re = 0;
+		System.out.println("dao checkCreate : "+detail);
 		try {
-			sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
-			
-			sqlSession.commit();
+			re = sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
+			if (re>0)
+			{
+				sqlSession.commit();
+			}
+			else
+			{
+				sqlSession.rollback();
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			sqlSession.close();
 		}
-		
+		return re;
 	}
 
 	public List<ProjectDetail> detailListService(int id) {
@@ -228,31 +236,17 @@ public class Dao {
 		
 	}
 
-	public void dBCreate(DB db) {
-		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		try {
-			sqlSession.getMapper(ProjectBoardMapper.class).dBCreate(db);
-			
-			sqlSession.commit();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			sqlSession.close();
-		}
-	}
-
 	public int dBId() {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int id = 0;
 		if(sqlSession.getMapper(ProjectBoardMapper.class).dBId() == null)
 		{
 			sqlSession.close();
-			return id;
+			return id+1;
 		}
 		else
 		{	
-			id=sqlSession.getMapper(ProjectBoardMapper.class).dBId();
+			id=sqlSession.getMapper(ProjectBoardMapper.class).dBId()+1;
 			sqlSession.close();
 			return id;
 		}
@@ -310,6 +304,69 @@ public class Dao {
 		}
 		
 		
+	}
+
+	public List<String> umlList() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		return sqlSession.getMapper(UmlMapper.class).umlList();
+	}
+
+	public void useCaseInsert(String json) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re =-1;
+		
+		try {
+			re=sqlSession.getMapper(usecaseMapper.class).useCaseInsert(json);
+			
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
+	public void updateDB(DB db) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).updateDB(db);
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	public void linkDB(DB db) {
+SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).linkDB(db);
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	public CheckList useCaseList(int check_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		CheckList checkList = sqlSession.getMapper(usecaseMapper.class).useCaseList(check_id);
+		return checkList;
 	}
 
 	

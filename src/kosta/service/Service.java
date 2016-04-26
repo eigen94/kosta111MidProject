@@ -2,6 +2,7 @@ package kosta.service;
 
 import java.util.List;
 
+import kosta.model.CheckList;
 import kosta.model.DB;
 import kosta.model.Dao;
 import kosta.model.ProjectBoard;
@@ -25,7 +26,7 @@ public class Service {
 	public void projectInsertService(ProjectBoard projectBoard)
 	{
 		projectBoard.setP_id(dao.selectMaxP_id()+1);
-		System.out.println(projectBoard.toString());
+		//System.out.println(projectBoard.toString());
 		dao.projectInsert(projectBoard);
 	}
 
@@ -48,9 +49,10 @@ public class Service {
 		
 	}
 
-	public void checkCreate(ProjectDetail detail) {
-		dao.checkCreate(detail);
-		
+	public int checkCreate(ProjectDetail detail) {
+		int re = 0;
+		re = dao.checkCreate(detail);
+		return re;
 	}
 
 	public List<ProjectDetail> detailListService(int id) {
@@ -59,7 +61,6 @@ public class Service {
 	}
 
 	public ProjectDetail selectDetail(int check_id) {
-		
 		return dao.selectDetail(check_id);
 	}
 
@@ -70,13 +71,6 @@ public class Service {
 
 	public void checkUpdate(ProjectDetail detail) {
 		dao.CheckUpdate(detail);
-		
-	}
-
-	
-
-	public void dBCreate(DB db) {
-		dao.dBCreate(db);
 		
 	}
 
@@ -97,6 +91,30 @@ public class Service {
 
 	public void umlInsertService(String json) {
 		dao.umlInsert(json);
+		
+	}
+
+	public List<String> umlListService() {
+		
+		return dao.umlList();
+	}
+	
+	public void useCaseInsertService(String json) {
+		dao.useCaseInsert(json);
+		
+	}
+
+	public CheckList useCaseListService(int check_id) {
+		return dao.useCaseList(check_id);
+	}
+
+	public void updateDB(DB db) {
+		dao.updateDB(db);
+		
+	}
+
+	public void linkDB(DB db) {
+		dao.linkDB(db);
 		
 	}
 }

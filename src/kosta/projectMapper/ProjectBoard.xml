@@ -13,7 +13,7 @@
 		INSERT INTO project(
 		P_ID, P_NAME, P_START, P_END, P_MEMO
 		)VALUES(
-		#{p_id}, #{p_name }, sysdate, sysdate, #{p_memo }
+		#{p_id}, #{p_name }, #{p_start }, #{p_end }, #{p_memo }
 		)
 	</insert>
 	
@@ -43,12 +43,11 @@
 		insert into checklist(
 			check_id,check_name,check_projectId,check_start,check_end,check_manager,check_sign,check_type,check_content
 		)values(
-			#{check_id},#{check_name},#{check_projectId},SYSDATE,#{check_end},#{check_manager},#{check_sign},#{check_type},#{check_content}
+			#{check_id},#{check_name},#{check_projectId},#{check_start },#{check_end },#{check_manager},#{check_sign},#{check_type},#{check_content}
 		)
-		
 	</insert>
 	<select id="detailList" resultType="Detail" parameterType="int">
-		select * from checklist where check_projectid = #{id}
+		select * from checklist where check_projectid = #{id} order by check_start
 	</select>
 	<select id="selectDetail" resultType="Detail" parameterType="int">
 		select * from checklist where check_id = #{check_id}
@@ -61,17 +60,31 @@
 		check_name = #{check_name}, check_content = #{check_content},check_end = #{check_end}
 		where check_id = #{check_id}
 	</update>
+	
 	<select id="dBId" resultType="Integer">
-		select max(d_id) from DB
+		select max(check_id) from checklist
 	</select>
+	
 	<insert id="createDB" parameterType="Dbj">
-		insert into DB(
-			d_id,title,type,d_attr,d_key,check_id
+		insert into checklist(
+			check_id,check_content,CHECK_PROJECTID
 		)values(
-			#{d_id},#{title},#{type},#{d_attr},#{d_key},#{check_id}
+			nvl((select max(CHECK_ID) from checklist)+1,0),#{check_content},#{check_id}
 		)
 	</insert>
+	
 	<select id="dBList" resultType="Dbj" parameterType="int">
-		select * from DB where check_id = #{id}
+		select check_id,check_content from checklist where CHECK_PROJECTID = #{id}
 	</select>
+	
+	<update id="updateDB" parameterType="Dbj">
+		update checklist set
+		check_content = #{check_content}
+		where check_id = #{check_id}
+	</update>
+	<update id="linkDB" parameterType="Dbj">
+		update checklist set
+		check_content = #{check_content}
+		where check_id = #{check_id}
+	</update>
 </mapper>

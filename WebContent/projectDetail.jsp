@@ -6,25 +6,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-	Service service = Service.getInstance();
+<%@ include file="pageModule/sessionCheck.jsp" %>
 
-    String tmp = request.getParameter("p_id");
-    		int p_id=0;
-    		if(tmp!=null){
-    			p_id = Integer.parseInt(tmp);
-    		}
-	List<ProjectBoard> list = service.projectListService();
-	ProjectBoard project = service.projectSelectService(p_id);
-	List<ProjectDetail> checkList = service.detailListService(p_id);
-	
-	request.setAttribute("checkList", checkList);
-	request.setAttribute("list", list);
-	request.setAttribute("project", project);
-	request.setAttribute("p_id", p_id);
-	//ProjectDetail check = service.selectDetail(check_id);
-	
-	%>  
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -39,8 +22,10 @@
     <title>코스타 중간프로젝트</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="/kosta111MidProject/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href='/kosta111MidProject/cssFiles/fullcalendar-2.6.1/fullcalendar.css' rel='stylesheet' />
+	<link href='/kosta111MidProject/cssFiles/fullcalendar-2.6.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+	<link href="/kosta111MidProject/bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
@@ -52,42 +37,13 @@
     <![endif]-->
 
     <!-- Custom styles for this template -->
-    <link href="cssFiles/main.css" rel="stylesheet">
+    <link href="/kosta111MidProject/cssFiles/main.css" rel="stylesheet">
 
   </head>
 <!-- NAVBAR
 ================================================== -->
   <body>
-      <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">프로젝트 중간프로젝트</a>
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">안녕하세요! <%=session.getAttribute("m_name") %> 님!</a></li>
-            <li><a href="projectBoard/insertForm.jsp">새프로젝트</a></li>
-            <li><a href="#">쪽지</a></li>
-            <li role="presentation"><a href="#" data-toggle="modal" data-target="#messengerModal">매신저</a></li>
-            
-            <li role="presentation"><a href="loginForm/logout.jsp">로그아웃</a></li>
-          </ul>
-          <!-- 
-          <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search...">
-          </form>
-           -->
-        </div>
-      </div>
-    </nav>
-
-
+  <jsp:include page="pageModule/navBar.jsp"></jsp:include>
 
     <!-- Carousel
     ================================================== -->
@@ -97,23 +53,20 @@
       
 		<!-- projectList  -->
         <div class="col-sm-3 col-md-2 sidebar">
-        <label >프로젝트 리스트</label>
           <ul class="nav nav-sidebar">
+	        <li><a href="main.jsp"><label>프로젝트 리스트</label></a></li>
           	<c:forEach var="project" items="${list }">
           	<c:choose>
           	<c:when test="${project.p_id==p_id }">
           	<li class="active"><a href="#">${project.p_name }</a></li>
           	</c:when>
           	<c:when test="${project.p_id!=p_id }">
-          	<li><a href="projectDetail.jsp?p_id=${project.p_id }">${project.p_name }</a></li>
+          	<li><a href="projectDetail.do?p_id=${project.p_id }">${project.p_name }</a></li>
           	</c:when>
             
           	</c:choose>
           	
           	</c:forEach>
-<!--             <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Analytics</a></li>
-            <li><a href="#">Export</a></li> -->
           </ul>
         </div><!-- end of project List -->
       
@@ -126,66 +79,24 @@
         <!-- checklist -->
         
         <div class="col-sm-4 col-md-4 main">
-        <ul class="list-group">
-		  <li class="list-group-item"><a href="#" data-toggle="modal" data-target="#checkCreateModal">일정생성</a></li>
-		  
+        <div class="list-group">
+		  <div class="list-group-item list-group-item-info" data-toggle="modal" data-target="#checkCreateModal">일정생성</div>
+		  <div id="checkList">
+		  </div>
 		  <!--  
 		  checkCreate
 		  -->
-        <c:forEach var="checkList" items="${checkList }">
-		  <li class="list-group-item">${checkList.check_name }</li>
-        </c:forEach>
-		</ul>
+
+		</div>
         </div><!-- end of checklist -->
         
         <!-- calendar -->
-        <div class="col-sm-8 col-md-8 main">
+        <div class="col-sm-8 col-md-8 main" style="padding-left: 0px; padding-top: 0px;">
         
+        <div id='calendar' style="margin-top: 20px;"></div>
         
         </div><!-- end of calendar -->
 
-<!-- 
-          <div class="row placeholders">
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-            <div class="col-xs-6 col-sm-3 placeholder">
-              <img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-              <h4>Label</h4>
-              <span class="text-muted">Something else</span>
-            </div>
-          </div>
-        </div>
-           -->
-        <%-- <div class="col-sm-2 col-md-2 main">
-          ${project.p_name } ${project.p_start } ~ ${project.p_end }
-        </div> --%>
-        <!-- modechange btn -->
-        <!-- 
-        <div class="col-sm-3 col-md-2 main">
-			<div class="btn-group" data-toggle="buttons">
-				<label class="btn btn-default change_viewtype ">
-				<input id="view_type_media" type="radio" value="media" name="view_type">
-				<span class="glyphicon glyphicon-list"></span>
-				</label>
-				<label class="btn btn-default change_viewtype active">
-				<input id="view_type_card" type="radio" value="card" name="view_type">
-				<span class="glyphicon glyphicon-th-large"></span>
-				</label>
-			</div>
- -->
          </div><!-- end of main -->
       </div><!-- end row -->
       
@@ -196,16 +107,6 @@
     
     
     <!-- end of bodycontent -->
-
-
-      <!-- FOOTER -->
-<!--       <div class="container">
-	      <footer>
-	        <p class="pull-right"><a href="#">Back to top</a></p>
-	        <p>&copy; 2014 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-	      </footer>
-      
-      </div> -->
 
     </div><!-- /.container -->
 
@@ -220,8 +121,8 @@
 	        <input type="submit" value="send" onclick="send()" />
     	</fieldset>
 	</div>
- -->
-	
+
+ -->	
 	<!-- Modal -->
 
 	<!-- checkCreateModal -->
@@ -231,35 +132,56 @@
 	    <!-- Modal content-->
 	    <div class="modal-content">
 	      <div class="modal-body">
-	      
+	      <!-- to projectDetail.do -->
 	        <form action="#" method="post" class="form-horizontal">
 		        <div class="form-group">
-	       			<label for="inputName" class="col-sm-3 control-label">체크리스트 이름</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputName" type="text" name="check_name" size="20" placeholder="체크리스트 이름을 입력하세요"><br>
+	       			<label for="inputName" class="col-sm-2 control-label">일정이름</label>
+	   				<div class="col-sm-10">
+						<input class="form-control" id="checkListName" type="text" name="check_name" size="20" placeholder="체크리스트 이름을 입력하세요"><br>
 					</div>
-	       			<label for="inputEmail" class="col-sm-3 control-label">시작일</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputEmail" type="text" name="check_start" size="20" placeholder="시작일을 입력하세요"><br>
+					
+	       			<label for="inputStartDate" class="col-sm-2 control-label">시작일</label>
+	   				<div class="col-sm-4">
+		                <div class='input-group date' id='datetimepicker1'>
+		                    <input type='text' id="checkListStartDate" class="form-control" name="check_start" value=""/>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
 					</div>
-	       			<label for="inputPassword" class="col-sm-3 control-label">종료일</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPassword" type="text" name="check_end" size="20" placeholder="종료일을 입력하세요"><br>
+					
+	       			<label for="inputEndDate" class="col-sm-2 control-label">종료일</label>
+	   				<div class="col-sm-4">
+		                <div class='input-group date' id='datetimepicker2'>
+		                    <input type='text' id="checkListEndDate" class="form-control" name="check_end"/>
+		                    <span class="input-group-addon">
+		                        <span class="glyphicon glyphicon-calendar"></span>
+		                    </span>
+		                </div>
+		                <br>
 					</div>
-	       			<label for="inputPwdCheck" class="col-sm-3 control-label">일정타입</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPwdCheck" type="text" name="check_type" size="20" placeholder="메모를 입력하세요"><br>
+	       			<label for="inputPwdCheck" class="col-sm-2 control-label">일정타입</label>
+	   				<div class="col-sm-4">
+					  <select class="form-control" id="checkListCheckType" name="check_type">
+					    <option value="1">기능명세(usecase)</option>
+					    <option>기능명세(usecase diaram)</option>
+					    <option>데이터명세(uml)</option>
+					    <option>데이터명세(ERD)</option>
+					    <option>화면명세</option>
+					  </select>
+	   				
+						<!-- <input class="form-control" id="inputPwdCheck" type="text" name="check_type" size="20" placeholder="메모를 입력하세요"><br> -->
 					</div>
-	       			<label for="inputPhone" class="col-sm-3 control-label">담당자</label>
-	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPhone" type="text" name="check_manager" size="20" placeholder="일정약식을 입력하세요"><br>
+	       			<label for="inputPhone" class="col-sm-2 control-label">담당자</label>
+	   				<div class="col-sm-4">
+						<input class="form-control" id="inputPhone" type="text" name="check_manager" size="20" placeholder="담당자를 입력하세요"><br>
 					</div>
-					<input type="hidden" name="check_projectId" value="${project.p_id }">
+					<input type="hidden" id="checkListProjectId" name="check_projectId" value="${project.p_id }">
 		        
 		        </div>
 			  	<div class="form-group">
-			    	<div class="col-sm-offset-3 col-sm-9">
-			      		<button type="submit" class="btn btn-default">일정 생성</button>
+			    	<div class="col-sm-offset-2 col-sm-10">
+			      		<button id="createCheckListBtn" class="btn btn-default" data-dismiss="modal">일정 생성</button>
 			    	</div>
 			  	</div>
 			</form>
@@ -268,19 +190,180 @@
 	    </div>
 	
 	  </div>
-	</div>
+	</div><!--end of checkCreateModal -->
 	
- 
  
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <!-- for fullcalendar -->
+    <script src='/kosta111MidProject/javascriptFiles/fullcalendar-2.6.1/lib/moment.min.js'></script>
+    <script src="/kosta111MidProject/javascriptFiles/jquery/1.11.2/jquery.min.js"></script>
+	<!-- for fullcalendar -->
+	<script src='/kosta111MidProject/javascriptFiles/fullcalendar-2.6.1/fullcalendar.min.js'></script>
+    <script src="/kosta111MidProject/bootstrap/js/bootstrap.min.js"></script>
+    <!-- for dateTimePicker -->
+    <script src="/kosta111MidProject/javascriptFiles/moment/moment-with-locales.js"></script>
+	<script src="/kosta111MidProject/javascriptFiles/dateTimePicker/bootstrap-datetimepicker.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
     <script src="../../assets/js/vendor/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    
+    <script type="text/javascript">
+    $(function(){
+    	
+		var checkList = [];//불러올 체크리스트들을 담을 배열
+		var projectIdFromUri = location.search; //주소줄에서 get요청 값 추출
+		var regGetProjectId = /\d/g; //추출한 값에서 숫자만 추출할 정규표현식
+		var projectId = regGetProjectId.exec(projectIdFromUri)[0]; //추출결과
+    	
+    	//초기세팅
+    	getCheckListAjax();//리스트가져오기
+    	setInputFormDate();//모달 인풋폼에 날짜 변경
+    	drawCalendar();//달력그리기
+    	
+    	$('.checkListDelBtn').on('click',function(event){//체크리스트 삭제 버튼시 이벤트
+    		event.preventDefault();
+    	alert('hi');
+    	console.log('hi');
+    		var href = $(this).attr('href');//a태그의 주소값을 가져옴
+    		var regTmp = /=\d+/g;
+/*     		$.ajax({
+    			url : 'checkDelete.do',
+    			method : 'post',
+    			data : {
+    				check_id : 1,
+    				check_projectid : 1
+    			},
+    			success : function(){
+    				getCheckListAjax();
+    			}
+    		}); */
+    	});
+    	
+    	$('#createCheckListBtn').on('click',function(event){//체크리스트 생성 이벤트
+    		//get FormData
+    		event.preventDefault();
+    		var sendCheckListData = {
+    				check_name : $('#checkListName').val(),
+    				check_start : $('#checkListStartDate').val(),
+    				check_end : $('#checkListEndDate').val(),
+    				check_projectId : $('#checkListProjectId').val()
+    		}
+    		console.log(sendCheckListData);
+    		//reset FormData
+    		
+    		//send FormData to DB
+    		
+    		$.ajax({
+    			method : 'post',
+    			url : 'CheckCreate.do',
+    			data : sendCheckListData,
+    			success : function(){
+    				console.log('ok');
+    		//get checkList data from DB
+	    		getCheckListAjax();
+    		
+    			}//end of success
+    		})//end of ajax 
+    		//refresh calendar events
+    	});
+
+		function getCheckListAjax(){
+			var checkListHtml = ""; //최종적으로 출력할 체크리스트용 html
+			
+			$.ajax({//체크리스트 목록을 가져오는 ajax부분
+				url : 'checkListList.do',
+				data : 
+				{
+					p_id : projectId
+				},
+				dataType : 'json',
+				success : function(json){
+					checkList = [];
+					for(var i=0; i<json.length; i++){//체크리스트의 키값과 켈린더에서 일정의 변수명이 다른 것을 매칭해주는 작업
+						var jsonObj = {};
+						jsonObj.title = json[i].check_name; 
+						jsonObj.start = json[i].check_start; 
+						jsonObj.end = json[i].check_end;
+						checkList.push(jsonObj);//카랜더용 배열에 객체 입력
+						//체크리스트용 html생성
+						var forChecklistHtmlStr = '<div class="list-group-item" data-toggle="collapse" data-target="#';
+						forChecklistHtmlStr += json[i].check_id;
+						forChecklistHtmlStr += '" aria-expanded="false" aria-controls="';
+						forChecklistHtmlStr += json[i].check_id;
+						forChecklistHtmlStr += '">';
+						forChecklistHtmlStr += json[i].check_name;
+						forChecklistHtmlStr += '</div><div class="collapse" id="';
+						forChecklistHtmlStr += json[i].check_id;
+						forChecklistHtmlStr += '"><div class="list-group-item list-group-item-danger"><a class ="checkListDelBtn" href="checkDelete.do?check_id=';
+						forChecklistHtmlStr += json[i].check_id;
+						forChecklistHtmlStr += '&check_projectid=';
+						forChecklistHtmlStr += projectId;
+						forChecklistHtmlStr += '"><button>삭제</button></a><a href="checkListDetail.jsp?check_id='; 
+/* 						forChecklistHtmlStr += '"><div class="list-group-item list-group-item-danger"><a class ="checkListDelBtn" href="checkDelete.do?check_id=';
+						forChecklistHtmlStr += json[i].check_id;
+						forChecklistHtmlStr += '&check_projectid=';
+						forChecklistHtmlStr += projectId;
+						forChecklistHtmlStr += '"><button>삭제</button></a><a href="checkListDetail.jsp?check_id='; */
+						forChecklistHtmlStr += json[i].check_id;
+						forChecklistHtmlStr += '&check_projectid=';
+						forChecklistHtmlStr += projectId;
+						forChecklistHtmlStr += '"><button>편집</button></a></div></div>';
+						
+						checkListHtml += forChecklistHtmlStr;
+					}
+					$('#calendar').fullCalendar( 'removeEvents' );
+					$('#calendar').fullCalendar( 'addEventSource', checkList );
+					$('#checkList').empty();
+					$('#checkList').append(checkListHtml);
+				},
+				error : function(){
+					console.log("fail");
+				}
+			});//end of get checklist ajax
+		}//end of get checklist function
+		
+		
+		function drawCalendar(){
+			$('#calendar').fullCalendar({//성공 후, 체크리스트들을 달력에 넣어준다.
+				header: {
+					left: 'prev,next today',
+					center: 'title',
+					right: 'month,agendaWeek,agendaDay'
+				},
+				editable: true,
+				eventLimit: true, // allow "more" link when too many events
+				events: checkList, //ajax로 불러온 값을 넣어준다.
+			    eventClick: function() {//일정 클릭이벤트
+			        alert($(this).find('.fc-title').html());
+			    }
+			});
+		}//end of drawCalendar
+		
+		function setInputFormDate(){//set modal default dateValue
+	    	var dateObj = new Date; 
+	    	var modalDefaultYear = dateObj.getFullYear();
+	    	var modalDefaultMonth = dateObj.getMonth()+1;
+	    	if(modalDefaultMonth<10){
+	    		modalDefaultMonth = '0'+modalDefaultMonth;
+	    	}
+	    	var modalDefaultDay = dateObj.getDate();
+	    	var modalDefaultValue = modalDefaultYear+"-"+modalDefaultMonth+"-"+modalDefaultDay;
+	    	$('#checkListStartDate').val(modalDefaultValue);
+	    	$('#checkListEndDate').val(modalDefaultValue);
+		}//end of set input form date
+		
+		//datetimepicker
+       $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD'});
+       $('#datetimepicker2').datetimepicker({format: 'YYYY-MM-DD'});//end of datetimepicker
+       
+       
+	});
+	
+	</script>
+	
   </body>
   <!-- 
       <script type="text/javascript">
