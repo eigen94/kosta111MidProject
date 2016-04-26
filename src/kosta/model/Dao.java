@@ -6,6 +6,7 @@ import java.util.List;
 
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
+import kosta.usecaseDiagramMapper.usecaseDiagramMapper;
 import kosta.usecaseMapper.usecaseMapper;
 
 import org.apache.ibatis.io.Resources;
@@ -332,6 +333,26 @@ public class Dao {
 		
 	}
 
+	public void usecaseDiagram(String json) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re =-1;
+		
+		try {
+			re=sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagram(json);
+			
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
 	public void updateDB(DB db) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
@@ -348,8 +369,7 @@ public class Dao {
 	}
 
 	public void linkDB(DB db) {
-SqlSession sqlSession = getSqlSessionFactory().openSession();
-		
+			SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		try {
 			sqlSession.getMapper(ProjectBoardMapper.class).linkDB(db);
@@ -367,6 +387,13 @@ SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
 		CheckList checkList = sqlSession.getMapper(usecaseMapper.class).useCaseList(check_id);
 		return checkList;
+	}
+
+	public List<String> usecaseDiagramList() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<String> list = sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagramList();
+		return list;
 	}
 
 	

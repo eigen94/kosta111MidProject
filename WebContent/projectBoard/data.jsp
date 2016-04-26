@@ -4,29 +4,29 @@
 <%@page import="kosta.model.DBList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script src="jquery-1.10.2.min.js"></script>
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<script src="jquery-1.10.2.min.js"></script>
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+        <script src="js/jquery.js"></script>
+<title>Insert title here</title>
 
 <script type="text/javascript">
 	var attrCount = 0;
-
 	var count=0;
 	var row = 0;
 	var pkName = "";
 	var check_id=0;
-
-
-
 	$(function(){		
 		var jsonArray = new Array(); //UML은 여러개가 나올 수 있으니 배열로 선언		
+		
 		$("#submit").click(function(){
 			var id = $("#check_id").val();
 			var jsonObj = new Object(); //한개의 UML객체
@@ -62,18 +62,18 @@
 				dataType : "text",				
 				success : function(data)
 				{
-					
+					alert("성공");
 					location.reload();
 				},
 				error : function(data)
 				{
-				
+					alert("실패");
 				}
 			})
 		});		
 		
 		$("#addAttr").click(function(){		
-			var add = '<div class="div"><input type="text" class="name" name="attri"><select class="type" name="type"><option value="varchar2">varchar2</option><option value="number">number</option><option value="date">date</option></select><select class="key" name="key1"><option value=" "></option><option value="PK">PK</option><option value="FK">FK</option><option value="NOTNULL">notnull</option><option value="UNIQUE">unique</option></select><br></div>'
+			var add = '<div class="attribute"><input type="text" class="name" name="attri"><select class="type" name="type"><option value="varchar2">varchar2</option><option value="number">number</option><option value="date">date</option></select><select class="key" name="key1"><option value=" "></option><option value="PK">PK</option><option value="FK">FK</option><option value="NOTNULL">notnull</option><option value="UNIQUE">unique</option></select><br></div>'
 			$("tr:eq(1) td").append(add);			
 			attrCount++;				
 		});
@@ -230,8 +230,12 @@
 				}) 
 			}
 		});	
+		
+		$(".pk").on("click",function(){
+			alert($(this).val());
+		})
+		
 	});
-	
 </script>
 <style type="text/css">
 
@@ -239,9 +243,7 @@
 		border : 1px solid;
 		width: 400px;
 	}
-	#myCanvas{
-		z-index: 10;
-	}
+	
 </style>
 </head>
 <body>
@@ -259,7 +261,7 @@
 	<button id="addAttr">컬럼추가</button>
 	<button id="submit">테이블 생성</button><br>
 	<button id="link">조건 걸기</button><br>
-<canvas id="myCanvas" width="1200" height="1000" style="border:1px solid #d3d3d3;"></canvas>
+
 	<c:forEach var="json" varStatus="v" items="${jsonList }">
 		<div class="table" style="position:absolute; left:${json.get('x')}px; top:${json.get('y')}px; cursor:pointer; cursor:hand; border:1 solid;">
 		<input type="hidden" id="count" value="${v.count }">
@@ -267,15 +269,15 @@
 		
 		<input type="hidden" class="check_id" value="${idList[v.count-1] }">
 		<input type="hidden" class="title" value="${json.get('title')}" >${json.get("title") }<br>
-		<br>
 		--------------<br>
 		<c:forEach var="i" items="${json.attribute }">
+
 			<input type="hidden" class="name" value="${i.get('name')}" >${i.get("name")}&nbsp;&nbsp;
 			<input type="hidden" class="type" value="${i.get('type')}" >${i.get("type")}&nbsp;&nbsp;
 			<input type="hidden" class="key" value="${i.get('key')}" >${i.get("key")}
 			<c:if test="${i.get('key') eq 'FK' }">
 				<input type="radio" name="fk" class="count" value="${v.count - 1 }">
-				<input type="hidden" class="row" value="${fn:length(json.attribute)}">
+				<input type="hidden" class="row" value="${fn:length(json.attribute) }">
 			</c:if>
 			<input type="hidden" class="row" value="${fn:length(json.attribute)}">	
 			<c:if test="${i.get('key') eq 'PK' }">
@@ -284,7 +286,7 @@
 				<input type="hidden" class="get" value="${json.get('title')}">
 			</div>
 			</c:if>
-			
+		
 			<br>
 		</c:forEach>
 			참조하는 테이블<br>
@@ -298,7 +300,6 @@
 
 		</div>
 	</c:forEach>
-
 
 
 </body>
