@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kosta.imgMapper.imgBoardMapper;
+import kosta.model.ProjectDetail;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -33,12 +36,12 @@ public class ImageDao {
 		return new SqlSessionFactoryBuilder().build(input);
 	}
 
-	public void imgInsertService(String str) {
+	public void imgInsertService(ProjectDetail detail) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;
 
 		try {
-			re = sqlSession.getMapper(imgBoardMapper.class).imgInsertService(str);
+			re = sqlSession.getMapper(imgBoardMapper.class).imgInsertService(detail);
 
 			if (re > 0) {
 				sqlSession.commit();

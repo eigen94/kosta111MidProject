@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import kosta.imageAction.ImgAction;
 import kosta.imageAction.ImgActionForward;
 import kosta.imageAction.ImgCrateAction;
+import kosta.imageAction.ImgFileAction;
 import kosta.imageAction.ImgListAction;
 
 
@@ -39,6 +40,9 @@ public class ImgController extends HttpServlet {
 		}else if(command.equals("imgListBoard.img")){
 			action = new ImgListAction();
 			forward = action.execute(request, response);
+		/*}else if(command.equals("insertFile.img")){
+			action = new ImgFileAction();
+			forward = action.execute(request, response);*/
 		}
 
 		if (forward != null) {

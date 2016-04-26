@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import kosta.action.ActionForward;
 import kosta.imgModel.Image;
 import kosta.imgService.ImageService;
+import kosta.model.ProjectDetail;
 import kosta.service.Service;
 
 public class ImgCrateAction implements ImgAction {
@@ -22,11 +23,14 @@ public class ImgCrateAction implements ImgAction {
 		System.out.println(json);
 		
 		ImageService service = ImageService.getInstance();
-		
+	
 		String str = json;
-		
-		service.imgInsertService(str);
-		
+
+		try {
+			service.imgInsertService(str, request);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		forward.setRedirect(false);
 		forward.setPath("imgListBoard.img");
 		
