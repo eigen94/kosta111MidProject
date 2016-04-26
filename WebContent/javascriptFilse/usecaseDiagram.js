@@ -105,7 +105,7 @@ $(function() {
 		
 		$.ajax({
 			type:"post",
-			url:"UsecaseDiagramInsert.do",
+			url:"usecaseDiagram.do",
 			data:{
 				json:insertJsonObj
 			},
