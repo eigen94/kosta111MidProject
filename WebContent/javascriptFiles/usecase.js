@@ -9,14 +9,15 @@ $(function() {
 	// select창 1줄 추가
 	function addRow() {
 		var div = document.createElement('div');
-		div.innerHTML = document.getElementById('item').innerHTML;
-		document.getElementById('field').appendChild(div);
+		div.innerHTML = document.getElementById('selector').innerHTML;
+		document.getElementById('newField').appendChild(div);
 		count++;
 	}
 
 	// 삭제
 	function deleteRow(obj) {
-		document.getElementById('field').removeChild(obj.parentNode);
+		alert("asd");
+		document.getElementById('newField').removeChild('div');
 		count--;
 	}
 	
@@ -55,52 +56,35 @@ $(function() {
 			},
 			dataType: "text",
 			success: function(data){
-				alert("성공");
 			},error: function(data){
 				alert("실패");
 			}
 		})
 	}
 
-	
-	
-	
 	// +버튼->addRow()
 	$(document).on('click', '#plus_btn button', function() {
 		addRow();
 	});
 	// -버튼 -> deleteRow()
-	$(document).on('click', '#field button', function() {
+	$(document).on('click', '#newField button', function() {
 		deleteRow(this);
 	});
 
 	// 저장->save()
 	$('.save button').on('click', function() {
-		save();
-	});
-});
-/////////////////////////////////////////////////////////////
-
-//출력단 쿼리
-$(function() {
-	$('.package button').on('click', function(){
+//		save();
 		location.href= "useCaseList.do?check_id="+ $('.package input').val()
+	});
+	
+	//도움말
+	$('.advice button').on('click', function(){
+		
+		
+		
 	})
+	
+	
+	
+	
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
