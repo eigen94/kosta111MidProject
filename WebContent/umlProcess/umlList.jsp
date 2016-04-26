@@ -11,12 +11,23 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<c:forEach var="json" items="${jsonList }">
+
+	<c:forEach var="obj" items="${objArray }">
 		<hr>
-		${json.get("name") }<br>
-		${json.attribute }<br>
-		${json.operation }<br>
+		<h3>UML</h3>
+		${obj.name }<br>
+		${obj.attribute }<br>
+		${obj.operation }<br>
 		<hr>
 	</c:forEach>
+	<c:forEach var="relation" items="${relationArray }">
+		<hr>
+		<h3>relation</h3>
+		${relation.start }<br>
+		${relation.end }<br>
+		${relation.relationType }<br>
+		<hr>
+	</c:forEach>
+	
 </body>
 </html>

@@ -11,16 +11,24 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<<<<<<< HEAD
 <script src="jquery-1.10.2.min.js"></script>
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+=======
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+>>>>>>> branch 'master' of https://github.com/eigen94/kosta111MidProject.git
 
 <script type="text/javascript">
 	var attrCount = 0;
+<<<<<<< HEAD
 	var count=0;
 	var row = 0;
 	var pkName = "";
 	var check_id=0;
+=======
+
+>>>>>>> branch 'master' of https://github.com/eigen94/kosta111MidProject.git
 	$(function(){		
 		var jsonArray = new Array(); //UML은 여러개가 나올 수 있으니 배열로 선언		
 		$("#submit").click(function(){
@@ -73,6 +81,7 @@
 			$("tr:eq(1) td").append(add);			
 			attrCount++;				
 		});
+<<<<<<< HEAD
 		var title="";
 		var getTitle="";
 		var accessAttrArr="";
@@ -213,14 +222,27 @@
 			}
 		});
 		
+=======
+		
+		$(".pk").on("click",function(){
+			alert($(this).val());
+		})
+>>>>>>> branch 'master' of https://github.com/eigen94/kosta111MidProject.git
 		
 	});
 	
 </script>
 <style type="text/css">
+<<<<<<< HEAD
 	.table{ 
 		border : 1px solid;
 		width: 400px;
+=======
+	div{
+		display:block;
+		border : solid 1px;
+		
+>>>>>>> branch 'master' of https://github.com/eigen94/kosta111MidProject.git
 	}
 </style>
 </head>
@@ -239,13 +261,25 @@
 	<button id="submit">테이블 생성</button><br>
 	<button id="link">조건 걸기</button><br>
 
+
 	<c:forEach var="json" varStatus="v" items="${jsonList }">
 	<div class="table" style="position:absolute; left:${json.get('x')}px; top:${json.get('y')}px; cursor:pointer; cursor:hand; border:1 solid;">
 		
 		<input type="hidden" class="check_id" value="${idList[v.count-1] }">
 		<input type="hidden" class="title" value="${json.get('title')}" >${json.get("title") }<br>
+
+	<button id="submit">전송</button>
+
+	<c:forEach var="json" varStatus="v" items="${jsonList }">
+		<div id="div">
+		<input type="hidden" id="count" value="${v.count }">
+		<input type="hidden" id="c_id" value="${param.check_id }">
+		${json.get("title") } &nbsp;&nbsp; <input type="checkbox">
+		<br>
+
 		--------------<br>
 		<c:forEach var="i" items="${json.attribute }">
+
 	
 			<input type="hidden" class="name" value="${i.get('name')}" >${i.get("name")}&nbsp;&nbsp;
 			<input type="hidden" class="type" value="${i.get('type')}" >${i.get("type")}&nbsp;&nbsp;
@@ -261,15 +295,29 @@
 				<input type="hidden" class="get" value="${json.get('title')}">
 			</div>
 			</c:if>
+			${i.get("name")}&nbsp;&nbsp;
+			${i.get("type")}&nbsp;&nbsp;
+			${i.get("key")}
+			<c:if test="${i.get('key') eq 'FK'}">
+				
+			</c:if>
+			<c:if test="${i.get('key') eq 'PK' }">
+				<input type="checkbox" class="pk" value="">
+
+			</c:if>
 			<br>
 		</c:forEach>
+
 			참조하는 테이블<br>
 			${json.get('get')}(${json.get('pk')})
 			<input type="hidden" class="fk" value="${json.get('pk')}">
 			<input type="hidden" class="for" value="${json.get('get') }">
 			<input type="hidden" class="index-x" value="${json.get('x')}">
 			<input type="hidden" class="index-y" value="${json.get('y')}">
+
 		</div>
+	</c:forEach>
+	</div>
 	</c:forEach>
 
 

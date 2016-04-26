@@ -11,12 +11,12 @@ public class UmlInsertAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) {			
 		
-		ActionForward forward = new ActionForward();
-		forward.setPath("umlList.do");
-		forward.setRedirect(false);
+		//ActionForward forward = new ActionForward();
+		//forward.setPath("umlList.do");
+		//forward.setRedirect(false);
 				
 		String json = request.getParameter("json");
-		System.out.println(json);
+		//System.out.println(json);
 		
 		Service service = Service.getInstance();
 				
@@ -37,7 +37,7 @@ public class UmlInsertAction implements Action {
 		
 		
 		
-		return forward;
+		return null;
 	}
 
 }

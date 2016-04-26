@@ -161,20 +161,27 @@ public class Dao {
 		
 	}
 
-	public void checkCreate(ProjectDetail detail) {
+	public int checkCreate(ProjectDetail detail) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		System.out.println(detail);
+		int re = 0;
+		System.out.println("dao checkCreate : "+detail);
 		try {
-			sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
-			
-			sqlSession.commit();
+			re = sqlSession.getMapper(ProjectBoardMapper.class).checkCreate(detail);
+			if (re>0)
+			{
+				sqlSession.commit();
+			}
+			else
+			{
+				sqlSession.rollback();
+			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			sqlSession.close();
 		}
-		
+		return re;
 	}
 
 	public List<ProjectDetail> detailListService(int id) {
@@ -305,12 +312,12 @@ public class Dao {
 		return sqlSession.getMapper(UmlMapper.class).umlList();
 	}
 
-	public void usecaseInsert(String json) {
+	public void useCaseInsert(String json) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re =-1;
 		
 		try {
-			re=sqlSession.getMapper(usecaseMapper.class).usecaseInsert(json);
+			re=sqlSession.getMapper(usecaseMapper.class).useCaseInsert(json);
 			
 			if(re>0){
 				sqlSession.commit();
@@ -353,6 +360,13 @@ SqlSession sqlSession = getSqlSessionFactory().openSession();
 		}finally{
 			sqlSession.close();
 		}
+	}
+
+	public CheckList useCaseList(int check_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		CheckList checkList = sqlSession.getMapper(usecaseMapper.class).useCaseList(check_id);
+		return checkList;
 	}
 
 	
