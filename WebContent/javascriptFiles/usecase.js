@@ -10,15 +10,13 @@ $(function() {
 	function addRow() {
 		var div = document.createElement('div');
 		div.innerHTML = document.getElementById('selector').innerHTML;
-		div.innerHTML = document.getElementById('select').innerHTML;
 		document.getElementById('newField').appendChild(div);
 		count++;
 	}
 
 	// 삭제
 	function deleteRow(obj) {
-		alert("asd");
-		document.getElementById('newField').removeChild('div');
+		document.getElementById('newField').removeChild(obj.parentNode);
 		count--;
 	}
 	

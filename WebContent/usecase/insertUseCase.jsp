@@ -24,73 +24,68 @@
 		
 	 -->
 
-<div class="container">
-	<!-- 버튼 -->
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" >
-		생성	  
-	</button>
+	<div class="container">
+		<!-- 버튼 -->
+		<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal" >
+			생성	  
+		</button>
 
-	<!-- 모달 팝업 -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
-		<div class="modal-dialog">
-	    	<div class="modal-content">
-	      		<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">×</span>
-					<span class="sr-only">Close</span></button>
-					<h4 class="modal-title" id="myModalLabel">유스 케이스</h4>
-	      		</div>
-	      		<div class="modal-body">
-				<div class="top_position">
-				<div class="advice">
-					
-					<a href="#" class="tip"><button>?</button><span>유스케이스를 통해 고객이나 사용자의 요구사항에 대해 정의하는 일련의 행위를 유스케이스 모델링이라고 한다. 유스케이스 모델링을 통해서, 요구사항을 정형화하고 효율적으로 관리할 수 있는 토대를 마련할 수 있고, 이는 프로젝트 전반에 걸쳐 요구사항에 대한 이해도를 높이는 데 크게 공헌한다.</span></a>
-					<a href="#" class="tip">툴팁 링크 <span></span></a>
-				
-				</div>
-					프로잭트 이름 /// /// /// /// 일정 이름
-				</div>
-				<div class="mid_position">
-					<h3>기능명세 - Use_case</h3>
-					<div id="selector">
-					<div id="select">
-						<select name="select">
-    						<option value="outline">개요</option>
-    						<option value="actor">관련엑터</option>
-    						<option value="conditionF">선행조건</option>
-    						<option value="event">이벤트</option>
-    						<option value="eventDetail">이벤트 상세내역</option>
-    						<option value="conditionB">후행조건</option>
-    						<option value="claim">요구사항</option>
-						</select>
-						<input type="text" name="내용" value="">
-						<span id="minus_btn">
-							<button>ㅡ</button>
-						</span>
-					</div>
-					<div id="newField">
-					</div>
-					<div id="plus_btn">
-						<button>+</button>
-					</div>
-				</div>
-	      	</div>
-	      	<div class="modal-footer">
+		<!-- 모달 팝업 -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+			<div class="modal-dialog">
+	    		<div class="modal-content">
+	    	  		<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">
+						<span aria-hidden="true">×</span>
+						<span class="sr-only">Close</span></button>
+						<h4 class="modal-title" id="myModalLabel">유스 케이스</h4>
+	     	 		</div>
+	     	 		<div class="modal-body">
+						<div class="top_position">
+							<div class="advice">
+								<a href="#" class="tip"><button>?</button><span>유스케이스를 통해 고객이나 사용자의 요구사항에 대해 정의하는 일련의 행위를 유스케이스 모델링이라고 한다. 유스케이스 모델링을 통해서, 요구사항을 정형화하고 효율적으로 관리할 수 있는 토대를 마련할 수 있고, 이는 프로젝트 전반에 걸쳐 요구사항에 대한 이해도를 높이는 데 크게 공헌한다.</span></a>
+								<a href="#" class="tip">야호호 <span>도움말 표시</span></a>
+							</div>
+								프로잭트 이름 /// /// /// /// 일정 이름
+						</div>
+						<div class="mid_position">
+							<h3>기능명세 - Use_case</h3>
+							<div id="selector">
+								<select name="select">
+    								<option value="">선택하세요</option>
+    								<option value="outline">개요</option>
+    								<option value="actor">관련엑터</option>
+    								<option value="conditionF">선행조건</option>
+    								<option value="event">이벤트</option>
+    								<option value="eventDetail">이벤트 상세내역</option>
+    								<option value="conditionB">후행조건</option>
+    								<option value="claim">요구사항</option>
+								</select>
+								<input type="text" name="내용" value=""><button>ㅡ</button>
+								<a href="#" class="tip"><button>?</button><span>도움말</span></a>
+							</div>
+							<div id="newField"></div>
+							<div id="plus_btn">
+								<button>+</button>
+							</div>
+		      			</div>
+	      			</div>
+	      			<div class="modal-footer">
 <!-- ////////////////////////////////////////////////////////////// -->
-	      		<div class="package">
-					<input type="text" name="check_id">  
-				</div>
+	      				<div class="package">
+							<input type="text" name="check_id">  
+						</div>
 <!-- ////////////////////////////////////////////////////////////// -->
 	      	
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      		<span class="save">
-					<button type="button" class="btn btn-primary">Save changes</button>
-	      		</span>
-	      	</div>
-	    	</div>
-	  	</div>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      				<span class="save">
+							<button type="button" class="btn btn-primary">Save changes</button>
+	      				</span>
+	      			</div>
+	    		</div>
+	  		</div>
+		</div>
 	</div>
-</div>
 	
 <!-- 	<div id="sequence">
 <button id="addSequence" type="button">
