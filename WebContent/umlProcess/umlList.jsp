@@ -12,22 +12,25 @@
 </head>
 <body>
 
-	<c:forEach var="obj" items="${objArray }">
-		<hr>
-		<h3>UML</h3>
-		${obj.name }<br>
-		${obj.attribute }<br>
-		${obj.operation }<br>
-		<hr>
-	</c:forEach>
-	<c:forEach var="relation" items="${relationArray }">
+	<%-- <c:forEach var="objArray" items="${objList }">
+		<c:forEach var="obj" items="${objArray }">
+			<hr>
+			<h3>UML</h3>
+			${obj.name }<br>
+			${obj.attribute }<br>
+			${obj.operation }<br>
+			<hr>
+		</c:forEach>
+		
+	</c:forEach> --%>
+	<%-- <c:forEach var="relation" items="${relationList }">
 		<hr>
 		<h3>relation</h3>
 		${relation.start }<br>
 		${relation.end }<br>
 		${relation.relationType }<br>
 		<hr>
-	</c:forEach>
+	</c:forEach> --%>
 	
 </body>
 </html>
