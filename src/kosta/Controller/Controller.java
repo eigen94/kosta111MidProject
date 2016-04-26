@@ -27,9 +27,11 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
-import kosta.action.UseCaseInsertAction;
+import kosta.action.UsecaseInsertAction;
 import kosta.action.UseCaseListAction;
 import kosta.action.memberNameOrEmailSearch;
+import kosta.action.UsecaseDiagramListAction;
+import kosta.action.UsecaseDiagramtAction;
 import kosta.action.projectDetailAction;
 //import kosta.useCaseAction.UseCaseListAction;
 //import kosta.useCaseAction.UseCasePrintAction;
@@ -170,6 +172,12 @@ public class Controller extends HttpServlet {
     	{
     		action = new memberRegister();
     		forward = action.execute(request, response);
+    	}else if(command.equals("usecaseDiagram.do")){
+    		action = new UsecaseDiagramtAction();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("usecaseDiagramList.do")){
+    		action = new UsecaseDiagramListAction();
+    		forward = action.execute(request, response);
     	}
     	else if(command.equals("memberNameOrEmailSearch.do"))
     	{
@@ -178,7 +186,7 @@ public class Controller extends HttpServlet {
     	}
     	else if(command.equals("useCaseInsert.do"))
     	{
-    		action = new UseCaseInsertAction();
+    		action = new UsecaseInsertAction();
     		forward = action.execute(request, response);
     	}
     	else if(command.equals("useCaseList.do"))
