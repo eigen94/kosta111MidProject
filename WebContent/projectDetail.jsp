@@ -135,13 +135,13 @@
 	      <!-- to projectDetail.do -->
 	        <form action="#" method="post" class="form-horizontal">
 		        <div class="form-group">
-	       			<label for="inputName" class="col-sm-3 control-label">체크리스트 이름</label>
-	   				<div class="col-sm-7">
+	       			<label for="inputName" class="col-sm-2 control-label">일정이름</label>
+	   				<div class="col-sm-10">
 						<input class="form-control" id="checkListName" type="text" name="check_name" size="20" placeholder="체크리스트 이름을 입력하세요"><br>
 					</div>
 					
-	       			<label for="inputStartDate" class="col-sm-3 control-label">시작일</label>
-	   				<div class="col-sm-7">
+	       			<label for="inputStartDate" class="col-sm-2 control-label">시작일</label>
+	   				<div class="col-sm-4">
 		                <div class='input-group date' id='datetimepicker1'>
 		                    <input type='text' id="checkListStartDate" class="form-control" name="check_start" value=""/>
 		                    <span class="input-group-addon">
@@ -150,17 +150,18 @@
 		                </div>
 					</div>
 					
-	       			<label for="inputEndDate" class="col-sm-3 control-label">종료일</label>
-	   				<div class="col-sm-7">
+	       			<label for="inputEndDate" class="col-sm-2 control-label">종료일</label>
+	   				<div class="col-sm-4">
 		                <div class='input-group date' id='datetimepicker2'>
 		                    <input type='text' id="checkListEndDate" class="form-control" name="check_end"/>
 		                    <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
 		                </div>
+		                <br>
 					</div>
-	       			<label for="inputPwdCheck" class="col-sm-3 control-label">일정타입</label>
-	   				<div class="col-sm-7">
+	       			<label for="inputPwdCheck" class="col-sm-2 control-label">일정타입</label>
+	   				<div class="col-sm-4">
 					  <select class="form-control" id="checkListCheckType" name="check_type">
 					    <option value="1">기능명세(usecase)</option>
 					    <option>기능명세(usecase diaram)</option>
@@ -171,15 +172,15 @@
 	   				
 						<!-- <input class="form-control" id="inputPwdCheck" type="text" name="check_type" size="20" placeholder="메모를 입력하세요"><br> -->
 					</div>
-	       			<label for="inputPhone" class="col-sm-3 control-label">담당자</label>
-	   				<div class="col-sm-7">
+	       			<label for="inputPhone" class="col-sm-2 control-label">담당자</label>
+	   				<div class="col-sm-4">
 						<input class="form-control" id="inputPhone" type="text" name="check_manager" size="20" placeholder="담당자를 입력하세요"><br>
 					</div>
 					<input type="hidden" id="checkListProjectId" name="check_projectId" value="${project.p_id }">
 		        
 		        </div>
 			  	<div class="form-group">
-			    	<div class="col-sm-offset-3 col-sm-9">
+			    	<div class="col-sm-offset-2 col-sm-10">
 			      		<button id="createCheckListBtn" class="btn btn-default" data-dismiss="modal">일정 생성</button>
 			    	</div>
 			  	</div>
@@ -334,7 +335,10 @@
 				},
 				editable: true,
 				eventLimit: true, // allow "more" link when too many events
-				events: checkList //ajax로 불러온 값을 넣어준다.
+				events: checkList, //ajax로 불러온 값을 넣어준다.
+			    eventClick: function() {//일정 클릭이벤트
+			        alert($(this).find('.fc-title').html());
+			    }
 			});
 		}//end of drawCalendar
 		
