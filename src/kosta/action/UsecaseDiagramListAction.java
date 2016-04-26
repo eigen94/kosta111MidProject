@@ -37,6 +37,7 @@ public class UsecaseDiagramListAction implements Action {
 			try {
 				jsonObj = (JSONObject)parser.parse(list.get(i));
 				System.out.println("s:"+jsonObj);
+				/*objArray=(JSONArray)jsonObj.get("jsonObj");*/
 				objArray.add(jsonObj);
 			} catch (Exception e) {
 				e.printStackTrace();

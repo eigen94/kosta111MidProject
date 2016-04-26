@@ -15,17 +15,25 @@
 			<button>+</button>
 		</div>
 		<span id="item">
-			<select name="select">
-				<option value="act">액터</option>
-				<option value="even">이벤트</option>
-			</select>
-			<input type="text" value="내용을 입력하세요.">
+			액터:&nbsp;<input type="text" class="act" value="내용을 입력하세요">		
 			<button>-</button>
 			<br>
 		</span>
 	</span>
 	<span id="field">
 	</span>
+	<div class id="plus_btn3">
+		<button>+</button>
+	</div>
+		<span id="item3">
+			이벤트:&nbsp;<input type="text" class="event" value="내용을 입력하세요">		
+			<button>-</button>
+			<br>
+		</span>
+	</span>
+	<span id="field3">
+	</span>
+	
 	
 		<div class id="plus_btn2">
 			<button>+</button>

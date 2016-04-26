@@ -15,7 +15,7 @@
 	<h3>usecaseDiagram</h3>
 <%-- ${objArray[0].act } --%><br>
 
-<%
+<%-- <%
 JSONArray list = new JSONArray();
 list = (JSONArray)request.getAttribute("objArray");
 for(int i=0; i<list.size(); i++)
@@ -23,20 +23,27 @@ for(int i=0; i<list.size(); i++)
 	JSONObject obj = new JSONObject();
 	obj = (JSONObject)list.get(i);
 	out.println("액터"+obj.get("act")+"<br>");
-	out.println("이벤트"+obj.get("even")+"<br>");
+	out.println("이벤트"+obj.get("event")+"<br>");
 	out.println("관계"+obj.get("relation")+"<br>");
 	out.print("<br>");
 }
-%>
-<%-- <c:forEach  var="obj" items="${objArray } ">
-${obj.act }<br>
+%> --%>
+<%-- ${objArray[1].act[0].act } --%>
+<c:forEach  var="obj" items="${objArray }">
+   <c:forEach var="object" items="${obj }">
 
-	액터: &nbsp;${obj.act }<Br>
-	이벤트: &nbsp;${obj.even }<br>
-	릴레이션: &nbsp;${obj.relation } 
+   	${object}<br>
+   	
 
+</c:forEach>
+<br> 
 	
-	</c:forEach>  --%>
+<%-- 	액터: &nbsp;${obj.act.act }<Br>
+	
+	이벤트: &nbsp;${obj.event.event }<br>
+	릴레이션: &nbsp;${obj.relation }  --%>
+
+ 	</c:forEach> 
 <br><br>
 </body>
 </html>
