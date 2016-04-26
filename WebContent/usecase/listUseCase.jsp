@@ -8,21 +8,61 @@
 <title>Insert title here</title>
 <script src="../javascriptFiles/jquery-2.2.3.min.js" type="text/javascript"></script>
 <script src="../javascriptFiles/usecase.js" type="text/javascript"></script>
+<link rel="stylesheet" href="../cssFiles/tmp.css" type="text/css" />
 </head>
 <body>
-	<div class="package">
-		<button> 나와라 </button>
-			<c:forEach var="obj" items="${jsonList }">
-				<hr>
-				${obj.outline }, 
-				${obj.actor }, 
-				${obj.conditionF }, 
-				${obj.event }, 
-				${obj.eventDetail }, 
-				${obj.conditionB }, 
-				${obj.claim }, 
-				<hr>
-			</c:forEach>
-	</div>
+	<div class="div_table">
+    	<div class="table_tr">
+        	<div class="tbl_th">개요</div>
+        	<div class="tbl_td">${jsonObj.outline }</div>
+    	</div>
+    	<div class="table_tr">
+        	<div class="tbl_th">관련 액터</div>
+        	<div class="tbl_td">${jsonObj.actor }</div>
+    	</div>
+    	<div class="table_tr">
+        	<div class="tbl_th">선행 조건</div>
+        	<div class="tbl_td">${jsonObj.conditionF }</div>
+    	</div>
+    	<div class="table_tr">
+        	<div class="tbl_th">이벤트 흐름</div>
+        	<div class="tbl_td">${jsonObj.event }</div>
+    	</div>
+    	<div class="table_tr">
+        	<div class="tbl_th">후행조건</div>
+        	<div class="tbl_td">${jsonObj.conditionB }</div>
+    	</div>
+    	<div class="table_tr">
+        	<div class="tbl_th">기타 요구사항</div>
+        	<div class="tbl_td">${jsonObj.claim }</div>
+    	</div>
+    	<div class="table_tr">
+        	<div class="tbl_th">개발 담당자</div>
+        	<div class="tbl_td">
+			</div>
+    	</div>
+    </div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

@@ -12,6 +12,7 @@ import org.json.simple.parser.JSONParser;
 
 import kosta.action.Action;
 import kosta.action.ActionForward;
+import kosta.model.CheckList;
 import kosta.service.Service;
 
 public class UseCaseListAction implements Action{
@@ -24,25 +25,17 @@ public class UseCaseListAction implements Action{
 		forward.setPath("listUseCase.jsp");
 		forward.setRedirect(false);
 		
+		int check_id = Integer.parseInt(request.getParameter("check_id"));
 		Service service = Service.getInstance();
-		
-		List<String> list = service.useCaseListService();
-		List<JSONObject> jsonList = new ArrayList<JSONObject>();
-		
+//		CheckList checkList = service.useCaseListService(check_id);
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj=null;
-		for(int i=0; i<list.size(); i++)
-		{			
-			try {
-				jsonObj = (JSONObject)parser.parse(list.get(i));
-				jsonList.add(jsonObj);
-			} catch (Exception e) {			
-				e.printStackTrace();
-			}
+		try {
+//			jsonObj = (JSONObject)parser.parse(checkList.getCheck_content());
+		} catch (Exception e) {			
+			e.printStackTrace();
 		}
-		System.out.println(jsonList);
-		request.setAttribute("jsonList", jsonList);
-		
+		request.setAttribute("jsonObj", jsonObj);
 		return forward;
 	}
 

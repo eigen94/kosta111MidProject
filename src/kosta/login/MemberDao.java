@@ -1,8 +1,13 @@
 package kosta.login;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 import kosta.loginMapper.loginMapper;
+
+
+
 
 
 
@@ -75,5 +80,20 @@ public class MemberDao {
 			sqlSession.close();
 		}
 		return re;
+	}
+
+	public List<Member> memberNameOrEmailSearch(String searchKey) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<Member> list = new ArrayList<Member>();
+		try {
+			list = sqlSession.getMapper(loginMapper.class).memberNameOrEmailSearch(searchKey);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return list;
+		
 	}
 }

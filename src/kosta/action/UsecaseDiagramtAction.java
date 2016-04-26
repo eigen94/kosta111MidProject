@@ -3,11 +3,9 @@ package kosta.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import kosta.action.Action;
-import kosta.action.ActionForward;
 import kosta.service.Service;
 
-public class UseCaseInsertAction implements Action {
+public class UsecaseDiagramtAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
@@ -21,7 +19,7 @@ public class UseCaseInsertAction implements Action {
 		
 		String check_content = json;
 		
-		service.useCaseInsertService(check_content);
+		service.usecaseService(check_content);
 		return null;
 	}
 

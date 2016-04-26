@@ -6,6 +6,7 @@ import java.util.List;
 
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
+import kosta.usecaseDiagramMapper.usecaseDiagramMapper;
 import kosta.usecaseMapper.usecaseMapper;
 
 import org.apache.ibatis.io.Resources;
@@ -242,20 +243,20 @@ public class Dao {
 		if(sqlSession.getMapper(ProjectBoardMapper.class).dBId() == null)
 		{
 			sqlSession.close();
-			return id;
+			return id+1;
 		}
 		else
 		{	
-			id=sqlSession.getMapper(ProjectBoardMapper.class).dBId();
+			id=sqlSession.getMapper(ProjectBoardMapper.class).dBId()+1;
 			sqlSession.close();
 			return id;
 		}
 	}
 
-	public List<String> dBList(int id) {
+	public List<DB> dBList(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<String> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
+		List<DB> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
 		System.out.println(list);
 		sqlSession.close();
 		if(list == null){
@@ -332,10 +333,66 @@ public class Dao {
 		
 	}
 
-	public List<String> useCaseList() {
+	public void usecaseDiagram(String json) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re =-1;
+		
+		try {
+			re=sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagram(json);
+			
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		
+	}
+
+	public void updateDB(DB db) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<String> list = sqlSession.getMapper(usecaseMapper.class).useCaseList();
+		
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).updateDB(db);
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	public void linkDB(DB db) {
+			SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).linkDB(db);
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	public CheckList useCaseList(int check_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		CheckList checkList = sqlSession.getMapper(usecaseMapper.class).useCaseList(check_id);
+		return checkList;
+	}
+
+	public List<String> usecaseDiagramList() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		List<String> list = sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagramList();
 		return list;
 	}
 

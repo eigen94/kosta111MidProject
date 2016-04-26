@@ -11,8 +11,8 @@
 	
 	</insert>
 	
-	<select id="useCaseList" resultType="String">
-		SELECT CHECK_CONTENT FROM CHECKLIST
+	<select id="useCaseList" resultType="CheckList">
+		SELECT * FROM CHECKLIST WHERE CHECK_ID = #{check_id }
 	</select>
 	
 </mapper>

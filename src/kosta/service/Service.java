@@ -49,9 +49,8 @@ public class Service {
 	}
 
 	public int checkCreate(ProjectDetail detail) {
-		int re = 0;
-		re = dao.checkCreate(detail);
-		return re;
+		return dao.checkCreate(detail);
+		
 	}
 
 	public List<ProjectDetail> detailListService(int id) {
@@ -78,7 +77,7 @@ public class Service {
 		return dao.dBId();
 	}
 
-	public List<String> dBList(int id) {
+	public List<DB> dBList(int id) {
 		
 		return dao.dBList(id);
 	}
@@ -98,13 +97,33 @@ public class Service {
 		return dao.umlList();
 	}
 	
-	public void useCaseInsertService(String json) {
-		dao.useCaseInsert(json);
+	
+
+	public void usecaseService(String json) {
+//		dao.usecaseInsert(json);
 		
 	}
 
-	public List<String> useCaseListService() {
-		return dao.useCaseList();
+	public void usecaseDiagramService(String json) {
+		dao.usecaseDiagram(json);
+		
+	}
+
+/*	public List<String> getUseCaseService() {
+		return dao.getUseCase();
+	}
+*/
+	public List<String> usecaseDiagramListService() {
+		return dao.usecaseDiagramList();
+	}
+
+	public void updateDB(DB db) {
+		dao.updateDB(db);
+		
+	}
+
+	public void linkDB(DB db) {
+		dao.linkDB(db);
 	}
 }
 
