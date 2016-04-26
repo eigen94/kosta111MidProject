@@ -11,11 +11,6 @@
 <link rel="stylesheet" href="../cssFiles/tmp.css" type="text/css" />
 </head>
 <body>
-	<div class="package">
-		<input type="text" name="check_id"> 번  
-		<button> 나와라 </button><br><br>
-	</div>
-	
 	<div class="div_table">
     	<div class="table_tr">
         	<div class="tbl_th">개요</div>

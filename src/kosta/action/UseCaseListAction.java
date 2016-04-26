@@ -27,7 +27,6 @@ public class UseCaseListAction implements Action{
 		
 		int check_id = Integer.parseInt(request.getParameter("check_id"));
 		Service service = Service.getInstance();
-		
 		CheckList checkList = service.useCaseListService(check_id);
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj=null;
@@ -37,7 +36,6 @@ public class UseCaseListAction implements Action{
 			e.printStackTrace();
 		}
 		request.setAttribute("jsonObj", jsonObj);
-		
 		return forward;
 	}
 

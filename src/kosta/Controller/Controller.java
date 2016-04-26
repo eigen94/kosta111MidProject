@@ -27,6 +27,8 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
+import kosta.action.UseCaseInsertAction;
+import kosta.action.UseCaseListAction;
 import kosta.action.memberNameOrEmailSearch;
 import kosta.action.projectDetailAction;
 //import kosta.useCaseAction.UseCaseListAction;
@@ -174,16 +176,16 @@ public class Controller extends HttpServlet {
     		action = new memberNameOrEmailSearch();
     		forward = action.execute(request, response);
     	}
-//    	else if(command.equals("useCaseInsert.do"))
-//    	{
-//    		action = new UseCaseInsertAction();
-//    		forward = action.execute(request, response);
-//    	}
-//    	else if(command.equals("useCaseList.do"))
-//    	{
-//    		action = new UseCaseListAction();
-//    		forward = action.execute(request, response);
-//    	}
+    	else if(command.equals("useCaseInsert.do"))
+    	{
+    		action = new UseCaseInsertAction();
+    		forward = action.execute(request, response);
+    	}
+    	else if(command.equals("useCaseList.do"))
+    	{
+    		action = new UseCaseListAction();
+    		forward = action.execute(request, response);
+    	}
     	
     
     	
