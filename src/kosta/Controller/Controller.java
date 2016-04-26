@@ -12,30 +12,31 @@ import javax.servlet.http.HttpServletResponse;
 import kosta.action.Action;
 import kosta.action.ActionForward;
 import kosta.action.CheckCreate;
-import kosta.action.CheckDetail;
 import kosta.action.CheckDelete;
+import kosta.action.CheckDetail;
 import kosta.action.CheckListList;
 import kosta.action.CheckUpdate;
 import kosta.action.DataUpdate;
 import kosta.action.DateCreate;
 import kosta.action.DateXY;
 import kosta.action.Detailview;
+import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
-import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
-import kosta.action.UseCaseInsertAction;
 import kosta.action.UseCaseListAction;
-import kosta.action.memberNameOrEmailSearch;
-import kosta.action.projectDetailAction;
+import kosta.action.UsecaseDiagramListAction;
+import kosta.action.UsecaseDiagramtAction;
 //import kosta.useCaseAction.UseCaseListAction;
 //import kosta.useCaseAction.UseCasePrintAction;
 import kosta.action.memberLoginOk;
 import kosta.action.memberLogoutOk;
+import kosta.action.memberNameOrEmailSearch;
 import kosta.action.memberRegister;
+import kosta.action.projectDetailAction;
 
 
 @WebServlet("*.do")
@@ -117,6 +118,7 @@ public class Controller extends HttpServlet {
     	}
     	else if(command.equals("data.do"))
     	{
+    		System.out.println("------------");
     		action = new DateCreate();
     		forward = action.execute(request, response);
     	}
@@ -170,17 +172,23 @@ public class Controller extends HttpServlet {
     	{
     		action = new memberRegister();
     		forward = action.execute(request, response);
+    	}else if(command.equals("usecaseDiagram.do")){
+    		action = new UsecaseDiagramtAction();
+    		forward = action.execute(request, response);
+    	}else if(command.equals("usecaseDiagramList.do")){
+    		action = new UsecaseDiagramListAction();
+    		forward = action.execute(request, response);
     	}
     	else if(command.equals("memberNameOrEmailSearch.do"))
     	{
     		action = new memberNameOrEmailSearch();
     		forward = action.execute(request, response);
     	}
-    	else if(command.equals("useCaseInsert.do"))
+    /*	else if(command.equals("useCaseInsert.do"))
     	{
-    		action = new UseCaseInsertAction();
+    		action = new UsecaseInsertAction();
     		forward = action.execute(request, response);
-    	}
+    	}*/
     	else if(command.equals("useCaseList.do"))
     	{
     		action = new UseCaseListAction();

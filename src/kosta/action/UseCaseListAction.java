@@ -27,11 +27,11 @@ public class UseCaseListAction implements Action{
 		
 		int check_id = Integer.parseInt(request.getParameter("check_id"));
 		Service service = Service.getInstance();
-		CheckList checkList = service.useCaseListService(check_id);
+//		CheckList checkList = service.useCaseListService(check_id);
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj=null;
 		try {
-			jsonObj = (JSONObject)parser.parse(checkList.getCheck_content());
+//			jsonObj = (JSONObject)parser.parse(checkList.getCheck_content());
 		} catch (Exception e) {			
 			e.printStackTrace();
 		}
