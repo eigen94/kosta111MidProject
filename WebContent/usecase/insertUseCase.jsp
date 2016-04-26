@@ -52,7 +52,11 @@
 				</div>
 				<div class="mid_position">
 					<h3>기능명세 - Use_case</h3>
+<<<<<<< HEAD
 					<div id="selector">
+=======
+					<div id="select">
+>>>>>>> refs/heads/usecaseview
 						<select name="select">
     						<option value="outline">개요</option>
     						<option value="actor">관련엑터</option>
