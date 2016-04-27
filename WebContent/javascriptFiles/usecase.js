@@ -60,7 +60,6 @@ $(function() {
 			},
 			dataType: "text",
 			success: function(data){
-				alert("뭐야");
 			},error: function(data){
 				alert("실패");
 			}

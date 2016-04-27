@@ -99,8 +99,8 @@ public class Service {
 	
 	
 
-	public void usecaseService(String json) {
-//		dao.usecaseInsert(json);
+	public void useCaseInsertService(String json) {
+		dao.useCaseInsert(json);
 		
 	}
 
