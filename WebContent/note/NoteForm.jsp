@@ -1,14 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	request.setCharacterEncoding("utf-8");
-	if(request.getParameter("re")!=null){
-		String str = request.getParameter("re");
-		request.setAttribute("str", str);
-	}
-	
 %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,26 +13,36 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <script  src="note.js"></script>
+<script type="text/javascript">
+function receive(email) {
+	$('.receive input').val(email);
+}
+</script>
 </head>
 <body>
+<form action="noteInsert.do" id="formTag">
 	<div class="noteForm">
 		<div class="hidden_text">
-			<input type="text" name="n_sender" value="1"> <- 보낸놈 
+			<input type="text" name="n_sender" value="1"> <- 보낸놈(임시)
 		</div>
 		<div class="input_text">
-			<form action="" method="post" name="frmNewUser">
-				<div class="title">제목: <input type="text" name="n_title"></div>
-			</form>
+			<div class="title">제목: <input type="text" name="n_title"></div>
 			<div class="receive">
-				받는사람: <span id="n_receive"></span>
+				받는사람: <input type="text" name="n_receive" >
 				<button class="searchOpen"> 이메일 검색 </button>
 			</div>
 			<div class="content">내용 : <textarea name="n_content"></textarea></div>
 		</div>
 	</div>
-	<div class="box">
-		<button>쪽지함</button>
+	<div class="bottom">
+		<div class="box">
+			<button>쪽지함</button>
+		</div>
+		<div class="send">
+			<input type="submit" value="전송">
+		</div>
 	</div>
+</form>	
 	
 	
 	<%-- <!-- Modal -->

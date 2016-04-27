@@ -133,6 +133,10 @@ public class Service {
 	public List<String> searchIdService(String id) {
 		return dao.searchId(id);
 	}
+
+	public static int getEmailService(String receive) {
+		return dao.getEmail(receive);
+	}
 	
 }
 

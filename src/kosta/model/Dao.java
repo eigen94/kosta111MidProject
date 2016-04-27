@@ -436,6 +436,12 @@ public class Dao {
 		return sqlSession.getMapper(NoteMapper.class).searchId(id);
 	}
 
+	public int getEmail(String receive) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		return sqlSession.getMapper(NoteMapper.class).getEmail(receive);
+	}
+
 	
 }
 

@@ -19,9 +19,21 @@
 	<select id="searchId" parameterType="String" resultType="String">
 		SELECT m_email
 		FROM MEMBER
-		WHERE m_email LIKE #{id}
-	
+		WHERE m_email LIKE #{id }
 	</select>
 
+	<select id="getEmail" parameterType="String" resultType="int">
+		SELECT M_ID
+		FROM MEMBER 
+		WHERE M_EMAIL = #{receive }
+	</select>
 	
 </mapper>
+
+
+
+
+
+
+
+
