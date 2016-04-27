@@ -82,25 +82,7 @@ $(function() {
 	
 	//미리보기
 	$('.active a').on('click', function(){
-		var jsonObj = json();
-		var finalJsonObj = JSON.stringify(jsonObj);
-		
-		
-		/*$.ajax({
-			type:"post",
-			url:"useCaseList.do",
-			data:{
-				json:finalJsonObj
-			},
-			dataType: "text",
-			success: function(data){
-			},error: function(data){
-				alert("실패");
-			}
-		})	*/
-			
-		
-		var textAreaStr = new Array();
+		$('#caseview b').html('');
 		//개요와 엑터
 		$('#caseview b').eq(0).html($('.top_position textarea').eq(0).val());
 		$('#caseview b').eq(1).html($('.top_position textarea').eq(1).val());
@@ -118,13 +100,6 @@ $(function() {
 			}
 		}		//반복문 종료
 		
-		for (var i = 0; i < textAreaStr.length; i++) {
-			alert(textAreaStr[i]);
-		}
-		
-		
-		
-			
 	})
 	
 	
