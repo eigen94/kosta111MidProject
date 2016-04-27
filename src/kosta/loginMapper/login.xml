@@ -18,7 +18,7 @@
 	select m_id,m_name from member Where m_email = #{m_email}
 	</select>
 	<select id="memberNameOrEmailSearch" parameterType="String" resultType="Member">
-	select * from member Where m_email Like '%'||#{searchKey}||'%'
+	select * from member Where m_email LIKE '%'||#{searchKey}||'%' OR m_name LIKE '%'||#{searchKey}||'%'
 	</select>
 	
 </mapper>
