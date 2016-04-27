@@ -22,7 +22,6 @@ $(function() {
 	
 	//json
 	function json() {
-		var jsonArray = new Array();
 		var jsonObj = new Object();
 		
 		//개요와 엑터
@@ -34,24 +33,24 @@ $(function() {
 			if($('select').eq(i).val() == 'conditionF'){
 				jsonObj.conditionF = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'event'){
-			jsonObj.event = $('.mid_position textarea').eq(i).val();
+				jsonObj.event = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'eventDetail'){
 				jsonObj.eventDetail = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'conditionB'){
-			jsonObj.conditionB = $('.mid_position textarea').eq(i).val();
+				jsonObj.conditionB = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'claim'){
 				jsonObj.claim = $('.mid_position textarea').eq(i).val();
 			}
 		}		//반복문 종료
 		
-		jsonArray.push(jsonObj);
-		
-		var finalJsonObj = JSON.stringify(jsonObj);
-		return finalJsonObj;
+		return jsonObj;
 	}
 	
 	// 저장
-	function save(finalJsonObj) {
+	function save(jsonObj) {
+		var finalJsonObj = JSON.stringify(jsonObj);
+		return null;
+		
 		$.ajax({
 			type:"post",
 			url:"useCaseInsert.do",
@@ -83,28 +82,50 @@ $(function() {
 	
 	//미리보기
 	$('.active a').on('click', function(){
+		var jsonObj = json();
+		var finalJsonObj = JSON.stringify(jsonObj);
 		
-		var str = new Array();
 		
-		for(var i=0;i<2;i++){
-			str.push($('.modal-body textarea').eq(i).val());
-		}
-		for(var i=2;i<count+2;i++){
-			if($('select').eq(i).val() == 'conditionF'){
-				jsonObj.conditionF = $('.mid_position textarea').eq(i).val();
-			}else if($('select').eq(i).val() == 'event'){
-			jsonObj.event = $('.mid_position textarea').eq(i).val();
-			}else if($('select').eq(i).val() == 'conditionB'){
-			jsonObj.conditionB = $('.mid_position textarea').eq(i).val();
-			}else if($('select').eq(i).val() == 'claim'){
-				jsonObj.claim = $('.mid_position textarea').eq(i).val();
+		/*$.ajax({
+			type:"post",
+			url:"useCaseList.do",
+			data:{
+				json:finalJsonObj
+			},
+			dataType: "text",
+			success: function(data){
+			},error: function(data){
+				alert("실패");
 			}
+		})	*/
+			
+		
+		var textAreaStr = new Array();
+		//개요와 엑터
+		$('#caseview b').eq(0).html($('.top_position textarea').eq(0).val());
+		$('#caseview b').eq(1).html($('.top_position textarea').eq(1).val());
+		
+		//반복문 시작
+		for(var i=0;i<count;i++){
+			if($('select').eq(i).val() == 'conditionF'){
+				$('#caseview b').eq(2).html($('.mid_position textarea').eq(i).val());
+			}else if($('select').eq(i).val() == 'event'){
+				$('#caseview b').eq(3).html($('.mid_position textarea').eq(i).val());
+			}else if($('select').eq(i).val() == 'conditionB'){
+				$('#caseview b').eq(4).html($('.mid_position textarea').eq(i).val());
+			}else if($('select').eq(i).val() == 'claim'){
+				$('#caseview b').eq(5).html($('.mid_position textarea').eq(i).val());
+			}
+		}		//반복문 종료
+		
+		for (var i = 0; i < textAreaStr.length; i++) {
+			alert(textAreaStr[i]);
 		}
 		
-		alert(str[0] + ", " + str[1] + ", " + str[2]);
-		alert(str[3] + ", " + str[4] + ", " + str[5]);
+		
+		
+			
 	})
-	
 	
 	
 	
