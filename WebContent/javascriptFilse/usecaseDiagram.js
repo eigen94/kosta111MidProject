@@ -107,6 +107,25 @@ $(function() {
 		
 	})
 
+	$("#list button").click(function(){
+		var insertJsonObj = JSON.stringify(jsonObj);
+		console.log(insertJsonObj)
+		
+		$.ajax({
+			type:"post",
+			url:"usecaseDiagram.do",
+			data:{
+				json:insertJsonObj
+			},
+			dataType:"text",
+			success:function(data){
+				location.href="selectDiagram.do"
+			},error:function(data){
+				alert("실패");
+			}
+			
+		})//ajax 이거 끝
+	});
 	
 	$("#complete").click(function(){
 		var finalJsonObj = JSON.stringify(totalObj);
