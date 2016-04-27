@@ -1,4 +1,4 @@
-<%@page import="java.util.List"%>
+<%-- <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.apache.catalina.Session"%>
 <%@page import="kosta.model.Note"%>
@@ -49,4 +49,4 @@
 </table>
 
 </body>
-</html>
+</html> --%>
