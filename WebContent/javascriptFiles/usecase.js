@@ -20,8 +20,8 @@ $(function() {
 		count--;
 	}
 	
-	// 저장
-	function save() {
+	//json
+	function json() {
 		var jsonArray = new Array();
 		var jsonObj = new Object();
 		
@@ -31,10 +31,6 @@ $(function() {
 		
 		//반복문 시작
 		for(var i=0;i<count;i++){
-			/*if($('select').eq(i).val() == 'outline'){
-			}else if($('select').eq(i).val() == 'actor'){
-				jsonObj.actor = $('.mid_position input').eq(i).val();
-			}else*/
 			if($('select').eq(i).val() == 'conditionF'){
 				jsonObj.conditionF = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'event'){
@@ -51,7 +47,11 @@ $(function() {
 		jsonArray.push(jsonObj);
 		
 		var finalJsonObj = JSON.stringify(jsonObj);
-		
+		return finalJsonObj;
+	}
+	
+	// 저장
+	function save(finalJsonObj) {
 		$.ajax({
 			type:"post",
 			url:"useCaseInsert.do",
@@ -60,6 +60,7 @@ $(function() {
 			},
 			dataType: "text",
 			success: function(data){
+				alert("뭐야");
 			},error: function(data){
 				alert("실패");
 			}
@@ -77,8 +78,8 @@ $(function() {
 
 	// 저장->save()
 	$('.save button').on('click', function() {
-//		save();
-		location.href= "useCaseList.do?check_id="+ $('.package input').val()
+		save(json());
+//		location.href= "useCaseList.do?check_id="+ $('.package input').val()
 	});
 	
 	//미리보기
@@ -86,13 +87,10 @@ $(function() {
 		
 		var str = new Array();
 		
-		/*str.push($('.modal-body textarea').eq(0).val());
-		str.push($('.modal-body textarea').eq(1).val());*/
-		
-		for(var i=0;i<10;i++){
+		for(var i=0;i<2;i++){
 			str.push($('.modal-body textarea').eq(i).val());
 		}
-		/*for(var i=0;i<count;i++){
+		for(var i=2;i<count+2;i++){
 			if($('select').eq(i).val() == 'conditionF'){
 				jsonObj.conditionF = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'event'){
@@ -102,11 +100,11 @@ $(function() {
 			}else if($('select').eq(i).val() == 'claim'){
 				jsonObj.claim = $('.mid_position textarea').eq(i).val();
 			}
-		}*/
+		}
 		
 		
-		alert(str[0] + ", " + str[1] + ", " + str[3]);
-		alert(str[4] + ", " + str[5] + ", " + str[6]);
+		alert(str[0] + ", " + str[1] + ", " + str[2]);
+		alert(str[3] + ", " + str[4] + ", " + str[5]);
 	})
 	
 	
