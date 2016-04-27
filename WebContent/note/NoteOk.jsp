@@ -5,7 +5,7 @@
     request.setCharacterEncoding("utf-8");
     %>
     
-    <jsp:useBean id="note" class="kosta.note.Note"></jsp:useBean>
+    <jsp:useBean id="note" class="kosta.model.Note"></jsp:useBean>
 	<jsp:setProperty property="*" name="note"/>
 	
 	<%

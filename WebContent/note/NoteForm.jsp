@@ -9,7 +9,7 @@
 <body>
 	<form action="noteInsert.do" method="post">
 		<input type="hidden" name="n_id">
-		<input type="hidden" name="n_sender">
+		<input type="hidden" name="n_sender" value="1">
 		제목: &nbsp;<input type="text" name="n_title"><br>
 		받는사람: &nbsp;<input type="text" name="n_receive"><Br>
 		내용 <textarea name="n_content"></textarea><br><br>

@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="org.apache.catalina.Session"%>
-<%@page import="kosta.note.Note"%>
+<%@page import="kosta.model.Note"%>
 <%@page import="kosta.note.NoteService"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>

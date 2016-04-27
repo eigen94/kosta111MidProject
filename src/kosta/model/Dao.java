@@ -2,8 +2,10 @@ package kosta.model;
 
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import kosta.noteMapper.noteMapper;
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
 import kosta.usecaseDiagramMapper.usecaseDiagramMapper;
@@ -394,6 +396,38 @@ public class Dao {
 		
 		List<String> list = sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagramList();
 		return list;
+	}
+	
+	public int insertNote(Note note) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re=-1;
+		try {
+			re=sqlSession.getMapper(noteMapper.class).insertNote(note);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return re;
+	}
+
+
+	public List<Note> selectNote(int n_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<Note> note = new ArrayList<Note>();
+		try {
+			note = sqlSession.getMapper(noteMapper.class).selectNote(n_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return note;
 	}
 
 	
