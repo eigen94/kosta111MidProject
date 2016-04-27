@@ -3,13 +3,15 @@ $(function() {
 	count2 = 1;
 	count3=1;
 	var jsonObj = new Object();
+	var jsonRe = new Object();
+	var totalObj = new Object();
 	//jsonObj.relation = new Array();
 
 	// 콜릭하면 내용을 지운다.
 	$('input').on('click', function() {
 		$(this).val('');
 	});
-	// select창 1줄 추가
+
 	function addRow() {
 		var span = document.createElement('span');
 		span.innerHTML = document.getElementById('item').innerHTML;
@@ -81,46 +83,33 @@ $(function() {
 			relArr.push(jsonObjRe);
 	
 		}
-		jsonObj.relation = relArr;
+		//jsonObj.relation = relArr;
+		jsonRe.relation = relArr;
 		
-	var obj = jsonObj;
+		totalObj.jsonObj = (jsonObj);
+		totalObj.jsonRe = (jsonRe);
+		
+	var obj = totalObj;
+	
 	var str=""
 		for(var i=0; i<count; i++){
-			str += "actor: "+obj.act[i].act+"<br>";
+			str += "actor: "+obj.jsonObj.act[i].act+"<br>";
 		}
 		for(var i=0; i<count3; i++){
-			str += "event: " + obj.event[i].event+"<br>";
+			str += "event: " + obj.jsonObj.event[i].event+"<br>";
 		}
 
 		for(var j=0; j<count2; j++){	
-			str += "Relation start: " +obj.relation[j].start+" end: "+obj.relation[j].end+" value: "+obj.relation[j].value;
+			str += "Relation start: " +obj.jsonRe.relation[j].start+" end: "+obj.jsonRe.relation[j].end+" value: "+obj.jsonRe.relation[j].value;
 		}
 		
 		$("#list").append(str);
 		
 	})
-	$("#list button").click(function(){
-		var insertJsonObj = JSON.stringify(jsonObj);
-		console.log(insertJsonObj)
-		
-		$.ajax({
-			type:"post",
-			url:"usecaseDiagram.do",
-			data:{
-				json:insertJsonObj
-			},
-			dataType:"text",
-			success:function(data){
-				location.href="selectDiagram.do"
-			},error:function(data){
-				alert("실패");
-			}
-			
-		})//ajax 이거 끝
-	});
+
 	
 	$("#complete").click(function(){
-		var finalJsonObj = JSON.stringify(jsonObj);
+		var finalJsonObj = JSON.stringify(totalObj);
 		console.log(finalJsonObj);
 		
 		$.ajax({
