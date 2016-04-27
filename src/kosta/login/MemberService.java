@@ -60,7 +60,6 @@ public class MemberService {
 	
 	public List<Member> memberNameOrEmailSearch(String searchKey){
 		List<Member> list = dao.memberNameOrEmailSearch(searchKey);
-		
 		return list;
 	}
 
