@@ -1,8 +1,5 @@
-<%-- <%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="org.apache.catalina.Session"%>
 <%@page import="kosta.model.Note"%>
-<%@page import="kosta.note.NoteService"%>
+
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -13,13 +10,14 @@
     String id = request.getParameter("n_id");
     int n_id =1;
     
-  /*   if(id != null){
+ 	if(id != null){
     	n_id = Integer.parseInt(id);
-    }  */ 
-    NoteService service = NoteService.getInsetance();
+    } 
+ 	System.out.println(n_id);
+   /*  NoteService service = NoteService.getInsetance();
     List<Note> note = new ArrayList<Note>();
    	note = service.selectNoteService(n_id);
-   	request.setAttribute("note", note);
+   	request.setAttribute("note", note); */
     %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -49,4 +47,4 @@
 </table>
 
 </body>
-</html> --%>
+</html>

@@ -129,6 +129,10 @@ public class Service {
 	public List<Note> noteSelectService(int n_id){
 		return dao.selectNote(n_id);
 	}
+
+	public List<String> searchIdService(String id) {
+		return dao.searchId(id);
+	}
 	
 }
 

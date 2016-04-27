@@ -26,6 +26,7 @@ import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
 import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
+import kosta.action.SearchIdAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
 import kosta.action.UseCaseInsertAction;
@@ -136,7 +137,10 @@ public class Controller extends HttpServlet {
 		} else if (command.equals("noteInsert.do")) {
 			action = new NoteInsertAction();
 			forward = action.execute(request, response);
-		}
+		}  else if (command.equals("searchId.do")) {
+			action = new SearchIdAction();
+			forward = action.execute(request, response);
+		} 
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

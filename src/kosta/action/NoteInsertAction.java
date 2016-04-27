@@ -23,6 +23,7 @@ public class NoteInsertAction implements Action{
 		String n_content = request.getParameter("n_content");
 		int n_sender = Integer.parseInt(request.getParameter("n_sender"));
 		int n_receive = Integer.parseInt(request.getParameter("n_receive"));
+		
 		Note note = new Note(n_title, n_content, n_sender, n_receive);
 		Service service = Service.getInstance();
 		service.noteInsertService(note);

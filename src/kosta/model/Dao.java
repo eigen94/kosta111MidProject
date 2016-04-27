@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import kosta.noteMapper.noteMapper;
+import kosta.noteMapper.NoteMapper;
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
 import kosta.usecaseDiagramMapper.usecaseDiagramMapper;
@@ -402,7 +402,7 @@ public class Dao {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re=-1;
 		try {
-			re=sqlSession.getMapper(noteMapper.class).insertNote(note);
+			re=sqlSession.getMapper(NoteMapper.class).insertNote(note);
 			if(re>0){
 				sqlSession.commit();
 			}else{
@@ -421,13 +421,19 @@ public class Dao {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		List<Note> note = new ArrayList<Note>();
 		try {
-			note = sqlSession.getMapper(noteMapper.class).selectNote(n_id);
+			note = sqlSession.getMapper(NoteMapper.class).selectNote(n_id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			sqlSession.close();
 		}
 		return note;
+	}
+
+	public List<String> searchId(String id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		return sqlSession.getMapper(NoteMapper.class).searchId(id);
 	}
 
 	
