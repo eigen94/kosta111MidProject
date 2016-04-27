@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kosta.messengerMapper.MessengerMapper">
+<cache/>
+	<insert id="messengerInsert" parameterType="Messenger">
+		insert into Msg
+			(msg_id, msg_content, msg_sender, msg_date, msg_projectid)
+			values(
+			NVL((select max(msg_id) from msg)+1,0), #{msg_content},#{msg_sender},SYSDATE,#{msg_projectid} 
+			)
+	</insert>
+	
+</mapper>
+
+
+
+
+
+
+
+

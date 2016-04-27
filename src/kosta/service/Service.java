@@ -137,6 +137,11 @@ public class Service {
 	public static int getEmailService(String receive) {
 		return dao.getEmail(receive);
 	}
+
+	public int messengerInsert(int sender, int projectId, String msg) {
+		System.out.println("hi");
+		return dao.messengerInsert(sender, projectId, msg);
+	}
 	
 }
 

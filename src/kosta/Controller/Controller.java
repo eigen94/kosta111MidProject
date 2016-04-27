@@ -39,6 +39,7 @@ import kosta.action.memberLoginOk;
 import kosta.action.memberLogoutOk;
 import kosta.action.memberNameOrEmailSearch;
 import kosta.action.memberRegister;
+import kosta.action.messengerInsert;
 import kosta.action.projectDetailAction;
 
 @WebServlet("*.do")
@@ -140,7 +141,10 @@ public class Controller extends HttpServlet {
 		}  else if (command.equals("searchId.do")) {
 			action = new SearchIdAction();
 			forward = action.execute(request, response);
-		} 
+		} else if (command.equals("messengerInsert.do")){
+			action = new messengerInsert();
+			forward = action.execute(request, response);
+		}
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

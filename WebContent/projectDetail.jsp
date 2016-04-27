@@ -111,7 +111,7 @@
     </div><!-- /.container -->
 
 	<!-- messenger -->
-	<!-- 
+
 	<div class="" id="messenger" style="max-height: 305px;left: auto; right: 0; bottom: 0; position: absolute;">
 		<h4>매신저</h4>
 	    <fieldset>
@@ -122,7 +122,7 @@
     	</fieldset>
 	</div>
 
- -->	
+	
 	<!-- Modal -->
 
 	<!-- checkCreateModal -->
@@ -192,7 +192,9 @@
 	  </div>
 	</div><!--end of checkCreateModal -->
 	
- 
+ 	<input id="wsSender" type="hidden" value="${m_id }">
+ 	<input id="wsProjectId" type="hidden" value="${p_id }">
+ 	
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -376,11 +378,13 @@
 	
 	
   </body>
-  <!-- 
+   
       <script type="text/javascript">
         var textarea = document.getElementById("messageWindow");
         var webSocket = new WebSocket('ws://localhost:8081/kosta111MidProject/broadcasting');
         var inputMessage = document.getElementById('inputMessage');
+        var sender = $('#wsSender').val();
+        var projectId = $('#wsProjectId').val();
     webSocket.onerror = function(event) {
       onError(event)
     };
@@ -401,9 +405,10 @@
     }
     function send() {
         textarea.value += "나 : " + inputMessage.value + "\n";
-        webSocket.send(inputMessage.value);
+        webSocket.send('{"sender" : "'+sender+'", "msg" : "'+inputMessage.value+'", "projectId" : "'+projectId+'"}');
+/*         webSocket.send("sender : "+sender+", msg : "+inputMessage.value); */
         inputMessage.value = "";
     }
   </script>
-   -->
+   
 </html>
