@@ -16,6 +16,8 @@ public interface NoteMapper {
 	public List<String> searchId(String id);
 
 	public int getEmail(String receive);
+
+	public List<Note> noteList(int receive);
 	
 
 }

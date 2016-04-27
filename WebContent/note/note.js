@@ -34,6 +34,13 @@ $(function() {
 	
 });
 
+//storage
+$(function() {
+	$('.box button').on('click', function() {
+		var id = $('.hidden_text input').val();
+		location.href="noteList.do?id="+ id;
+	})
+})
 
 
 

@@ -432,14 +432,41 @@ public class Dao {
 
 	public List<String> searchId(String id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		
-		return sqlSession.getMapper(NoteMapper.class).searchId(id);
+		List<String> list = null;
+		try {
+			list = sqlSession.getMapper(NoteMapper.class).searchId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return list;
 	}
 
 	public int getEmail(String receive) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
-		
-		return sqlSession.getMapper(NoteMapper.class).getEmail(receive);
+		int eMail = 0;
+		try {
+			eMail = sqlSession.getMapper(NoteMapper.class).getEmail(receive);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return eMail;
+	}
+
+	public List<Note> noteList(int receive) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<Note> list = null;
+		try {
+			list = sqlSession.getMapper(NoteMapper.class).noteList(receive);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return list;
 	}
 
 	public int messengerInsert(int sender, int projectId, String msg) {

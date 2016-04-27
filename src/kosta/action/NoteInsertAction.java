@@ -33,7 +33,7 @@ public class NoteInsertAction implements Action{
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
-		forward.setPath("NoteForm.jsp");
+		forward.setPath("noteInsertForm.jsp");
 		
 		return forward;
 		

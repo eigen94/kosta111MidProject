@@ -142,6 +142,10 @@ public class Service {
 		System.out.println("hi");
 		return dao.messengerInsert(sender, projectId, msg);
 	}
+
+	public List<Note> noteListService(int receive) {
+		return dao.noteList(receive);
+	}
 	
 }
 
