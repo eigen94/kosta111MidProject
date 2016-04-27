@@ -19,7 +19,7 @@ public class UsecaseDiagramtAction implements Action {
 		
 		String check_content = json;
 		
-		service.usecaseService(check_content);
+		service.useCaseInsertService(check_content);
 		return null;
 	}
 

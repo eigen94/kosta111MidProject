@@ -4,6 +4,7 @@ import java.util.List;
 
 import kosta.model.DB;
 import kosta.model.Dao;
+import kosta.model.Note;
 import kosta.model.ProjectBoard;
 import kosta.model.ProjectDetail;
 
@@ -77,7 +78,7 @@ public class Service {
 		return dao.dBId();
 	}
 
-	public List<String> dBList(int id) {
+	public List<DB> dBList(int id) {
 		
 		return dao.dBList(id);
 	}
@@ -96,11 +97,9 @@ public class Service {
 		
 		return dao.umlList();
 	}
-	
-	
 
-	public void usecaseService(String json) {
-		dao.usecaseInsert(json);
+	public void useCaseInsertService(String json) {
+		dao.useCaseInsert(json);
 		
 	}
 
@@ -109,13 +108,28 @@ public class Service {
 		
 	}
 
-	public List<String> getUseCaseService() {
-		return dao.getUseCase();
-	}
-
 	public List<String> usecaseDiagramListService() {
 		return dao.usecaseDiagramList();
 	}
+
+	public void updateDB(DB db) {
+		dao.updateDB(db);
+		
+	}
+
+	public void linkDB(DB db) {
+		dao.linkDB(db);
+	}
+	
+	public int noteInsertService(Note note){
+		return dao.insertNote(note);
+	}
+	
+	
+	public List<Note> noteSelectService(int n_id){
+		return dao.selectNote(n_id);
+	}
+	
 }
 
 

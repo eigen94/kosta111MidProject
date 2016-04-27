@@ -4,6 +4,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+Service pService = Service.getInstance();
+List<ProjectBoard> list = pService.projectListService();
+request.setAttribute("list", list);
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -70,13 +75,6 @@
 	<br>
     
     <!-- projectList -->
-    
-	<%
-	Service service = Service.getInstance();
-	List<ProjectBoard> list = service.projectListService();
-	request.setAttribute("list", list);
-	%>    
-	
 	
       <div class="row row-offcanvas row-offcanvas-right">
 
@@ -136,7 +134,7 @@
 	       			<label for="inputStartDate" class="col-sm-3 control-label">시작일</label>
 	   				<div class="col-sm-7">
 		                <div class='input-group date' id='datetimepicker1'>
-		                    <input type='text' id="inputStartDate" class="form-control" name="p_start"/>
+		                    <input type='text' id="projectStartDate" class="form-control" name="p_start"/>
 		                    <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
@@ -146,7 +144,7 @@
 	       			<label for="inputEndDate" class="col-sm-3 control-label">종료일</label>
 	   				<div class="col-sm-7">
 		                <div class='input-group date' id='datetimepicker2'>
-		                    <input type='text' id="inputEndDate" class="form-control" name="p_end"/>
+		                    <input type='text' id="projectEndDate" class="form-control" name="p_end"/>
 		                    <span class="input-group-addon">
 		                        <span class="glyphicon glyphicon-calendar"></span>
 		                    </span>
@@ -193,6 +191,19 @@
                 $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD'});
                 $('#datetimepicker2').datetimepicker({format: 'YYYY-MM-DD'});
             });
+    		function setInputFormDate(){//set modal default dateValue
+    	    	var dateObj = new Date; 
+    	    	var modalDefaultYear = dateObj.getFullYear();
+    	    	var modalDefaultMonth = dateObj.getMonth()+1;
+    	    	if(modalDefaultMonth<10){
+    	    		modalDefaultMonth = '0'+modalDefaultMonth;
+    	    	}
+    	    	var modalDefaultDay = dateObj.getDate();
+    	    	var modalDefaultValue = modalDefaultYear+"-"+modalDefaultMonth+"-"+modalDefaultDay;
+    	    	$('#projectStartDate').val(modalDefaultValue);
+    	    	$('#projectEndDate').val(modalDefaultValue);
+    		}//end of set input form date
+    		setInputFormDate();
         </script>
 </body>
 </html>

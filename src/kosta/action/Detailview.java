@@ -25,22 +25,25 @@ public class Detailview implements Action {
 		int id = Integer.parseInt(request.getParameter("check_id"));
 		
 		Service service = Service.getInstance();
-		List<String> list = service.dBList(id);
-
+		List<DB> list = service.dBList(id);
+		
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj= null;
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
+		List<Integer> intlist = new ArrayList<Integer>();
+		int check_id = 0;
 		for(int i=0; i<list.size(); i++){
-		try {
-			jsonObj = (JSONObject)parser.parse(list.get(i));
-		} catch (Exception e) {			
-			e.printStackTrace();
+			try {
+				jsonObj = (JSONObject)parser.parse(list.get(i).getCheck_content());
+				check_id = list.get(i).getCheck_id();
+			} catch (Exception e) {			
+				e.printStackTrace();
+			}
+				intlist.add(check_id);
+				jsonList.add(jsonObj);
 		}
-			jsonList.add(jsonObj);
-		}
-		
-		System.out.println(jsonList);
 		request.setAttribute("jsonList", jsonList);
+		request.setAttribute("idList", intlist);
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(false);
 		forward.setPath("data.jsp?check_id="+id);

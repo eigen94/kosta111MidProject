@@ -2,8 +2,10 @@ package kosta.model;
 
 import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import kosta.noteMapper.noteMapper;
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
 import kosta.usecaseDiagramMapper.usecaseDiagramMapper;
@@ -243,20 +245,20 @@ public class Dao {
 		if(sqlSession.getMapper(ProjectBoardMapper.class).dBId() == null)
 		{
 			sqlSession.close();
-			return id;
+			return id+1;
 		}
 		else
 		{	
-			id=sqlSession.getMapper(ProjectBoardMapper.class).dBId();
+			id=sqlSession.getMapper(ProjectBoardMapper.class).dBId()+1;
 			sqlSession.close();
 			return id;
 		}
 	}
 
-	public List<String> dBList(int id) {
+	public List<DB> dBList(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<String> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
+		List<DB> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
 		System.out.println(list);
 		sqlSession.close();
 		if(list == null){
@@ -313,12 +315,12 @@ public class Dao {
 		return sqlSession.getMapper(UmlMapper.class).umlList();
 	}
 
-	public void usecaseInsert(String json) {
+	public void useCaseInsert(String json) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re =-1;
 		
 		try {
-			re=sqlSession.getMapper(usecaseMapper.class).usecaseInsert(json);
+			re=sqlSession.getMapper(usecaseMapper.class).useCaseInsert(json);
 			
 			if(re>0){
 				sqlSession.commit();
@@ -353,11 +355,40 @@ public class Dao {
 		
 	}
 
-	public List<String> getUseCase() {
+	public void updateDB(DB db) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<String> list = sqlSession.getMapper(usecaseMapper.class).getUseCase();
-		return list;
+		
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).updateDB(db);
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	public void linkDB(DB db) {
+			SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		try {
+			sqlSession.getMapper(ProjectBoardMapper.class).linkDB(db);
+			sqlSession.commit();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+	}
+
+	public CheckList useCaseList(int check_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		
+		CheckList checkList = sqlSession.getMapper(usecaseMapper.class).useCaseList(check_id);
+		return checkList;
 	}
 
 	public List<String> usecaseDiagramList() {
@@ -365,6 +396,38 @@ public class Dao {
 		
 		List<String> list = sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagramList();
 		return list;
+	}
+	
+	public int insertNote(Note note) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re=-1;
+		try {
+			re=sqlSession.getMapper(noteMapper.class).insertNote(note);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return re;
+	}
+
+
+	public List<Note> selectNote(int n_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<Note> note = new ArrayList<Note>();
+		try {
+			note = sqlSession.getMapper(noteMapper.class).selectNote(n_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return note;
 	}
 
 	

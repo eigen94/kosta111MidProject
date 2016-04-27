@@ -212,31 +212,45 @@
 			        <!-- Modal tab2 -->
 			        <div class="tab-pane" id="tab2">
 			        <br><br>
-				        <form action="registerOk.do" method="post" class="form-horizontal">
+				        <form action="registerOk.do" method="post" class="form-horizontal" id="registerForm">
 					        <div class="form-group">
-				       			<label for="inputName" class="col-sm-3 control-label">이름</label>
+				       			<label for="registerName" class="col-sm-3 control-label">이름</label>
 				   				<div class="col-sm-7">
-									<input class="form-control" id="inputName" type="text" name="m_name" size="20" placeholder="이름을 입력하세요"><br>
+									<input class="form-control" id="registerName" type="text" name="m_name" size="20" placeholder="이름을 입력하세요"><br>
 								</div>
-				       			<label for="inputEmail" class="col-sm-3 control-label">이메일</label>
+				       			<label for="registerEmail" class="col-sm-3 control-label">이메일</label>
 				   				<div class="col-sm-7">
-									<input class="form-control" id="inputEmail" type="text" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
+									<input class="form-control" id="registerEmail" type="email" name="m_email" size="20" placeholder="이메일을 입력하세요"><br>
 								</div>
-				       			<label for="inputPassword" class="col-sm-3 control-label">비밀번호</label>
+				       			<label for="registerPassword" class="col-sm-3 control-label">비밀번호</label>
 				   				<div class="col-sm-7">
-									<input class="form-control" id="inputPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
+									<input class="form-control" id="registerPassword" type="password" name="m_pwd" size="20" placeholder="비밀번호를 입력하세요"><br>
 								</div>
-				       			<label for="inputPwdCheck" class="col-sm-3 control-label">비밀번호 확인</label>
+				       			<label for="registerPwdCheck" class="col-sm-3 control-label">비밀번호 확인</label>
 				   				<div class="col-sm-7">
-									<input class="form-control" id="inputPwdCheck" type="password" name="m_pwd" size="20" placeholder="비밀번호를 다시 입력하세요"><br>
+									<input class="form-control" id="registerPwdCheck" type="password" size="20" placeholder="비밀번호를 다시 입력하세요"><br>
 								</div>
-				       			<label for="inputPhone" class="col-sm-3 control-label">연락처</label>
+				       			<label for="registerPhone" class="col-sm-3 control-label">연락처</label>
 				   				<div class="col-sm-7">
-									<input class="form-control" id="inputPhone" type="text" name="m_phone" size="20" placeholder="연락처를 입력하세요"><br>
+									<input class="form-control" id="registerPhone" type="text" name="m_phone" size="20" placeholder="연락처를 입력하세요"><br>
 								</div>
-				       			<label for="inputAnswer" class="col-sm-3 control-label">비밀번호 찾기 답</label>
+								<label for="registerquestion" class="col-sm-3 control-label">Select list:</label>
+								<div class="col-sm-7">
+								<select class="form-control" id="registerquestion" name="m_question">
+								    <option value="1">1</option>
+								    <option value="2">2</option>
+								    <option value="3">3</option>
+								    <option value="4">4</option>
+								    <option value="5">5</option>
+								    <option value="6">6</option>
+								    <option value="7">7</option>
+								</select>
+								<br>
+								</div>
+								<br><br>
+				       			<label for="registerAnswer" class="col-sm-3 control-label">비밀번호 찾기 답</label>
 				   				<div class="col-sm-7">
-									<input class="form-control" id="inputAnswer" type="text" name="m_answer" size="20" placeholder="비밀번호 찾기 답을 입력하세요"><br>
+									<input class="form-control" id="registerAnswer" type="text" name="m_answer" size="20" placeholder="비밀번호 찾기 답을 입력하세요"><br>
 								</div>
 					        </div><!-- end of form-grop -->
 					        
@@ -265,7 +279,9 @@
      </div>
 
     </div><!-- /.container -->
-
+<div id="dialog" title="기본 대화상자">
+  <p>이것은 기본 대화상자 입니다. 이동하거나 닫을 수 있습니다.</p>
+</div>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -276,5 +292,30 @@
     <script src="../../assets/js/vendor/holder.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+    
+    <script type="text/javascript">
+    $(function(){
+	    $('#registerEmail').keyup(function(){
+	    	var $registerEmailValue = $(this).val();
+	    	
+	    	if($registerEmailValue!=""){
+		    	$.ajax({
+		    		url : 'memberNameOrEmailSearch.do',
+		    		data : {
+		    			searchKey : $registerEmailValue
+		    		},
+		    		method : 'post',
+		    		success : function(value){
+		    			console.log('return '+value);
+		    		}
+		    	});
+	    	}//end of if
+	    	
+	    	//console.log($(this).val());
+	    });
+    	
+    });
+    </script>
+    
   </body>
 </html>

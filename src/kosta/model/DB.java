@@ -5,15 +5,12 @@ import java.util.List;
 
 
 public class DB implements Serializable {
-	String json;
+	String check_content;
 	int check_id;
-	
-	
 
-
-	public DB(String json, int check_id) {
+	public DB(String check_content, int check_id) {
 		super();
-		this.json = json;
+		this.check_content = check_content;
 		this.check_id = check_id;
 	}
 
@@ -22,21 +19,21 @@ public class DB implements Serializable {
 
 	@Override
 	public String toString() {
-		return "DB [json=" + json + ", check_id=" + check_id + "]";
+		return "DB [check_content=" + check_content + ", check_id=" + check_id + "]";
 	}
 
 
 
 
-	public String getJson() {
-		return json;
+	public String getCheck_content() {
+		return check_content;
 	}
 
 
 
 
-	public void setJson(String json) {
-		this.json = json;
+	public void setCheck_content(String check_content) {
+		this.check_content = check_content;
 	}
 
 

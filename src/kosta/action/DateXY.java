@@ -3,23 +3,20 @@ package kosta.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kosta.model.DB;
 import kosta.service.Service;
 
-public class UsecaseInsertAction implements Action {
+public class DateXY implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		ActionForward forward = new ActionForward();
-		
+		int id =  Integer.parseInt(request.getParameter("check_id"));
 		String json = request.getParameter("json");
-		System.out.print(json);
-		
+		System.out.println(json);
+		DB db = new DB(json, id);
 		Service service = Service.getInstance();
-		
-		String check_content = json;
-		
-		service.usecaseDiagramService(check_content);
+		service.linkDB(db);
 		return null;
 	}
 

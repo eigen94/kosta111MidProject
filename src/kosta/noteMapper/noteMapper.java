@@ -2,7 +2,7 @@ package kosta.noteMapper;
 
 import java.util.List;
 
-import kosta.note.Note;
+import kosta.model.Note;
 
 
 public interface noteMapper {

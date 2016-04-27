@@ -2,8 +2,12 @@ package kosta.login;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+
+import org.json.simple.JSONObject;
 
 public class MemberService {
 	public static MemberDao dao;
@@ -54,5 +58,9 @@ public class MemberService {
 		return re;
 	}
 	
+	public List<Member> memberNameOrEmailSearch(String searchKey){
+		List<Member> list = dao.memberNameOrEmailSearch(searchKey);
+		return list;
+	}
 
 }
