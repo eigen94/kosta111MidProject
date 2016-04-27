@@ -28,12 +28,8 @@ import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
-<<<<<<< HEAD
-import kosta.action.UsecaseDiagramInsertAction;
-=======
 
 import kosta.action.UseCaseListAction;
->>>>>>> refs/remotes/origin/master
 import kosta.action.UsecaseDiagramListAction;
 import kosta.action.UsecaseDiagramtAction;
 //import kosta.useCaseAction.UseCaseListAction;
@@ -59,78 +55,6 @@ public class Controller extends HttpServlet {
 		String tmp = requestURI.substring(contextPath.length() + 1);
 		String command = tmp.substring(tmp.indexOf("/") + 1);
 
-<<<<<<< HEAD
-    	
-//    	else if(command.equals("json.do"))
-//    	{
-//    		System.out.println("�߾߾߾߾߾�");
-//    		action = new insertJSON();
-//    		forward = action.execute(request, response);
-//    	}
-    	
-    	else if(command.equals("uml.do"))
-    	{
-    		action = new UmlInsertAction();
-    		forward = action.execute(request, response);
-    	}
-    	
-    	else if(command.equals("umlList.do"))
-    	{    		
-    		action = new UmlListAction();
-    		forward = action.execute(request, response);
-    	}
-    	else if(command.equals("usecase.do"))
-    	{
-    		action = new UseCaseListAction();
-    		forward = action.execute(request, response);
-    	}
-    	else if(command.equals("loginOk.do"))
-    	{
-    		action = new memberLoginOk();
-    		forward = action.execute(request, response);
-    	}
-    	else if(command.equals("logoutOk.do"))
-    	{
-    		action = new memberLogoutOk();
-    		forward = action.execute(request, response);
-    	}
-    	else if(command.equals("registerOk.do"))
-    	{
-    		action = new memberRegister();
-    		forward = action.execute(request, response);
-    	}else if(command.equals("usecaseDiagram.do")){
-    		action = new UsecaseDiagramtAction();
-    		forward = action.execute(request, response);
-    	}else if(command.equals("usecaseDiagramList.do")){
-    		action = new UsecaseDiagramListAction();
-    		forward = action.execute(request, response);
-    	}else if(command.equals("UsecaseDiagramInsert.do")){
-    		action = new UsecaseDiagramInsertAction();
-    		forward = action.execute(request, response);
-    	}
-    	
-    	
-    	if(forward != null)
-    	{
-    		if(forward.isRedirect())
-    		{
-    			//System.out.println(forward.getPath());
-    			response.sendRedirect(forward.getPath());
-    		}
-    		
-    		else
-    		{
-    			//System.out.println("forward: " +forward.getPath());
-    			RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
-    			dispatcher.forward(request, response);
-    		}
-    	}
-    	
-    }
-    
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-=======
 		Action action = null;
 		ActionForward forward = null;
 
@@ -203,9 +127,6 @@ public class Controller extends HttpServlet {
 		} else if (command.equals("memberNameOrEmailSearch.do")) {
 			action = new memberNameOrEmailSearch();
 			forward = action.execute(request, response);
-		} else if (command.equals("useCaseInsert.do")) {
-			action = new UseCaseInsertAction();
-			forward = action.execute(request, response);
 		} else if (command.equals("useCaseList.do")) {
 			action = new UseCaseListAction();
 			forward = action.execute(request, response);
@@ -232,7 +153,6 @@ public class Controller extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
->>>>>>> refs/remotes/origin/master
 		doProcess(request, response);
 	}
 
