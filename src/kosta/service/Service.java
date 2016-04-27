@@ -109,10 +109,6 @@ public class Service {
 		
 	}
 
-/*	public List<String> getUseCaseService() {
-		return dao.getUseCase();
-	}
-*/
 	public List<String> usecaseDiagramListService() {
 		return dao.usecaseDiagramList();
 	}
@@ -125,6 +121,8 @@ public class Service {
 	public void linkDB(DB db) {
 		dao.linkDB(db);
 	}
+	
+	
 }
 
 
