@@ -1,4 +1,4 @@
-package kosta.note;
+package kosta.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -10,6 +10,18 @@ public class Note implements Serializable {
 	private int n_sender;
 	private int n_receive;
 	private Timestamp n_date;
+	
+	public Note() {}
+	
+	public Note(String n_title, String n_content, int n_sender,
+			int n_receive) {
+		super();
+		this.n_title = n_title;
+		this.n_content = n_content;
+		this.n_sender = n_sender;
+		this.n_receive = n_receive;
+	}
+
 	public int getN_id() {
 		return n_id;
 	}

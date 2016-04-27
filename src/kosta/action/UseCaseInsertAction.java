@@ -3,9 +3,11 @@ package kosta.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kosta.action.Action;
+import kosta.action.ActionForward;
 import kosta.service.Service;
 
-public class UsecaseDiagramtAction implements Action {
+public class UseCaseInsertAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
