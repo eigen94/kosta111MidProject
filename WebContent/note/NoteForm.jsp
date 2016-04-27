@@ -7,7 +7,7 @@
 <title>note</title>
 </head>
 <body>
-	<form action="NoteOk.jsp" method="post">
+	<form action="noteInsert.do" method="post">
 		<input type="hidden" name="n_id">
 		<input type="hidden" name="n_sender">
 		제목: &nbsp;<input type="text" name="n_title"><br>
