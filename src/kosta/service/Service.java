@@ -137,6 +137,10 @@ public class Service {
 	public static int getEmailService(String receive) {
 		return dao.getEmail(receive);
 	}
+
+	public List<Note> noteListService(int receive) {
+		return dao.noteList(receive);
+	}
 	
 }
 

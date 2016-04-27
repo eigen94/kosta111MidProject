@@ -2,23 +2,11 @@
 
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-    <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    <%
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%
     request.setCharacterEncoding("utf-8");
-   
-    String id = request.getParameter("n_id");
-    int n_id =1;
-    
- 	if(id != null){
-    	n_id = Integer.parseInt(id);
-    } 
- 	System.out.println(n_id);
-   /*  NoteService service = NoteService.getInsetance();
-    List<Note> note = new ArrayList<Note>();
-   	note = service.selectNoteService(n_id);
-   	request.setAttribute("note", note); */
-    %>
+ %>
     
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -27,11 +15,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 <table border="1">
 
-
-<c:forEach var="note" items="${note }">
+<c:forEach var="note" items="${noteList }">
 <tr>
 <td>${note.n_id }</td>
 <td>${note.n_title }</td>
@@ -45,6 +31,25 @@
 </tr>
 </c:forEach>
 </table>
+	
+	<div class="noteStorage">
+		<div class="title">
+			<table border="1">
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+		
+		</div>
+	</div>
+	
 
 </body>
 </html>
+
+
+
+
+
+
+

@@ -21,6 +21,7 @@ import kosta.action.DateCreate;
 import kosta.action.DateXY;
 import kosta.action.Detailview;
 import kosta.action.NoteInsertAction;
+import kosta.action.NoteListAction;
 import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
@@ -139,6 +140,9 @@ public class Controller extends HttpServlet {
 			forward = action.execute(request, response);
 		}  else if (command.equals("searchId.do")) {
 			action = new SearchIdAction();
+			forward = action.execute(request, response);
+		} else if (command.equals("noteList.do")) {
+			action = new NoteListAction();
 			forward = action.execute(request, response);
 		} 
 
