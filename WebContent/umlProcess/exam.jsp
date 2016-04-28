@@ -9,6 +9,8 @@
 <title>Insert title here</title>
 <script src="/kosta111MidProject/javascriptFiles/jquery-2.2.3.min.js"></script>
 <script src="/kosta111MidProject/javascriptFiles/jquery-ui.min.js"></script>
+<script type="text/javascript" src="http://jointjs.com/cms/downloads/joint.js"></script>
+<link href="http://jointjs.com/cms/downloads/joint.css" rel="stylesheet">
 
 
 <script type="text/javascript">	
@@ -16,6 +18,10 @@
 	$(function(){		
 		var totalObj = new Object();
 		var relationArray = new Array();
+		var c = $("#myCanvas");
+		var ctx = c.get(0).getContext("2d");
+		ctx.beginPath();
+		
 				
 		$("#add").click(function(event){		
 			
@@ -119,7 +125,7 @@
 		$("#connect").click(function(){
 			var index = $(".uml").not($("table:eq(0)")).length;
 			$uml = $(".uml").not($("table:eq(0)"));
-			//console.log($uml);
+			console.log($uml);
 			
 			var relationObj = new Object();
 			relationObj.start = $("#start").val();
@@ -127,54 +133,67 @@
 			relationObj.relationType = $("#relationType").val();
 			
 			$("#start").val("");
-			$("#end").val("");
-			
-			var c = $("#myCanvas");
-			var ctx = c.get(0).getContext("2d");
-			ctx.beginPath();
-			var regNumber = /[-\d]+/g;
+			$("#end").val("");				
 			
 			for(var i=0; i<index; i++)
 			{
+				var startX;
+				var startY;
+				var startWidth;
+				var startHeight;
+				
+				var endX;
+				var endY;
+				var endWidth;
+				var endHeight;
+				
 				if($uml.eq(i).find(".name").val() == relationObj.start)
-					{	
-						var x = parseInt($uml.eq(i).offset().left);
-						var y = parseInt($uml.eq(i).offset().top);
-						ctx.moveTo(x, y);
-						console.log("x:"+x+"y:"+y);
-						
+					{							
+						startX = ($uml.eq(i).position().left);
+						startY = ($uml.eq(i).position().top);
+						startWidth = $uml.eq(i).height();
+						startHeight = $uml.eq(i).width();
+						//ctx.moveTo(startX, startY);
+						console.log("startX:"+startX+"  startY:"+startY);	
+						console.log("startWidth : "+startWidth+"  startHeight : "+startHeight);
 					}
 				
 				if($uml.eq(i).find(".name").val() == relationObj.end)
 					{
-						var x = parseInt($uml.eq(i).offset().left);
-						var y = parseInt($uml.eq(i).offset().top);
-						ctx.lineTo(x, y);
-						console.log("x:"+x+"y:"+y);
+						endX = ($uml.eq(i).position().left);
+						endY = ($uml.eq(i).position().top);
+						endWidth = $uml.eq(i).height();
+						endHeight = parseInt($uml.eq(i).css("width").substring(0,$uml.eq(i).css("width").indexOf("p")));
+						//ctx.lineTo(endX, endY);
+						console.log("endX:"+endX+"  endY:"+endY);
+						console.log("endWidth : "+endWidth+"  endHeight : "+endHeight);
+						//ctx.stroke();
+					}
+				
+				if(startX < endX)
+					{
+						console.log("start < end")
+						console.log("finalX : "+(startX+startWidth)+" finalY : "+(startY+(startHeight/2)));
+						ctx.moveTo(0, 0);
+						ctx.lineTo(endX, endY+(endHeight/2));
 						ctx.stroke();
 					}
-			}
-				
-			
-			
-			
-			
-			
+				else if(startX > endX)
+					{
+						console.log("start > end")
+						ctx.moveTo(startX, startY+(startHeight/2));
+						ctx.lineTo(endX+endWidth, endY+(endHeight/2));
+						ctx.stroke();
+					}
+			}//end for			
 
 			relationArray.push(relationObj);
-			//console.log(relationArray);
+			console.log(relationArray);
 		}); //end connect button
 		
-		/* var c = $("#myCanvas");
-		var ctx = c.get(0).getContext("2d");
-		ctx.beginPath();
-		ctx.moveTo(0,0);  //x,y좌표로 이동
-
-
-		ctx.lineTo(100,100);     //x,y좌표까지 선을 이동
-
-
-		ctx.stroke();         //선을 그려라 */
+		$("#clear").click(function(){
+			ctx.clearRect(0, 0, 1800, 1000);
+		})
 	})//end query
 
 </script>
@@ -257,11 +276,11 @@
 <br>
 <br>
 <hr>
-
-<div id="list">
-	<h3>UML list</h3>	
-	<canvas id="myCanvas" width="1800px" height="1000px" style="position:absolute; border:1px solid #d3d3d3; z-index:1;">
-	</canvas>
+<h3>UML list</h3>
+<button id="clear">클리어</button>
+<div id="list" style="position:relative;">
+		
+	<canvas id="myCanvas" width="1800px" height="1000px" style="position: absolute; border:1px solid #d3d3d3; z-index:1;"></canvas>
 	
 </div>
 

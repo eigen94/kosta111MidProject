@@ -2,16 +2,22 @@ package kosta.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import kosta.model.DB;
 import kosta.model.Dao;
 import kosta.model.Messenger;
+import kosta.model.ListModel;
 import kosta.model.Note;
 import kosta.model.ProjectBoard;
 import kosta.model.ProjectDetail;
+import kosta.model.Search;
 
 public class Service {
 	public static Dao dao;
 	public static Service service = new Service();
+	public static final int PAGE_SIZE = 3;
 	
 	public static Service getInstance()
 	{
@@ -147,8 +153,45 @@ public class Service {
 		return dao.loadMessege(Messenger);
 	}
 
-	public List<Note> noteListService(int receive) {
-		return dao.noteList(receive);
+	public ListModel noteListService(int receive, int requestPage, HttpServletRequest request) {
+		Search search = new Search();
+		//������ ����.
+		HttpSession session = request.getSession();
+		//������ �˻��� ���� ������ ���� 
+		if(request.getParameter("temp") != null){
+			session.removeAttribute("search");
+		}
+		if(request.getParameterValues("area") != null){
+			session.setAttribute("search", search);
+			search.setArea(request.getParameterValues("area"));
+			search.setSearchKey("%" + request.getParameter("searchKey") + "%");
+			//�˻� �� ����¡�� Ŭ�������� 
+		}else if((Search)session.getAttribute("search") != null){
+			search = ((Search)session.getAttribute("search"));
+		}
+		search.setReceive(receive);
+		
+		
+		//�������� �� ����, ���� ������, �� ���� ��, �� ������ ��
+		
+		int totalCount = dao.countNote(search);
+		int totalPageCount = totalCount/PAGE_SIZE;
+		if(totalPageCount % PAGE_SIZE > 0){
+			totalPageCount++;
+		}
+		
+		int startPage = requestPage - (requestPage - 1) % 5;
+		int endPage = startPage + 4;
+		if(endPage > totalPageCount){
+			endPage = totalPageCount;
+		}
+		
+		List<Note> list = dao.noteList((requestPage - 1) * PAGE_SIZE, search);
+		return new ListModel(list, requestPage, totalPageCount, startPage, endPage);
+	}
+
+	public String noteDetailService(int n_id) {
+		return dao.noteDetail(n_id);
 	}
 
 	public int getMaxMsgId() {
