@@ -10,10 +10,10 @@
 <img src="../images/index/person.png" style="z-index:1;" width="100" height="100">
 </div>
 <div class="eventModel">
- <img src="../images/index/ellipse.png" width="120" height="100" style=" position: relative;z-index: 1">
+ <img src="../images/index/ellipse.png" width="120" height="100" style=" position: absolute; z-index: 1">
 <!-- <input type="image" src="../images/index/ellipse.png" value="³Ö±â" > -->
-<span style="position:absolute; z-index: 2">
-<input type="text" class="eventInput" >
+<span style="position:relative; z-index: 2 " >
+<input type="text" class="eventInput" style="margin-top: 40px; size" >
 </span>
 </div>
 </html>
