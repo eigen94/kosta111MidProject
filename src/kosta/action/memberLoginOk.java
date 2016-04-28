@@ -29,13 +29,10 @@ public class memberLoginOk implements Action {
     	MemberService service = MemberService.getInsetance();
     	member = service.loginMemberService(m_email, m_pwd);
     	if(member != null){
-    		Service pService = Service.getInstance();
-    		List<ProjectBoard> list = pService.projectListService();
-    		request.setAttribute("list", list);
     		session.setAttribute("m_id", member.getM_id());
     		session.setAttribute("m_name", member.getM_name());
     		action.setPath("main.jsp");
-    		action.setRedirect(false);
+    		action.setRedirect(true);
     	}else{
     		action.setPath("index.jsp");
     		action.setRedirect(true);

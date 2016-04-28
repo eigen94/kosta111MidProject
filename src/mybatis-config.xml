@@ -15,6 +15,7 @@
 		<typeAlias type="kosta.model.Usecase" alias="Usecase"/>
 		<typeAlias type="kosta.model.CheckList" alias="CheckList"/>
 		<typeAlias type="kosta.model.UsecaseDiagram" alias="UsecaseDiagram"/>
+		<typeAlias type="kosta.model.Messenger" alias="Messenger"/>
 		
 	</typeAliases>
 	
@@ -35,6 +36,7 @@
 		<mapper resource="kosta/noteMapper/note.xml"/>
 		<mapper resource="kosta/usecaseMapper/usecase.xml"/>
 		<mapper resource="kosta/usecaseDiagramMapper/usecaseDiagram.xml"/>
+		<mapper resource="kosta/messengerMapper/Messenger.xml"/>
 		
 	</mappers>
 	

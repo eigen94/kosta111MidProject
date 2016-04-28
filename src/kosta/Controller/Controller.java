@@ -21,11 +21,13 @@ import kosta.action.DateCreate;
 import kosta.action.DateXY;
 import kosta.action.Detailview;
 import kosta.action.NoteInsertAction;
+import kosta.action.NoteListAction;
 import kosta.action.ProjectCreateAction;
 import kosta.action.ProjectDeleteAction;
 import kosta.action.ProjectListAction;
 import kosta.action.ProjectSelectAction;
 import kosta.action.ProjectUpdateAction;
+import kosta.action.SearchIdAction;
 import kosta.action.UmlInsertAction;
 import kosta.action.UmlListAction;
 
@@ -38,6 +40,7 @@ import kosta.action.memberLoginOk;
 import kosta.action.memberLogoutOk;
 import kosta.action.memberNameOrEmailSearch;
 import kosta.action.memberRegister;
+import kosta.action.messengerInsert;
 import kosta.action.projectDetailAction;
 
 @WebServlet("*.do")
@@ -132,6 +135,15 @@ public class Controller extends HttpServlet {
 			forward = action.execute(request, response);
 		} else if (command.equals("noteInsert.do")) {
 			action = new NoteInsertAction();
+			forward = action.execute(request, response);
+		}  else if (command.equals("searchId.do")) {
+			action = new SearchIdAction();
+			forward = action.execute(request, response);
+		} else if (command.equals("noteList.do")) {
+			action = new NoteListAction();
+			forward = action.execute(request, response);
+		} else if (command.equals("messengerInsert.do")){
+			action = new messengerInsert();
 			forward = action.execute(request, response);
 		}
 

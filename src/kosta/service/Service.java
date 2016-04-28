@@ -129,6 +129,23 @@ public class Service {
 	public List<Note> noteSelectService(int n_id){
 		return dao.selectNote(n_id);
 	}
+
+	public List<String> searchIdService(String id) {
+		return dao.searchId(id);
+	}
+
+	public static int getEmailService(String receive) {
+		return dao.getEmail(receive);
+	}
+
+	public int messengerInsert(int sender, int projectId, String msg) {
+		System.out.println("hi");
+		return dao.messengerInsert(sender, projectId, msg);
+	}
+
+	public List<Note> noteListService(int receive) {
+		return dao.noteList(receive);
+	}
 	
 }
 

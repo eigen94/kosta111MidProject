@@ -29,8 +29,6 @@ public class memberNameOrEmailSearch implements Action {
 		for(int i=0; i<list.size(); i++){
 			JSONObject obj = new JSONObject();
 			obj.put("m_id", list.get(i).getM_id());
-			obj.put("m_name", list.get(i).getM_name());
-			obj.put("m_email", list.get(i).getM_email());
 			sendList.add(obj);
 		}
 		System.out.println(sendList);

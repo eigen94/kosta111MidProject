@@ -11,9 +11,9 @@
 
 	<insert id="projectInsert" parameterType="ProjectBoard">
 		INSERT INTO project(
-		P_ID, P_NAME, P_START, P_END, P_MEMO
+		P_ID, P_NAME, P_START, P_END, P_MEMO, P_CREW, P_PMID
 		)VALUES(
-		#{p_id}, #{p_name }, #{p_start }, #{p_end }, #{p_memo }
+		#{p_id}, #{p_name }, #{p_start }, #{p_end }, #{p_memo }, #{p_crew }, #{p_pmid }
 		)
 	</insert>
 	

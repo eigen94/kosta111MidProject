@@ -22,7 +22,10 @@ public class ProjectCreateAction implements Action {
 		String p_start = request.getParameter("p_start");
 		String p_end = request.getParameter("p_end");
 		String p_memo = request.getParameter("p_memo");
+		String p_crew = request.getParameter("p_crew");
 		ProjectBoard project = new ProjectBoard(p_name, p_start, p_end, p_memo);
+		project.setP_crew(p_crew);
+		
 		
 		Service service = Service.getInstance();
 		service.projectInsertService(project);

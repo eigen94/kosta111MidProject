@@ -1,159 +1,249 @@
+/*var graph = new joint.dia.Graph();
 
-
-
-//처음 이미지가 생성될곳을 지정해 줍니다
-var img_L = 10;
-var img_T = 20;
-var targetObj;
-
-$(function(){		
-	var attrCount = 0;
-	var opCount = 0;
-	var totalArray = new Object();
-	var jsonArray = new Array(); //UML은 여러개가 나올 수 있으니 배열로 선언	
-	var relationArray = new Array();
-
-	$("#ok").click(function(){
-		var jsonObj = new Object(); //한개의 UML객체
-		jsonObj.name = $("#name").val(); //UML의 이름
-		jsonObj.attribute = new Array(); //UML의 속성은 여러개가 나올 수 있으니 배열
-		jsonObj.operation = new Array(); //UML의 오퍼레이션도 여러개
-
-		var accessAttrArr = $(".accessAttr"); //UML의 attribute의 접근제어자 
-		var typeAttrArr = $(".typeAttr");  //UML의 attribute의 타입
-		var nameAttrArr = $(".nameAttr"); //UML의 attribute의 이름
-
-		var accessOpArr = $(".accessOp"); //UML의 오퍼레이션의 접근제어자
-		var typeOpArr = $(".typeOp"); //UML 오퍼레이션의 타입
-		var nameOpArr = $(".nameOp"); //UML 오퍼레이션의 이름
-		var paraOpArr = $(".paraOp"); //UML 오퍼레이션의 파라미터
-
-		for(var i=0; i<attrCount; i++) //전역변수 attrCount로 몇개의 attribute가 생성 되었는지 체크
-		{	//생성된 attribute만큼 접근제어자, 타입, 이름을 받아옴
-			var attr = new Object();
-			attr.access = $(accessAttrArr).eq(i).val();
-			attr.type = $(typeAttrArr).eq(i).val();
-			attr.name = $(nameAttrArr).eq(i).val()
-
-			jsonObj.attribute.push(attr);				
-		}			
-
-		for(var i=0; i<opCount; i++) //오퍼레이션도 마찬가지
-		{
-			var op = new Object();
-			op.access = $(accessOpArr).eq(i).val();
-			op.type = $(typeOpArr).eq(i).val();
-			op.name = $(nameOpArr).eq(i).val();
-			op.parameter = $(paraOpArr).eq(i).val();
-
-			jsonObj.operation.push(op);
-		}		
-
-		jsonArray.push(jsonObj); //json배열에 만들어진 한개의 UML을 넣음			
-
-		var obj = jsonObj;					
-		var str = "<div id='umlObj'style='display:inline;' class='umlObj ui-widget-content' style=' cursor:pointer; cursor:hand; border:0'>Name : " +obj.name+"<br>";
-		for(var j=0; j<attrCount; j++)
-		{
-			str += "Attribute : " +obj.attribute[j].access+" "+obj.attribute[j].type+" "+obj.attribute[j].name+"<br>";
-		}
-
-		for(var k=0; k<opCount; k++)
-		{
-			str += "Operation : " +obj.operation[k].access+" "+obj.operation[k].type+" "+obj.operation[k].name+"( "+obj.operation[k].parameter+" )<br>";
-		}
-
-		str += "</div><br><hr><br>";
-		$("#list").append(str);	
-		
-		$('.umlObj').draggable(
-				{
-					drag: function() {
-						var offset = $(this).offset();
-						var xPos = parseInt(offset.left);
-						var yPos = parseInt(offset.top);
-						//$(this).text('x: ' + xPos + 'y: ' + yPos);
-
-					}
-				});
-		
-		attrCount = 0;
-		opCount = 0;
-
-		$("tr:eq(1) td").empty();
-		$("tr:eq(2) td").empty();
-		$("#name").val("");
-		//console.log(jsonArray);
-
-	});	//end ok button
-	
-	
-
-	
-	$(".umlObj").droppable({
-		drop: function(event, ui) {
-			$(this)
-			.addClass("ui-state-highlight")
-			.find("p")
-			.html("Dropped!");
-		}
+	var paper = new joint.dia.Paper({
+		el : $('#paper'),
+		width : 1800,
+		height : 1000,
+		gridSize : 1,
+		model : graph
 	});
 
+	var uml = joint.shapes.uml;
 
-	$("#submit").click(function(){
-		totalArray.jsonArray = (jsonArray);
-		totalArray.relationArray = (relationArray);
+	var classes = {
 
-		console.log(totalArray);
-		var finalArray = JSON.stringify(totalArray);
-		console.log(finalArray);
-		$.ajax({
-			type : "post",
-			url : "uml.do",
-			data : {
-				json : finalArray
+		mammal : new uml.Interface({
+			position : {
+				x : 300,
+				y : 50
 			},
-			dataType : "text",				
-			success : function(data)
-			{
-				location.href="umlList.do";
+			size : {
+				width : 240,
+				height : 100
 			},
-			error : function(data)
-			{
-				alert("실패");
-			} 
-		});
-	}); //end submit button
+			name : 'Mammal',
+			attributes : [ 'dob: Date' ],
+			methods : [ '+ setDateOfBirth(dob: Date): Void',
+					'+ getAgeAsDays(): Numeric' ],
+			attrs : {
+				'.uml-class-name-rect' : {
+					fill : '#feb662',
+					stroke : '#ffffff',
+					'stroke-width' : 0.5
+				},
+				'.uml-class-attrs-rect, .uml-class-methods-rect' : {
+					fill : '#fdc886',
+					stroke : '#fff',
+					'stroke-width' : 0.5
+				},
+				'.uml-class-attrs-text' : {
+					ref : '.uml-class-attrs-rect',
+					'ref-y' : 0.5,
+					'y-alignment' : 'middle'
+				},
+				'.uml-class-methods-text' : {
+					ref : '.uml-class-methods-rect',
+					'ref-y' : 0.5,
+					'y-alignment' : 'middle'
+				}
 
-	$("#addAttr").click(function(){		
-		var add = '<div class="attribute"><input type="text" class="accessAttr" size="1">&nbsp;<input type="text" class="typeAttr">&nbsp;<input type="text" class="nameAttr"></div>'
-			$("tr:eq(1) td").append(add);			
-		attrCount++;				
+			}
+		}),
+
+		person : new uml.Abstract({
+			position : {
+				x : 300,
+				y : 300
+			},
+			size : {
+				width : 260,
+				height : 100
+			},
+			name : 'Person',
+			attributes : [ 'firstName: String', 'lastName: String' ],
+			methods : [ '+ setName(first: String, last: String): Void',
+					'+ getName(): String' ],
+			attrs : {
+				'.uml-class-name-rect' : {
+					fill : '#68ddd5',
+					stroke : '#ffffff',
+					'stroke-width' : 0.5
+				},
+				'.uml-class-attrs-rect, .uml-class-methods-rect' : {
+					fill : '#9687fe',
+					stroke : '#fff',
+					'stroke-width' : 0.5
+				},
+				'.uml-class-methods-text, .uml-class-attrs-text' : {
+					fill : '#fff'
+				}
+			}
+		}),
+
+		bloodgroup : new uml.Class({
+			position : {
+				x : 20,
+				y : 190
+			},
+			size : {
+				width : 220,
+				height : 100
+			},
+			name : 'BloodGroup',
+			attributes : [ 'bloodGroup: String' ],
+			methods : [ '+ isCompatible(bG: String): Boolean' ],
+			attrs : {
+				'.uml-class-name-rect' : {
+					fill : '#ff8450',
+					stroke : '#fff',
+					'stroke-width' : 0.5,
+				},
+				'.uml-class-attrs-rect, .uml-class-methods-rect' : {
+					fill : '#fe976a',
+					stroke : '#fff',
+					'stroke-width' : 0.5
+				},
+				'.uml-class-attrs-text' : {
+					ref : '.uml-class-attrs-rect',
+					'ref-y' : 0.5,
+					'y-alignment' : 'middle'
+				},
+				'.uml-class-methods-text' : {
+					ref : '.uml-class-methods-rect',
+					'ref-y' : 0.5,
+					'y-alignment' : 'middle'
+				}
+			}
+		}),
+
+		address : new uml.Class({
+			position : {
+				x : 630,
+				y : 190
+			},
+			size : {
+				width : 160,
+				height : 100
+			},
+			name : 'Address',
+			attributes : [ 'houseNumber: Integer', 'streetName: String',
+					'town: String', 'postcode: String' ],
+			methods : [],
+			attrs : {
+				'.uml-class-name-rect' : {
+					fill : '#ff8450',
+					stroke : '#fff',
+					'stroke-width' : 0.5
+				},
+				'.uml-class-attrs-rect, .uml-class-methods-rect' : {
+					fill : '#fe976a',
+					stroke : '#fff',
+					'stroke-width' : 0.5,
+				},
+				'.uml-class-attrs-text' : {
+					'ref-y' : 0.5,
+					'y-alignment' : 'middle'
+				}
+			},
+
+		}),
+
+		man : new uml.Class({
+			position : {
+				x : 200,
+				y : 500
+			},
+			size : {
+				width : 180,
+				height : 50
+			},
+			name : 'Man',
+			attrs : {
+				'.uml-class-name-rect' : {
+					fill : '#ff8450',
+					stroke : '#fff',
+					'stroke-width' : 0.5
+				},
+				'.uml-class-attrs-rect, .uml-class-methods-rect' : {
+					fill : '#fe976a',
+					stroke : '#fff',
+					'stroke-width' : 0.5
+				}
+			}
+		}),
+
+		woman : new uml.Class({
+			position : {
+				x : 450,
+				y : 500
+			},
+			size : {
+				width : 180,
+				height : 50
+			},
+			name : 'Woman',
+			methods : [ '+ giveABrith(): Person []' ],
+			attrs : {
+				'.uml-class-name-rect' : {
+					fill : '#ff8450',
+					stroke : '#fff',
+					'stroke-width' : 0.5
+				},
+				'.uml-class-attrs-rect, .uml-class-methods-rect' : {
+					fill : '#fe976a',
+					stroke : '#fff',
+					'stroke-width' : 0.5
+				},
+				'.uml-class-methods-text' : {
+					'ref-y' : 0.5,
+					'y-alignment' : 'middle'
+				}
+			}
+		})
+
+	};
+
+	_.each(classes, function(c) {
+		graph.addCell(c);
 	});
 
-	$("#addOp").click(function(){
-		var add = '<div class="operation"><input type="text" class="accessOp" size="1">&nbsp;<input type="text" class="typeOp">&nbsp;<input type="text" class="nameOp">&nbsp;<input type="text" class="paraOp"></div>'
-			$("tr:eq(2) td").append(add);
-		opCount++;
-	});		
+	var relations = [ new uml.Generalization({
+		source : {
+			id : classes.man.id
+		},
+		target : {
+			id : classes.person.id
+		}
+	}), new uml.Generalization({
+		source : {
+			id : classes.woman.id
+		},
+		target : {
+			id : classes.person.id
+		}
+	}), new uml.Implementation({
+		source : {
+			id : classes.person.id
+		},
+		target : {
+			id : classes.mammal.id
+		}
+	}), new uml.Aggregation({
+		source : {
+			id : classes.person.id
+		},
+		target : {
+			id : classes.address.id
+		}
+	}), new uml.Composition({
+		source : {
+			id : classes.person.id
+		},
+		target : {
+			id : classes.bloodgroup.id
+		}
+	}) ];
 
-	$("#connect").click(function(){
-		var relationObj = new Object();
-		relationObj.start = $("#start").val();
-		relationObj.end = $("#end").val();
-		relationObj.relationType = $("#relationType").val();
-
-		relationArray.push(relationObj);
-		console.log(relationArray);
-	}); //end connect button
-
-	function getLeft(o){
-		return parseInt(o.style.left.replace('px', ''));
-	}
-	function getTop(o){
-		return parseInt(o.style.top.replace('px', ''));
-	}
-
-
-
-});
+	_.each(relations, function(r) {
+		graph.addCell(r);
+	});*/
