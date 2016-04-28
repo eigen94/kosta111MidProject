@@ -1,6 +1,5 @@
 $(function(){	
 	var graph = new joint.dia.Graph();
-
 	var paper = new joint.dia.Paper({
 		el : $('#paper'),
 		width : 1500,
@@ -142,7 +141,7 @@ $(function(){
 			name : obj.name,
 			attributes : obj.attrArr,
 			methods : obj.opArr,
-			attrs : {
+			/*attrs : {
 				'.uml-class-name-rect' : {
 					fill : '#ff8450',
 					stroke : '#fff',
@@ -163,7 +162,7 @@ $(function(){
 					'ref-y' : 0.5,
 					'y-alignment' : 'middle'
 				}
-			}
+			}*/
 		})
 		classes.push(umlObj);
 		clearInspector();
@@ -188,7 +187,7 @@ $(function(){
 			name : obj.name,
 			attributes : obj.attrArr,
 			methods : obj.opArr,
-			attrs : {
+	/*		attrs : {
 				'.uml-class-name-rect' : {
 					fill : '#feb662',
 					stroke : '#ffffff',
@@ -210,7 +209,7 @@ $(function(){
 					'y-alignment' : 'middle'
 				}
 
-			}
+			}*/
 		});
 		classes.push(umlObj);
 		clearInspector();
@@ -234,7 +233,7 @@ $(function(){
 			name : obj.name,
 			attributes : obj.attrArr,
 			methods : obj.opArr,
-			attrs : {
+	/*		attrs : {
 				'.uml-class-name-rect' : {
 					fill : '#68ddd5',
 					stroke : '#ffffff',
@@ -248,7 +247,7 @@ $(function(){
 				'.uml-class-methods-text, .uml-class-attrs-text' : {
 					fill : '#fff'
 				}
-			}
+			}*/
 		})
 		classes.push(umlObj);
 		clearInspector();
