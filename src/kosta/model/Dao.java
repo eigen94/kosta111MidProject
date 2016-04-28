@@ -12,6 +12,7 @@ import kosta.usecaseDiagramMapper.usecaseDiagramMapper;
 import kosta.usecaseMapper.usecaseMapper;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
@@ -456,17 +457,45 @@ public class Dao {
 		return eMail;
 	}
 
-	public List<Note> noteList(int receive) {
+	public List<Note> noteList(int startRow, Search search) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		List<Note> list = null;
 		try {
-			list = sqlSession.getMapper(NoteMapper.class).noteList(receive);
+			list = sqlSession.getMapper(NoteMapper.class).noteList(new RowBounds(startRow, 3), search);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
 			sqlSession.close();
 		}
+		System.out.println(search.getReceive());
+		System.out.println(list);
 		return list;
+	}
+
+	public int countNote(Search search) {
+		int num;
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		if(sqlSession.getMapper(NoteMapper.class).countNote(search) == 0){
+			sqlSession.close();
+			return 0;
+		}else{
+			num = (int)sqlSession.getMapper(NoteMapper.class).countNote(search);
+			sqlSession.close();
+			return num;
+		}
+	}
+
+	public String noteDetail(int n_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		String content = "";
+		try {
+			content = sqlSession.getMapper(NoteMapper.class).noteDetail(n_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return content;
 	}
 
 	

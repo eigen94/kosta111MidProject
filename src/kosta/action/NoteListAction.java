@@ -4,7 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import kosta.model.ListModel;
 import kosta.model.Note;
 import kosta.service.Service;
 
@@ -16,20 +18,25 @@ public class NoteListAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) {
-
+		
 		ActionForward forward = new ActionForward();
 		forward.setPath("noteStorage.jsp");
 		forward.setRedirect(false);
 		
-		int receive  = 0;
+		String pageNum = request.getParameter("pageNum");
+		if(pageNum == null){
+			pageNum = "1";
+		}
+		int requestPage = Integer.parseInt(pageNum);
 		String id = request.getParameter("id");
+		int receive  = 0;
 		
 		if(id != null){
 			receive = Integer.parseInt(id);
 		}
+		receive = 1;
 		Service service = Service.getInstance();
-		List<Note> noteList = service.noteListService(receive);
-		System.out.println(noteList);
+		ListModel noteList = service.noteListService(receive, requestPage, request);
 		request.setAttribute("noteList", noteList);
 		
 		return forward;

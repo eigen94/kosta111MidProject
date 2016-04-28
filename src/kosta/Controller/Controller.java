@@ -20,6 +20,7 @@ import kosta.action.DataUpdate;
 import kosta.action.DateCreate;
 import kosta.action.DateXY;
 import kosta.action.Detailview;
+import kosta.action.NoteDetailAction;
 import kosta.action.NoteInsertAction;
 import kosta.action.NoteListAction;
 import kosta.action.ProjectCreateAction;
@@ -143,6 +144,9 @@ public class Controller extends HttpServlet {
 			forward = action.execute(request, response);
 		} else if (command.equals("noteList.do")) {
 			action = new NoteListAction();
+			forward = action.execute(request, response);
+		} else if (command.equals("noteDetail.do")) {
+			action = new NoteDetailAction();
 			forward = action.execute(request, response);
 		} 
 
