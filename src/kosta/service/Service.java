@@ -144,6 +144,11 @@ public class Service {
 		return dao.getEmail(receive);
 	}
 
+	public int messengerInsert(int sender, int projectId, String msg) {
+		System.out.println("hi");
+		return dao.messengerInsert(sender, projectId, msg);
+	}
+
 	public ListModel noteListService(int receive, int requestPage, HttpServletRequest request) {
 		Search search = new Search();
 		//세션을 구함.

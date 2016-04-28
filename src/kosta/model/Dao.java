@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import kosta.messengerMapper.MessengerMapper;
 import kosta.noteMapper.NoteMapper;
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
@@ -496,6 +497,28 @@ public class Dao {
 			sqlSession.close();
 		}
 		return content;
+	}
+
+	public int messengerInsert(int sender, int projectId, String msg) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		Messenger messeger = new Messenger();
+		messeger.setMsg_sender(sender);
+		messeger.setMsg_content(msg);
+		messeger.setMsg_projectid(projectId);
+		int re=-1;
+		try {
+			re=sqlSession.getMapper(MessengerMapper.class).messengerInsert(messeger);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return re;
 	}
 
 	
