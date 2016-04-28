@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import kosta.imgMapper.imgBoardMapper;
+import kosta.model.ProjectDetail;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -33,13 +36,11 @@ public class ImageDao {
 		return new SqlSessionFactoryBuilder().build(input);
 	}
 
-	public void imgInsertService(String str) {
+	public void imgInsertService(String content) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;
-
 		try {
-			re = sqlSession.getMapper(imgBoardMapper.class).imgInsertService(str);
-
+			re = sqlSession.getMapper(imgBoardMapper.class).imgInsertService(content);
 			if (re > 0) {
 				sqlSession.commit();
 			} else {
@@ -52,15 +53,48 @@ public class ImageDao {
 		}
 	}
 
-	public List<String> listImgBoardService() {
+	public List<Image> listImgBoardService() {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
-		List<String> list = sqlSession.getMapper(imgBoardMapper.class).imgListBoard();
+		List<Image> list = sqlSession.getMapper(imgBoardMapper.class).imgListBoard();
 		
 		return list;
 		}
-		
+	
+	public void imgDeleteService(int check_id){
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = -1;
+		try {
+			re = sqlSession.getMapper(imgBoardMapper.class).imgDeleteService(check_id);
+			if (re > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
+	}
+
+	public void imgModify(Image img) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = -1;
+		try {
+			re = sqlSession.getMapper(imgBoardMapper.class).imgModify(img);
+			if (re > 0) {
+				sqlSession.commit();
+			} else {
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			sqlSession.close();
+		}
 		
 	}
+}
 

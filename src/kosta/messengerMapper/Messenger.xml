@@ -11,7 +11,45 @@
 			NVL((select max(msg_id) from msg)+1,0), #{msg_content},#{msg_sender},SYSDATE,#{msg_projectid} 
 			)
 	</insert>
+	<select id="loadMessege" resultType="Messenger" parameterType="Messenger">
+		SELECT * from
+		(select ROWNUM as rn , msg_id , msg_sender, msg_content 
+		FROM (select * from msg WHERE msg_projectid = #{msg_projectid } ORDER BY msg_date desc)) 
+		WHERE rn BETWEEN #{msg_startIndex } AND #{msg_startIndex }+7
+		AND msg_id <![CDATA[<]]> #{msg_lastMsgId }
 	
+		<!-- 
+		//p_id, startNum,lastMsg_id
+		//메신저 창에서 가지고 있는 마지막 메시지의 아이디 값을 가지고서 불러올 기준을 잡아준다.
+		SELECT ROWNUM, d.msg_id ,d.msg_sender, m.m_name, d.msg_content 
+		FROM (select * from msg WHERE msg_projectid = #{msg_projectid } ORDER BY msg_date desc) d, member m 
+		WHERE d.msg_id <![CDATA[>]]> #{msg_lastMsgId } 
+		AND ROWNUM BETWEEN #{msg_startIndex } AND #{msg_startIndex }+7 
+		AND d.msg_sender = m.m_id
+		
+		SELECT ROWNUM, d.msg_id ,d.msg_sender, m.m_name, d.msg_content 
+		FROM (select * from msg WHERE msg_projectid = 5 ORDER BY msg_date desc) d, member m 
+		WHERE d.msg_id < 500 
+		AND ROWNUM BETWEEN 0 AND 0+8 
+		AND d.msg_sender = m.m_id
+		
+		select msg_id, msg_sender, msg_content from msg WHERE msg_projectid = #{msg_projectid } ORDER BY msg_date desc
+		
+		SELECT * FROM 
+		(SELECT ROWNUM as rn, msg_id ,msg_sender, msg_content 
+		FROM (select * from msg WHERE msg_projectid = 5 ORDER BY msg_date desc)) 
+		WHERE rn BETWEEN 1 AND 8
+		
+		SELECT * from
+		(select ROWNUM as rn , msg_id , msg_sender, msg_content 
+		FROM (select * from msg WHERE msg_projectid = 5 ORDER BY msg_date desc)) 
+		WHERE rn BETWEEN 8 AND 15 
+		
+		 -->
+	</select>
+	<select id="getMaxMsgId" resultType="int">
+		SELECT MAX(msg_id) FROM MSG
+	</select>
 </mapper>
 
 
