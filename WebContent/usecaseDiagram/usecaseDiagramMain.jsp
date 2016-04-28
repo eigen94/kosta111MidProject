@@ -12,6 +12,8 @@
 <div class="eventModel">
  <img src="../images/index/ellipse.png" width="120" height="100" style=" position: relative;z-index: 1">
 <!-- <input type="image" src="../images/index/ellipse.png" value="³Ö±â" > -->
-<input type="text" class="eventInput" style="position:absolute; z-index: 2">
+<span style="position:absolute; z-index: 2">
+<input type="text" class="eventInput" >
+</span>
 </div>
 </html>
