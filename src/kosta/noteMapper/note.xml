@@ -29,7 +29,7 @@
 	</select>
 	
 	<select id="noteList" parameterType="Search" resultType="Note">
-		SELECT * FROM NOTE
+		SELECT * FROM (select * from note where n_receive = #{receive} )
 		<if test="area != null">
 			<where>
 				<foreach collection="area" item="item" 
@@ -37,8 +37,7 @@
 					${item } LIKE #{searchKey }
 				</foreach>
 			</where>
-		</if>
-		AND n_receive = #{receive }
+		</if> 
 		order by N_ID DESC
 	</select>
 	
