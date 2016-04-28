@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kosta.noteMapper.noteMapper">
+<mapper namespace="kosta.noteMapper.NoteMapper">
 <cache/>
 	<insert id="insertNote" parameterType="Note">
 		insert into note
@@ -15,6 +15,31 @@
 	<select id ="selectNote" parameterType="int" resultType="Note">
 	select * from note where n_receive = #{n_id}
 	</select>
+	
+	<select id="searchId" parameterType="String" resultType="String">
+		SELECT m_email
+		FROM MEMBER
+		WHERE m_email LIKE #{id }
+	</select>
 
+	<select id="getEmail" parameterType="String" resultType="int">
+		SELECT M_ID
+		FROM MEMBER 
+		WHERE M_EMAIL = #{receive }
+	</select>
+	
+	<select id="noteList" parameterType="int" resultType="Note">
+		SELECT * 
+		FROM NOTE 
+		WHERE N_RECEIVE = #{receive }
+	</select>
 	
 </mapper>
+
+
+
+
+
+
+
+

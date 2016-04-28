@@ -1,4 +1,4 @@
-<%-- <%@ page language="java" contentType="text/html; charset=utf-8"
+<%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%
 	request.setCharacterEncoding("utf-8");
@@ -45,7 +45,7 @@ function receive(email) {
 </form>	
 	
 	
-	<!-- Modal -->
+	<%-- <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
     	<div class="modal-content">
@@ -87,9 +87,9 @@ function receive(email) {
       		</div>
     	</div>
   	</div>
-</div>
+</div> --%>
 
 
 
 </body>
-</html> --%>
+</html>

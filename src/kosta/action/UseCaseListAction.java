@@ -25,7 +25,8 @@ public class UseCaseListAction implements Action{
 		forward.setPath("listUseCase.jsp");
 		forward.setRedirect(false);
 		
-		int check_id = Integer.parseInt(request.getParameter("check_id"));
+		String json = request.getParameter("json");
+		System.out.println(json);
 		Service service = Service.getInstance();
 //		CheckList checkList = service.useCaseListService(check_id);
 		JSONParser parser = new JSONParser();

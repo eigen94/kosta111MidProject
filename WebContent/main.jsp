@@ -25,7 +25,13 @@ request.setAttribute("list", list);
     <!-- Bootstrap core CSS -->
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
-
+	<style type="text/css">
+	
+#scrollable-dropdown-menu .tt-dropdown-menu {
+  max-height: 150px;
+  overflow-y: auto;
+}
+	</style>
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
@@ -152,13 +158,22 @@ request.setAttribute("list", list);
 					</div>
 	       			<label for="inputPwdCheck" class="col-sm-3 control-label">메모</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPwdCheck" type="text" name="p_memo" size="20" placeholder="메모를 입력하세요"><br>
+						<input class="form-control" id="projectMemo" type="text" name="p_memo" size="20" placeholder="메모를 입력하세요"><br>
 					</div>
-	       			<label for="inputPhone" class="col-sm-3 control-label">맴버추가</label>
+	       			<label for="projectMemeber" class="col-sm-3 control-label">맴버추가</label>
 	   				<div class="col-sm-7">
-						<input class="form-control" id="inputPhone" type="text" name="p_phone" size="20" placeholder="추가할 맴버 이름이나 이메일을 입력하세요"><br>
+		                <div id="inputIndicator" class='input-group'>
+							<input class="form-control" id="projectMemeber" type="text" name="p_member" size="20" placeholder="추가할 맴버 이름이나 이메일을 입력하세요"><br>
+		                    <span id="memberAddBtn" class="input-group-addon">
+		                        <span class="glyphicon glyphicon-plus-sign"></span>
+		                    </span>
+	                    </div>
 					</div>
-		        
+					<div id="memberAddPoint">
+					</div>
+					<!-- 맴버 전송을 위한 히든폼 -->
+					<input type="hidden" id="projectCrew" name="p_crew">
+					<input type="hidden" id="projectCrew" name="p_pmid" value="${m_id }">
 		        </div>
 			  	<div class="form-group">
 			    	<div class="col-sm-offset-3 col-sm-9">
@@ -190,6 +205,79 @@ request.setAttribute("list", list);
             $(function () {
                 $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD'});
                 $('#datetimepicker2').datetimepicker({format: 'YYYY-MM-DD'});
+                
+                var projectCrew = [];
+                var projectCrewM_id = [];
+                var projectCrewString = "";
+                var searchResult;
+                
+                $('#projectMemeber').keyup(function(){
+        	    	var $registerEmailValue = $(this).val();
+        	    	
+        	    	if($registerEmailValue!=""){
+        		    	$.ajax({
+        		    		url : 'memberNameOrEmailSearch.do',
+        		    		data : {
+        		    			searchKey : $registerEmailValue
+        		    		},
+        		    		method : 'post',
+        		    		success : function(value){
+        		    			var regTmp = /\d/g;
+        		    			searchResult = regTmp.exec(value);
+        		    			if(value.length!=6){
+				        	    	$('#inputIndicator').removeClass('has-error');
+				        	    	$('#inputIndicator').addClass('has-success');
+        		    			} else {
+				        	    	$('#inputIndicator').removeClass('has-success');
+				        	    	$('#inputIndicator').addClass('has-error');
+        		    			}
+        		    		}
+        		    	});
+        	    	} else {
+        	    		$('#inputIndicator').removeClass('has-success');
+        	    		$('#inputIndicator').removeClass('has-error');
+        	    	}//end of if
+        	    });//end of search member input feild keyup event
+                $('#memberAddBtn').click(function(){
+                	var indicatorValue = $('#inputIndicator').attr('class');
+                	var checkValue = indicatorValue.indexOf('has-success');
+                	if(checkValue!=-1){
+                	console.log('can add!');
+                		var addHtml = '<div class="addedMember">';
+                		addHtml += '<label for="projectcrew" class="col-sm-3 control-label"></label>'
+             			addHtml +=	'<div class="col-sm-7">';
+               			addHtml +='<div class="input-group">';
+               			addHtml +='<a href="#" class="form-control">'+$('#projectMemeber').val()+'</a>';
+               			addHtml +='<span class="input-group-addon memberDelBtn">';
+               			addHtml +='<span class="glyphicon glyphicon-minus-sign"></span>';
+               			addHtml +='</span>';
+               			addHtml +='</div>';
+               			addHtml +='</div>';
+               			addHtml +='</div>';
+                		$("#memberAddPoint").append(addHtml);
+                		$('#inputIndicator').removeClass('has-success');
+                		projectCrew.push($('#projectMemeber').val());
+                		projectCrewM_id.push(searchResult);
+                		projectCrewString = projectCrewM_id.toString();
+                		$('#projectCrew').val(projectCrewString);
+                		$('#projectMemeber').val('');
+                	}
+                });//member addBtn event
+                
+                
+                
+                //맴버 삭제버튼 이벤트
+                $(document).on('click','.memberDelBtn',function(){
+                	var tmp = $(this).parent().find('a').html();
+                	var indexOfTarget = jQuery.inArray(tmp, projectCrew);
+                	projectCrew.splice($.inArray(tmp, projectCrew),1);
+                	projectCrewM_id.splice(indexOfTarget, 1);
+                	projectCrewString = projectCrewM_id.toString();
+               		$('#projectCrew').val(projectCrewString);
+                	$(this).parent().parent().parent().remove();
+                	
+                });
+        	    
             });
     		function setInputFormDate(){//set modal default dateValue
     	    	var dateObj = new Date; 
@@ -204,6 +292,7 @@ request.setAttribute("list", list);
     	    	$('#projectEndDate').val(modalDefaultValue);
     		}//end of set input form date
     		setInputFormDate();
+    		
         </script>
 </body>
 </html>

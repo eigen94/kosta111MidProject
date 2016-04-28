@@ -114,6 +114,8 @@
 	 	 		</div>
 			</div>
 		</div>
+		
+		<!-- 미리보기단 -->
 		<div class="modal fade" id="caseview" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >		<div class="modal-dialog">
 	    	<div class="modal-content">
 	    	  	<div class="modal-header">
@@ -127,32 +129,31 @@
    						<div class="div_table">
     						<div class="table_tr">
     					    	<div class="tbl_th">개요</div>
-    		    				<div class="tbl_td"></div>
+    		    				<div class="tbl_td"><b></b></div>
     						</div>
     						<div class="table_tr">
     					    	<div class="tbl_th">관련 액터</div>
-    					    	<div class="tbl_td">${jsonObj.actor }</div>
+    					    	<div class="tbl_td"><b></b></div>
     						</div>
     						<div class="table_tr">
     					    	<div class="tbl_th">선행 조건</div>
-    					    	<div class="tbl_td">${jsonObj.conditionF }</div>
+    					    	<div class="tbl_td"><b></b></div>
     						</div>
     						<div class="table_tr">
     					    	<div class="tbl_th">이벤트 흐름</div>
-    				    		<div class="tbl_td">${jsonObj.event }</div>
+    				    		<div class="tbl_td"><b></b></div>
     						</div>
     						<div class="table_tr">
     					    	<div class="tbl_th">후행조건</div>
-    		    				<div class="tbl_td">${jsonObj.conditionB }</div>
+    		    				<div class="tbl_td"><b></b></div>
     						</div>
     						<div class="table_tr">
     	    					<div class="tbl_th">기타 요구사항</div>
-    			    			<div class="tbl_td">${jsonObj.claim }</div>
+    			    			<div class="tbl_td"><b></b></div>
     						</div>
     						<div class="table_tr">
     		    				<div class="tbl_th">개발 담당자</div>
-    			    			<div class="tbl_td">
-							</div>
+    			    			<div class="tbl_td"><b></b></div>
     					</div>
     				</div>
     			</div>	

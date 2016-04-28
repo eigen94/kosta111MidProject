@@ -5,53 +5,44 @@ import java.io.UnsupportedEncodingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import kosta.model.Note;
 import kosta.model.ProjectBoard;
 import kosta.service.Service;
 
-public class ProjectCreateAction implements Action {
-	public ProjectCreateAction() {}
+public class NoteInsertAction implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) {
+		
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		String p_name = request.getParameter("p_name");
-		String p_start = request.getParameter("p_start");
-		String p_end = request.getParameter("p_end");
-		String p_memo = request.getParameter("p_memo");
-		String p_crew = request.getParameter("p_crew");
-		ProjectBoard project = new ProjectBoard(p_name, p_start, p_end, p_memo);
-		project.setP_crew(p_crew);
+		String n_title = request.getParameter("n_title");
+		String n_content = request.getParameter("n_content");
+		int n_sender = Integer.parseInt(request.getParameter("n_sender"));
 		
+		String receive = request.getParameter("n_receive");
+		int n_receive = Service.getEmailService(receive);
+		System.out.println(n_content);
 		
+		Note note = new Note(n_title, n_content, n_sender, n_receive);
 		Service service = Service.getInstance();
-		service.projectInsertService(project);
+		service.noteInsertService(note);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
-		forward.setPath("main.jsp");
+		forward.setPath("noteInsertForm.jsp");
 		
 		return forward;
 		
+		
+		
+		
+		
 	}
-
+	
+	
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,9 +1,11 @@
 package kosta.model;
 
 import java.io.InputStream;
-import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
+import kosta.messengerMapper.MessengerMapper;
+import kosta.noteMapper.NoteMapper;
 import kosta.projectMapper.ProjectBoardMapper;
 import kosta.umlMapper.UmlMapper;
 import kosta.usecaseDiagramMapper.usecaseDiagramMapper;
@@ -394,6 +396,99 @@ public class Dao {
 		
 		List<String> list = sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagramList();
 		return list;
+	}
+	
+	public int insertNote(Note note) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re=-1;
+		try {
+			re=sqlSession.getMapper(NoteMapper.class).insertNote(note);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return re;
+	}
+
+
+	public List<Note> selectNote(int n_id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<Note> note = new ArrayList<Note>();
+		try {
+			note = sqlSession.getMapper(NoteMapper.class).selectNote(n_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return note;
+	}
+
+	public List<String> searchId(String id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<String> list = null;
+		try {
+			list = sqlSession.getMapper(NoteMapper.class).searchId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return list;
+	}
+
+	public int getEmail(String receive) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int eMail = 0;
+		try {
+			eMail = sqlSession.getMapper(NoteMapper.class).getEmail(receive);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return eMail;
+	}
+
+	public List<Note> noteList(int receive) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<Note> list = null;
+		try {
+			list = sqlSession.getMapper(NoteMapper.class).noteList(receive);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return list;
+	}
+
+	public int messengerInsert(int sender, int projectId, String msg) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		Messenger messeger = new Messenger();
+		messeger.setMsg_sender(sender);
+		messeger.setMsg_content(msg);
+		messeger.setMsg_projectid(projectId);
+		int re=-1;
+		try {
+			re=sqlSession.getMapper(MessengerMapper.class).messengerInsert(messeger);
+			if(re>0){
+				sqlSession.commit();
+			}else{
+				sqlSession.rollback();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return re;
 	}
 
 	

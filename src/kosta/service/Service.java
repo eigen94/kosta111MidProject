@@ -4,6 +4,7 @@ import java.util.List;
 
 import kosta.model.DB;
 import kosta.model.Dao;
+import kosta.model.Note;
 import kosta.model.ProjectBoard;
 import kosta.model.ProjectDetail;
 
@@ -96,8 +97,6 @@ public class Service {
 		
 		return dao.umlList();
 	}
-	
-	
 
 	public void useCaseInsertService(String json) {
 		dao.useCaseInsert(json);
@@ -109,10 +108,6 @@ public class Service {
 		
 	}
 
-/*	public List<String> getUseCaseService() {
-		return dao.getUseCase();
-	}
-*/
 	public List<String> usecaseDiagramListService() {
 		return dao.usecaseDiagramList();
 	}
@@ -125,6 +120,33 @@ public class Service {
 	public void linkDB(DB db) {
 		dao.linkDB(db);
 	}
+	
+	public int noteInsertService(Note note){
+		return dao.insertNote(note);
+	}
+	
+	
+	public List<Note> noteSelectService(int n_id){
+		return dao.selectNote(n_id);
+	}
+
+	public List<String> searchIdService(String id) {
+		return dao.searchId(id);
+	}
+
+	public static int getEmailService(String receive) {
+		return dao.getEmail(receive);
+	}
+
+	public int messengerInsert(int sender, int projectId, String msg) {
+		System.out.println("hi");
+		return dao.messengerInsert(sender, projectId, msg);
+	}
+
+	public List<Note> noteListService(int receive) {
+		return dao.noteList(receive);
+	}
+	
 }
 
 
