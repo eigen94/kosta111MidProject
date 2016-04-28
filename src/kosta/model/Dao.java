@@ -491,6 +491,32 @@ public class Dao {
 		return re;
 	}
 
+	public List<Messenger> loadMessege(Messenger Messenger) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		List<Messenger> list = new ArrayList<Messenger>();
+		try {
+			list=sqlSession.getMapper(MessengerMapper.class).loadMessege(Messenger);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return list;
+	}
+
+	public int getMaxMsgId() {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		int re = 0;
+		try {
+			re=sqlSession.getMapper(MessengerMapper.class).getMaxMsgId();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			sqlSession.close();
+		}
+		return re;
+	}
+
 	
 }
 

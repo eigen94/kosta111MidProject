@@ -34,12 +34,14 @@ import kosta.action.UseCaseInsertAction;
 import kosta.action.UseCaseListAction;
 import kosta.action.UsecaseDiagramListAction;
 import kosta.action.UsecaseDiagramtAction;
+import kosta.action.getMaxMsgId;
 //import kosta.useCaseAction.UseCaseListAction;
 //import kosta.useCaseAction.UseCasePrintAction;
 import kosta.action.memberLoginOk;
 import kosta.action.memberLogoutOk;
 import kosta.action.memberNameOrEmailSearch;
 import kosta.action.memberRegister;
+import kosta.action.messegeLoad;
 import kosta.action.messengerInsert;
 import kosta.action.projectDetailAction;
 
@@ -147,6 +149,12 @@ public class Controller extends HttpServlet {
 			forward = action.execute(request, response);
 		} else if (command.equals("messengerInsert.do")){
 			action = new messengerInsert();
+			forward = action.execute(request, response);
+		} else if (command.equals("loadMessege.do")){
+			action = new messegeLoad();
+			forward = action.execute(request, response);
+		} else if (command.equals("getMaxMsgId.do")){
+			action = new getMaxMsgId();
 			forward = action.execute(request, response);
 		}
 

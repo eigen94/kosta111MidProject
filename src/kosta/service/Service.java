@@ -4,6 +4,7 @@ import java.util.List;
 
 import kosta.model.DB;
 import kosta.model.Dao;
+import kosta.model.Messenger;
 import kosta.model.Note;
 import kosta.model.ProjectBoard;
 import kosta.model.ProjectDetail;
@@ -139,12 +140,19 @@ public class Service {
 	}
 
 	public int messengerInsert(int sender, int projectId, String msg) {
-		System.out.println("hi");
 		return dao.messengerInsert(sender, projectId, msg);
+	}
+	
+	public List<Messenger> loadMessege(Messenger Messenger) {
+		return dao.loadMessege(Messenger);
 	}
 
 	public List<Note> noteListService(int receive) {
 		return dao.noteList(receive);
+	}
+
+	public int getMaxMsgId() {
+		return dao.getMaxMsgId();
 	}
 	
 }
