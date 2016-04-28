@@ -49,7 +49,6 @@ $(function() {
 	// 저장
 	function save(jsonObj) {
 		var finalJsonObj = JSON.stringify(jsonObj);
-		return null;
 		
 		$.ajax({
 			type:"post",
@@ -77,7 +76,7 @@ $(function() {
 	// 저장->save()
 	$('.save button').on('click', function() {
 		save(json());
-//		location.href= "useCaseList.do?check_id="+ $('.package input').val()
+		/*location.href= "useCaseList.do?check_id="+ $('.package input').val()*/
 	});
 	
 	//미리보기

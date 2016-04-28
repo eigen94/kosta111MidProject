@@ -34,7 +34,7 @@ public class NoteListAction implements Action{
 		if(id != null){
 			receive = Integer.parseInt(id);
 		}
-		receive = 1;
+		receive = 11;
 		Service service = Service.getInstance();
 		ListModel noteList = service.noteListService(receive, requestPage, request);
 		request.setAttribute("noteList", noteList);
