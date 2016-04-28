@@ -71,9 +71,29 @@ $(function(){
 	var usecaseAdd = function(){
 		var obj = usecaseProcess();
 		console.log(obj);
+	    var c = new joint.shapes.basic.Circle({ 
+		        position: {
+		        	x: 100,
+		        	y: 10 
+		        	}, 
+		        size: {
+		        	width: 70,
+		        	height: 40 
+		        	},
+		        attrs: { 
+		        	circle: { 
+		        		fill: '#FE854F', 
+		        		'stroke-width': 8,
+		        		stroke: '#4B4A67' 
+	        			},
+	        			text: {
+	        				text: '', 
+	        				fill: 'white' 
+	        					} 
+	        			}
+		    });
 		
-		
-	    var usecaseObj = new usecaseDiagram.Class({
+	    /*var usecaseObj = new usecaseDiagram.Class({
 	    	position : {
 	    		x : 20,
 	    		y : 190
@@ -84,8 +104,10 @@ $(function(){
 	    	} ,
 	    	actors: obj.actArr,
 	    	events: obj.eventArr
+	   
 	    })
-	    useCase.push(usecaseObj);
+	    useCase.push(usecaseObj);*/
+	    useCase.push(c);
 	    objClick();
 	    _.each(useCase,function(c){
 	    	graph.addCell(c);
