@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="kosta.noteMapper.noteMapper">
+<mapper namespace="kosta.noteMapper.NoteMapper">
 <cache/>
 	<insert id="insertNote" parameterType="Note">
 		insert into note
@@ -15,6 +15,55 @@
 	<select id ="selectNote" parameterType="int" resultType="Note">
 	select * from note where n_receive = #{n_id}
 	</select>
-
 	
+	<select id="searchId" parameterType="String" resultType="String">
+		SELECT m_email
+		FROM MEMBER
+		WHERE m_email LIKE #{id }
+	</select>
+
+	<select id="getEmail" parameterType="String" resultType="int">
+		SELECT M_ID
+		FROM MEMBER 
+		WHERE M_EMAIL = #{receive }
+	</select>
+	
+	<select id="noteList" parameterType="Search" resultType="Note">
+		SELECT * FROM NOTE
+		<if test="area != null">
+			<where>
+				<foreach collection="area" item="item" 
+					separator="or" open="(" close=")">
+					${item } LIKE #{searchKey }
+				</foreach>
+			</where>
+		</if>
+		AND n_receive = #{receive }
+		order by N_ID DESC
+	</select>
+	
+	 <select id="countNote" parameterType="Search" resultType="int">
+	 	SELECT COUNT(*) from NOTE
+	 	<if test="area != null">
+			<where>
+				<foreach collection="area" item="item" 
+					separator="or" open="(" close=")">
+					${item } LIKE #{searchKey }	
+				</foreach>
+			</where>
+		</if>
+	 </select>
+	 
+	 <select id="noteDetail" parameterType="int" resultType="String">
+	 	SELECT n_content FROM NOTE WHERE N_ID = #{n_id }
+	 </select>
+	 
 </mapper>
+
+
+
+
+
+
+
+

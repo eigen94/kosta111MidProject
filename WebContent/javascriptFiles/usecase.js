@@ -20,9 +20,8 @@ $(function() {
 		count--;
 	}
 	
-	// 저장
-	function save() {
-		var jsonArray = new Array();
+	//json
+	function json() {
 		var jsonObj = new Object();
 		
 		//개요와 엑터
@@ -31,26 +30,26 @@ $(function() {
 		
 		//반복문 시작
 		for(var i=0;i<count;i++){
-			/*if($('select').eq(i).val() == 'outline'){
-			}else if($('select').eq(i).val() == 'actor'){
-				jsonObj.actor = $('.mid_position input').eq(i).val();
-			}else*/
 			if($('select').eq(i).val() == 'conditionF'){
 				jsonObj.conditionF = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'event'){
-			jsonObj.event = $('.mid_position textarea').eq(i).val();
+				jsonObj.event = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'eventDetail'){
 				jsonObj.eventDetail = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'conditionB'){
-			jsonObj.conditionB = $('.mid_position textarea').eq(i).val();
+				jsonObj.conditionB = $('.mid_position textarea').eq(i).val();
 			}else if($('select').eq(i).val() == 'claim'){
 				jsonObj.claim = $('.mid_position textarea').eq(i).val();
 			}
 		}		//반복문 종료
 		
-		jsonArray.push(jsonObj);
-		
+		return jsonObj;
+	}
+	
+	// 저장
+	function save(jsonObj) {
 		var finalJsonObj = JSON.stringify(jsonObj);
+		return null;
 		
 		$.ajax({
 			type:"post",
@@ -77,38 +76,31 @@ $(function() {
 
 	// 저장->save()
 	$('.save button').on('click', function() {
-//		save();
-		location.href= "useCaseList.do?check_id="+ $('.package input').val()
+		save(json());
+//		location.href= "useCaseList.do?check_id="+ $('.package input').val()
 	});
 	
 	//미리보기
 	$('.active a').on('click', function(){
+		$('#caseview b').html('');
+		//개요와 엑터
+		$('#caseview b').eq(0).html($('.top_position textarea').eq(0).val());
+		$('#caseview b').eq(1).html($('.top_position textarea').eq(1).val());
 		
-		var str = new Array();
-		
-		/*str.push($('.modal-body textarea').eq(0).val());
-		str.push($('.modal-body textarea').eq(1).val());*/
-		
-		for(var i=0;i<10;i++){
-			str.push($('.modal-body textarea').eq(i).val());
-		}
-		/*for(var i=0;i<count;i++){
+		//반복문 시작
+		for(var i=0;i<count;i++){
 			if($('select').eq(i).val() == 'conditionF'){
-				jsonObj.conditionF = $('.mid_position textarea').eq(i).val();
+				$('#caseview b').eq(2).html($('.mid_position textarea').eq(i).val());
 			}else if($('select').eq(i).val() == 'event'){
-			jsonObj.event = $('.mid_position textarea').eq(i).val();
+				$('#caseview b').eq(3).html($('.mid_position textarea').eq(i).val());
 			}else if($('select').eq(i).val() == 'conditionB'){
-			jsonObj.conditionB = $('.mid_position textarea').eq(i).val();
+				$('#caseview b').eq(4).html($('.mid_position textarea').eq(i).val());
 			}else if($('select').eq(i).val() == 'claim'){
-				jsonObj.claim = $('.mid_position textarea').eq(i).val();
+				$('#caseview b').eq(5).html($('.mid_position textarea').eq(i).val());
 			}
-		}*/
+		}		//반복문 종료
 		
-		
-		alert(str[0] + ", " + str[1] + ", " + str[3]);
-		alert(str[4] + ", " + str[5] + ", " + str[6]);
 	})
-	
 	
 	
 	

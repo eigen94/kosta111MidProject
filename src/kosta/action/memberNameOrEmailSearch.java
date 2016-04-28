@@ -18,16 +18,17 @@ public class memberNameOrEmailSearch implements Action {
 			HttpServletResponse response) {
 		
 		String searchKey = request.getParameter("searchKey");
-		MemberService service = MemberService.getInsetance();
 		List<Member> list = new ArrayList<Member>();
-		service.memberNameOrEmailSearch(searchKey);
+		MemberService service = MemberService.getInsetance();
+		if(searchKey!=null)
+		{
+			list = service.memberNameOrEmailSearch(searchKey);
+		}
 		
 		List<JSONObject> sendList = new ArrayList<JSONObject>();
 		for(int i=0; i<list.size(); i++){
 			JSONObject obj = new JSONObject();
 			obj.put("m_id", list.get(i).getM_id());
-			obj.put("m_name", list.get(i).getM_name());
-			obj.put("m_email", list.get(i).getM_email());
 			sendList.add(obj);
 		}
 		System.out.println(sendList);

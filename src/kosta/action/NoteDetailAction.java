@@ -5,22 +5,24 @@ import javax.servlet.http.HttpServletResponse;
 
 import kosta.service.Service;
 
-public class UsecaseDiagramtAction implements Action {
+public class NoteDetailAction implements Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
+		forward.setPath("noteDetail.jsp");
+		forward.setRedirect(false);
 		
-		String json = request.getParameter("json");
-		System.out.print(json);
-		
+		int n_id = 0;
+		String id = request.getParameter("n_id");
+		if(id != null){
+			n_id = Integer.parseInt(id);
+		}
 		Service service = Service.getInstance();
-		
-		String check_content = json;
-		
-		service.useCaseInsertService(check_content);
-		return null;
+		String content = service.noteDetailService(n_id);
+		request.setAttribute("content", content);
+		return forward;
 	}
 
 }
