@@ -13,23 +13,9 @@ $(function(){
 	var classes = new Array();
 	var relations = new Array();
 
-	$(".btn-list-add").click(function(){		
-		var length = $(this).parent().find(".list-item").length;
-		//console.log(length);
-		var $add = $(this).next().children().last().clone();
-		$add.find("input").val("");
-		var str = $add.attr("data-index",length).find(".field").attr("data-field")
-				.substring(0,$add.attr("data-index",length).find(".field").attr("data-field").indexOf("/")+1);
-		
-		$add.attr("data-index",length).find(".field").attr("data-field",(str+length))
-		.find("label").text(str+length).next().attr("data-attribute",(str+length));
-		
-		$add.find(".btn-list-del").click(function(){
-			
-			$(this).parent().remove();
-		})
-		
-		$(this).parent().find(".list-items").append($add);	
+	$(".btn-list-add").click(function(){	
+		var temp = this;
+		listAdd(temp);	
 	});//end btn-list-add	
 	
 	$("#ok").click(function(){
@@ -276,7 +262,24 @@ $(function(){
 	
 	
 });//end query
-
+var listAdd = function(temp){
+	var length = $(temp).parent().find(".list-item").length;
+	//console.log(length);
+	var $add = $(temp).next().children().last().clone();
+	$add.find("input").val("");
+	var str = $add.attr("data-index",length).find(".field").attr("data-field")
+			.substring(0,$add.attr("data-index",length).find(".field").attr("data-field").indexOf("/")+1);
+	
+	$add.attr("data-index",length).find(".field").attr("data-field",(str+length))
+	.find("label").text(str+length).next().attr("data-attribute",(str+length));
+	
+	$add.find(".btn-list-del").click(function(){
+		
+		$(this).parent().remove();
+	})
+	
+	$(temp).parent().find(".list-items").append($add);
+}
 
 
 
