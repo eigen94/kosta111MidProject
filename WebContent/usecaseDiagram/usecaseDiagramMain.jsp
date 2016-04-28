@@ -6,13 +6,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <div class="actModel">
-<input type="text" class="actInput" size="20px"><br>
-<img src="../images/index/actor.png">
+<input type="text" class="actInput" size="20px" style="z-index:2;"><br>
+<img src="../images/index/person.png" style="z-index:1;" width="100" height="100">
 </div>
 <div class="eventModel">
-<img src="../images/index/ellipse.png">
-<input type="text" class="eventInput">
-
+ <img src="../images/index/ellipse.png" width="120" height="100" style=" position: relative;z-index: 1">
+<!-- <input type="image" src="../images/index/ellipse.png" value="³Ö±â" > -->
+<input type="text" class="eventInput" style="position:absolute; z-index: 2">
 </div>
-
 </html>
