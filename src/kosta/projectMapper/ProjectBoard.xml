@@ -55,6 +55,9 @@
 	<delete id="checkDelet" parameterType="int">
 		DELETE FROM checklist WHERE check_id = #{check_id}
 	</delete>
+	<delete id="checkDelAllinProject" parameterType="int">
+		DELETE FROM checklist WHERE check_projectId = #{p_id}
+	</delete>
 	<update id="checkUpdate" parameterType="Detail">
 		update checklist set
 		check_name = #{check_name}, check_content = #{check_content},check_end = #{check_end}
