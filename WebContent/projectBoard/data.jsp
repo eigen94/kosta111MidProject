@@ -263,6 +263,9 @@
 			ctx.lineTo(ix,iy);
 			ctx.stroke();
 		})
+		$('#query').on('click',function(){
+			alert("aa")
+		})
 		
 	});
 </script>
@@ -292,7 +295,8 @@
 	<button id="addAttr">컬럼추가</button>
 	<button id="submit">테이블 생성</button><br>
 	<button id="link">조건 걸기</button>
-		<button id="line">선그리기</button>
+	<button id="line">선그리기</button>
+	<button id="query">쿼리문</button>
 	
 	
 	<br>
@@ -343,7 +347,6 @@
 			<input type="hidden" class="index-y" value="${json.get('y')}">
 			<input type="hidden" class="pkX" value="${json.get('pkX') }">
 			<input type="hidden" class="pkY" value="${json.get('pkY') }">
-
 		</div>
 	</c:forEach>
 </body>
