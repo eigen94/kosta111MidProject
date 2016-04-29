@@ -39,14 +39,17 @@ public class ImgFileAction implements ImgAction {
 			
 			//원본 파일 이미지 -> 객체화
 			String imagePath = uploadPath + "//" + check_urlId;
+			
 			File src = new File(imagePath);
 			
 			//썸네일 이미지 -> 객체화
 			String thumImagePath = uploadPath + "//" + headName + "_small." + pattern;
+			
 			File dest = new File(thumImagePath);
 			
 			//썸네일 이미지 생성
-			if(pattern.equals("jpg")||pattern.equals("gif")||pattern.equals("png")){
+			if(pattern.equalsIgnoreCase("jpg")||pattern.equalsIgnoreCase("gif")||pattern.equalsIgnoreCase("png")){
+			
 				ImageUtil.resize(src, dest, 100, ImageUtil.RATIO);
 			}
 			
