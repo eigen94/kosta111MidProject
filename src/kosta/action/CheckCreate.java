@@ -5,7 +5,6 @@ import java.sql.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import kosta.model.ProjectDetail;
 import kosta.service.Service;
@@ -15,11 +14,11 @@ public class CheckCreate implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) {
-		HttpSession session = request.getSession();
 		Service service = Service.getInstance();
 		try {
 			request.setCharacterEncoding("utf-8");
 		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		int check_id = service.getDetailId()+1;
@@ -27,20 +26,25 @@ public class CheckCreate implements Action {
 		int check_projectId = Integer.parseInt(request.getParameter("check_projectId"));
 		String check_start = request.getParameter("check_start");
 		String check_end = request.getParameter("check_end");
-		int check_type = 0;/*Integer.parseInt(request.getParameter("check_type"));*/
+		int check_type = Integer.parseInt(request.getParameter("check_type"));
 		int check_sign = 0;
-//		String check_content = request.getParameter("check_content");
-		String check_content = "";
-		int check_manager = (Integer)session.getAttribute("m_id");
+		String check_content = request.getParameter("check_content");
+		if(check_content==null){
+			check_content = "";
+		}
+		int check_manager = 1;
 		
-		ProjectDetail detail = new ProjectDetail(check_id,check_name,check_projectId,check_start,check_end,check_manager,check_sign,check_type,check_content);
-		int re = 0;
-		System.out.println("check : "+detail);
-		re = service.checkCreate(detail);
-		System.out.println("re : "+re);
+		ProjectDetail detail = 
+				new ProjectDetail(check_id,check_name,check_projectId,check_start,check_end,check_manager,check_sign,check_type,check_content);
+		System.out.println(detail);
+		
+		service.checkCreate(detail);
+		
+	
 		ActionForward forward = new ActionForward();
-		forward.setRedirect(true);
-		forward.setPath("projectDetail.jsp?p_id="+check_projectId);
+		forward.setRedirect(false);
+//		forward.setPath("projectSelect.do?p_id="+check_projectId);
+		forward.setPath("");
 		return forward;
 	}
 

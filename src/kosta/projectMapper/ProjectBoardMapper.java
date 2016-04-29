@@ -17,6 +17,7 @@ public interface ProjectBoardMapper {
 	public List<ProjectDetail> detailList(int id);
 	public ProjectDetail selectDetail(int check_id);
 	public void checkDelet(int id);
+	public int checkDelAllinProject(int id);
 	public void checkUpdate(ProjectDetail detail);
 	public Integer dBId();
 	

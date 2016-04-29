@@ -32,15 +32,6 @@ request.setAttribute("list", list);
   overflow-y: auto;
 }
 	</style>
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
     <!-- Custom styles for this template -->
     <link href="cssFiles/main.css" rel="stylesheet">
@@ -188,111 +179,14 @@ request.setAttribute("list", list);
 	  </div>
 	</div>
 	
- 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js"></script>
-	<script src="//cdn.rawgit.com/Eonasdan/bootstrap-datetimepicker/e8bddc60e73c1ec2475f827be36e1957af72e2ea/src/js/bootstrap-datetimepicker.js"></script>    
-    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
-    <script src="../../assets/js/vendor/holder.js"></script>
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-        <script type="text/javascript">
-            $(function () {
-                $('#datetimepicker1').datetimepicker({format: 'YYYY-MM-DD'});
-                $('#datetimepicker2').datetimepicker({format: 'YYYY-MM-DD'});
-                
-                var projectCrew = [];
-                var projectCrewM_id = [];
-                var projectCrewString = "";
-                var searchResult;
-                
-                $('#projectMemeber').keyup(function(){
-        	    	var $registerEmailValue = $(this).val();
-        	    	
-        	    	if($registerEmailValue!=""){
-        		    	$.ajax({
-        		    		url : 'memberNameOrEmailSearch.do',
-        		    		data : {
-        		    			searchKey : $registerEmailValue
-        		    		},
-        		    		method : 'post',
-        		    		success : function(value){
-        		    			var regTmp = /\d/g;
-        		    			searchResult = regTmp.exec(value);
-        		    			if(value.length!=6){
-				        	    	$('#inputIndicator').removeClass('has-error');
-				        	    	$('#inputIndicator').addClass('has-success');
-        		    			} else {
-				        	    	$('#inputIndicator').removeClass('has-success');
-				        	    	$('#inputIndicator').addClass('has-error');
-        		    			}
-        		    		}
-        		    	});
-        	    	} else {
-        	    		$('#inputIndicator').removeClass('has-success');
-        	    		$('#inputIndicator').removeClass('has-error');
-        	    	}//end of if
-        	    });//end of search member input feild keyup event
-                $('#memberAddBtn').click(function(){
-                	var indicatorValue = $('#inputIndicator').attr('class');
-                	var checkValue = indicatorValue.indexOf('has-success');
-                	if(checkValue!=-1){
-                	console.log('can add!');
-                		var addHtml = '<div class="addedMember">';
-                		addHtml += '<label for="projectcrew" class="col-sm-3 control-label"></label>'
-             			addHtml +=	'<div class="col-sm-7">';
-               			addHtml +='<div class="input-group">';
-               			addHtml +='<a href="#" class="form-control">'+$('#projectMemeber').val()+'</a>';
-               			addHtml +='<span class="input-group-addon memberDelBtn">';
-               			addHtml +='<span class="glyphicon glyphicon-minus-sign"></span>';
-               			addHtml +='</span>';
-               			addHtml +='</div>';
-               			addHtml +='</div>';
-               			addHtml +='</div>';
-                		$("#memberAddPoint").append(addHtml);
-                		$('#inputIndicator').removeClass('has-success');
-                		projectCrew.push($('#projectMemeber').val());
-                		projectCrewM_id.push(searchResult);
-                		projectCrewString = projectCrewM_id.toString();
-                		$('#projectCrew').val(projectCrewString);
-                		$('#projectMemeber').val('');
-                	}
-                });//member addBtn event
-                
-                
-                
-                //맴버 삭제버튼 이벤트
-                $(document).on('click','.memberDelBtn',function(){
-                	var tmp = $(this).parent().find('a').html();
-                	var indexOfTarget = jQuery.inArray(tmp, projectCrew);
-                	projectCrew.splice($.inArray(tmp, projectCrew),1);
-                	projectCrewM_id.splice(indexOfTarget, 1);
-                	projectCrewString = projectCrewM_id.toString();
-               		$('#projectCrew').val(projectCrewString);
-                	$(this).parent().parent().parent().remove();
-                	
-                });
-        	    
-            });
-    		function setInputFormDate(){//set modal default dateValue
-    	    	var dateObj = new Date; 
-    	    	var modalDefaultYear = dateObj.getFullYear();
-    	    	var modalDefaultMonth = dateObj.getMonth()+1;
-    	    	if(modalDefaultMonth<10){
-    	    		modalDefaultMonth = '0'+modalDefaultMonth;
-    	    	}
-    	    	var modalDefaultDay = dateObj.getDate();
-    	    	var modalDefaultValue = modalDefaultYear+"-"+modalDefaultMonth+"-"+modalDefaultDay;
-    	    	$('#projectStartDate').val(modalDefaultValue);
-    	    	$('#projectEndDate').val(modalDefaultValue);
-    		}//end of set input form date
-    		setInputFormDate();
-    		
-        </script>
+    <script src="/kosta111MidProject/javascriptFiles/jquery/1.11.2/jquery.min.js"></script>
+    <script src="/kosta111MidProject/bootstrap/js/bootstrap.min.js"></script>
+    <!-- for dateTimePicker -->
+    <script src="/kosta111MidProject/javascriptFiles/moment/moment-with-locales.js"></script>
+	<script src="/kosta111MidProject/javascriptFiles/dateTimePicker/bootstrap-datetimepicker.js"></script>
+    <script src="/kosta111MidProject/javascriptFiles/forPageScript/main.js"></script>
 </body>
 </html>

@@ -7,15 +7,16 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-	<script src="jquery-1.10.2.min.js"></script>
+
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
 		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-        <script src="js/jquery.js"></script>
+
 <title>Insert title here</title>
 
 <script type="text/javascript">
@@ -211,6 +212,21 @@
 				jsonArray.push(jsonObj); //json배열에 만들어진 한개의 UML을 넣음
 				
 				var finalJsonObj = JSON.stringify(jsonObj); //json을 ajax로 보내기 위한 과정
+				
+				if($(this).children(".pkX").val()!=""){
+					var c=$("#myCanvas");
+					var ctx=c.get(0).getContext("2d");
+					var pX = $(this).children(".pkX").val();
+					var py = $(this).children(".pkY").val();
+					var ix = xPos;
+					var iy = yPos;
+					
+					ctx.moveTo(pX,py);
+					ctx.lineTo(ix,iy);
+					ctx.stroke();
+				}
+				
+				
 				 $.ajax({
 					type : "post",
 					url : "dataXY.do?check_id="+count,
@@ -235,6 +251,53 @@
 			alert($(this).val());
 		})
 		
+		$("#line").on("click",function(){
+			var c=$("#myCanvas");
+			var ctx=c.get(0).getContext("2d");
+			var line = $(".line");
+			var pX = line.children(".pX").val();
+			var py = line.children(".pY").val();
+			var ix = line.children(".ix").val();
+			var iy = line.children(".iy").val();
+			
+			ctx.moveTo(pX,py);
+			ctx.lineTo(ix,iy);
+			ctx.stroke();
+		})
+		$('#query').on('click',function(){
+			var tableRow = $('.table').eq(0).children('.tableRow').val();
+			var list = "";
+			var query = "";
+			for(var i=0 ; i<tableRow ; i++){
+				var tableName = $('.table').eq(i).children('.title').val();
+				var colRow = $('.table').eq(i).children('.row').val()
+				query += "create table "+ tableName +"(";
+				for(var j=0;j<colRow;j++){
+					var colName = $('.table').eq(i).children('.name').eq(j).val();
+					var colType = $('.table').eq(i).children('.type').eq(j).val();
+					var colKey = $('.table').eq(i).children('.key').eq(j).val();
+					if(j == colRow){
+						if(colType == 'varchar2'){
+							query += colName + " " + colType + "(100) " + colKey
+						}else{
+							query += colName + " " + colType +  " " + colKey
+						}	
+					}else{
+						if(colType == 'varchar2'){
+							query += colName + " " + colType + "(100) " + colKey + ","
+						}else{
+							query += colName + " " + colType +  " " + colKey +","
+						}	
+					}
+					
+					
+				}
+				query += ");        "
+			}
+			
+			alert(query)
+		})
+		
 	});
 </script>
 <style type="text/css">
@@ -243,11 +306,14 @@
 		border : 1px solid;
 		width: 400px;
 	}
-	
+	#myCanvas{
+		position: absolute;
+		z-index: -1;
+	}
 </style>
 </head>
 <body>
-
+<div style="position:absolute;">
 	<input type="hidden" id="check_id" value="${param.check_id }">
 	<table border="3" cellpadding="0" cellspacing="0">
 		<tr height="80">
@@ -257,16 +323,32 @@
 			<td width="400" align="center"></td>
 		</tr>
 	</table>
-
 	<button id="addAttr">컬럼추가</button>
 	<button id="submit">테이블 생성</button><br>
-	<button id="link">조건 걸기</button><br>
+	<button id="link">조건 걸기</button>
+	<button id="line">선그리기</button>
+	<button id="query">쿼리문</button>
+	
+	
+	<br>
+</div>
+	<div class="line">
+			<c:forEach var="next" items="${jsonList }">
+				<c:if test="${next.pkX != ''}">
+				<input type="hidden" class="ix" value="${next.get('x')}">
+				<input type="hidden" class="pX" value="${next.get('pkX') }">
+				<input type="hidden" class="iy" value="${next.get('y')}">
+				<input type="hidden" class="pY" value="${next.get('pkY') }">
+			</c:if>
+		</c:forEach>
+	</div>
+<canvas id="myCanvas" width="1100" height="1000" style="border:1px solid #d3d3d3;"></canvas> 
+
 
 	<c:forEach var="json" varStatus="v" items="${jsonList }">
 		<div class="table" style="position:absolute; left:${json.get('x')}px; top:${json.get('y')}px; cursor:pointer; cursor:hand; border:1 solid;">
 		<input type="hidden" id="count" value="${v.count }">
 		<input type="hidden" id="c_id" value="${param.check_id }">
-		
 		<input type="hidden" class="check_id" value="${idList[v.count-1] }">
 		<input type="hidden" class="title" value="${json.get('title')}" >${json.get("title") }<br>
 		--------------<br>
@@ -297,10 +379,8 @@
 			<input type="hidden" class="index-y" value="${json.get('y')}">
 			<input type="hidden" class="pkX" value="${json.get('pkX') }">
 			<input type="hidden" class="pkY" value="${json.get('pkY') }">
-
+			<input type="hidden" class="tableRow" value="${fn:length(jsonList) }">
 		</div>
 	</c:forEach>
-
-
 </body>
 </html>

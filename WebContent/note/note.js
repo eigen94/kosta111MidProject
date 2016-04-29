@@ -12,6 +12,8 @@ $(function() {
 	    window.open(popUrl,"",popOption);
 	})
 	
+	
+	
 });
 
 //search
@@ -35,7 +37,7 @@ $(function() {
 });
 
 //storage
-$(function() {
+$(function() {	
 	$('.box button').on('click', function() {
 		var id = $('.hidden_text input').val();
 		location.href="noteList.do?id="+ id;
@@ -43,7 +45,12 @@ $(function() {
 })
 
 
-
+//detail
+$(function() {
+	$('.detail button').on('click', function(){
+		location.href="noteList.do";
+	})
+})
 
 
 

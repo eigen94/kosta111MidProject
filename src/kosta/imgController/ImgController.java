@@ -11,8 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 
 import kosta.imageAction.ImgAction;
 import kosta.imageAction.ImgActionForward;
-import kosta.imageAction.ImgCrateAction;
+import kosta.imageAction.ImgDeleteAction;
+import kosta.imageAction.ImgFileAction;
 import kosta.imageAction.ImgListAction;
+import kosta.imageAction.ImgModifyAction;
 
 
 @WebServlet("*.img")
@@ -33,13 +35,20 @@ public class ImgController extends HttpServlet {
 		ImgAction action = null;
 		ImgActionForward forward = null;
 
-		if (command.equals("insertImg.img")) {
-			action = new ImgCrateAction();
+		if (command.equals("insertFile.img")) {
+			action = new ImgFileAction();
 			forward = action.execute(request, response);
 		}else if(command.equals("imgListBoard.img")){
 			action = new ImgListAction();
 			forward = action.execute(request, response);
+		}else if(command.equals("delete.img")){
+			action = new ImgDeleteAction();
+			forward = action.execute(request, response);
+		}else if(command.equals("modify.img")){
+			action = new ImgModifyAction();
+			forward = action.execute(request, response);
 		}
+		
 
 		if (forward != null) {
 			if (forward.isRedirect()) {

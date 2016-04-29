@@ -27,7 +27,7 @@
        	<c:when test="${m_name!=null }">
 	            <li><a href="#">안녕하세요! ${m_name } 님!</a></li>
           <li><a href="#">쪽지</a></li>
-          <li role="presentation"><a href="#" data-toggle="modal" data-target="#messengerModal">매신저</a></li>
+          <li role="presentation"><a href="#" id="messengerBtn">매신저</a></li>
           <li role="presentation"><a href="logoutOk.do">로그아웃</a></li>
        	</c:when>
        	<c:otherwise>

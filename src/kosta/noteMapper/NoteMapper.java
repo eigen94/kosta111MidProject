@@ -2,7 +2,10 @@ package kosta.noteMapper;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
+
 import kosta.model.Note;
+import kosta.model.Search;
 
 
 public interface NoteMapper {
@@ -17,7 +20,11 @@ public interface NoteMapper {
 
 	public int getEmail(String receive);
 
-	public List<Note> noteList(int receive);
+	public List<Note> noteList(RowBounds startRow, Search search);
+
+	public int countNote(Search search);
+
+	public String noteDetail(int  n_id);
 	
 
 }
