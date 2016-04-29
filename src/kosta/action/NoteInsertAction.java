@@ -22,14 +22,18 @@ public class NoteInsertAction implements Action{
 		String n_title = request.getParameter("n_title");
 		String n_content = request.getParameter("n_content");
 		int n_sender = Integer.parseInt(request.getParameter("n_sender"));
-		int n_receive = Integer.parseInt(request.getParameter("n_receive"));
+		
+		String receive = request.getParameter("n_receive");
+		int n_receive = Service.getEmailService(receive);
+		System.out.println(n_content);
+		
 		Note note = new Note(n_title, n_content, n_sender, n_receive);
 		Service service = Service.getInstance();
 		service.noteInsertService(note);
 		
 		ActionForward forward = new ActionForward();
 		forward.setRedirect(true);
-		forward.setPath("NoteForm.jsp");
+		forward.setPath("noteInsertForm.jsp");
 		
 		return forward;
 		
