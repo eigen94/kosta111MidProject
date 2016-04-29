@@ -105,18 +105,18 @@ public class Service {
 		return dao.umlList();
 	}
 
-	public void useCaseInsertService(String json) {
+	public void useCaseInsertService(ProjectDetail json) {
 		dao.useCaseInsert(json);
 		
 	}
 
-	public void usecaseDiagramService(String json) {
+	public void usecaseDiagramService(ProjectDetail json) {
 		dao.usecaseDiagram(json);
 		
 	}
 
-	public List<String> usecaseDiagramListService() {
-		return dao.usecaseDiagramList();
+	public String usecaseDiagramListService(int check_id) {
+		return dao.usecaseDiagramList(check_id);
 	}
 
 	public void updateDB(DB db) {

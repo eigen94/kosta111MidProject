@@ -21,7 +21,7 @@ public class UseCaseInsertAction implements Action {
 		
 		String check_content = json;
 		
-		service.useCaseInsertService(check_content);
+//		service.useCaseInsertService(check_content);
 		return null;
 	}
 

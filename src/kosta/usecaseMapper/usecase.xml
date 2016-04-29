@@ -5,9 +5,10 @@
 <mapper namespace="kosta.usecaseMapper.usecaseMapper">
 	<cache />
 	
-	<insert id="useCaseInsert" parameterType="String">
-		insert into checklist
-		(CHECK_CONTENT, CHECK_ID) values(#{check_content}, NVL((select max(CHECK_ID) from checklist)+1,0))
+	<insert id="useCaseInsert" parameterType="Detail">
+		UPDATE checklist SET check_content = #{check_content } WHERE CHECK_ID = #{check_id}
+<!-- 		insert into checklist
+		(CHECK_CONTENT, CHECK_ID) values(#{check_content}, NVL((select max(CHECK_ID) from checklist)+1,0)) -->
 	
 	</insert>
 	
