@@ -19,7 +19,7 @@ public class UmlListAction implements Action {
 			HttpServletResponse response) {
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("umlMain.jsp");
+		forward.setPath("out.jsp");
 		forward.setRedirect(false);
 		
 		Service service = Service.getInstance();
@@ -34,7 +34,7 @@ public class UmlListAction implements Action {
 		JSONArray relation = null;
 		List<JSONArray> objList = new ArrayList<JSONArray>();
 		List<JSONArray> relationList = new ArrayList<JSONArray>();
-		System.out.println("dd");
+		
 		for(int i=0; i<list.size(); i++)
 		{			
 			try {
@@ -42,20 +42,18 @@ public class UmlListAction implements Action {
 				obj = (JSONArray)jsonObj.get("jsonUmlArray");
 				relation = (JSONArray)jsonObj.get("jsonRelationArray");
 				objList.add(obj);
-				relationList.add(relation);
-				System.out.println("aa");
-				
+				relationList.add(relation);		
 				
 			} catch (Exception e) {			
 				e.printStackTrace();
 			}		
 		}
 		
-		System.out.println(objList);
-		System.out.println(relationList);
+		//System.out.println(objList);
+		//System.out.println(relationList);
 		request.setAttribute("objList", objList);
 		request.setAttribute("relationList", relationList);
-		
+		request.setAttribute("out", list.get(0));
 		return forward;
 	}
 

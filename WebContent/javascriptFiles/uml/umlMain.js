@@ -35,7 +35,7 @@ $(function(){
 		$.each(classList, function(){
 			//console.log();
 			$textArr = $(this).find("text");
-			var classType;
+			var classType = "Class";
 			var name;
 			var attribute = new Array();
 			var method = new Array();
@@ -130,8 +130,173 @@ $(function(){
 		$.ajax({
 			type:"post",
 			url:"umlList.do",
-			success:function(){
+			dataType : 'json',
+			success:function(data){
+				//console.log(data);
+				var umlArray = data.jsonUmlArray;
+				console.log(umlArray)
+				var relationArray = data.jsonRelationArray;
 				
+				$.each(umlArray, function(){
+					var type = this.classType;
+					var name = this.name;
+					var attribute = this.attribute;
+					//console.log(attribute)
+					var method = this.method;
+					var positionX = this.positionX;
+					var positionY = this.positionY;
+					
+					if(type == "Interface")
+					{
+						var obj = umlProcess($(".inspector"));
+
+						var umlObj = new uml.Interface({
+							position : {
+								x : positionX,
+								y : positionY
+							},
+							size : {
+								width : 240,
+								height : 100
+							},
+							name : name,
+							attributes : attribute,
+							methods : method,
+							attrs : {
+								'.uml-class-name-rect' : {
+									fill : '#feb662',
+									stroke : '#ffffff',
+									'stroke-width' : 0.5
+								},
+								'.uml-class-attrs-rect, .uml-class-methods-rect' : {
+									fill : '#fdc886',
+									stroke : '#fff',
+									'stroke-width' : 0.5
+								},
+								'.uml-class-attrs-text' : {
+									ref : '.uml-class-attrs-rect',
+									'ref-y' : 0.5,
+									'y-alignment' : 'middle'
+								},
+								'.uml-class-methods-text' : {
+									ref : '.uml-class-methods-rect',
+									'ref-y' : 0.5,
+									'y-alignment' : 'middle'
+								}
+
+							}
+						});
+						classes.push(umlObj);
+						clearInspector();
+
+						_.each(classes, function(c) {
+							graph.addCell(c);
+						});
+					}
+					else if(type == "Abstract")
+					{
+						var obj = umlProcess($(".inspector"));
+						var umlObj = new uml.Abstract({
+							position : {
+								x : positionX,
+								y : positionY
+							},
+							size : {
+								width : 260,
+								height : 100
+							},
+							name : name,
+							attributes : attribute,
+							methods : method,
+							attrs : {
+								'.uml-class-name-rect' : {
+									fill : '#68ddd5',
+									stroke : '#ffffff',
+									'stroke-width' : 0.5
+								},
+								'.uml-class-attrs-rect, .uml-class-methods-rect' : {
+									fill : '#9687fe',
+									stroke : '#fff',
+									'stroke-width' : 0.5
+								},
+								'.uml-class-methods-text, .uml-class-attrs-text' : {
+									fill : '#fff'
+								}
+							}
+						})
+						classes.push(umlObj);
+						clearInspector();
+
+						_.each(classes, function(c) {
+							graph.addCell(c);
+						});
+					}
+					else if(type == "Class")
+					{
+						var umlObj = new uml.Class({
+							position : {
+								x : positionX,
+								y : positionY
+							},
+							size : {
+								width : 220,
+								height : 100
+							},
+							name : name,
+							attributes : attribute,
+							methods : method,
+							attrs : {
+								'.uml-class-name-rect' : {
+									fill : '#ff8450',
+									stroke : '#fff',
+									'stroke-width' : 0.5,
+								},
+								'.uml-class-attrs-rect, .uml-class-methods-rect' : {
+									fill : '#fe976a',
+									stroke : '#fff',
+									'stroke-width' : 0.5
+								},
+								'.uml-class-attrs-text' : {
+									ref : '.uml-class-attrs-rect',
+									'ref-y' : 0.5,
+									'y-alignment' : 'middle'
+								},
+								'.uml-class-methods-text' : {
+									ref : '.uml-class-methods-rect',
+									'ref-y' : 0.5,
+									'y-alignment' : 'middle'
+								}
+							}
+						})
+						classes.push(umlObj);
+						clearInspector();
+
+						_.each(classes, function(c) {
+							graph.addCell(c);
+						});
+					}					
+				})
+				
+				$.each(relationArray, function(){
+					var sourceId;
+					var targetId;	
+					var start = this.start;
+					var end = this.end;
+					var type = this.type;
+
+					for(var i=0; i<classes.length; i++)
+					{
+						if(classes[i].attributes.name == start)
+						{
+							sourceId = classes[i].id;					
+						}
+						if(classes[i].attributes.name == end)
+						{
+							targetId = classes[i].id;					
+						}
+					}	
+					relationDrawProcess(this.type, this.start, this.end, sourceId, targetId)
+				})
 			},
 			error:function(){
 				alert("불러오기 실패");
@@ -175,7 +340,7 @@ $(function(){
 		var start = $("#start").val();
 		var end = $("#end").val();
 		var type = $("#relationType").val();
-		var obj;
+		
 		var relObj = new Object();
 		relObj.start = start;
 		relObj.end = end;
@@ -195,8 +360,12 @@ $(function(){
 			{
 				targetId = classes[i].id;					
 			}
-		}
-
+		}	
+		relationDrawProcess(type,start,end, sourceId, targetId);
+	}//relationDraw
+	
+	var relationDrawProcess = function(type, start, end, sourceId, targetId){
+		var obj;
 		if(type == "DirectAssociation")
 		{
 			var linkAttrs =  {
