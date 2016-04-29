@@ -118,7 +118,11 @@ public class Dao {
 	public void projectDelete(int p_id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;
+		int re2 = -1;
+		int re3= -1;
 		try {
+			re3 = sqlSession.getMapper(ProjectBoardMapper.class).checkDelAllinProject(p_id);
+			re2 = sqlSession.getMapper(MessengerMapper.class).deleteMessege(p_id);
 			re = sqlSession.getMapper(ProjectBoardMapper.class).projectDelete(p_id);
 			if(re > 0){
 				sqlSession.commit();
@@ -311,10 +315,10 @@ public class Dao {
 		
 	}
 
-	public List<String> umlList() {
+	public List<String> umlList(int check_id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		return sqlSession.getMapper(UmlMapper.class).umlList();
+		return sqlSession.getMapper(UmlMapper.class).umlList(check_id);
 	}
 
 	public void useCaseInsert(String json) {

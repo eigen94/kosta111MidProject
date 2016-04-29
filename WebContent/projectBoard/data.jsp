@@ -264,6 +264,8 @@
 			ctx.lineTo(ix,iy);
 			ctx.stroke();
 		})
+		
+		
 		$('#query').on('click',function(){
 			var tableRow = $('.table').eq(0).children('.tableRow').val();
 			var list = "";
@@ -297,16 +299,17 @@
 					
 					
 				}
-				/*  constraint FK_cusid_customer FOREIGN KEY ( cus_id ) REFERENCES Customer ( cus_id ) */
 			
 				if(colFor != ""){
-					query += ", constraint FK_"+tableName+"_"+colFor +" FOREIGN KEY ("+colFor+") REFERENCES "+colPkey+"("+colFor+")" 
+					query += ", constraint FK_"+tableName+"_"+colFor +" FOREIGN KEY ("+colFor+") REFERENCES "+colPkey+"("+colFor+")"
 				}
-				query += ");        "
+				query += ");        ";
 			}
 			
-			alert(query)
-		})
+			alert(query);
+				
+			});
+			
 		
 	});
 </script>

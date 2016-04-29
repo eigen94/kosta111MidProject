@@ -5,5 +5,5 @@ import java.util.List;
 public interface UmlMapper {
 
 	int umlInsert(String json);
-	List<String> umlList();
+	List<String> umlList(int check_id);
 }
