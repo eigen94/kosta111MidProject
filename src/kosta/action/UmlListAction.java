@@ -19,13 +19,13 @@ public class UmlListAction implements Action {
 			HttpServletResponse response) {
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("umlList.jsp");
+		forward.setPath("umlMain.jsp");
 		forward.setRedirect(false);
 		
 		Service service = Service.getInstance();
 		
-		List<String> list = service.umlListService();
-		System.out.println(list);		
+		List<String> list = service.umlListService(0);
+		//System.out.println(list);		
 		
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj=null;
@@ -34,22 +34,25 @@ public class UmlListAction implements Action {
 		JSONArray relation = null;
 		List<JSONArray> objList = new ArrayList<JSONArray>();
 		List<JSONArray> relationList = new ArrayList<JSONArray>();
+		System.out.println("dd");
 		for(int i=0; i<list.size(); i++)
 		{			
 			try {
 				jsonObj = (JSONObject)parser.parse(list.get(i));
-				obj = (JSONArray)jsonObj.get("jsonArray");
-				relation = (JSONArray)jsonObj.get("relationArray");
+				obj = (JSONArray)jsonObj.get("jsonUmlArray");
+				relation = (JSONArray)jsonObj.get("jsonRelationArray");
 				objList.add(obj);
 				relationList.add(relation);
+				System.out.println("aa");
 				
 				
 			} catch (Exception e) {			
 				e.printStackTrace();
 			}		
 		}
-		//System.out.println(objArray);
-		//System.out.println(relationArray);
+		
+		System.out.println(objList);
+		System.out.println(relationList);
 		request.setAttribute("objList", objList);
 		request.setAttribute("relationList", relationList);
 		

@@ -96,9 +96,9 @@
 	      			
 	      			<div class="modal-footer">
 <!-- ////////////////////////////////////////////////////////////// -->
-	      				<div class="package">
+	      				<!-- <div class="package">
 							<input type="text" name="check_id">  
-						</div>
+						</div> -->
 <!-- ////////////////////////////////////////////////////////////// -->
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	      				<span class="save">

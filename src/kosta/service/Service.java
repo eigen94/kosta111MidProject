@@ -100,9 +100,9 @@ public class Service {
 		
 	}
 
-	public List<String> umlListService() {
+	public List<String> umlListService(int check_id) {
 		
-		return dao.umlList();
+		return dao.umlList(check_id);
 	}
 
 	public void useCaseInsertService(ProjectDetail json) {

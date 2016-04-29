@@ -1,96 +1,138 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 
-<link href="/kosta111MidProject/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="http://jointjs.com/cms/downloads/joint.css" rel="stylesheet">
+<link href="/kosta111MidProject/cssFiles/uml/umlMain.css" rel="stylesheet">
+<!-- <link href="/kosta111MidProject/cssFiles/uml/uml.css" rel="stylesheet"> -->
+
 <script src="/kosta111MidProject/javascriptFiles/jquery-2.2.3.min.js"></script>
 <script src="/kosta111MidProject/javascriptFiles/jquery-ui.min.js"></script>
-<script src="/kosta111MidProject/bootstrap/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="/kosta111MidProject/javascriptFiles/uml/uml.js"></script>
+<script type="text/javascript" src="http://jointjs.com/js/vendor/lodash/lodash.min.js"></script>
+<script type="text/javascript" src="http://jointjs.com/js/vendor/backbone/backbone-min.js"></script>
+<script type="text/javascript" src="http://jointjs.com/cms/downloads/joint.js"></script>
 
-
-<style type="text/css">
-#uml
-{
-	
-	float: left;
-}
-#relation
-{
-	margin-left: 1000px;
-}
-
-#list
-{
-	clear: both;
-}
-
-</style>
+<script type="text/javascript" src="/kosta111MidProject/javascriptFiles/uml/umlMain.js"></script>
 
 </head>
+<script>
+	SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement
+			|| function(toElement) {
+				return toElement.getScreenCTM().inverse().multiply(
+						this.getScreenCTM());
+			};
+</script>
 <body>
-<div id="btnSubmit"><button id="submit">¿¸º€</button></div>
-	<table id="uml" border="3" cellpadding="0" cellspacing="0">
-		<tr height="80">
-			<td width="800" align="center"><input type="text" id="name"></td>
-		</tr>
+<div id="loadData">
+aaaaaaaaaaaaaaaaaaaaaaa      ${objList }
+	<c:forEach var="uml" items="${objList }">
+		dddddddddddddddd : ${uml }
+		<%-- <input type="hidden" class="umlType" value=${uml.classType }>
+		<input type="hidden" class="umlName" value=${uml.name }>
+		<c:forEach var="attr" items="${uml.attribute }">
+			<input type="hidden" class="umlAttribute" value=${attr }>
+		</c:forEach>
+		<c:forEach var="op" items="${uml.method }">
+			<input type="hidden" class="umlMethod" value=${op }>
+		</c:forEach> --%>		
+	</c:forEach>
+</div>
 
-		<tr height="80">
-			<td width="800" align="center"></td>
-		</tr>
+	<section class="container">
+		<article>
+			<h2>Unified Modeling Language</h2>
+			<h3>The Class Diagram</h3>
+			<label>ÏÑ†ÌÉùÎêú ÎåÄÏÉÅ : </label><input type="text" id="selectedClass">
+			<button id="disselect">ÏÑ†ÌÉùÌï¥Ï†ú</button>
+		</article>
 
-		<tr height="80">
-			<td width="800" align="center"></td>
-		</tr>
+		<div class="umlProcess">
+			<div id="paper" class="paper"></div>
+		</div>
+		<div class="inspector-container">
+			<div class="inspector">
+				<div class="umlType">
+					<label>Class</label><input type="radio" name="classType" value="Class">
+					<label>Interface</label><input type="radio" name="classType" value="Interface">
+					<label>Abstract</label><input type="radio" name="classType" value="Abstract">
+				</div>
+				<div class="group closed" data-name="name">
+					<h3 class="group-label">Class name</h3>
+					<div class="field" data-field="name">
+						<label>Class name</label> <input class="text" type="text" data-type="text" data-attribute="name" size="38">
+					</div>					
+				</div><!-- end name -->
+				
+				<div class="group closed" data-name="attributes">
+					<h3 class="group-label">Attributes</h3>
+					<div class="field" data-field="attributes">
+						<label>Attributes</label>
+						<div class="list" data-type="list" data-attribute="attributes">
+							<button class="btn-list-add">+</button>
+							<div class="list-items">
+								<div class="list-item" data-index="0">
+									<button class="btn-list-del">-</button>
+									<div class="field" data-field="attributes/0">
+										<label>attributes/0</label>
+										<input class="text" type="text" data-type="text" data-attribute="attributes/0" size="38">
+									</div>
+								</div>								
+							</div><!-- end list-item -->
+						</div><!-- end attributes list -->
+					</div>
+				</div><!-- end attributes group -->
+				
+				<div class="group closed" data-name="methods">
+					<h3 class="group-label">Methods</h3>
+					<div class="field" data-field="methods">
+						<label>Methods</label>	
+						<div class="list" data-type="list" data-attribute="methods">
+							<button class="btn-list-add">+</button>
+							<div class="list-items">
+								<div class="list-item" data-index="0">
+									<button class="btn-list-del">-</button>
+									<div class="field" data-field="methods/0">
+										<label>methods/0</label>
+										<input class="text" type="text" data-type="text" data-attribute="methods/0" size="38">
+									</div><!--  -->
+								</div><!-- end list-item -->
+							</div><!--  -->
+						</div><!-- end list -->
+					</div><!-- end field -->					
+				</div><!-- end method group -->
+				<button id="ok">ÏôÑÎ£å</button>				
+			</div><!-- end inspector -->
+		</div><!-- end inspector-container -->
 		
-		<tr height="30">
-			<td align="center">
-				<button id="addAttr">æÓ∆Æ∏Æ∫‰∆Æ √ﬂ∞°</button>&nbsp;
-				<button id="addOp">ø¿∆€∑π¿Ãº« √ﬂ∞°</button>&nbsp;	
-				<button id="ok">øœ∑·</button>		
-			</td>
-		</tr>
-	</table>
+		
+
+	<link href="http://jointjs.com/css/jointjs/v0.9.5/joint.min.css" rel="stylesheet">
+	<!-- <script type="text/javascript" src="http://jointjs.com/js/jointjs/v0.9.5/joint.min.js"></script> -->
+	<!-- <script src="/kosta111MidProject/javascriptFiles/uml/uml.js"></script> -->
+	
+	</section>
 	<br><br>
-	<table id="relation" border="2" cellpadding="0" cellspacing="0">
-		<tr height="30">
-			<th width="200" align="center">Ω√¿€</th>
-			<th width="200" align="center">≥°</th>
-			<th width="200" align="center">∞¸∞Ë ¡æ∑˘</th>
-		</tr>
-		<tr height="30">
-			<td><input type="text" id="start"></td>
-			<td><input type="text" id="end"></td>
-			<td><select id="relationType">
+	<div class="relation-container">
+			<label>ÏãúÏûë :</label>
+			<input type="text" id="start">&nbsp;&nbsp;
+			<label>ÎÅù :</label>
+			<input type="text" id="end">&nbsp;&nbsp;
+			<select id="relationType">
 				<option value="DirectAssociation">DirectAssociation</option>
 				<option value="Aggregation">Aggregation</option>
 				<option value="Composition">Composition</option>
-				<option value="Generalization">Generalization</option>
-				<option value="Dependency">Dependency</option>
+				<option value="Generalization">Generalization</option>				
 				<option value="Realization">Realization</option>
-			</select></td>
-		</tr>
-		<tr height="30">
-			<td colspan="3" align="center"><button id="connect">ø¨∞·</button></td>
-		</tr>
-	
-	</table>
-	
-	
-	<div id="list">
-	<br>
-	<hr>
-	<hr>
-		<h3>UML List</h3>		
-		<br><br><br>
-	</div>
-	
-
-
+			</select>&nbsp;&nbsp;&nbsp;
+			<button id="connect">Ïó∞Í≤∞</button>
+			
+		</div>
+		<button id="submit">Ï†ÑÏÜ°</button>&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;<button id="load">Î∂àÎü¨Ïò§Í∏∞</button>
 </body>
 </html>

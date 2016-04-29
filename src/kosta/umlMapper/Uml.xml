@@ -10,8 +10,9 @@
 		(CHECK_CONTENT, CHECK_ID) values(#{check_content}, nvl((select max(CHECK_ID) from checklist)+1,0))	
 	</insert>
 	
-	<select id="umlList" resultType="String">
+	<select id="umlList" parameterType="int" resultType="String">
 		select check_content from checklist
+			where check_id = check_id
 	</select>
 	
 	
