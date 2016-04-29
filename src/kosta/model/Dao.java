@@ -118,7 +118,11 @@ public class Dao {
 	public void projectDelete(int p_id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;
+		int re2 = -1;
+		int re3= -1;
 		try {
+			re3 = sqlSession.getMapper(ProjectBoardMapper.class).checkDelAllinProject(p_id);
+			re2 = sqlSession.getMapper(MessengerMapper.class).deleteMessege(p_id);
 			re = sqlSession.getMapper(ProjectBoardMapper.class).projectDelete(p_id);
 			if(re > 0){
 				sqlSession.commit();
