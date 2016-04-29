@@ -264,24 +264,31 @@
 			ctx.lineTo(ix,iy);
 			ctx.stroke();
 		})
+		
+		
 		$('#query').on('click',function(){
 			var tableRow = $('.table').eq(0).children('.tableRow').val();
 			var list = "";
 			var query = "";
+
 			for(var i=0 ; i<tableRow ; i++){
 				var tableName = $('.table').eq(i).children('.title').val();
 				var colRow = $('.table').eq(i).children('.row').val()
+				var colPkey = $('.table').eq(i).children('.for').val();
+				var colFor = $('.table').eq(i).children('.fk').val();
+				
 				query += "create table "+ tableName +"(";
 				for(var j=0;j<colRow;j++){
 					var colName = $('.table').eq(i).children('.name').eq(j).val();
 					var colType = $('.table').eq(i).children('.type').eq(j).val();
 					var colKey = $('.table').eq(i).children('.key').eq(j).val();
-					if(j == colRow){
+					
+					if(j == colRow-1){
 						if(colType == 'varchar2'){
 							query += colName + " " + colType + "(100) " + colKey
 						}else{
 							query += colName + " " + colType +  " " + colKey
-						}	
+						}
 					}else{
 						if(colType == 'varchar2'){
 							query += colName + " " + colType + "(100) " + colKey + ","
@@ -292,11 +299,17 @@
 					
 					
 				}
-				query += ");        "
+			
+				if(colFor != ""){
+					query += ", constraint FK_"+tableName+"_"+colFor +" FOREIGN KEY ("+colFor+") REFERENCES "+colPkey+"("+colFor+")"
+				}
+				query += ");        ";
 			}
 			
-			alert(query)
-		})
+			alert(query);
+				
+			});
+			
 		
 	});
 </script>

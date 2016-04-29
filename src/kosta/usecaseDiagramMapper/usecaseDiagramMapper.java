@@ -1,12 +1,12 @@
 package kosta.usecaseDiagramMapper;
 
-import java.util.List;
+import kosta.model.ProjectDetail;
 
 public interface usecaseDiagramMapper {
 
-	public int usecaseDiagram(String json);
+	public int usecaseDiagram(ProjectDetail json);
 
-	public List<String> usecaseDiagramList();
+	public String usecaseDiagramList(int check_id);
 
 
 }

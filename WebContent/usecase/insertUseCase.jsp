@@ -10,7 +10,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="../cssFiles/tmp.css" type="text/css" />
-<script src="../javascriptFiles/usecase.js" type="text/javascript"></script>
+<script src="/kosta111MidProject/javascriptFiles/usecase.js" type="text/javascript"></script>
 </head>
 <body>
 <!-- 	<div class="">
@@ -96,9 +96,9 @@
 	      			
 	      			<div class="modal-footer">
 <!-- ////////////////////////////////////////////////////////////// -->
-	      				<div class="package">
+	      				<!-- <div class="package">
 							<input type="text" name="check_id">  
-						</div>
+						</div> -->
 <!-- ////////////////////////////////////////////////////////////// -->
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	      				<span class="save">

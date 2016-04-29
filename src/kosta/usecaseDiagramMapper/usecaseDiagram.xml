@@ -5,13 +5,12 @@
 <mapper namespace="kosta.usecaseDiagramMapper.usecaseDiagramMapper">
 	<cache />
 	
-	<insert id="usecaseInsert" parameterType="String">
-		insert into checklist
-		(CHECK_CONTENT, CHECK_ID) values(#{check_content}, nvl((select max(CHECK_ID) from checklist)+1,0))	
+	<insert id="usecaseDiagram" parameterType="Detail">
+		UPDATE checklist SET check_content = #{check_content } WHERE CHECK_ID = #{check_id}	
 	</insert>
 	
 	<select id ="usecaseDiagramList" resultType="String">
-	select check_content from checklist
+	SELECT check_content FROM CHECKLIST WHERE CHECK_ID = #{check_id }
 	</select>
 	
 </mapper>

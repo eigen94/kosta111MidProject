@@ -321,7 +321,7 @@ public class Dao {
 		return sqlSession.getMapper(UmlMapper.class).umlList(check_id);
 	}
 
-	public void useCaseInsert(String json) {
+	public void useCaseInsert(ProjectDetail json) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re =-1;
 		
@@ -341,7 +341,7 @@ public class Dao {
 		
 	}
 
-	public void usecaseDiagram(String json) {
+	public void usecaseDiagram(ProjectDetail json) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re =-1;
 		
@@ -397,11 +397,11 @@ public class Dao {
 		return checkList;
 	}
 
-	public List<String> usecaseDiagramList() {
+	public String usecaseDiagramList(int check_id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<String> list = sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagramList();
-		return list;
+		String str = sqlSession.getMapper(usecaseDiagramMapper.class).usecaseDiagramList(check_id);
+		return str;
 	}
 	
 	public int insertNote(Note note) {
