@@ -7,6 +7,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+   
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -264,7 +265,47 @@
 			ctx.stroke();
 		})
 		$('#query').on('click',function(){
-			alert("aa")
+			var tableRow = $('.table').eq(0).children('.tableRow').val();
+			var list = "";
+			var query = "";
+
+			for(var i=0 ; i<tableRow ; i++){
+				var tableName = $('.table').eq(i).children('.title').val();
+				var colRow = $('.table').eq(i).children('.row').val()
+				var colPkey = $('.table').eq(i).children('.for').val();
+				var colFor = $('.table').eq(i).children('.fk').val();
+				
+				query += "create table "+ tableName +"(";
+				for(var j=0;j<colRow;j++){
+					var colName = $('.table').eq(i).children('.name').eq(j).val();
+					var colType = $('.table').eq(i).children('.type').eq(j).val();
+					var colKey = $('.table').eq(i).children('.key').eq(j).val();
+					
+					if(j == colRow-1){
+						if(colType == 'varchar2'){
+							query += colName + " " + colType + "(100) " + colKey
+						}else{
+							query += colName + " " + colType +  " " + colKey
+						}
+					}else{
+						if(colType == 'varchar2'){
+							query += colName + " " + colType + "(100) " + colKey + ","
+						}else{
+							query += colName + " " + colType +  " " + colKey +","
+						}	
+					}
+					
+					
+				}
+				/*  constraint FK_cusid_customer FOREIGN KEY ( cus_id ) REFERENCES Customer ( cus_id ) */
+			
+				if(colFor != ""){
+					query += ", constraint FK_"+tableName+"_"+colFor +" FOREIGN KEY ("+colFor+") REFERENCES "+colPkey+"("+colFor+")" 
+				}
+				query += ");        "
+			}
+			
+			alert(query)
 		})
 		
 	});
@@ -312,11 +353,12 @@
 		</c:forEach>
 	</div>
 <canvas id="myCanvas" width="1100" height="1000" style="border:1px solid #d3d3d3;"></canvas> 
+
+
 	<c:forEach var="json" varStatus="v" items="${jsonList }">
 		<div class="table" style="position:absolute; left:${json.get('x')}px; top:${json.get('y')}px; cursor:pointer; cursor:hand; border:1 solid;">
 		<input type="hidden" id="count" value="${v.count }">
 		<input type="hidden" id="c_id" value="${param.check_id }">
-		
 		<input type="hidden" class="check_id" value="${idList[v.count-1] }">
 		<input type="hidden" class="title" value="${json.get('title')}" >${json.get("title") }<br>
 		--------------<br>
@@ -347,6 +389,7 @@
 			<input type="hidden" class="index-y" value="${json.get('y')}">
 			<input type="hidden" class="pkX" value="${json.get('pkX') }">
 			<input type="hidden" class="pkY" value="${json.get('pkY') }">
+			<input type="hidden" class="tableRow" value="${fn:length(jsonList) }">
 		</div>
 	</c:forEach>
 </body>
