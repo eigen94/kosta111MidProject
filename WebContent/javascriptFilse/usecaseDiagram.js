@@ -4,8 +4,22 @@ $(function() {
 	count3=1;
 	var jsonObj = new Object();
 	//jsonObj.relation = new Array();
-	
-	
+	getDiagramJson();
+	function getDiagramJson(){
+		$.ajax({
+			url : 'usecaseDiagramList.do',
+			dataType : 'json',
+			data : {
+				check_id : $('#check_id').val()
+			},
+			method : 'post',
+			success : function(data){
+				console.log(data);
+				drawDiagramInText(data);
+			}
+			
+		});
+	}
 	
 	// 콜릭하면 내용을 지운다.
 	$('input').on('click', function() {
@@ -86,34 +100,42 @@ $(function() {
 		jsonObj.relation = relArr;
 		
 	var obj = jsonObj;
-	var str=""
-		for(var i=0; i<count; i++){
-			str += "actor: "+obj.act[i].act+"<br>";
-		}
+	drawDiagramInText(obj);
+	
+		
+	})
+	
+	function drawDiagramInText(obj){
+		var str="<div id='actdiv'>"
+			for(var i=0; i<count; i++){
+				str += "actor: "+obj.act[i].act+"<br>";
+			}
 		for(var i=0; i<count3; i++){
 			str += "event: " + obj.event[i].event+"<br>";
 		}
-
+		
 		for(var j=0; j<count2; j++){	
 			str += "Relation start: " +obj.relation[j].start+" end: "+obj.relation[j].end+" value: "+obj.relation[j].value;
 		}
-		
+		str += "</div>"
+			$('#actdiv').remove();
 		$("#list").append(str);
-		
-	})
+	}
+	
 	$("#complete").click(function(){
 		var finalJsonObj = JSON.stringify(jsonObj);
 		console.log(finalJsonObj);
-		
+		console.log($('#check_id').val());
 		$.ajax({
 			type:"post",
 			url:"usecaseDiagram.do",
 			data:{
+				check_id : $('#check_id').val(),
 				json:finalJsonObj
 			},
 			dataType: "text",
 			success: function(data){
-				location.href="usecaseDiagramList.do";
+//				location.href="usecaseDiagramList.do";
 			},error: function(data){
 				alert("실패");
 			}

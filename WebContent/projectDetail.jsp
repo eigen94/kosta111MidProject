@@ -157,10 +157,10 @@ request.setAttribute("p_id", p_id);
 	   				<div class="col-sm-4">
 					  <select class="form-control" id="checkListCheckType" name="check_type">
 					    <option value="1">기능명세(usecase)</option>
-					    <option>기능명세(usecase diaram)</option>
-					    <option>데이터명세(uml)</option>
-					    <option>데이터명세(ERD)</option>
-					    <option>화면명세</option>
+					    <option value="2">기능명세(usecase diaram)</option>
+					    <option value="3">데이터명세(uml)</option>
+					    <option value="4">데이터명세(ERD)</option>
+					    <option value="5">화면명세</option>
 					  </select>
 					</div>
 	       			<label for="inputPhone" class="col-sm-2 control-label">담당자</label>
