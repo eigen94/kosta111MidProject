@@ -36,11 +36,11 @@ public class ImageDao {
 		return new SqlSessionFactoryBuilder().build(input);
 	}
 
-	public void imgInsertService(String content) {
+	public void imgInsertService(Image image) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;
 		try {
-			re = sqlSession.getMapper(imgBoardMapper.class).imgInsertService(content);
+			re = sqlSession.getMapper(imgBoardMapper.class).imgInsertService(image);
 			if (re > 0) {
 				sqlSession.commit();
 			} else {
@@ -53,20 +53,20 @@ public class ImageDao {
 		}
 	}
 
-	public List<Image> listImgBoardService() {
+	public String listImgBoardService(int check_id) {
 
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 
-		List<Image> list = sqlSession.getMapper(imgBoardMapper.class).imgListBoard();
+		String list = sqlSession.getMapper(imgBoardMapper.class).imgListBoard(check_id);
 		
 		return list;
 		}
 	
-	public void imgDeleteService(int check_id){
+	public void imgDeleteService(Image image){
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;
 		try {
-			re = sqlSession.getMapper(imgBoardMapper.class).imgDeleteService(check_id);
+			re = sqlSession.getMapper(imgBoardMapper.class).imgDeleteService(image);
 			if (re > 0) {
 				sqlSession.commit();
 			} else {

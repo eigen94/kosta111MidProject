@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import kosta.imageAction.ImgActionForward;
 import kosta.imgService.ImageService;
@@ -25,10 +26,29 @@ public class Detailview implements Action {
 		int id = Integer.parseInt(request.getParameter("check_id"));
 		
 		Service service = Service.getInstance();
-		List<DB> list = service.dBList(id);
 		
+		String getjsonList = service.dBList(id);
+		System.out.println("getlist : "+getjsonList);
+//		List<DB> list = service.dBList(id);
+		JSONObject obj = new JSONObject();
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj= null;
+		String tmp ="";
+		
+		try {
+			System.out.println(parser.parse(getjsonList));;
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		obj.put("title", 123);
+		obj.put("attribute", tmp);
+		
+		System.out.println("obj : "+obj.toJSONString());
+		List<DB> list = new ArrayList<DB>();
+		list.add(new DB(obj.toJSONString(), 1));
+		
 		List<JSONObject> jsonList = new ArrayList<JSONObject>();
 		List<Integer> intlist = new ArrayList<Integer>();
 		int check_id = 0;

@@ -85,7 +85,7 @@ public class Service {
 		return dao.dBId();
 	}
 
-	public List<DB> dBList(int id) {
+	public String dBList(int id) {
 		
 		return dao.dBList(id);
 	}
@@ -95,7 +95,7 @@ public class Service {
 		
 	}
 
-	public void umlInsertService(String json) {
+	public void umlInsertService(ProjectDetail json) {
 		dao.umlInsert(json);
 		
 	}

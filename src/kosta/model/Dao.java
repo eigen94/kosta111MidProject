@@ -261,11 +261,12 @@ public class Dao {
 		}
 	}
 
-	public List<DB> dBList(int id) {
+	public String dBList(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-		List<DB> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
-		System.out.println(list);
+//		List<DB> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
+		String list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
+		//System.out.println(list);
 		sqlSession.close();
 		if(list == null){
 			return null;
@@ -289,7 +290,7 @@ public class Dao {
 		}
 	}
 
-	public void umlInsert(String json) {
+	public void umlInsert(ProjectDetail json) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		int re = -1;
 		

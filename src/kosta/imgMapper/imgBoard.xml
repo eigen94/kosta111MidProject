@@ -5,24 +5,27 @@
 <mapper namespace="kosta.imgMapper.imgBoardMapper">
 	<cache />
 
-	<insert id="imgInsertService" parameterType="String">
-		INSERT INTO checklist(
+	<insert id="imgInsertService" parameterType="Image">
+<!-- 		INSERT INTO checklist(
 		check_id , check_content 
 		)VALUES(
 		NVL((SELECT max(check_id) FROM checklist)+1,0),#{content}
-		)
+		) -->
+		UPDATE checklist SET check_content=#{check_content} WHERE check_id = #{check_id}
 	</insert>
 	
-	<select id="imgListBoard" resultType="Image">
-		select check_id, check_content from checklist ORDER BY check_id
+	<select id="imgListBoard" resultType="String" parameterType="int">
+<!-- 		select check_id, check_content from checklist ORDER BY check_id -->
+		select check_content from checklist WHERE check_id=#{check_id}
 	</select>
 	
 	<update id="imgModify" parameterType="Image">
 		UPDATE checklist SET check_content=#{check_content} WHERE check_id = #{check_id}
 	</update>
 	
-	<delete id="imgDeleteService" parameterType="int">
-		DELETE FROM checklist WHERE check_id = #{check_id} 
+	<delete id="imgDeleteService" parameterType="Image">
+		UPDATE checklist SET check_content=#{check_content} WHERE check_id = #{check_id}
+<!-- 		DELETE FROM checklist WHERE check_id = #{check_id} --> 
 	</delete>
 
 </mapper>

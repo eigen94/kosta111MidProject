@@ -1,5 +1,6 @@
 //입력단 스크립트
 $(function() {
+	var inCheck_id = $('#check_id').val();
 	count = 1;
 	// 콜릭하면 내용을 지운다.
 	$('input').on('click', function() {
@@ -49,14 +50,15 @@ $(function() {
 	// 저장
 	function save(jsonObj) {
 		var finalJsonObj = JSON.stringify(jsonObj);
-		
+		console.log(inCheck_id);
 		$.ajax({
-			type:"post",
 			url:"useCaseInsert.do",
+			method:"post",
 			data:{
-				json:finalJsonObj
+				json:finalJsonObj,
+				check_id : inCheck_id
 			},
-			dataType: "text",
+//			dataType: "text",
 			success: function(data){
 			},error: function(data){
 				alert("실패");

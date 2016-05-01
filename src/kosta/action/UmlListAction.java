@@ -19,13 +19,15 @@ public class UmlListAction implements Action {
 			HttpServletResponse response) {
 		
 		ActionForward forward = new ActionForward();
-		forward.setPath("out.jsp");
+		forward.setPath("outForUml.jsp");
 		forward.setRedirect(false);
+		
+		int check_id = Integer.parseInt(request.getParameter("check_id"));
 		
 		Service service = Service.getInstance();
 		
-		List<String> list = service.umlListService(0);
-		//System.out.println(list);		
+		List<String> list = service.umlListService(check_id);
+		System.out.println(list);		
 		
 		JSONParser parser = new JSONParser();
 		JSONObject jsonObj=null;

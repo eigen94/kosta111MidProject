@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import kosta.action.Action;
 import kosta.action.ActionForward;
+import kosta.model.ProjectDetail;
 import kosta.service.Service;
 
 public class UseCaseInsertAction implements Action {
@@ -13,7 +14,7 @@ public class UseCaseInsertAction implements Action {
 	public ActionForward execute(HttpServletRequest request,
 			HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
-		
+		int check_id = Integer.parseInt(request.getParameter("check_id"));
 		String json = request.getParameter("json");
 		System.out.print(json);
 		
@@ -21,7 +22,10 @@ public class UseCaseInsertAction implements Action {
 		
 		String check_content = json;
 		
-//		service.useCaseInsertService(check_content);
+		ProjectDetail detail = new ProjectDetail();
+		
+		detail.setCheck_content(check_content);
+		service.useCaseInsertService(detail);
 		return null;
 	}
 

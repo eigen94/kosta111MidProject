@@ -34,17 +34,16 @@ public class ImageService {
 	}
 	
 
-	public void imgInsertService(String content){
-		System.out.println(content + "service");
-		dao.imgInsertService(content);
+	public void imgInsertService(Image image){
+		dao.imgInsertService(image);
 	}
 	
-	public List<Image> listImgBoardService() {
-		return dao.listImgBoardService();
+	public String listImgBoardService(int check_id) {
+		return dao.listImgBoardService(check_id);
 	}
 	
-	public void imgDeleteService(int check_id){
-		dao.imgDeleteService(check_id);
+	public void imgDeleteService(Image image){
+		dao.imgDeleteService(image);
 	}
 
 

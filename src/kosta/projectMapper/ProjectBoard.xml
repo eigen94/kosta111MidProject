@@ -69,15 +69,19 @@
 	</select>
 	
 	<insert id="createDB" parameterType="Dbj">
-		insert into checklist(
+<!-- 		insert into checklist(
 			check_id,check_content,CHECK_PROJECTID
 		)values(
 			nvl((select max(CHECK_ID) from checklist)+1,0),#{check_content},#{check_id}
-		)
+		) -->
+		update checklist set
+		check_content = #{check_content}
+		where check_id = #{check_id}
 	</insert>
 	
-	<select id="dBList" resultType="Dbj" parameterType="int">
-		select check_id,check_content from checklist where CHECK_PROJECTID = #{id}
+	<select id="dBList" resultType="String" parameterType="int">
+		select check_content from checklist where CHECK_ID = #{id}
+<!-- 		select check_id,check_content from checklist where CHECK_PROJECTID = #{id} -->
 	</select>
 	
 	<update id="updateDB" parameterType="Dbj">

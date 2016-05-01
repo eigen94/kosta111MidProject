@@ -108,7 +108,8 @@ $(function(){
 			type:"post",
 			url:"uml.do",
 			data:{
-				json:JSON.stringify(total)
+				json:JSON.stringify(total),
+				check_id:$('#check_id').val()
 			},
 			dataType: "text",
 			success: function(data){
@@ -131,6 +132,9 @@ $(function(){
 			type:"post",
 			url:"umlList.do",
 			dataType : 'json',
+			data : {
+				check_id : $('#check_id').val()
+			},
 			success:function(data){
 				//console.log(data);
 				var umlArray = data.jsonUmlArray;

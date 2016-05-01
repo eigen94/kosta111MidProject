@@ -10,9 +10,9 @@ import kosta.model.ProjectDetail;
 
 public interface imgBoardMapper {
 
-	int imgInsertService(String content);
-	int imgDeleteService(int check_id);
-	List<Image> imgListBoard();
+	int imgInsertService(Image image);
+	int imgDeleteService(Image image);
+	String imgListBoard(int check_id);
 	int imgUpdateService(Image img);
 	int imgModify(Image img);
 	

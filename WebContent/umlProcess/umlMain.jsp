@@ -9,7 +9,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-
+<!-- Bootstrap core CSS -->
+   <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <link href='http://fullcalendar.io/js/fullcalendar-2.6.1/fullcalendar.css' rel='stylesheet' />
+<link href='http://fullcalendar.io/js/fullcalendar-2.6.1/fullcalendar.print.css' rel='stylesheet' media='print' />
+<link href="bootstrap/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+   <link href="cssFiles/main.css" rel="stylesheet">
+<link rel="stylesheet" href="/kosta111MidProject/cssFiles/tmp.css" type="text/css" />
+<!-- <link href="http://jointjs.com/css/jointjs/v0.9.5/joint.min.css" rel="stylesheet"> -->
 <link href="http://jointjs.com/cms/downloads/joint.css" rel="stylesheet">
 <link href="/kosta111MidProject/cssFiles/uml/umlMain.css" rel="stylesheet">
 <!-- <link href="/kosta111MidProject/cssFiles/uml/uml.css" rel="stylesheet"> -->
@@ -21,7 +28,7 @@
 <script type="text/javascript" src="http://jointjs.com/cms/downloads/joint.js"></script>
 
 <script type="text/javascript" src="/kosta111MidProject/javascriptFiles/uml/umlMain.js"></script>
-
+    <script src="bootstrap/js/bootstrap.min.js"></script>
 </head>
 <script>
 	SVGElement.prototype.getTransformToElement = SVGElement.prototype.getTransformToElement
@@ -31,7 +38,23 @@
 			};
 </script>
 <body>
-	<section class="container">
+<%
+String reqCheck_id = request.getParameter("check_id");
+int check_id=0;
+if(reqCheck_id!=null){
+	check_id = Integer.parseInt(reqCheck_id);
+}
+request.setAttribute("check_id", check_id);
+%>
+	<jsp:include page="/pageModule/navBar.jsp"></jsp:include>
+	<input id="check_id" type="hidden" value="${check_id }">
+
+    <!-- Carousel
+    ================================================== -->
+    <div id="bodyContent">
+    <div class="container-fluid">
+      <div class="row">
+	<section class="container col-sm-12 col-md-12 main">
 		<article>
 			<h2>Unified Modeling Language</h2>
 			<h3>The Class Diagram</h3>
@@ -39,10 +62,11 @@
 			<button id="disselect">선택해제</button>
 		</article>
 
-		<div class="umlProcess">
+		<div class="umlProcess col-sm-8 col-md-8 main">
 			<div id="paper" class="paper"></div>
 		</div>
-		<div class="inspector-container">
+		<div class="inspector-container col-sm-4 col-md-4 main">
+<!-- 		<div class="inspector-container"> -->
 			<div class="inspector">
 				<div class="umlType">
 					<label>Class</label><input type="radio" name="classType" value="Class">
@@ -99,12 +123,13 @@
 		
 		
 
-	<link href="http://jointjs.com/css/jointjs/v0.9.5/joint.min.css" rel="stylesheet">
+	
 	<!-- <script type="text/javascript" src="http://jointjs.com/js/jointjs/v0.9.5/joint.min.js"></script> -->
 	<!-- <script src="/kosta111MidProject/javascriptFiles/uml/uml.js"></script> -->
 	
 	</section>
 	<br><br>
+	<div class=" col-sm-12 col-md-12 main">
 	<div class="relation-container">
 			<label>시작 :</label>
 			<input type="text" id="start">&nbsp;&nbsp;
@@ -121,5 +146,17 @@
 			
 		</div>
 		<button id="submit">전송</button>&nbsp;&nbsp;&nbsp;	&nbsp;&nbsp;&nbsp;<button id="load">불러오기</button>
+	</div>
+	      </div><!-- end row -->
+      
+    <br>
+    
+    </div><!-- end container -->
+    
+    
+    
+    <!-- end of bodycontent -->
+
+    </div><!-- /.container -->
 </body>
 </html>
