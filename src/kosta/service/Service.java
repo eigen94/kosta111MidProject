@@ -85,7 +85,7 @@ public class Service {
 		return dao.dBId();
 	}
 
-	public String dBList(int id) {
+	public List<DB> dBList(int id) {
 		
 		return dao.dBList(id);
 	}

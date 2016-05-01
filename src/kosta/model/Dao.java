@@ -261,11 +261,11 @@ public class Dao {
 		}
 	}
 
-	public String dBList(int id) {
+	public List<DB> dBList(int id) {
 		SqlSession sqlSession = getSqlSessionFactory().openSession();
 		
-//		List<DB> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
-		String list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
+		List<DB> list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
+//		String list = sqlSession.getMapper(ProjectBoardMapper.class).dBList(id);
 		//System.out.println(list);
 		sqlSession.close();
 		if(list == null){

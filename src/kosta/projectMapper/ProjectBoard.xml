@@ -65,32 +65,32 @@
 	</update>
 	
 	<select id="dBId" resultType="Integer">
-		select max(check_id) from checklist
+		select max(check_id) from checklist2
 	</select>
 	
 	<insert id="createDB" parameterType="Dbj">
-<!-- 		insert into checklist(
+ 		insert into checklist2(
 			check_id,check_content,CHECK_PROJECTID
 		)values(
 			nvl((select max(CHECK_ID) from checklist)+1,0),#{check_content},#{check_id}
-		) -->
-		update checklist set
+		)
+<!-- 		update checklist set
 		check_content = #{check_content}
-		where check_id = #{check_id}
+		where check_id = #{check_id} -->
 	</insert>
 	
 	<select id="dBList" resultType="String" parameterType="int">
-		select check_content from checklist where CHECK_ID = #{id}
-<!-- 		select check_id,check_content from checklist where CHECK_PROJECTID = #{id} -->
+		<!-- select check_content from checklist where CHECK_ID = #{id} -->
+		select check_id,check_content from checklist2 where CHECK_PROJECTID = #{id}
 	</select>
 	
 	<update id="updateDB" parameterType="Dbj">
-		update checklist set
+		update checklist2 set
 		check_content = #{check_content}
 		where check_id = #{check_id}
 	</update>
 	<update id="linkDB" parameterType="Dbj">
-		update checklist set
+		update checklist2 set
 		check_content = #{check_content}
 		where check_id = #{check_id}
 	</update>
