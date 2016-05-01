@@ -26,7 +26,7 @@
        	<c:choose>
        	<c:when test="${m_name!=null }">
 	            <li><a href="#">안녕하세요! ${m_name } 님!</a></li>
-          <li><a href="#">쪽지</a></li>
+          <li><a class="noteOpen" href="">쪽지</a></li>
           <li role="presentation"><a href="#" id="messengerBtn">매신저</a></li>
           <li role="presentation"><a href="logoutOk.do">로그아웃</a></li>
        	</c:when>
@@ -40,5 +40,14 @@
     </nav>
   </div>
 </div>
+<script type="text/javascript" src="/kosta111MidProject/javascriptFiles/jquery-2.2.3.min.js"></script>
+<script type="text/javascript">
+$('.noteOpen').on('click', function() {
+	var popUrl = "/kosta111MidProject/note/noteInsertForm.jsp";    //팝업창에 출력될 페이지 URL
+    var popOption = "width=450, height=360, resizable=no, scrollbars=no, " +
+    		"status=no; scrollbars = no; resizable = no";    //팝업창 옵션(optoin)
+    window.open(popUrl,"",popOption);
+})
+</script>
 </body>
 </html>

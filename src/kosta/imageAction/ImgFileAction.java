@@ -46,8 +46,9 @@ public class ImgFileAction implements ImgAction {
 		int check_id = Integer.parseInt(multi.getParameter("check_id"));
 		int check_projeckid = Integer.parseInt(multi.getParameter("check_projectid"));
 		String getListStr = service.listImgBoardService(check_id);
+		System.out.println(getListStr);
 		try {
-			if(getListStr.equals("")){
+			if(getListStr==null){
 			}else{
 				loadJsonArrFromDb = (JSONArray)parser.parse(getListStr);
 			}

@@ -20,29 +20,61 @@ function receive(email) {
 </script>
 </head>
 <body>
-<form action="noteInsert.do" id="formTag">
-	<div class="noteForm">
+<%
+request.setAttribute("m_id", session.getAttribute("m_id"));
+%>
+<div class="container">
+<form action="noteInsert.do" id="formTag" method="post">
+<!-- 	<div class="input-group">
+	  <span class="input-group-addon" id="basic-addon1">@</span>
+	  <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+	</div> -->
+	<div class="form-group noteForm">
 		<div class="hidden_text">
-			<input type="text" name="n_sender" value="1"> <- 보낸놈(임시)
+		 <input type="hidden" name="n_sender" value="${m_id }"> <!-- <- 보낸놈(임시) -->
 		</div>
 		<div class="input_text">
-			<div class="title">제목: <input type="text" name="n_title"></div>
-			<div class="receive">
-				받는사람: <input type="text" name="n_receive" >
-				<button class="searchOpen"> 이메일 검색 </button>
+			<div class="title">
+			<label for="inputName" class="col-xs-2 control-label">제목</label> 
+			<div class="col-xs-10">
+				<input class="form-control" type="text" name="n_title">
 			</div>
-			<div class="content">내용 : <textarea name="n_content"></textarea></div>
+			</div>
+			<div class="receive">
+			<label for="inputName" class="col-xs-2 control-label">받는사람</label>
+			<div class="col-xs-8">
+			<input class="form-control" type="text" name="n_receive" >
+			</div>
+			<div class="col-xs-2">
+				<button class="searchOpen btn btn-default"> 검색 </button>
+    		 <!--    <div class="input-group">
+      <input type="text" class="form-control" name="n_receive" placeholder="이메일을 적으세요">
+      <span class="input-group-btn">
+        <button class="btn btn-default searchOpen" type="button">검색</button>
+      </span>
+    </div>/input-group -->
+			</div>
+			</div>
+			<div class="col-xs-12">
+			<div class="content">
+			<label for="inputName" class="col-xs-2 control-label">내용</label>
+			<div class="col-xs-10">
+			<textarea class="form-control" name="n_content"></textarea></div>
+			</div>
+			</div>
 		</div>
 	</div>
+	<br>
 	<div class="bottom">
 		<div class="box">
-			<button>쪽지함</button>
+			<button class="btn btn-default">쪽지함</button>
 		</div>
 		<div class="send">
-			<input type="submit" value="전송">
+			<input class="btn btn-default" type="submit" value="전송">
 		</div>
 	</div>
 </form>	
+</div>
 	
 	
 	<%-- <!-- Modal -->

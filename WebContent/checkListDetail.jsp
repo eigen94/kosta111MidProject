@@ -213,7 +213,10 @@
       </c:when>
       <c:when test="${check_type==4 }"><!-- erd -->
 <%--       <jsp:include page="projectBoard/data.jsp?check_id=${check_id }"></jsp:include><!-- 수정필요 --> --%> 
-      <jsp:forward page="projectBoard/data.do?check_id=${check_id }"></jsp:forward>
+      <%-- <jsp:forward page="projectBoard/checkDetail.do?check_id=${check_id }"></jsp:forward> --%>
+      <%
+      response.sendRedirect("projectBoard/checkDetail.do?check_id="+check_id);
+      %>
       </c:when>
       <c:when test="${check_type==5 }"><!-- 이미지게시판 -->
       <jsp:include page="imgProjectBoard/test.jsp"></jsp:include>

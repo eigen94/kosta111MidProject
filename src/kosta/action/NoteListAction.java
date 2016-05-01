@@ -28,13 +28,17 @@ public class NoteListAction implements Action{
 			pageNum = "1";
 		}
 		int requestPage = Integer.parseInt(pageNum);
-		String id = request.getParameter("id");
+//		String id = request.getParameter("id");
+		HttpSession session = request.getSession();
+		int id = (Integer)session.getAttribute("m_id");
+		System.out.println(session.getAttribute("m_id"));
+//		String id = session.getAttribute("m_id");
 		int receive  = 0;
 		
-		if(id != null){
-			receive = Integer.parseInt(id);
-		}
-		receive = 1;
+//		if(id != null){
+//			receive = Integer.parseInt(id);
+//		}
+		receive = id;
 		Service service = Service.getInstance();
 		ListModel noteList = service.noteListService(receive, requestPage, request);
 		request.setAttribute("noteList", noteList);

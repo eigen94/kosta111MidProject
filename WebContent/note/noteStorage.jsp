@@ -85,7 +85,14 @@
 	<div class="sendNote">
 		<span class="send"><button>쪽지 보내기</button></span>
 	</div>
-	
+	<script type="text/javascript" src="/kosta111MidProject/javascriptFiles/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.sendNote').click(function(){
+				location.href="noteInsertForm.jsp";
+			});
+		});
+	</script>
 </body>
 </html>
 

@@ -72,14 +72,14 @@
  		insert into checklist2(
 			check_id,check_content,CHECK_PROJECTID
 		)values(
-			nvl((select max(CHECK_ID) from checklist)+1,0),#{check_content},#{check_id}
+			nvl((select max(CHECK_ID) from checklist2)+1,0),#{check_content},#{check_id}
 		)
 <!-- 		update checklist set
 		check_content = #{check_content}
 		where check_id = #{check_id} -->
 	</insert>
 	
-	<select id="dBList" resultType="String" parameterType="int">
+	<select id="dBList" resultType="Dbj" parameterType="int">
 		<!-- select check_content from checklist where CHECK_ID = #{id} -->
 		select check_id,check_content from checklist2 where CHECK_PROJECTID = #{id}
 	</select>
