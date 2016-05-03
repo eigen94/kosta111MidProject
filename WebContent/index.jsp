@@ -36,7 +36,7 @@
 	      </ol>
 	      <div class="carousel-inner" role="listbox">
 	        <div class="item active">
-	          <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+	          <img class="first-slide" src="/kosta111MidProject/images/index/front1.jpeg" alt="First slide">
 	          <div class="container">
 	            <div class="carousel-caption">
 	              <h1>코스타111 중간 프로젝트</h1>
@@ -46,7 +46,7 @@
 	          </div>
 	        </div>
 	        <div class="item">
-	          <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+	          <img class="second-slide" src="/kosta111MidProject/images/index/front2.jpeg" alt="Second slide">
 	          <div class="container">
 	            <div class="carousel-caption">
 	              <h1>여러기능을 제공합니다!</h1>
@@ -56,7 +56,7 @@
 	          </div>
 	        </div>
 	        <div class="item">
-	          <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+	          <img class="third-slide" src="/kosta111MidProject/images/index/front3.jpeg" alt="Third slide">
 	          <div class="container">
 	            <div class="carousel-caption">
 	              <h1>지금 가입하세요!</h1>
@@ -84,33 +84,33 @@
 	    <div class="container marketing">
 	
 	      <!-- Three columns of text below the carousel -->
-	      
+	      <!-- 
 	      <div class="row">
 	        <div class="col-lg-4">
 	          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
 	          <h2>Heading</h2>
 	          <p>Donec sed odio dui. Etiam porta sem malesuada magna mollis euismod. Nullam id dolor id nibh ultricies vehicula ut id elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Praesent commodo cursus magna.</p>
 	          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-	        </div><!-- /.col-lg-4 -->
+	        </div>/.col-lg-4
 	        <div class="col-lg-4">
 	          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
 	          <h2>Heading</h2>
 	          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh.</p>
 	          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-	        </div><!-- /.col-lg-4 -->
+	        </div>/.col-lg-4
 	        <div class="col-lg-4">
 	          <img class="img-circle" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Generic placeholder image" width="140" height="140">
 	          <h2>Heading</h2>
 	          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
 	          <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
-	        </div><!-- /.col-lg-4 -->
-	      </div><!-- /.row -->
-	
+	        </div>/.col-lg-4
+	      </div>/.row
+	 -->
 	
 	      <!-- START THE FEATURETTES -->
-	
+	<!-- 
 	      <hr class="featurette-divider">
-	
+	 -->
 	      <div class="row featurette">
 	        <div class="col-md-7">
 	          <h2 class="featurette-heading">체계적인 프로젝트 관리! <span class="text-muted">진행 사항을 한눈에 확인하세요!</span></h2>
