@@ -119,7 +119,7 @@ $(function(){
 				classes = new Array();
 				relations = null;
 				relations = new Array();
-				//console.log(total)
+				console.log(total)
 			},error: function(data){
 				alert("실패");
 			}
